@@ -1,0 +1,20 @@
+{
+  "name": "Technostripe Solutions",
+  "short_name": "Technostripe",
+  "description": "Full-stack Shopify Plus agency for scaling DTC e-commerce brands.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0b0a",
+  "theme_color": "#ed1238",
+  "orientation": "portrait-primary",
+  "categories": ["business", "shopping"],
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
