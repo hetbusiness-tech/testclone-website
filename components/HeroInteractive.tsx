@@ -47,13 +47,14 @@ export default function HeroInteractive({ children }: { children: ReactNode }) {
 
 export function AnimatedHeroTitle() {
   const lines = [
-    { text: "Scaling", accent: false },
+    { text: "Your ", accent: false },
     { text: "E-commerce", accent: false },
-    { text: "Brands.", accent: true },
+    { text: "Growth", accent: false },
+    { text: "Partner.", accent: true },
   ];
 
   return (
-    <h1 className="hero-title font-display text-[clamp(3.5rem,10vw,9.5rem)] font-extrabold tracking-[-0.04em] leading-[0.88] text-paper">
+    <h1 className="hero-title font-display text-[clamp(2.8rem,10vw,9.5rem)] font-extrabold tracking-[-0.04em] leading-[0.88] text-paper">
       {lines.map((line) => (
         <span
           key={line.text}

@@ -20,12 +20,12 @@ export default function CaseStudyCard({
         <CaseStudyImage
           src={caseStudy.coverImage}
           alt={caseStudy.projectName}
-          aspectRatioClass={featured ? "aspect-[16/10] lg:aspect-auto lg:h-full min-h-[260px]" : "aspect-[16/10]"}
+          aspectRatioClass={featured ? "aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full min-h-[220px] sm:min-h-[260px]" : "aspect-[4/3] sm:aspect-[16/10]"}
         />
       </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-6 sm:p-8 justify-between">
+      <div className="flex min-w-0 flex-col flex-1 p-5 sm:p-8 justify-between">
         <div>
           {/* Category Tag */}
           <div className="flex items-center gap-2 mb-4">

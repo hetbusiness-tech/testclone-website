@@ -1,15 +1,10 @@
 "use client";
 
 const tags = [
-  "AI AUTOMATION",
-  "NEXT.JS",
-  "FLUTTERFLOW",
   "GOOGLE ADS",
   "META ADS",
   "SEO",
-  "HUBSPOT",
-  "TAILWIND CSS",
-  "SHOPIFY PLUS",
+  "SHOPIFY",
   "CRO & SPEED",
 ];
 

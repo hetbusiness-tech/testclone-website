@@ -26,7 +26,7 @@ const servicesData: ServiceDetail[] = [
     title: "E-commerce Website Development",
     description:
       "We design and develop high-converting Shopify experiences focused on user experience, lightning-fast load times, and long-term brand scalability.",
-    imageUrl: "/services/service1.png", // Place custom image URL here
+    imageUrl: "/services/e-commerce.png", // Place custom image URL here
     keyBenefits: [
       "Sub-second Shopify speed & 95+ Lighthouse score",
       "Mobile-first CRO UX designed to maximize conversion",
@@ -53,7 +53,7 @@ const servicesData: ServiceDetail[] = [
     title: "Paid Ads (Performance Marketing)",
     description:
       "Performance marketing systems designed to acquire DTC customers profitably and scale revenue consistently across Meta & Google Ads.",
-    imageUrl: "/services/service1.png", // Place custom image URL here
+    imageUrl: "/services/paid-ads.png", // Place custom image URL here
     keyBenefits: [
       "High-intent Google Shopping & Search campaigns",
       "Multi-stage Meta (FB & IG) acquisition & retargeting",
@@ -80,7 +80,7 @@ const servicesData: ServiceDetail[] = [
     title: "E-commerce SEO Services",
     description:
       "Technical, collection-level, and product-intent SEO engineered specifically for modern Shopify stores. We fix crawl bottlenecks, rank commercial keywords, and build compounding organic revenue.",
-    imageUrl: "/services/service1.png", // Place custom image URL here
+    imageUrl: "/services/seo.png", // Place custom image URL here
     keyBenefits: [
       "Sub-second collection & product crawlability fixes",
       "High-intent commercial keyword & category ranking",
@@ -107,7 +107,7 @@ const servicesData: ServiceDetail[] = [
     title: "Social Media & Creative",
     description:
       "Conversion-focused social content, performance ad creatives, UGC direction, and product storytelling built to capture attention and convert.",
-    imageUrl: "/services/service1.png", // Place custom image URL here
+    imageUrl: "/services/social-media.png", // Place custom image URL here
     keyBenefits: [
       "Thumb-stopping video creative built to perform in-feed",
       "Full UGC creator pipeline & creative direction",
@@ -134,7 +134,7 @@ const servicesData: ServiceDetail[] = [
     title: "Brand Positioning & CRO",
     description:
       "We optimize your customer journey to increase conversion rate, average order value (AOV), and customer lifetime value.",
-    imageUrl: "/services/service1.png", // Place custom image URL here
+    imageUrl: "/services/cro.png", // Place custom image URL here
     keyBenefits: [
       "High-converting product page & cart upsell architecture",
       "Data-driven friction reduction and heat map analysis",
@@ -202,7 +202,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Quick Sub-Navigation Bar */}
-      <nav className="sticky top-20 z-40 border-y border-white/10 bg-[#0a0b0a]/95 backdrop-blur-xl py-4 px-6">
+      <nav className="relative z-20 border-y border-white/10 bg-[#0a0b0a] py-4 px-6">
         <div className="mx-auto max-w-6xl flex flex-wrap items-center justify-between gap-x-6 gap-y-3.5 text-xs font-mono tracking-wide">
           {servicesData.map((service) => (
             <a
@@ -220,7 +220,7 @@ export default function ServicesPage() {
       </nav>
 
       {/* Detailed Services Sections (Top-Aligned Image & 2x2 Process Table) */}
-      <section className="relative z-10 bg-ink py-16 lg:py-24 space-y-24 lg:space-y-36">
+      <section className="relative z-10 bg-ink px-6 py-16 lg:py-24">
         {servicesData.map((service, index) => {
           const isImageLeft = index % 2 === 0;
 
@@ -228,14 +228,14 @@ export default function ServicesPage() {
             <div
               key={service.id}
               id={service.id}
-              className="scroll-mt-36 mx-auto max-w-6xl px-6"
+              className={`scroll-mt-12 mx-auto max-w-6xl border-t border-white/10 pt-16 first:border-t-0 first:pt-0 lg:pt-24 ${index === 0 ? "" : "mt-16 lg:mt-24"}`}
             >
               <div
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start ${isImageLeft ? "" : "lg:grid-flow-dense"
                   }`}
               >
                 {/* ── IMAGE / VISUAL SHOWCASE CARD (Top-Aligned) ─────────────── */}
-                <div className={`${isImageLeft ? "" : "lg:col-start-2"} sticky top-36`}>
+                <div className={`${isImageLeft ? "" : "lg:col-start-2"} lg:sticky lg:top-36`}>
                   <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/15 bg-[#101210] p-6 sm:p-8 shadow-2xl flex flex-col justify-between group">
                     {service.imageUrl ? (
                       <>
@@ -369,7 +369,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Pre-Footer CTA */}
-      <CTASection />
+      <CTASection variant="services" />
 
       {/* Shared Footer */}
       <Footer />

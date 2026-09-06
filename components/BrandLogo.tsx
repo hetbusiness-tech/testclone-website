@@ -31,8 +31,9 @@ export default function BrandLogo({
         width={width}
         height={height}
         priority={priority}
+        unoptimized
         className="h-auto w-auto object-contain object-left"
-        style={{ height: `${height}px`, width: "auto" }}
+        style={{ height: `${height}px`, width: "auto", maxHeight: "100%" }}
       />
     </Link>
   );

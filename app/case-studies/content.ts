@@ -1,22 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { caseStudies } from "../app/case-studies/constants";
-export type { CaseStudy, CaseStudyMetric } from "../app/case-studies/types";
-import type { CaseStudy } from "../app/case-studies/types";
-
-export { caseStudies };
-
-export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
-  return caseStudies.find((item) => item.slug === slug);
-}
-
-export function getAllCaseStudySlugs(): string[] {
-  return caseStudies.map((item) => item.slug);
-}
-
-export function getAllCaseStudies(): CaseStudy[] {
-  return [...caseStudies];
-}
+import type { CaseStudy } from "./types";
 
 export function getCaseStudyMarkdownContent(caseStudy: CaseStudy): string {
   if (!caseStudy.contentFile) return "";

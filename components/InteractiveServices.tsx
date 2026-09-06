@@ -82,15 +82,15 @@ export default function InteractiveServices() {
 
   return (
     <div className="relative z-10 w-full overflow-hidden bg-ink py-20 sm:py-28">
-      {/* Floating Red Preview Card on Hover (Straight, no tilt) */}
+      {/* Floating Red Preview Card on Hover */}
       <AnimatePresence>
         {hoveredService && (
           <motion.div
             key={hoveredService.number}
-            initial={{ opacity: 0, scale: 0.92, rotate: 0 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            exit={{ opacity: 0, scale: 0.92, rotate: 0 }}
-            transition={{ duration: 0.16, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.92 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
             className="pointer-events-none fixed z-[9999]"
             style={{
               left: mouse.x - 120,
@@ -117,12 +117,12 @@ export default function InteractiveServices() {
         )}
       </AnimatePresence>
 
-      <div className="mx-auto mb-14 flex max-w-[90rem] items-end justify-between gap-6 px-6 sm:mb-16 sm:px-10 lg:px-16">
+      <div className="mx-auto mb-10 flex max-w-[90rem] items-end justify-between gap-6 px-5 sm:mb-16 sm:px-10 lg:px-16">
         <div>
           <span className="eyebrow mb-3 block text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs">
             ( SERVICES )
           </span>
-          <h2 className="font-display text-5xl sm:text-6xl lg:text-[4.5rem] font-black tracking-tight text-white leading-[0.94]">
+          <h2 className="font-display text-4xl sm:text-6xl lg:text-[4.5rem] font-black tracking-tight text-white leading-[0.94]">
             Full-stack
             <br />
             digital growth
@@ -130,13 +130,16 @@ export default function InteractiveServices() {
         </div>
         <Link
           href="/services"
-          className="mb-2 hidden shrink-0 items-center rounded-full border border-white/25 px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:border-[#ed1238] hover:text-[#ed1238] sm:inline-flex"
+          className="mb-2 hidden shrink-0 items-center rounded-full border border-white/25 px-6 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:border-[#ed1238] hover:bg-[#ed1238] hover:text-white sm:inline-flex"
         >
           All services
         </Link>
       </div>
 
-      <div className="w-full border-t border-white/10">
+      <div
+        className="w-full border-t border-white/10"
+        onMouseLeave={() => setHoveredIndex(null)}
+      >
         {servicesList.map((service, index) => {
           const isHovered = hoveredIndex === index;
           return (
@@ -144,21 +147,35 @@ export default function InteractiveServices() {
               key={service.number}
               href={service.href}
               onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className={`group relative flex w-full items-center justify-between gap-6 border-b border-white/10 px-6 py-6 sm:px-10 sm:py-7 lg:px-16 lg:py-8 transition-colors duration-200 ${
-                isHovered ? "bg-white text-black" : "bg-transparent text-white"
-              }`}
+              className="group relative flex w-full items-center justify-between gap-4 border-b border-white/10 px-5 py-5 sm:gap-6 sm:px-10 sm:py-7 lg:px-16 lg:py-8"
             >
-              <div className="flex min-w-0 items-baseline gap-5 sm:gap-8 lg:gap-12">
+              {/* Smooth Animated Background Morphing on Hover */}
+              {isHovered && (
+                <motion.div
+                  layoutId="service-row-hover-bg"
+                  className="absolute inset-0 bg-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 32,
+                  }}
+                />
+              )}
+
+              {/* Service Number & Title */}
+              <div className="relative z-10 flex min-w-0 items-baseline gap-5 sm:gap-8 lg:gap-12">
                 <span
-                  className={`w-8 shrink-0 font-mono text-sm tracking-wider ${
-                    isHovered ? "text-black/40" : "text-white/40"
+                  className={`w-8 shrink-0 font-mono text-sm tracking-wider transition-colors duration-300 ease-out ${
+                    isHovered ? "text-black/50 font-semibold" : "text-white/40 font-normal"
                   }`}
                 >
                   {service.number}
                 </span>
                 <h3
-                  className={`font-display text-[clamp(1.35rem,2.8vw,2.75rem)] font-extrabold tracking-tight leading-[1.05] transition-colors duration-200 ${
+                  className={`font-display text-[clamp(1.35rem,2.8vw,2.75rem)] font-extrabold tracking-tight leading-[1.05] transition-colors duration-300 ease-out ${
                     isHovered ? "text-black" : "text-white"
                   }`}
                 >
@@ -166,26 +183,30 @@ export default function InteractiveServices() {
                 </h3>
               </div>
 
-              <div className="hidden max-w-sm items-center gap-8 lg:flex xl:max-w-md">
+              {/* Description & Arrow (Desktop) */}
+              <div className="relative z-10 hidden max-w-sm items-center gap-8 lg:flex xl:max-w-md">
                 <p
-                  className={`text-[13.5px] leading-relaxed transition-colors duration-200 ${
-                    isHovered ? "text-black/75 font-medium" : "text-white/60 font-normal"
+                  className={`text-[13.5px] leading-relaxed transition-colors duration-300 ease-out ${
+                    isHovered ? "text-black/80 font-medium" : "text-white/60 font-normal"
                   }`}
                 >
                   {service.description}
                 </p>
                 <DiagonalArrow
-                  className={`size-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 ${
+                  className={`size-5 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5 ${
                     isHovered ? "text-black" : "text-white"
                   }`}
                 />
               </div>
 
-              <DiagonalArrow
-                className={`size-5 shrink-0 lg:hidden transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 ${
-                  isHovered ? "text-black" : "text-white"
-                }`}
-              />
+              {/* Arrow (Mobile) */}
+              <div className="relative z-10 lg:hidden">
+                <DiagonalArrow
+                  className={`size-5 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5 ${
+                    isHovered ? "text-black" : "text-white"
+                  }`}
+                />
+              </div>
             </Link>
           );
         })}
@@ -193,5 +214,3 @@ export default function InteractiveServices() {
     </div>
   );
 }
-
-

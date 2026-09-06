@@ -2,14 +2,80 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
-export default function CTASection() {
+// Staggered word-by-word fade-up animation component
+function AnimatedWords({
+  text,
+  className = "",
+  delay = 0,
+  stagger = 0.045,
+}: {
+  text: string;
+  className?: string;
+  delay?: number;
+  stagger?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px 0px" });
+
+  const words = text.split(" ");
+
   return (
-    <section className="relative z-10 bg-ink py-24 overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="relative overflow-hidden rounded-[2.5rem] border-2 border-[#ed1238] bg-gradient-to-br from-ink-soft via-[#121412] to-ink p-8 sm:p-14 lg:p-20 shadow-[0_0_60px_-10px_rgba(237,18,56,0.4)] backdrop-blur-xl">
-          
+    <span ref={ref} className={className} aria-label={text}>
+      {words.map((word, index) => (
+        <span
+          key={index}
+          className="inline-block overflow-hidden mr-[0.26em] last:mr-0 align-top"
+        >
+          <motion.span
+            className="inline-block"
+            initial={{ y: "110%", opacity: 0, filter: "blur(4px)" }}
+            animate={
+              isInView
+                ? { y: "0%", opacity: 1, filter: "blur(0px)" }
+                : { y: "110%", opacity: 0, filter: "blur(4px)" }
+            }
+            transition={{
+              duration: 0.55,
+              delay: delay + index * stagger,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+type CTASectionProps = {
+  buttonLabel?: string;
+  variant?: "default" | "services";
+};
+
+export default function CTASection({
+  buttonLabel,
+  variant = "default",
+}: CTASectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-80px 0px" });
+  const isServicesVariant = variant === "services";
+  const resolvedButtonLabel = buttonLabel ?? (isServicesVariant ? "Book a Service Consultation" : "Book Free Growth Call");
+
+  return (
+    <section className="relative z-10 overflow-hidden bg-ink py-20 sm:py-24">
+      <div className={`${isServicesVariant ? "max-w-7xl px-6" : "max-w-6xl px-6"} mx-auto`}>
+        <div
+          ref={containerRef}
+          className={`relative overflow-hidden ${isServicesVariant
+            ? "rounded-[2rem] border border-[#ed1238]/70 bg-[linear-gradient(110deg,rgba(237,18,56,0.28),rgba(10,11,10,0.72)_48%,rgba(237,18,56,0.12))] px-8 py-14 shadow-[0_0_90px_-18px_rgba(237,18,56,0.9),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl sm:rounded-[2.5rem] sm:px-14 sm:py-20 lg:px-20"
+            : "rounded-[2.5rem] border-2 border-[#ed1238] bg-gradient-to-br from-ink-soft via-[#121412] to-ink p-8 shadow-[0_0_60px_-10px_rgba(237,18,56,0.4)] backdrop-blur-xl sm:p-14 lg:p-20"
+            }`}
+        >
+          {/* Floating animated logo mark */}
           <motion.div
             animate={{
               rotate: [-12, -8, -12],
@@ -20,38 +86,73 @@ export default function CTASection() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute -right-8 -bottom-8 sm:-right-12 sm:-bottom-12 opacity-35 sm:opacity-45 pointer-events-none mix-blend-screen"
+            className={`pointer-events-none absolute -bottom-8 -right-8 sm:-bottom-12 sm:-right-12 ${isServicesVariant ? "opacity-25 mix-blend-screen" : "opacity-35 mix-blend-screen sm:opacity-45"
+              }`}
           >
             <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full bg-[#ed1238]/30 blur-2xl transform scale-125" />
+              <div className={`absolute inset-0 scale-125 transform rounded-full blur-2xl ${isServicesVariant ? "bg-[#ed1238]/30" : "bg-[#ed1238]/30"
+                }`} />
               <Image
                 src="/favicon.png"
                 width={280}
                 height={280}
                 unoptimized
                 alt="Technostripe Mark"
-                className="h-48 w-48 sm:h-72 sm:w-72 object-contain"
+                className={`h-48 w-48 object-contain sm:h-72 sm:w-72 ${isServicesVariant ? "opacity-35" : ""}`}
               />
             </div>
           </motion.div>
 
           <div className="relative z-10 max-w-2xl">
-            <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold">
-              ( START SCALING )
-            </span>
-            <h2 className="mt-4 font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[0.98]">
-              Ready to scale your<br />e-commerce brand?
+            {/* Eyebrow badge */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+                <span className={`eyebrow font-mono text-xs font-bold uppercase tracking-widest sm:text-sm ${isServicesVariant ? "text-[#ff6b82]" : "text-[#ed1238]"
+                  }`}>
+                {isServicesVariant ? "( FIND YOUR LEVERAGE )" : "( START SCALING )"}
+              </span>
+            </motion.div>
+
+            {/* Heading with word-by-word reveal */}
+            <h2 className={`mt-4 max-w-4xl font-display text-4xl font-extrabold leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl ${isServicesVariant ? "text-white" : "text-white"
+              }`}>
+              <AnimatedWords
+                text={isServicesVariant ? "Which service will move the needle?" : "Ready to scale your e-commerce brand?"}
+                delay={0.1}
+                stagger={0.06}
+              />
             </h2>
-            <p className="mt-6 text-base sm:text-lg leading-relaxed text-paper/70 font-normal">
-              Let&apos;s build a growth system designed for profitable scale. Book a free growth call with our team and let&apos;s map your roadmap.
+
+            {/* Paragraph with word-by-word reveal */}
+            <p className={`mt-6 max-w-2xl text-base font-normal leading-relaxed sm:text-lg ${isServicesVariant ? "text-paper/75" : "text-paper/70"
+              }`}>
+              <AnimatedWords
+                text={isServicesVariant
+                  ? "Tell us where you want to grow. We will match the right service system to your next measurable win."
+                  : "Let's build a growth system designed for profitable scale. Book a free growth call with our team and let's map your roadmap."}
+                delay={0.35}
+                stagger={0.03}
+              />
             </p>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            {/* CTA Button entrance */}
+            <motion.div
+              className="mt-10 flex flex-col gap-4 sm:flex-row"
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{ duration: 0.6, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            >
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#ed1238] px-8 py-4 text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_35px_rgba(237,18,56,0.6)] cursor-pointer"
+                className={`inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold tracking-tight transition-all duration-300 cursor-pointer ${isServicesVariant
+                  ? "bg-[#ed1238] text-white hover:bg-[#ff2046] hover:shadow-[0_0_35px_rgba(237,18,56,0.75)]"
+                  : "bg-[#ed1238] text-white hover:bg-[#ff2046] hover:shadow-[0_0_35px_rgba(237,18,56,0.6)]"
+                  }`}
               >
-                Book Free Growth Call
+                {resolvedButtonLabel}
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -63,7 +164,7 @@ export default function CTASection() {
                   <path d="M7 17 17 7" />
                 </svg>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

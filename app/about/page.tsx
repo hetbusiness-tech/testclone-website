@@ -153,7 +153,7 @@ export default function AboutPage() {
   const statsRef = useRef<HTMLDivElement>(null);
   const isStatsInView = useInView(statsRef, { once: true, margin: "-50px" });
 
-  const [teamImageUrl] = useState("/team.png");
+  const [teamImageUrl] = useState("/about.jpeg");
 
   return (
     <main className="min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white">

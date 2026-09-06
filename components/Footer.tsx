@@ -9,7 +9,10 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-12 pb-16 border-b border-white/10">
           <div className="md:col-span-2 space-y-4">
-            <BrandLogo height={42} />
+            <BrandLogo
+              height={58}
+              className="drop-shadow-[0_0_18px_rgba(237,18,56,0.18)]"
+            />
             <p className="text-sm text-paper/60 max-w-sm leading-relaxed">
               Technostripe helps modern e-commerce brands scale through Shopify development, performance marketing, e-commerce SEO, creative systems, and conversion optimization.
             </p>
@@ -22,12 +25,12 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-paper/70">
               <li>
                 <Link href="/services#ecommerce-website-development" className="hover:text-white transition-colors">
-                  Shopify Development
+                  E-commerce Website Development
                 </Link>
               </li>
               <li>
                 <Link href="/services#paid-ads" className="hover:text-white transition-colors">
-                  Paid Ads & Scaling
+                  Paid Ads
                 </Link>
               </li>
               <li>
@@ -37,12 +40,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/services#social-media-creative" className="hover:text-white transition-colors">
-                  Social & UGC Creative
+                  Social Media & Creative
                 </Link>
               </li>
               <li>
                 <Link href="/services#brand-positioning-cro" className="hover:text-white transition-colors">
-                  Brand & Store CRO
+                  Brand Positioning & CRO
                 </Link>
               </li>
             </ul>
@@ -54,13 +57,18 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-paper/70">
               <li>
-                <Link href="/#work" className="hover:text-white transition-colors">
+                <Link href="/case-studies" className="hover:text-white transition-colors">
                   Case Studies
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-white transition-colors">
                   About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/insights" className="hover:text-white transition-colors">
+                  Insights
                 </Link>
               </li>
               <li>
@@ -76,10 +84,10 @@ export default function Footer() {
               Locations & Reach
             </h4>
             <div className="text-sm text-paper/70 space-y-2">
-              <p className="font-medium text-white">Mumbai, India</p>
-              <p className="text-xs text-paper/50">BKC, Bandra East</p>
+              {/* <p className="font-medium text-white">Mumbai, India</p>
+              <p className="text-xs text-paper/50">BKC, Bandra East</p> */}
               <p className="font-medium text-white pt-2">Global DTC Partner</p>
-              <p className="text-xs text-paper/50">Serving India, UK & US Brands</p>
+              <p className="text-xs text-paper/50">Serving India Brands</p>
             </div>
           </div>
         </div>

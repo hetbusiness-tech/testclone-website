@@ -4,22 +4,20 @@ import { notFound } from "next/navigation";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import CaseStudyImage from "../../../components/CaseStudyImage";
-import {
-  caseStudies,
-  getCaseStudyBySlug,
-  getAllCaseStudySlugs,
-} from "../../../lib/case-studies";
+import MarkdownBody from "../../../components/MarkdownBody";
+import { caseStudies } from "../constants";
+import { getCaseStudyMarkdownContent } from "../content";
 
 interface Props {
   params: { slug: string };
 }
 
 export function generateStaticParams() {
-  return getAllCaseStudySlugs().map((slug) => ({ slug }));
+  return caseStudies.map((caseStudy) => ({ slug: caseStudy.slug }));
 }
 
 export function generateMetadata({ params }: Props): Metadata {
-  const caseStudy = getCaseStudyBySlug(params.slug);
+  const caseStudy = caseStudies.find((item) => item.slug === params.slug);
   if (!caseStudy) return {};
 
   return {
@@ -34,8 +32,9 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default function CaseStudyDetailPage({ params }: Props) {
-  const caseStudy = getCaseStudyBySlug(params.slug);
+  const caseStudy = caseStudies.find((item) => item.slug === params.slug);
   if (!caseStudy) notFound();
+  const markdownContent = getCaseStudyMarkdownContent(caseStudy);
 
   // Related case studies
   const related = caseStudies
@@ -75,16 +74,18 @@ export default function CaseStudyDetailPage({ params }: Props) {
               className="text-3xl sm:text-5xl lg:text-6xl text-white font-extrabold leading-[1.05] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-display-family)" }}
             >
-              {caseStudy.projectName}
+              {caseStudy.caseStudyTitle
+                ? `${caseStudy.projectName} — ${caseStudy.caseStudyTitle}`
+                : caseStudy.projectName}
             </h1>
             <p className="text-base sm:text-lg text-white/65 leading-relaxed max-w-3xl font-normal">
               {caseStudy.description}
             </p>
           </div>
 
-          {/* ── Visual Media: Cover & Mobile Mockup ─────── */}
+          {/* ── Visual Media: keep the project image near the case-study title ── */}
           <div
-            className={`grid gap-6 mb-12 ${
+            className={`mb-14 grid gap-5 sm:gap-6 ${
               caseStudy.mobileImage
                 ? "grid-cols-1 lg:grid-cols-[1.6fr_1fr]"
                 : "grid-cols-1"
@@ -92,8 +93,8 @@ export default function CaseStudyDetailPage({ params }: Props) {
           >
             <CaseStudyImage
               src={caseStudy.coverImage}
-              alt={`${caseStudy.projectName} Cover Banner`}
-              aspectRatioClass={caseStudy.mobileImage ? "aspect-[16/10]" : "aspect-[16/9]"}
+              alt={`${caseStudy.projectName} homepage screenshot`}
+              aspectRatioClass={caseStudy.mobileImage ? "aspect-[4/3] sm:aspect-[16/10]" : "aspect-[4/3] sm:aspect-[16/9]"}
               priority
             />
 
@@ -101,10 +102,42 @@ export default function CaseStudyDetailPage({ params }: Props) {
               <CaseStudyImage
                 src={caseStudy.mobileImage}
                 alt={`${caseStudy.projectName} Mobile Mockup`}
-                aspectRatioClass="aspect-[16/10] lg:aspect-auto lg:h-full"
+                aspectRatioClass="aspect-[4/3] lg:aspect-auto lg:h-full"
               />
             )}
           </div>
+
+          {markdownContent ? (
+            <section className="mb-14 border-y border-white/10 py-12 lg:py-16">
+              <div className="mx-auto max-w-3xl">
+                <p className="eyebrow text-[#ed1238]">Case Study Narrative</p>
+                <MarkdownBody content={markdownContent} />
+              </div>
+            </section>
+          ) : caseStudy.story && (
+            <section className="mb-14 grid gap-10 border-y border-white/10 py-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+              <div>
+                <p className="eyebrow text-[#ed1238]">Case Study</p>
+                <h2 className="mt-3 max-w-sm font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+                  The work behind the result.
+                </h2>
+              </div>
+              <div className="space-y-10">
+                {caseStudy.story.map((section) => (
+                  <article key={section.heading}>
+                    <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#ed1238]">
+                      {section.heading}
+                    </h3>
+                    <div className="mt-4 space-y-4 text-base leading-relaxed text-white/70 sm:text-lg">
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* ── Details Block (Tools, Backend, Stack, Live Link) ─ */}
           {(caseStudy.designTools ||
