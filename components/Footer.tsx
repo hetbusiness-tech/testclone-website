@@ -24,27 +24,27 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-paper/70">
               <li>
-                <Link href="/services#ecommerce-website-development" className="hover:text-white transition-colors">
+                <Link href="/services#ecommerce-website-development" className="hover:text-[#ed1238] transition-colors">
                   E-commerce Website Development
                 </Link>
               </li>
               <li>
-                <Link href="/services#paid-ads" className="hover:text-white transition-colors">
+                <Link href="/services#paid-ads" className="hover:text-[#ed1238] transition-colors">
                   Paid Ads
                 </Link>
               </li>
               <li>
-                <Link href="/services#ecommerce-seo-services" className="hover:text-white transition-colors">
+                <Link href="/services#ecommerce-seo-services" className="hover:text-[#ed1238] transition-colors">
                   E-commerce SEO
                 </Link>
               </li>
               <li>
-                <Link href="/services#social-media-creative" className="hover:text-white transition-colors">
+                <Link href="/services#social-media-creative" className="hover:text-[#ed1238] transition-colors">
                   Social Media & Creative
                 </Link>
               </li>
               <li>
-                <Link href="/services#brand-positioning-cro" className="hover:text-white transition-colors">
+                <Link href="/services#brand-positioning-cro" className="hover:text-[#ed1238] transition-colors">
                   Brand Positioning & CRO
                 </Link>
               </li>
@@ -57,22 +57,22 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-paper/70">
               <li>
-                <Link href="/case-studies" className="hover:text-white transition-colors">
+                <Link href="/case-studies" className="hover:text-[#ed1238] transition-colors">
                   Case Studies
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-white transition-colors">
+                <Link href="/about" className="hover:text-[#ed1238] transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/insights" className="hover:text-white transition-colors">
+                <Link href="/insights" className="hover:text-[#ed1238] transition-colors">
                   Insights
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
+                <Link href="/contact" className="hover:text-[#ed1238] transition-colors">
                   Contact
                 </Link>
               </li>
@@ -95,10 +95,10 @@ export default function Footer() {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-paper/50">
           <p>© {new Date().getFullYear()} Technostripe. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/contact" className="hover:text-white transition-colors">
+            <Link href="/contact" className="hover:text-[#ed1238] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/contact" className="hover:text-white transition-colors">
+            <Link href="/contact" className="hover:text-[#ed1238] transition-colors">
               Terms of Service
             </Link>
           </div>

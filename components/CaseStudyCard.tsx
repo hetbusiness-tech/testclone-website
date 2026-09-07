@@ -10,7 +10,8 @@ export default function CaseStudyCard({
   featured?: boolean;
 }) {
   return (
-    <article
+    <Link
+      href={`/case-studies/${caseStudy.slug}`}
       className={`group flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-[#0e100e]/90 backdrop-blur-md transition-all duration-500 hover:border-[#ed1238]/40 hover:bg-white/[0.04] hover:shadow-[0_16px_50px_rgba(237,18,56,0.16)] hover:-translate-y-1.5 ${
         featured ? "md:col-span-2 lg:col-span-3 lg:flex-row lg:items-stretch" : ""
       }`}
@@ -70,8 +71,7 @@ export default function CaseStudyCard({
 
         {/* View Case Study Button Link */}
         <div className="pt-4 border-t border-white/8 flex items-center justify-between mt-auto">
-          <Link
-            href={`/case-studies/${caseStudy.slug}`}
+          <span
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold font-mono tracking-[0.12em] uppercase text-white transition-all duration-300 group-hover:text-[#ed1238]"
           >
             View Case Study
@@ -85,9 +85,9 @@ export default function CaseStudyCard({
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
-          </Link>
+          </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

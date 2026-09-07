@@ -52,7 +52,7 @@ export default function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`transition-colors duration-200 hover:text-white ${
+                  className={`transition-colors duration-200 hover:text-[#ed1238] ${
                     isActive ? "text-[#ed1238] font-bold" : "text-white/85"
                   }`}
                 >
