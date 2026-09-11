@@ -23,7 +23,7 @@ const servicesData: ServiceDetail[] = [
   {
     id: "ecommerce-website-development",
     number: "01",
-    title: "E-commerce Website Development",
+    title: "Ecommerce Website Development",
     description:
       "We design and develop high-converting Shopify experiences focused on user experience, lightning-fast load times, and long-term brand scalability.",
     imageUrl: "/services/e-commerce.png", // Place custom image URL here
@@ -234,9 +234,11 @@ export default function ServicesPage() {
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start ${isImageLeft ? "" : "lg:grid-flow-dense"
                   }`}
               >
-                {/* ── IMAGE / VISUAL SHOWCASE CARD (Top-Aligned) ─────────────── */}
+                {/* ── INTERACTIVE SERVICE CARD (Default: Full 3:2 Image | Hover: Red Branded Card) ─────────────── */}
                 <div className={`${isImageLeft ? "" : "lg:col-start-2"} lg:sticky lg:top-36`}>
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/15 bg-[#101210] p-6 sm:p-8 shadow-2xl flex flex-col justify-between group">
+                  <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] border border-white/15 bg-[#101210] shadow-2xl transition-all duration-500 hover:border-[#ff3b5c]/50 hover:shadow-[0_25px_70px_rgba(237,18,56,0.55)] hover:-translate-y-1.5 cursor-pointer">
+                    
+                    {/* 1. DEFAULT STATE: Clean Full-Fit Service Image */}
                     {service.imageUrl ? (
                       <>
                         <Image
@@ -246,33 +248,51 @@ export default function ServicesPage() {
                           unoptimized
                           className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/10 pointer-events-none" />
-                      </>
-                    ) : (
-                      <>
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/80" />
-                        <div className="absolute inset-0 bg-dots opacity-20" />
-
-                        <div className="absolute inset-x-6 top-6 bottom-20 font-mono text-[10px] text-paper/20 overflow-hidden leading-relaxed pointer-events-none select-none">
-                          <p>&lt;?php // Technostripe {service.title} engine ?&gt;</p>
-                          <p>class {service.id.replace(/-/g, "_")} &#123;</p>
-                          <p>&nbsp;&nbsp;public function scaleDTC() &#123;</p>
-                          <p>&nbsp;&nbsp;&nbsp;&nbsp;return roas_and_conversions();</p>
-                          <p>&nbsp;&nbsp;&#125;</p>
-                          <p>&#125;</p>
+                        {/* Subtle top-left badge in default state */}
+                        <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-10 font-mono text-[11px] sm:text-xs font-bold tracking-widest text-white/90 uppercase px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 shadow-md">
+                          {service.number} / SERVICE
                         </div>
                       </>
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/80" />
                     )}
 
-                    <div className="relative z-10 font-mono text-xs font-bold tracking-widest text-paper/70 uppercase">
-                      {service.number} / CORE SERVICE
+                    {/* 2. HOVER STATE: Red Branded Card with Favicon Watermark & Full Title */}
+                    <div className="absolute inset-0 z-20 bg-[#ed1238] p-6 sm:p-8 lg:p-9 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                      {/* Radiant background glow & gradient overlays */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/25 pointer-events-none" />
+                      <div className="absolute -top-16 -right-16 size-52 rounded-full bg-white/20 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.45)_0%,transparent_65%)] pointer-events-none" />
+
+                      {/* Top-Left: Number / Label */}
+                      <div className="relative z-10 flex items-center justify-between font-mono text-xs sm:text-sm font-bold tracking-[0.2em] text-white/90 uppercase">
+                        <span>{service.number} / SERVICE</span>
+                        <span className="inline-block size-2 rounded-full bg-white/80 animate-pulse" />
+                      </div>
+
+                      {/* Bottom-Right: Technostripe Watermark Favicon Logo */}
+                      <div className="pointer-events-none absolute -bottom-5 -right-5 sm:-bottom-7 sm:-right-7 z-0">
+                        <div className="relative flex items-center justify-center">
+                          <div className="absolute inset-0 rounded-full bg-black/20 blur-2xl transform scale-110" />
+                          <Image
+                            src="/favicon.png"
+                            alt="Technostripe"
+                            width={260}
+                            height={260}
+                            unoptimized
+                            className="size-36 sm:size-48 lg:size-52 object-contain opacity-25 mix-blend-screen transition-all duration-700 group-hover:opacity-45 group-hover:scale-110 group-hover:rotate-6"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Bottom-Left: Large Service Name */}
+                      <div className="relative z-10 max-w-[85%] sm:max-w-[78%] pt-6">
+                        <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-[1.05] tracking-tight drop-shadow-sm">
+                          {service.title}
+                        </h3>
+                      </div>
                     </div>
 
-                    <div className="relative z-10">
-                      <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight drop-shadow-md">
-                        {service.title}
-                      </h3>
-                    </div>
                   </div>
                 </div>
 

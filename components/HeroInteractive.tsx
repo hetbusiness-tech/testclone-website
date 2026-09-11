@@ -24,7 +24,7 @@ export default function HeroInteractive({ children }: { children: ReactNode }) {
       id="top"
       style={style}
       onMouseMove={handlePointerMove}
-      className="hero-interactive relative flex min-h-[100svh] flex-col overflow-hidden bg-ink pt-20 sm:pt-24"
+      className="hero-interactive relative flex h-screen min-h-[640px] max-h-[100vh] flex-col overflow-hidden bg-ink pt-20 sm:pt-24 md:pt-28"
     >
       <div className="hero-spotlight pointer-events-none absolute inset-0" />
       <div className="hero-cursor pointer-events-none absolute" aria-hidden="true" />
@@ -47,25 +47,46 @@ export default function HeroInteractive({ children }: { children: ReactNode }) {
 
 export function AnimatedHeroTitle() {
   const lines = [
-    { text: "Your ", accent: false },
-    { text: "E-commerce", accent: false },
-    { text: "Growth", accent: false },
-    { text: "Partner.", accent: true },
+    {
+      words: [
+        { text: "Your ", accent: false },
+        { text: "E-commerce", accent: false },
+      ],
+    },
+    {
+      words: [
+        { text: "Growth ", accent: false },
+        { text: "Partner.", accent: true },
+      ],
+    },
   ];
 
+  // Significantly larger font size to fill vertical and horizontal space
+  const titleStyle = {
+    fontSize: "clamp(3.6rem, calc(min(100vw - 2rem, 72rem) / 7.8), 8.8rem)",
+    lineHeight: "0.92",
+  } as CSSProperties;
+
   return (
-    <h1 className="hero-title font-display text-[clamp(2.8rem,10vw,9.5rem)] font-extrabold tracking-[-0.04em] leading-[0.88] text-paper">
-      {lines.map((line) => (
-        <span
-          key={line.text}
-          className={`hero-title-line block ${line.accent ? "text-lime" : "text-paper"}`}
-        >
-          {Array.from(line.text).map((character, index) => (
+    <h1
+      style={titleStyle}
+      className="hero-title max-w-none font-display font-extrabold tracking-[-0.04em] text-paper"
+    >
+      {lines.map((line, lineIndex) => (
+        <span key={lineIndex} className="hero-title-line block whitespace-nowrap">
+          {line.words.map((word) => (
             <span
-              key={`${line.text}-${index}`}
-              className="hero-title-character inline-block"
+              key={word.text}
+              className={`hero-title-word inline-block ${word.accent ? "text-lime" : "text-paper"}`}
             >
-              {character === " " ? "\u00a0" : character}
+              {Array.from(word.text).map((character, index) => (
+                <span
+                  key={`${word.text}-${index}`}
+                  className="hero-title-character inline-block"
+                >
+                  {character === " " ? "\u00a0" : character}
+                </span>
+              ))}
             </span>
           ))}
         </span>

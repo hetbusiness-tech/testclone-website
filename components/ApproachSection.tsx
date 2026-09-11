@@ -28,7 +28,7 @@ const steps = [
 export default function ApproachSection() {
   return (
     <section id="about" className="relative z-10 bg-[#f4f3ec] text-[#111111]">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 py-24 sm:px-10 sm:py-32 lg:grid-cols-[1fr_1.1fr] lg:gap-24 lg:px-16">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 sm:px-10 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-20 lg:px-16">
         {/* Pinned / Sticky Left Column */}
         <div className="lg:sticky lg:top-32 lg:self-start lg:max-w-md">
           <span className="eyebrow text-black/50 font-mono tracking-widest uppercase font-bold text-xs">

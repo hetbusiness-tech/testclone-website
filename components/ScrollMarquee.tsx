@@ -18,33 +18,33 @@ type ScrollMarqueeProps = {
 // ── 14 shards with more centre cuts ─────────────────────────────────────────
 const SHARDS = [
   // ── Top-left ──────────────────────────────────────────────────────────────
-  { id: 0,  clip: "polygon(0% 0%, 44% 0%, 32% 44%, 0% 40%)",             tiltX: "-8px",  tiltY: "-6px",  tiltR: "-6deg",  fallX: "-60px",  fallR: "-14deg" },
+  { id: 0, clip: "polygon(0% 0%, 44% 0%, 32% 44%, 0% 40%)", tiltX: "-8px", tiltY: "-6px", tiltR: "-6deg", fallX: "-60px", fallR: "-14deg" },
   // ── Top-centre-left ───────────────────────────────────────────────────────
-  { id: 1,  clip: "polygon(44% 0%, 56% 0%, 46% 46%, 32% 44%)",            tiltX: "4px",   tiltY: "-8px",  tiltR: "5deg",   fallX: "-20px",  fallR: "10deg"  },
+  { id: 1, clip: "polygon(44% 0%, 56% 0%, 46% 46%, 32% 44%)", tiltX: "4px", tiltY: "-8px", tiltR: "5deg", fallX: "-20px", fallR: "10deg" },
   // ── Top-centre (The split at "s/b" boundary) ─────────────────────────────
-  { id: 2,  clip: "polygon(56% 0%, 68% 0%, 58% 44%, 46% 46%)",            tiltX: "-5px",  tiltY: "-7px",  tiltR: "-5deg",  fallX: "20px",   fallR: "-10deg" },
+  { id: 2, clip: "polygon(56% 0%, 68% 0%, 58% 44%, 46% 46%)", tiltX: "-5px", tiltY: "-7px", tiltR: "-5deg", fallX: "20px", fallR: "-10deg" },
   // ── Top-right ─────────────────────────────────────────────────────────────
-  { id: 3,  clip: "polygon(68% 0%, 100% 0%, 100% 36%, 58% 44%)",          tiltX: "10px",  tiltY: "-5px",  tiltR: "7deg",   fallX: "65px",   fallR: "16deg"  },
+  { id: 3, clip: "polygon(68% 0%, 100% 0%, 100% 36%, 58% 44%)", tiltX: "10px", tiltY: "-5px", tiltR: "7deg", fallX: "65px", fallR: "16deg" },
 
   // ── Mid-left ──────────────────────────────────────────────────────────────
-  { id: 4,  clip: "polygon(0% 40%, 32% 44%, 24% 62%, 0% 58%)",            tiltX: "-12px", tiltY: "2px",   tiltR: "-8deg",  fallX: "-80px",  fallR: "-18deg" },
+  { id: 4, clip: "polygon(0% 40%, 32% 44%, 24% 62%, 0% 58%)", tiltX: "-12px", tiltY: "2px", tiltR: "-8deg", fallX: "-80px", fallR: "-18deg" },
   // ── Mid-centre-left ───────────────────────────────────────────────────────
-  { id: 5,  clip: "polygon(32% 44%, 46% 46%, 38% 64%, 24% 62%)",          tiltX: "6px",   tiltY: "3px",   tiltR: "6deg",   fallX: "-30px",  fallR: "12deg"  },
+  { id: 5, clip: "polygon(32% 44%, 46% 46%, 38% 64%, 24% 62%)", tiltX: "6px", tiltY: "3px", tiltR: "6deg", fallX: "-30px", fallR: "12deg" },
   // ── Mid-centre (key break at middle ─ "s" top / "b" top pivot here) ──────
-  { id: 6,  clip: "polygon(46% 46%, 58% 44%, 50% 66%, 38% 64%)",          tiltX: "-4px",  tiltY: "4px",   tiltR: "-4deg",  fallX: "10px",   fallR: "-8deg"  },
+  { id: 6, clip: "polygon(46% 46%, 58% 44%, 50% 66%, 38% 64%)", tiltX: "-4px", tiltY: "4px", tiltR: "-4deg", fallX: "10px", fallR: "-8deg" },
   // ── Mid-centre-right ──────────────────────────────────────────────────────
-  { id: 7,  clip: "polygon(58% 44%, 100% 36%, 100% 58%, 64% 66%)",        tiltX: "8px",   tiltY: "2px",   tiltR: "8deg",   fallX: "50px",   fallR: "18deg"  },
+  { id: 7, clip: "polygon(58% 44%, 100% 36%, 100% 58%, 64% 66%)", tiltX: "8px", tiltY: "2px", tiltR: "8deg", fallX: "50px", fallR: "18deg" },
   // ── Mid-right extra split ─────────────────────────────────────────────────
-  { id: 8,  clip: "polygon(58% 44%, 64% 66%, 50% 66%, 38% 64%)",          tiltX: "3px",   tiltY: "3px",   tiltR: "3deg",   fallX: "15px",   fallR: "6deg"   },
+  { id: 8, clip: "polygon(58% 44%, 64% 66%, 50% 66%, 38% 64%)", tiltX: "3px", tiltY: "3px", tiltR: "3deg", fallX: "15px", fallR: "6deg" },
 
   // ── Lower-left ────────────────────────────────────────────────────────────
-  { id: 9,  clip: "polygon(0% 58%, 24% 62%, 18% 80%, 0% 76%)",            tiltX: "-10px", tiltY: "8px",   tiltR: "-10deg", fallX: "-90px",  fallR: "-20deg" },
+  { id: 9, clip: "polygon(0% 58%, 24% 62%, 18% 80%, 0% 76%)", tiltX: "-10px", tiltY: "8px", tiltR: "-10deg", fallX: "-90px", fallR: "-20deg" },
   // ── Lower-centre-left ─────────────────────────────────────────────────────
-  { id: 10, clip: "polygon(24% 62%, 38% 64%, 30% 82%, 18% 80%)",          tiltX: "7px",   tiltY: "7px",   tiltR: "7deg",   fallX: "-40px",  fallR: "15deg"  },
+  { id: 10, clip: "polygon(24% 62%, 38% 64%, 30% 82%, 18% 80%)", tiltX: "7px", tiltY: "7px", tiltR: "7deg", fallX: "-40px", fallR: "15deg" },
   // ── Lower-centre ──────────────────────────────────────────────────────────
-  { id: 11, clip: "polygon(38% 64%, 50% 66%, 44% 84%, 30% 82%)",          tiltX: "-6px",  tiltY: "8px",   tiltR: "-6deg",  fallX: "5px",    fallR: "-12deg" },
+  { id: 11, clip: "polygon(38% 64%, 50% 66%, 44% 84%, 30% 82%)", tiltX: "-6px", tiltY: "8px", tiltR: "-6deg", fallX: "5px", fallR: "-12deg" },
   // ── Lower-centre-right ────────────────────────────────────────────────────
-  { id: 12, clip: "polygon(50% 66%, 100% 58%, 100% 78%, 58% 86%)",        tiltX: "9px",   tiltY: "6px",   tiltR: "9deg",   fallX: "55px",   fallR: "20deg"  },
+  { id: 12, clip: "polygon(50% 66%, 100% 58%, 100% 78%, 58% 86%)", tiltX: "9px", tiltY: "6px", tiltR: "9deg", fallX: "55px", fallR: "20deg" },
 
   // ── Bottom strip ──────────────────────────────────────────────────────────
   { id: 13, clip: "polygon(0% 76%, 18% 80%, 30% 82%, 44% 84%, 58% 86%, 100% 78%, 100% 100%, 0% 100%)", tiltX: "0px", tiltY: "10px", tiltR: "1deg", fallX: "0px", fallR: "2deg" },
@@ -123,9 +123,9 @@ function ShardPiece({
     <motion.div
       aria-hidden="true"
       style={{ clipPath: shard.clip, x, y, rotate, opacity, zIndex: 10 }}
-      className="absolute inset-0 flex items-center justify-center pointer-events-none"
+      className="absolute inset-0 flex items-center justify-center pointer-events-none px-4"
     >
-      <div className="flex items-center justify-center select-none">
+      <div className="flex items-center justify-center select-none whitespace-nowrap">
         <span className="collision-word collision-word-left font-display text-paper inline-block">
           {firstWord}
         </span>
@@ -212,97 +212,97 @@ export default function ScrollMarquee({
   return (
     <section
       aria-label={`${text} scroll animation`}
-      className="relative z-0 bg-ink"
+      className="relative z-0 bg-ink overflow-x-clip"
     >
       <div
         ref={containerRef}
         className="relative z-0 h-[400vh] bg-ink"
       >
-      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center bg-ink">
+        <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center bg-ink overflow-hidden">
 
-        {/* Central Aura glow */}
-        <motion.div
-          aria-hidden="true"
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            width: "min(65vh, 68vw)",
-            height: "min(65vh, 68vw)",
-            opacity: auraOpacity,
-            scale: auraScale,
-            background:
-              "radial-gradient(circle, rgba(237,18,56,0.45) 0%, rgba(237,18,56,0.15) 35%, rgba(0,0,0,0) 70%)",
-            filter: "blur(2.5rem)",
-          }}
-        />
+          {/* Central Aura glow */}
+          <motion.div
+            aria-hidden="true"
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              width: "min(65vh, 68vw)",
+              height: "min(65vh, 68vw)",
+              opacity: auraOpacity,
+              scale: auraScale,
+              background:
+                "radial-gradient(circle, rgba(237,18,56,0.45) 0%, rgba(237,18,56,0.15) 35%, rgba(0,0,0,0) 70%)",
+              filter: "blur(2.5rem)",
+            }}
+          />
 
-        {/* ── CONCENTRIC SHOCKWAVE CIRCLE RINGS (Shown ONLY on forward connect, hidden on reverse scroll) ── */}
-        <motion.div
-          animate={{ opacity: isForwardScroll ? 1 : 0 }}
-          transition={{ duration: 0.2 }}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none z-[3]"
-        >
-          {SHOCKWAVE_CIRCLES.map((circle, i) => (
-            <ShockwaveCircleItem
-              key={circle.id}
-              circle={circle}
-              index={i}
+          {/* ── CONCENTRIC SHOCKWAVE CIRCLE RINGS (Shown ONLY on forward connect, hidden on reverse scroll) ── */}
+          <motion.div
+            animate={{ opacity: isForwardScroll ? 1 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none z-[3]"
+          >
+            {SHOCKWAVE_CIRCLES.map((circle, i) => (
+              <ShockwaveCircleItem
+                key={circle.id}
+                circle={circle}
+                index={i}
+                scrollYProgress={scrollYProgress}
+              />
+            ))}
+          </motion.div>
+
+          {/* ── INTACT LAYER ─────────────────────────────────────────────── */}
+          <motion.div
+            style={{ opacity: intactOpacity, zIndex: 5 }}
+            className={`collision-stage ${isColliding ? "is-colliding" : ""} absolute inset-0 flex flex-col items-center justify-center px-4`}
+          >
+            <div className="flex items-center justify-center select-none pointer-events-none whitespace-nowrap">
+              <motion.span
+                style={{ x: leftX }}
+                className="collision-word collision-word-left font-display text-paper inline-block"
+              >
+                {firstWord}
+              </motion.span>
+              <motion.span
+                style={{ x: rightX }}
+                className="collision-word collision-word-right font-display text-[#ed1238] inline-block"
+              >
+                {secondWord}
+              </motion.span>
+            </div>
+
+            <motion.div
+              style={{ opacity: subtitleOpacity, y: subtitleY }}
+              className="mt-4 sm:mt-6 px-4 text-center pointer-events-none"
+            >
+              <p className="font-mono text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.25em] text-[#ed1238] uppercase font-semibold">
+                {subtitle}
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* ── 14 DIAGONAL SHARDS — tilt at break, scatter-fall downward ─ */}
+          {SHARDS.map((shard) => (
+            <ShardPiece
+              key={shard.id}
+              shard={shard}
               scrollYProgress={scrollYProgress}
+              firstWord={firstWord}
+              secondWord={secondWord}
             />
           ))}
-        </motion.div>
 
-        {/* ── INTACT LAYER ─────────────────────────────────────────────── */}
-        <motion.div
-          style={{ opacity: intactOpacity, zIndex: 5 }}
-          className={`collision-stage ${isColliding ? "is-colliding" : ""} absolute inset-0 flex flex-col items-center justify-center`}
-        >
-          <div className="flex items-center justify-center select-none pointer-events-none">
-            <motion.span
-              style={{ x: leftX }}
-              className="collision-word collision-word-left font-display text-paper inline-block"
-            >
-              {firstWord}
-            </motion.span>
-            <motion.span
-              style={{ x: rightX }}
-              className="collision-word collision-word-right font-display text-[#ed1238] inline-block"
-            >
-              {secondWord}
-            </motion.span>
-          </div>
-
+          {/* Keep scrolling cue */}
           <motion.div
-            style={{ opacity: subtitleOpacity, y: subtitleY }}
-            className="mt-6 pointer-events-none"
+            style={{ opacity: keepScrollingOpacity, y: keepScrollingY, zIndex: 15 }}
+            className="absolute bottom-10 flex flex-col items-center gap-2 pointer-events-none select-none"
           >
-            <p className="font-mono text-xs sm:text-sm tracking-[0.25em] text-[#ed1238] uppercase">
-              {subtitle}
-            </p>
+            <span className="font-mono text-xs tracking-[0.3em] uppercase text-paper/70">
+              ( Keep scrolling )
+            </span>
+            <span className="text-[#ed1238] text-base animate-bounce">↓</span>
           </motion.div>
-        </motion.div>
-
-        {/* ── 14 DIAGONAL SHARDS — tilt at break, scatter-fall downward ─ */}
-        {SHARDS.map((shard) => (
-          <ShardPiece
-            key={shard.id}
-            shard={shard}
-            scrollYProgress={scrollYProgress}
-            firstWord={firstWord}
-            secondWord={secondWord}
-          />
-        ))}
-
-        {/* Keep scrolling cue */}
-        <motion.div
-          style={{ opacity: keepScrollingOpacity, y: keepScrollingY, zIndex: 15 }}
-          className="absolute bottom-10 flex flex-col items-center gap-2 pointer-events-none select-none"
-        >
-          <span className="font-mono text-xs tracking-[0.3em] uppercase text-paper/70">
-            ( Keep scrolling )
-          </span>
-          <span className="text-[#ed1238] text-base animate-bounce">↓</span>
-        </motion.div>
-      </div>
+        </div>
       </div>
       {children ? (
         <div className="relative z-20 -mt-[100vh]">

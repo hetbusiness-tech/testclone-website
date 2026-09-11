@@ -16,10 +16,10 @@ interface StatItem {
 }
 
 const statsData: StatItem[] = [
-  { numericValue: 40, suffix: "+", label: "Shopify Brands Scaled" },
+  { numericValue: 52, suffix: "+", label: "Brands" },
   { numericValue: 98, suffix: "%", label: "Avg. Store Speed Score" },
-  { numericValue: 4.9, suffix: "/5", isDecimal: true, label: "Founder Satisfaction" },
-  { numericValue: 5, suffix: "yrs", label: "Scaling DTC Brands" },
+  { numericValue: 4.8, suffix: "/5", isDecimal: true, label: "Client satisfaction" },
+  { numericValue: 5, suffix: "+Years", label: "Scaling D2C Brands" },
 ];
 
 function StatCounter({ item, inView }: { item: StatItem; inView: boolean }) {
@@ -53,12 +53,14 @@ function StatCounter({ item, inView }: { item: StatItem; inView: boolean }) {
     : Math.floor(current).toString();
 
   return (
-    <div className="space-y-2">
-      <div className="font-display text-5xl sm:text-6xl lg:text-7xl font-black text-[#ed1238] tracking-tight tabular-nums">
-        {display}
-        <span>{item.suffix}</span>
+    <div className="space-y-1.5 sm:space-y-2">
+      <div className="font-display text-3xl xs:text-4xl sm:text-5xl lg:text-7xl font-black text-[#ed1238] tracking-tight tabular-nums whitespace-nowrap flex items-baseline gap-0.5">
+        <span>{display}</span>
+        <span className={item.suffix.length > 2 ? "text-xl xs:text-2xl sm:text-3xl lg:text-5xl" : ""}>
+          {item.suffix}
+        </span>
       </div>
-      <p className="font-mono text-xs sm:text-sm uppercase tracking-wider text-paper/60">
+      <p className="font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-wider text-paper/60 leading-tight">
         {item.label}
       </p>
     </div>
@@ -112,30 +114,37 @@ const values = [
 
 const roadmap = [
   {
-    year: "2023",
-    title: "The journey begins",
-    desc: "Technostripe is founded to help modern DTC brands scale online.",
+    year: "2022",
+    title: "Where it all started",
+    desc: "Technostripe is founded with a clear mission — help ambitious D2C brands build a powerful digital presence from the ground up.",
     side: "left",
   },
   {
-    year: "2024",
-    title: "Shopify & paid ads expansion",
-    desc: "We scaled our Shopify engineering team and added full-funnel Meta & Google Ads management.",
+    year: "2023",
+    title: "Shopify specialisation",
+    desc: "We went all-in on Shopify — building custom storefronts, Shopify Plus migrations, and high-converting theme development for fast-growing brands.",
     side: "right",
+  },
+  {
+    year: "2024",
+    title: "Paid ads expansion",
+    desc: "Launched full-funnel performance marketing — scaling brands profitably with Meta Ads, Google Ads, and data-driven audience strategy.",
+    side: "left",
   },
   {
     year: "2025",
     title: "Creative systems & CRO",
-    desc: "Launched in-house UGC creative pipeline, video ad direction, and advanced CRO testing.",
-    side: "left",
-  },
-  {
-    year: "2026",
-    title: "Global DTC scaling",
-    desc: "Now partnering with high-ambition e-commerce brands across India, UK & US.",
+    desc: "Built an in-house UGC creative pipeline, video ad direction, and advanced CRO testing frameworks to compound brand growth.",
     side: "right",
   },
+  // {
+  //   year: "2026",
+  //   title: "Global D2C scaling",
+  //   desc: "Now partnering with high-ambition e-commerce brands across India, UK & US — engineering revenue, not just traffic.",
+  //   side: "left",
+  // },
 ];
+
 
 export default function AboutPage() {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -236,9 +245,9 @@ export default function AboutPage() {
       </section>
 
       {/* ── 3. STATS BAR WITH SMOOTH COUNT-UP ─────────────────────────────── */}
-      <section ref={statsRef} className="relative z-10 bg-ink py-16 border-y border-white/10 overflow-hidden">
+      <section ref={statsRef} className="relative z-10 bg-ink py-10 sm:py-16 border-y border-white/10 overflow-hidden">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-12">
             {statsData.map((stat, i) => (
               <StatCounter key={i} item={stat} inView={isStatsInView} />
             ))}
@@ -277,9 +286,8 @@ export default function AboutPage() {
               return (
                 <div
                   key={idx}
-                  className={`group p-8 sm:p-10 bg-white hover:bg-[#ed1238] transition-all duration-300 border-b border-black/10 ${
-                    idx % 3 !== 2 ? "lg:border-r" : ""
-                  } ${idx >= 3 ? "lg:border-b-0" : ""} flex flex-col justify-between min-h-[220px] cursor-default`}
+                  className={`group p-8 sm:p-10 bg-white hover:bg-[#ed1238] transition-all duration-300 border-b border-black/10 ${idx % 3 !== 2 ? "lg:border-r" : ""
+                    } ${idx >= 3 ? "lg:border-b-0" : ""} flex flex-col justify-between min-h-[220px] cursor-default`}
                 >
                   <span className="font-mono text-xs font-bold text-black/40 group-hover:text-white/70 transition-colors duration-300">
                     {item.num}
@@ -312,51 +320,62 @@ export default function AboutPage() {
           </div>
 
           <div ref={timelineRef} className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-white/10" />
+            {/* Background track line */}
+            <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-white/10" />
 
+            {/* Red animated progress line */}
             <motion.div
               style={{ scaleY }}
-              className="absolute left-1/2 top-0 bottom-0 w-[2.5px] -translate-x-1/2 bg-[#ed1238] origin-top shadow-[0_0_15px_#ed1238]"
+              className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-[2.5px] -translate-x-1/2 bg-[#ed1238] origin-top shadow-[0_0_15px_#ed1238]"
             />
 
-            <div className="space-y-20 sm:space-y-28 relative z-10">
+            <div className="space-y-12 sm:space-y-28 relative z-10">
               {roadmap.map((item, i) => {
                 const isLeft = item.side === "left";
 
                 return (
                   <div
                     key={item.year}
-                    className={`flex items-center justify-between gap-6 w-full ${isLeft ? "flex-row-reverse" : "flex-row"
-                      }`}
+                    className={`flex items-center justify-between gap-6 w-full ${
+                      isLeft ? "sm:flex-row-reverse" : "sm:flex-row"
+                    }`}
                   >
+                    {/* Desktop spacer */}
                     <div className="hidden sm:block w-1/2" />
 
-                    <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
+                    {/* Timeline Dot */}
+                    <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 flex items-center justify-center">
                       <motion.div
                         initial={{ scale: 0.8 }}
                         whileInView={{ scale: 1.1 }}
                         viewport={{ once: false, margin: "-100px" }}
-                        className="size-4 sm:size-5 rounded-full bg-[#ed1238] ring-4 ring-[#0a0b0a] shadow-[0_0_12px_#ed1238]"
+                        className="size-3.5 sm:size-5 rounded-full bg-[#ed1238] ring-4 ring-[#0a0b0a] shadow-[0_0_12px_#ed1238]"
                       />
                     </div>
 
+                    {/* Content Block */}
                     <motion.div
                       initial={{ opacity: 0, y: 25 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-80px" }}
                       transition={{ duration: 0.5, delay: i * 0.1 }}
-                      className={`w-full sm:w-1/2 ${isLeft
-                          ? "sm:text-right sm:pr-12 pl-10 sm:pl-0"
-                          : "sm:text-left sm:pl-12 pl-10"
-                        }`}
+                      className={`w-full pl-10 text-left ${
+                        isLeft
+                          ? "sm:w-1/2 sm:text-right sm:pr-12 sm:pl-0"
+                          : "sm:w-1/2 sm:text-left sm:pl-12"
+                      }`}
                     >
                       <span className="font-mono text-xs font-bold text-[#ed1238] tracking-widest uppercase">
                         {item.year}
                       </span>
-                      <h3 className="mt-1.5 font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                      <h3 className="mt-1 font-display text-xl sm:text-3xl font-extrabold text-white tracking-tight">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-sm sm:text-base text-paper/65 leading-relaxed font-normal max-w-sm ml-auto mr-auto sm:ml-0 sm:mr-0">
+                      <p
+                        className={`mt-1.5 sm:mt-2 text-xs sm:text-base text-paper/65 leading-relaxed font-normal max-w-sm ${
+                          isLeft ? "sm:ml-auto sm:mr-0" : "sm:mr-auto sm:ml-0"
+                        }`}
+                      >
                         {item.desc}
                       </p>
                     </motion.div>
@@ -369,7 +388,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── 6. PRE-FOOTER CTA SECTION ──────────────────────────────────────── */}
-      <CTASection />
+      <CTASection variant="about" />
 
       {/* ── 7. FOOTER ──────────────────────────────────────────────────────── */}
       <Footer />

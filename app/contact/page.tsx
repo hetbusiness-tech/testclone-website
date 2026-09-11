@@ -30,6 +30,7 @@ export default function ContactPage() {
     name: "",
     brandName: "",
     email: "",
+    phone: "",
     websiteUrl: "",
     adSpend: "",
     challenges: "",
@@ -65,7 +66,7 @@ export default function ContactPage() {
       {/* Main Form & Contact Information Grid */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-32 pb-16 lg:pt-36 lg:pb-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.05fr_1.35fr] lg:gap-16 items-start">
-          
+
           {/* Left Column: Context & Direct Contact Details */}
           <div>
             <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold">
@@ -90,7 +91,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Location</p>
-                    <p className="mt-0.5 text-sm sm:text-base font-semibold text-white">Mumbai, India (Global DTC Scale)</p>
+                    <p className="mt-0.5 text-sm sm:text-base font-semibold text-white">Gravity Business Park, Ahmedabad, Gujarat, India (Global DTC Scale)</p>
                   </div>
                 </div>
               </div>
@@ -105,8 +106,24 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Direct Email</p>
-                    <a href="mailto:hello@technostripe.com" className="mt-0.5 text-sm sm:text-base font-semibold text-white hover:text-[#ed1238] transition-colors">
-                      hello@technostripe.com
+                    <a href="mailto:growth@technostripe.com" className="mt-0.5 text-sm sm:text-base font-semibold text-white hover:text-[#ed1238] transition-colors">
+                      growth@technostripe.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
+                <div className="flex items-center gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#ed1238]/10 text-[#ed1238] border border-[#ed1238]/20 shrink-0">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Direct Phone / WhatsApp</p>
+                    <a href="tel:+919714734563" className="mt-0.5 text-sm sm:text-base font-semibold text-white hover:text-[#ed1238] transition-colors">
+                      +91 9714734563
                     </a>
                   </div>
                 </div>
@@ -169,11 +186,10 @@ export default function ContactPage() {
                           key={service}
                           type="button"
                           onClick={() => toggleService(service)}
-                          className={`rounded-full px-4 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                            isSelected
+                          className={`rounded-full px-4 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${isSelected
                               ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
                               : "border border-white/15 bg-white/5 text-paper/70 hover:border-white/30 hover:text-white"
-                          }`}
+                            }`}
                         >
                           {service}
                         </button>
@@ -195,11 +211,10 @@ export default function ContactPage() {
                           key={range}
                           type="button"
                           onClick={() => setSelectedRevenue(range)}
-                          className={`rounded-xl py-2.5 px-3 text-xs font-semibold text-center transition-all duration-200 cursor-pointer ${
-                            isSelected
+                          className={`rounded-xl py-2.5 px-3 text-xs font-semibold text-center transition-all duration-200 cursor-pointer ${isSelected
                               ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
                               : "border border-white/15 bg-white/5 text-paper/70 hover:border-white/30 hover:text-white"
-                          }`}
+                            }`}
                         >
                           {range}
                         </button>
@@ -256,17 +271,30 @@ export default function ContactPage() {
 
                   <div>
                     <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
-                      Store Website URL *
+                      Phone Number (WhatsApp)
                     </label>
                     <input
-                      required
-                      type="text"
-                      placeholder="https://yourbrand.com"
-                      value={formData.websiteUrl}
-                      onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                      type="tel"
+                      placeholder="+91 98765 43210"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
                     />
                   </div>
+                </div>
+
+                <div>
+                  <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                    Store Website URL *
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    placeholder="https://yourbrand.com"
+                    value={formData.websiteUrl}
+                    onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                  />
                 </div>
 
                 {/* Challenges & goals */}

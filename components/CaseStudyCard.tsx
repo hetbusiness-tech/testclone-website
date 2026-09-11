@@ -11,7 +11,7 @@ export default function CaseStudyCard({
 }) {
   return (
     <Link
-      href={`/case-studies/${caseStudy.slug}`}
+      href={`/portfolio/${caseStudy.slug}`}
       className={`group flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-[#0e100e]/90 backdrop-blur-md transition-all duration-500 hover:border-[#ed1238]/40 hover:bg-white/[0.04] hover:shadow-[0_16px_50px_rgba(237,18,56,0.16)] hover:-translate-y-1.5 ${
         featured ? "md:col-span-2 lg:col-span-3 lg:flex-row lg:items-stretch" : ""
       }`}

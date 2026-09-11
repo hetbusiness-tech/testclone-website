@@ -40,8 +40,8 @@ export default function Home() {
       <ApproachSection />
 
       {/* 7. Client Testimonials */}
-      <section className="relative z-10 bg-ink py-20 border-t border-white/10 overflow-hidden">
-        <div className="mx-auto max-w-6xl px-6 mb-12">
+      <section className="relative z-10 bg-ink py-12 sm:py-16 border-t border-white/10 overflow-hidden">
+        <div className="mx-auto max-w-6xl px-6 mb-8 sm:mb-10">
           <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold">
             ( TESTIMONIALS )
           </span>

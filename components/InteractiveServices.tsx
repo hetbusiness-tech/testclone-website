@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export const servicesList = [
   {
     number: "01",
-    title: "Website Development",
+    title: "Ecommerce Website Development",
     label: "SERVICE",
     description:
       "Fast, responsive, SEO-friendly websites engineered to turn visitors into customers.",
@@ -81,7 +81,7 @@ export default function InteractiveServices() {
   const hoveredService = hoveredIndex !== null ? servicesList[hoveredIndex] : null;
 
   return (
-    <div className="relative z-10 w-full overflow-hidden bg-ink py-20 sm:py-28">
+    <div className="relative z-10 w-full overflow-hidden bg-ink pt-6 pb-12 sm:pt-10 sm:pb-16">
       {/* Floating Red Preview Card on Hover */}
       <AnimatePresence>
         {hoveredService && (
@@ -117,9 +117,9 @@ export default function InteractiveServices() {
         )}
       </AnimatePresence>
 
-      <div className="mx-auto mb-10 flex max-w-[90rem] items-end justify-between gap-6 px-5 sm:mb-16 sm:px-10 lg:px-16">
+      <div className="mx-auto mb-6 flex max-w-[90rem] items-end justify-between gap-6 px-5 sm:mb-10 sm:px-10 lg:px-16">
         <div>
-          <span className="eyebrow mb-3 block text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs">
+          <span className="eyebrow mb-2 block text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs">
             ( SERVICES )
           </span>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-[4.5rem] font-black tracking-tight text-white leading-[0.94]">
@@ -168,16 +168,14 @@ export default function InteractiveServices() {
               {/* Service Number & Title */}
               <div className="relative z-10 flex min-w-0 items-baseline gap-5 sm:gap-8 lg:gap-12">
                 <span
-                  className={`w-8 shrink-0 font-mono text-sm tracking-wider transition-colors duration-300 ease-out ${
-                    isHovered ? "text-black/50 font-semibold" : "text-white/40 font-normal"
-                  }`}
+                  className={`w-8 shrink-0 font-mono text-sm tracking-wider transition-colors duration-300 ease-out ${isHovered ? "text-black/50 font-semibold" : "text-white/40 font-normal"
+                    }`}
                 >
                   {service.number}
                 </span>
                 <h3
-                  className={`font-display text-[clamp(1.35rem,2.8vw,2.75rem)] font-extrabold tracking-tight leading-[1.05] transition-colors duration-300 ease-out ${
-                    isHovered ? "text-black" : "text-white"
-                  }`}
+                  className={`font-display text-[clamp(1.35rem,2.8vw,2.75rem)] font-extrabold tracking-tight leading-[1.05] transition-colors duration-300 ease-out ${isHovered ? "text-black" : "text-white"
+                    }`}
                 >
                   {service.title}
                 </h3>
@@ -186,25 +184,22 @@ export default function InteractiveServices() {
               {/* Description & Arrow (Desktop) */}
               <div className="relative z-10 hidden max-w-sm items-center gap-8 lg:flex xl:max-w-md">
                 <p
-                  className={`text-[13.5px] leading-relaxed transition-colors duration-300 ease-out ${
-                    isHovered ? "text-black/80 font-medium" : "text-white/60 font-normal"
-                  }`}
+                  className={`text-[13.5px] leading-relaxed transition-colors duration-300 ease-out ${isHovered ? "text-black/80 font-medium" : "text-white/60 font-normal"
+                    }`}
                 >
                   {service.description}
                 </p>
                 <DiagonalArrow
-                  className={`size-5 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5 ${
-                    isHovered ? "text-black" : "text-white"
-                  }`}
+                  className={`size-5 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5 ${isHovered ? "text-black" : "text-white"
+                    }`}
                 />
               </div>
 
               {/* Arrow (Mobile) */}
               <div className="relative z-10 lg:hidden">
                 <DiagonalArrow
-                  className={`size-5 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5 ${
-                    isHovered ? "text-black" : "text-white"
-                  }`}
+                  className={`size-5 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1.5 group-hover:-translate-y-1.5 ${isHovered ? "text-black" : "text-white"
+                    }`}
                 />
               </div>
             </Link>

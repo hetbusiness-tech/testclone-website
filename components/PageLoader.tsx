@@ -3,32 +3,50 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const FILL_DURATION = 2000; // ms the bar takes to go 0→100%
-const FADE_START   = FILL_DURATION + 100; // start fade-out right after fill
-const UNMOUNT_AT   = FADE_START + 600;    // fully unmount after fade
+const DURATION = 1200; // 1.2s smooth loading
 
 export default function PageLoader() {
-  const [phase, setPhase]     = useState<"fill" | "fade" | "done">("fill");
+  const [phase, setPhase] = useState<"fill" | "fade" | "done">("fill");
   const [percent, setPercent] = useState(0);
-  useEffect(() => {
-    const progressTimer = window.setInterval(() => {
-      setPercent((current) => {
-        const next = Math.min(100, current + 5);
-        if (next === 100) window.clearInterval(progressTimer);
-        return next;
-      });
-    }, FILL_DURATION / 20);
 
-    const fadeTimer = window.setTimeout(() => {
+  useEffect(() => {
+    let animFrame: number;
+    const startTime = performance.now();
+
+    const updateProgress = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / DURATION);
+      
+      // Smooth ease-out quad curve
+      const eased = 1 - Math.pow(1 - progress, 2);
+      const currentPercent = Math.min(100, Math.floor(eased * 100));
+
+      setPercent(currentPercent);
+
+      if (progress < 1) {
+        animFrame = requestAnimationFrame(updateProgress);
+      } else {
+        setPercent(100);
+        setPhase("fade");
+      }
+    };
+
+    animFrame = requestAnimationFrame(updateProgress);
+
+    // Hard fallback guarantees loader unmounts even if tab was backgrounded
+    const fallbackTimer = setTimeout(() => {
       setPercent(100);
       setPhase("fade");
-    }, FADE_START);
-    const unmountTimer = setTimeout(() => setPhase("done"), UNMOUNT_AT);
+    }, DURATION + 200);
+
+    const doneTimer = setTimeout(() => {
+      setPhase("done");
+    }, DURATION + 700);
 
     return () => {
-      window.clearInterval(progressTimer);
-      clearTimeout(fadeTimer);
-      clearTimeout(unmountTimer);
+      cancelAnimationFrame(animFrame);
+      clearTimeout(fallbackTimer);
+      clearTimeout(doneTimer);
     };
   }, []);
 
@@ -37,6 +55,7 @@ export default function PageLoader() {
   return (
     <div
       aria-hidden="true"
+      onClick={() => setPhase("fade")}
       style={{
         position: "fixed",
         inset: 0,
@@ -45,8 +64,10 @@ export default function PageLoader() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "#0a0b0a",
-        transition: "opacity 600ms ease, visibility 600ms ease",
+        background: phase === "fade" ? "rgba(10, 11, 10, 0)" : "rgba(10, 11, 10, 0.92)",
+        backdropFilter: phase === "fade" ? "blur(0px)" : "blur(24px)",
+        WebkitBackdropFilter: phase === "fade" ? "blur(0px)" : "blur(24px)",
+        transition: "opacity 500ms ease, background 500ms ease, backdrop-filter 500ms ease, -webkit-backdrop-filter 500ms ease, visibility 500ms ease",
         opacity: phase === "fade" ? 0 : 1,
         visibility: phase === "fade" ? "hidden" : "visible",
         pointerEvents: phase === "fade" ? "none" : "all",
@@ -80,23 +101,27 @@ export default function PageLoader() {
           marginBottom: "8px",
         }}
       >
-        <span style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.72rem",
-          color: "#ed1238",
-          letterSpacing: "0.08em",
-          animation: "pl-label-in 0.4s 0.15s ease both",
-        }}>
+        <span
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.72rem",
+            color: "#ed1238",
+            letterSpacing: "0.08em",
+            animation: "pl-label-in 0.4s 0.15s ease both",
+          }}
+        >
           Loading
         </span>
-        <span style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: "0.72rem",
-          color: "#ed1238",
-          letterSpacing: "0.08em",
-          animation: "pl-label-in 0.4s 0.15s ease both",
-          fontVariantNumeric: "tabular-nums",
-        }}>
+        <span
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.72rem",
+            color: "#ed1238",
+            letterSpacing: "0.08em",
+            animation: "pl-label-in 0.4s 0.15s ease both",
+            fontVariantNumeric: "tabular-nums",
+          }}
+        >
           {percent}%
         </span>
       </div>
@@ -120,7 +145,7 @@ export default function PageLoader() {
             borderRadius: "2px",
             background: "#ed1238",
             width: `${percent}%`,
-            transition: "width 80ms linear",
+            transition: "width 40ms linear",
           }}
         />
       </div>
