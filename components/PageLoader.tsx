@@ -3,51 +3,73 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-const DURATION = 1200; // 1.2s smooth loading
+// Only show loader on the very first page load (not on client-side navigations)
+let hasLoadedOnce = false;
+
+const DURATION = 900; // 0.9s — snappy but still satisfying
 
 export default function PageLoader() {
-  const [phase, setPhase] = useState<"fill" | "fade" | "done">("fill");
+  const [phase, setPhase] = useState<"fill" | "fade" | "done">(() => {
+    // If already loaded once in this session, skip the loader entirely
+    if (hasLoadedOnce) return "done";
+    return "fill";
+  });
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
+    // Skip if already shown once (client-side navigation)
+    if (phase === "done") return;
+
     let animFrame: number;
     const startTime = performance.now();
+
+    const dismiss = () => {
+      setPercent(100);
+      setPhase("fade");
+    };
 
     const updateProgress = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(1, elapsed / DURATION);
-      
+
       // Smooth ease-out quad curve
       const eased = 1 - Math.pow(1 - progress, 2);
       const currentPercent = Math.min(100, Math.floor(eased * 100));
-
       setPercent(currentPercent);
 
       if (progress < 1) {
         animFrame = requestAnimationFrame(updateProgress);
       } else {
-        setPercent(100);
-        setPhase("fade");
+        dismiss();
       }
     };
 
     animFrame = requestAnimationFrame(updateProgress);
 
-    // Hard fallback guarantees loader unmounts even if tab was backgrounded
-    const fallbackTimer = setTimeout(() => {
-      setPercent(100);
-      setPhase("fade");
-    }, DURATION + 200);
+    // Hard safety fallback — always dismisses after DURATION + 200ms
+    const fallbackTimer = setTimeout(dismiss, DURATION + 200);
 
+    // Unmount after fade animation completes
     const doneTimer = setTimeout(() => {
       setPhase("done");
+      hasLoadedOnce = true; // Mark as loaded so navigations skip loader
     }, DURATION + 700);
+
+    // Also listen for chunk errors and dismiss immediately
+    const handleError = (e: ErrorEvent) => {
+      if (e.message?.includes("ChunkLoadError") || e.message?.includes("Loading chunk")) {
+        dismiss();
+      }
+    };
+    window.addEventListener("error", handleError);
 
     return () => {
       cancelAnimationFrame(animFrame);
       clearTimeout(fallbackTimer);
       clearTimeout(doneTimer);
+      window.removeEventListener("error", handleError);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (phase === "done") return null;
@@ -64,10 +86,11 @@ export default function PageLoader() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: phase === "fade" ? "rgba(10, 11, 10, 0)" : "rgba(10, 11, 10, 0.92)",
+        background: phase === "fade" ? "rgba(10, 11, 10, 0)" : "rgba(10, 11, 10, 0.95)",
         backdropFilter: phase === "fade" ? "blur(0px)" : "blur(24px)",
         WebkitBackdropFilter: phase === "fade" ? "blur(0px)" : "blur(24px)",
-        transition: "opacity 500ms ease, background 500ms ease, backdrop-filter 500ms ease, -webkit-backdrop-filter 500ms ease, visibility 500ms ease",
+        transition:
+          "opacity 400ms ease, background 400ms ease, backdrop-filter 400ms ease, -webkit-backdrop-filter 400ms ease, visibility 400ms ease",
         opacity: phase === "fade" ? 0 : 1,
         visibility: phase === "fade" ? "hidden" : "visible",
         pointerEvents: phase === "fade" ? "none" : "all",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "../../../components/Navbar";
@@ -210,23 +211,52 @@ export default function PortfolioDetailPage({ params }: Props) {
               <h2 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#ed1238] mb-6">
                 Key Performance Metrics & Results
               </h2>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                {caseStudy.metrics.map((m) => (
-                  <div
-                    key={m.label}
-                    className="p-6 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm"
-                  >
-                    <p className="text-[0.7rem] font-mono uppercase tracking-wider text-white/45 mb-2">
-                      {m.label}
-                    </p>
-                    <p
-                      className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-none"
-                      style={{ fontFamily: "var(--font-display-family)" }}
+              <div
+                className={`grid gap-4 sm:gap-6 ${
+                  caseStudy.metrics.length === 1
+                    ? "grid-cols-1 sm:grid-cols-2 max-w-xl"
+                    : caseStudy.metrics.length === 2
+                    ? "grid-cols-1 sm:grid-cols-2 max-w-2xl"
+                    : caseStudy.metrics.length === 3
+                    ? "grid-cols-1 sm:grid-cols-3"
+                    : "grid-cols-2 lg:grid-cols-4"
+                }`}
+              >
+                {caseStudy.metrics.map((m) => {
+                  // Split "5.9x (from 1.3x)" → main: "5.9x", sub: "from 1.3x"
+                  const fromIdx = m.value.indexOf(" (from ");
+                  const mainVal = fromIdx !== -1 ? m.value.slice(0, fromIdx) : m.value;
+                  const subVal  = fromIdx !== -1 ? m.value.slice(fromIdx + 2, -1) : null; // strips ( )
+                  const isNumericShort = mainVal.length <= 8 && !mainVal.includes(" ");
+
+                  return (
+                    <div
+                      key={m.label}
+                      className="p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm flex flex-col justify-between gap-3 min-w-0 overflow-hidden"
                     >
-                      {m.value}
-                    </p>
-                  </div>
-                ))}
+                      <p className="text-[0.65rem] font-mono uppercase tracking-wider text-white/45 truncate">
+                        {m.label}
+                      </p>
+                      <div className="min-w-0">
+                        <p
+                          className={`${
+                            isNumericShort
+                              ? "text-2xl sm:text-3xl font-extrabold leading-none whitespace-nowrap"
+                              : "text-lg sm:text-xl font-bold leading-snug break-words"
+                          } text-white`}
+                          style={{ fontFamily: "var(--font-display-family)" }}
+                        >
+                          {mainVal}
+                        </p>
+                        {subVal && (
+                          <p className="text-[0.68rem] font-mono text-white/40 mt-1.5 break-words">
+                            {subVal}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </section>
           )}
@@ -293,17 +323,56 @@ export default function PortfolioDetailPage({ params }: Props) {
                   <Link
                     key={study.slug}
                     href={`/portfolio/${study.slug}`}
-                    className="group p-5 rounded-2xl border border-white/8 bg-white/[0.02] transition-all duration-300 hover:border-[#ed1238]/30 hover:bg-white/[0.04]"
+                    className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#111211] transition-all duration-300 hover:border-[#ed1238]/40 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(237,18,56,0.12)]"
                   >
-                    <span className="text-[0.62rem] font-mono font-bold uppercase tracking-wider text-[#ed1238]">
-                      {study.category}
-                    </span>
-                    <h4 className="text-lg font-bold text-white group-hover:text-[#ff4d6d] transition-colors mt-1 mb-2">
-                      {study.projectName}
-                    </h4>
-                    <p className="text-xs text-white/50 line-clamp-2">
-                      {study.description}
-                    </p>
+                    {/* Cover image with hover overlay */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                      <Image
+                        src={study.coverImage}
+                        alt={study.projectName}
+                        fill
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, 50vw"
+                      />
+                      {/* Hover: Red branded overlay */}
+                      <div className="absolute inset-0 z-20 bg-[#ed1238] p-5 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/25 pointer-events-none" />
+                        <div className="absolute -top-12 -right-12 size-40 rounded-full bg-white/20 blur-3xl pointer-events-none" />
+                        <div className="relative z-10 flex items-center justify-between font-mono text-[10px] font-bold tracking-[0.2em] text-white/90 uppercase">
+                          <span>{study.category.split(" ")[0]}</span>
+                          <span className="inline-block size-1.5 rounded-full bg-white/80 animate-pulse" />
+                        </div>
+                        <div className="pointer-events-none absolute -bottom-4 -right-4 z-0">
+                          <Image src="/favicon.png" alt="Technostripe" width={160} height={160} unoptimized className="size-24 object-contain opacity-20 mix-blend-screen" />
+                        </div>
+                        <div className="relative z-10 pt-4">
+                          <h4 className="font-display text-lg font-black text-white leading-[1.1] tracking-tight">
+                            {study.projectName}
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Card body */}
+                    <div className="flex flex-col flex-1 p-5">
+                      <span className="text-[0.62rem] font-mono uppercase tracking-widest text-white/35 mb-1.5">
+                        {study.projectName}
+                      </span>
+                      <h4
+                        className="text-base sm:text-lg text-white font-bold leading-snug mb-2 group-hover:text-[#ff4d6d] transition-colors duration-300"
+                        style={{ fontFamily: "var(--font-display-family)", letterSpacing: "-0.025em" }}
+                      >
+                        {study.caseStudyTitle ?? study.projectName}
+                      </h4>
+                      <p className="text-[0.78rem] text-white/50 leading-relaxed line-clamp-2 mb-4 flex-1">
+                        {study.description}
+                      </p>
+                      <div className="flex items-center gap-1.5 text-[0.68rem] font-mono font-bold tracking-[0.12em] uppercase text-white/40 group-hover:text-[#ed1238] transition-colors duration-300 mt-auto pt-1">
+                        View Case Study
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-3.5 transition-transform duration-300 group-hover:translate-x-1">
+                          <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
                   </Link>
                 ))}
               </div>

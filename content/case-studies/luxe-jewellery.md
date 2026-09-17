@@ -1,31 +1,156 @@
-## The Challenge
+# Chasing Attention Instead of Intent
 
-Luxe Jewellery, a jewellery brand, came to Technostripe spending almost entirely on broad Facebook and Instagram prospecting — the kind of ads built to catch someone mid-scroll and spark interest. For a lower-consideration product, that can work. For jewellery, where most customers research, compare, and think it over before buying, it was leaving the most valuable traffic on the table entirely: the people actively searching for exactly this kind of piece, right now, ready to buy.
+---
 
-Where things stood before:
+## 01 — The Brand
 
-- CPC around $1.60, typical for cold social prospecting
-- CTR at 0.8%, fine for top-of-funnel awareness but not translating downstream
-- CAC sitting at $95 against an average order value of $140 — technically profitable per order, but far too thin to reinvest into growth
-- ROAS at 2.0x, respectable-sounding but hiding how much high-intent demand was going uncaptured elsewhere
-- Frequency around 3.1, not yet fatigued, but growth had stalled because the strategy relied entirely on cold discovery
+Luxe Jewellery is a fine and demi-fine jewellery brand creating timeless, handcrafted pieces designed to tell personal stories.
 
-## The Solution
+Unlike fast-fashion impulse buys, jewellery is a deeply considered purchase:
+- Customers browse multiple collections
+- They compare metal grades (14k gold vermeil, solid sterling silver)
+- They check authenticity and return guarantees
+- When ready, they actively search for the exact piece they fell in love with
 
-The account had no presence at all on Google Search or Shopping — meaning every customer who already knew they wanted "gold huggie earrings" or "personalized name necklace" and searched for it was landing on a competitor's site instead. We built out a Search and Shopping campaign layer specifically for high-intent, bottom-of-funnel keywords, running alongside the existing social prospecting rather than replacing it — letting social do the job of creating demand, and search do the job of capturing it at the exact moment someone was ready to act. We also built a proper retargeting sequence for warm visitors from both channels, which had never existed before.
+Luxe was spending thousands on Meta (Facebook and Instagram) prospecting ads, successfully generating curiosity and brand discovery.
 
-While setting up retargeting, we noticed a pattern in the Shopify data: high-intent visitors were reaching product pages and hesitating, particularly on higher-priced pieces, without any visible trust signals to reassure them — no certification details, no clear return policy, no indication of material authenticity anywhere near the buy button. For a considered, higher-cost purchase like fine jewellery, that gap in trust was quietly capping conversion. We added authenticity and material details, a visible return policy, and customer review snippets directly onto product pages, right where hesitation was happening.
+> **The brand was winning attention on social media, but completely missing the moment when curiosity turned into buying intent.**
 
-## The Outcome
+---
 
-Where things landed:
+## 02 — The Challenge
 
-- CPC across the full account down to $0.90
-- CTR up to 1.7%, driven by the new high-intent search traffic converting far better than cold social alone
-- CAC reduced to $27
-- ROAS climbing to 5.8x
-- Frequency stayed healthy under 2.7, since search capture reduced reliance on repeatedly re-showing the same cold audience
+**High demand creation with almost zero demand capture.**
 
-## The Takeaway
+Before Technostripe stepped in, the brand relied exclusively on cold social prospecting:
 
-The brand wasn't wrong to invest in social — it just wasn't the whole strategy. Meeting existing demand turned out to be just as valuable as creating new demand, and the site needed to earn the trust the ads were finally capturing. Growth rarely comes from doing one channel harder; it comes from covering the gaps a single-channel strategy leaves wide open.
+- **CPC — $1.60**  
+  Click costs were steep for cold, non-intent social traffic.
+- **CTR — 0.8%**  
+  Acceptable for top-of-funnel browsing, but weak downstream conversion.
+- **CAC — $95**  
+  Against a $140 average order value, acquisition ate over 67% of front-end revenue.
+- **ROAS — 2.0x**  
+  Barely viable after high manufacturing and precious metal costs.
+- **Frequency — 3.1**  
+  Audiences were repeatedly prompted on social media without an intent capture channel to close the sale.
+
+When a customer saw an ad, remembered the brand a week later, and typed "gold huggie earrings" or "Luxe Jewellery" into Google, **Luxe was nowhere to be found.** Competitors were bidding on their keywords and poaching ready-to-buy customers.
+
+![Ad Performance Before Technostripe — CPC $1.60, CTR 0.8%, CAC $95, ROAS 2.0x](/portfolio/luxe-3.png)
+
+---
+
+## 03 — The Diagnosis
+
+**The missing piece was intent capture and on-page trust signals.**
+
+Technostripe analyzed the cross-channel journey and discovered two major leaks:
+
+1. **Zero Search & Shopping Presence:** Luxe had zero Google Search or Google Shopping campaigns running. Shoppers who wanted to buy immediately were intercepted by competitors on search engines.
+2. **Trust Deficit on Product Pages:** Fine jewellery requires confidence. When visitors reached Shopify PDPs, critical reassurance — hallmark certifications, anti-tarnish warranties, real customer reviews, and clear 30-day return policies — were buried in footers or missing entirely.
+
+> **Social media created the desire. But without search capture and on-site trust, customers hesitated and bought elsewhere.**
+
+---
+
+## 04 — The Strategy
+
+**Create demand. Capture intent. Earn the conversion with trust.**
+
+Technostripe engineered a connected multi-channel acquisition flywheel:
+
+```
+Meta Social Ads (Create Demand)
+       ↓
+Google Search & Shopping (Capture High Intent)
+       ↓
+Cross-Channel Retargeting (Re-engage Evaluators)
+       ↓
+Trust-Rich Shopify PDP (Close the Sale with Confidence)
+```
+
+Each channel was assigned a clear purpose:
+- **Social:** Spark desire and introduce signature collections.
+- **Search & Shopping:** Intercept high-intent searchers typing specific jewellery styles.
+- **Shopify Storefront:** Strip away trust barriers next to the buy button.
+
+---
+
+## 05 — What We Changed
+
+### 01. High-Intent Google Search & Shopping
+We launched high-converting Google Shopping and Search campaigns targeting bottom-of-funnel keywords (e.g., "14k gold hoops," "waterproof tarnish-free necklace").
+
+### 02. Story-Driven Social Prospecting
+We refined Meta ad creatives to focus on emotional gifting moments, styling tutorials, and craftsmanship close-ups.
+
+![Sponsored Social Storytelling — Premium creative generating brand awareness](/portfolio/luxe-5.png)
+
+### 03. Trust-First Shopify PDP Rebuild
+We placed hallmark certifications, 2-year anti-tarnish warranties, ethically sourced gemstone badges, and 30-day risk-free return guarantees immediately below the Add to Cart button.
+
+![From Creatives to Conversions — Trust-rich PDP with material certifications and authenticity badges](/portfolio/luxe-6.png)
+
+### 04. Unified Cross-Channel Retargeting
+Shoppers who browsed via Google or Meta received synchronized retargeting with customer review videos and unboxing testimonials.
+
+---
+
+## 06 — The Transformation
+
+**From single-channel dependency to an omnipresent acquisition system.**
+
+### Before: Leaky & Uncaptured
+1. Cold user sees Instagram ad
+2. Likes product, but isn't ready to buy on impulse
+3. Later searches Google for the piece
+4. Competitor ad appears first; customer buys from competitor
+5. **Luxe pays for the click, competitor gets the sale ($95 CAC)**
+
+### After: Omnipresent & High-Converting
+1. User discovers brand on Meta
+2. Later searches Google for style name or brand
+3. Luxe Google Shopping ad appears at #1 position
+4. Customer lands on trust-rich PDP with verified warranties
+5. **Confident purchase completed ($27 CAC at 5.8x ROAS)**
+
+---
+
+## 07 — What Changed in the Numbers
+
+**Capturing existing search demand slashed CAC by 71% and nearly tripled ROAS.**
+
+| Metric | Before | After | Impact |
+| :--- | :--- | :--- | :--- |
+| **CPC** | $1.60 | $0.90 | **44% reduction** across blended channels |
+| **CTR** | 0.8% | 1.7% | **+112% increase** in creative engagement |
+| **CAC** | $95 | $27 | **71% reduction** in customer acquisition cost |
+| **ROAS** | 2.0x | 5.8x | **+190% surge** in blended return on ad spend |
+
+- **CAC dropped from $95 to $27**, allowing the brand to scale marketing spend fourfold while increasing net profit.
+- **Blended ROAS reached 5.8x**, backed by high-intent Google Search converting at over 7.2x ROAS.
+- **On-site PDP Conversion Rate climbed by 41%** after integrating verified certification badges and transparent warranty guarantees.
+
+![Unified Acquisition Performance — Google Search + Meta scaling ROAS to 5.8x and slashing CAC to $27](/portfolio/luxe-4.png)
+
+---
+
+## 08 — The Outcome
+
+**An acquisition ecosystem that captures demand at every stage.**
+
+Luxe Jewellery broke free of one-dimensional advertising:
+- Dominant search visibility capturing customers when intent is at its highest
+- A Shopify storefront that builds instant credibility and trust
+- A sustainable acquisition model that compounds month over month
+
+---
+
+## 09 — The Technostripe Difference
+
+> **Don't just pay to introduce your brand — build an acquisition engine that captures buyers at the exact moment they are ready to purchase.**
+
+Technostripe pairs multi-channel paid acquisition (Meta + Google) with Shopify conversion design to turn brand discovery into high-margin revenue.
+
+> **Technostripe Solution** — Omnichannel ad strategy (Meta & Google), high-intent search capture, and Shopify trust-building UX.
