@@ -6,7 +6,7 @@ Here is our agency framework for scaling daily ad spend reliably.
 
 ---
 
-## 1. Account Architecture for High-Spend DTC Accounts
+## 1. Account Architecture for High-Spend D2C Accounts
 
 We simplify our account structure into 3 core campaigns:
 

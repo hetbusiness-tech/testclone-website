@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 
-const SITE_URL = "https://www.technostripe.com";
+const SITE_URL = "https://www.technostripe.in";
 
 export const metadata: Metadata = {
   title: "Contact Us | Book a Free Strategy Call — Technostripe",
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact Technostripe | Book a Strategy Call",
     description:
-      "Let's talk growth. Book a free strategy call with Technostripe and discover how we can scale your DTC brand.",
+      "Let's talk growth. Book a free strategy call with Technostripe and discover how we can scale your D2C brand.",
     url: `${SITE_URL}/contact`,
     siteName: "Technostripe Solutions",
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og.png`,
+        url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Contact Technostripe Solutions",
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact Technostripe | Book a Strategy Call",
     description:
-      "Let's talk growth. Book a free strategy call and discover how we scale DTC brands.",
-    images: [`${SITE_URL}/og.png`],
+      "Let's talk growth. Book a free strategy call and discover how we scale D2C brands.",
+      images: [`${SITE_URL}/og-image.png`],
   },
 };
 

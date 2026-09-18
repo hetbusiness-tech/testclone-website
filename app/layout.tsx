@@ -15,9 +15,9 @@ const BRAND_COLOR = "#ed1238";
 const SITE_TITLE =
   "Technostripe Solutions | Shopify Plus Agency & Digital Growth Partner";
 const SITE_DESCRIPTION =
-  "Technostripe Solutions is a full-stack Shopify Plus agency specialising in high-conversion e-commerce development, performance marketing, CRO, SEO, and brand strategy for DTC brands in India, UK & US.";
+  "Technostripe Solutions is a full-stack Shopify Plus agency specialising in high-conversion e-commerce development, performance marketing, CRO, SEO, and brand strategy for D2C brands in India, UK & US.";
 const OG_DESCRIPTION =
-  "Shopify Plus builds, paid acquisition, CRO, and creative strategy — all under one roof. We scale e-commerce brands that mean business.";
+  "Shopify Plus builds, paid acquisition, CRO, and creative strategy — all under one roof. We scale D2C brands that mean business.";
 
 const KEYWORDS = [
   "Shopify Plus agency",
@@ -25,7 +25,8 @@ const KEYWORDS = [
   "Shopify Plus agency UK",
   "Shopify Plus agency US",
   "e-commerce growth agency",
-  "DTC brand scaling",
+  "D2C brand scaling",
+  "Shopify Plus agency for D2C brands",
   "Shopify CRO agency",
   "conversion rate optimisation",
   "performance marketing agency",
@@ -47,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const host =
     requestHeaders.get("x-forwarded-host") ??
     requestHeaders.get("host") ??
-    "www.technostripe.com";
+    "www.technostripe.in";
   const isLocal =
     host.includes("localhost") || host.startsWith("127.0.0.1");
   const protocol = isLocal
@@ -99,7 +100,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: `${SITE_URL}/og.png`,
+          url: `${SITE_URL}/og-image.png`,
           width: 1200,
           height: 630,
           alt: `${SITE_NAME} — Shopify Plus Agency & E-commerce Growth Partner`,
@@ -115,7 +116,7 @@ export async function generateMetadata(): Promise<Metadata> {
       creator: "@technostripe",
       title: `${SITE_NAME} | Shopify Plus & E-commerce Growth`,
       description: OG_DESCRIPTION,
-      images: [`${SITE_URL}/og.png`],
+      images: [`${SITE_URL}/og-image.png`],
     },
 
     /* ── Robots ────────────────────────────────────────── */
@@ -212,7 +213,7 @@ const localBusinessSchema = {
   logo: `${SITE_URL}/header.png`,
   description:
     "Full-stack Shopify Plus agency specialising in CRO, performance marketing, and e-commerce growth.",
-  image: `${SITE_URL}/og.png`,
+  image: `${SITE_URL}/og-image.png`,
   priceRange: "₹₹₹",
   currenciesAccepted: "INR, GBP, USD",
   paymentAccepted: "Bank Transfer, UPI, Credit Card",
@@ -247,8 +248,8 @@ const serviceSchema = {
   name: "Full-Stack E-commerce Growth Services",
   provider: { "@id": `${SITE_URL}/#organization` },
   serviceType: "Digital Marketing & E-commerce Development",
-  description:
-    "Shopify Plus development, CRO, performance marketing, SEO, brand strategy, and creative content for DTC brands.",
+    description:
+      "Shopify Plus development, CRO, performance marketing, SEO, brand strategy, and creative content for D2C brands.",
   areaServed: ["India", "United Kingdom", "United States"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -296,7 +297,7 @@ const serviceSchema = {
           "@type": "Service",
           name: "Branding & Creative Strategy",
           description:
-            "Brand identity, UGC creative strategy, and social media content for DTC brands.",
+            "Brand identity, UGC creative strategy, and social media content for D2C brands.",
         },
       },
     ],
@@ -312,7 +313,7 @@ const faqSchema = {
       name: "What does Technostripe specialise in?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Technostripe is a full-stack Shopify Plus agency specialising in high-conversion e-commerce development, performance marketing (Meta & Google Ads), CRO, SEO, and brand strategy for DTC brands.",
+        text: "Technostripe is a full-stack Shopify Plus agency specialising in high-conversion e-commerce development, performance marketing (Meta & Google Ads), CRO, SEO, and brand strategy for D2C brands.",
       },
     },
     {
@@ -336,7 +337,7 @@ const faqSchema = {
       name: "Does Technostripe work with small Shopify stores?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We primarily work with scaling DTC brands generating $100k+ annually. We focus on brands ready to invest in serious growth and Shopify Plus migration.",
+        text: "We primarily work with scaling D2C brands generating $100k+ annually. We focus on brands ready to invest in serious growth and Shopify Plus migration.",
       },
     },
   ],
@@ -371,6 +372,23 @@ const breadcrumbSchema = {
       item: `${SITE_URL}/contact`,
     },
   ],
+};
+
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Technostripe Solutions Growth Platform",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "Shopify Plus development, CRO, SEO, performance marketing, and creative strategy services for D2C brands.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+  },
+  provider: { "@id": `${SITE_URL}/#organization` },
 };
 
 /* ─── Root Layout ─────────────────────────────────────── */
@@ -409,6 +427,13 @@ export default function RootLayout({
           id="schema-localbusiness"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+          strategy="beforeInteractive"
+        />
+
+        <Script
+          id="schema-software"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
           strategy="beforeInteractive"
         />
 

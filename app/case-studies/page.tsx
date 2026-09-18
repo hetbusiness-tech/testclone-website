@@ -42,7 +42,7 @@ export default function CaseStudiesPage() {
             </h1>
             <p className="text-base sm:text-lg text-white/50 max-w-xl leading-relaxed">
               Explore how we engineer high-converting Shopify Plus stores, deploy
-              profitable ad funnels, and scale 8-figure DTC brands.
+              profitable ad funnels, and scale 8-figure D2C brands.
             </p>
           </div>
         </section>

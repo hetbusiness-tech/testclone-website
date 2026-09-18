@@ -8,22 +8,31 @@ export const metadata: Metadata = {
   description:
     "Learn how Technostripe Solutions collects, uses, protects, and handles your personal information, store analytics, and consulting data in compliance with global privacy standards.",
   alternates: {
-    canonical: "https://www.technostripe.com/privacy-policy",
+    canonical: "https://www.technostripe.in/privacy-policy",
   },
   openGraph: {
     title: "Privacy Policy | Technostripe Solutions",
     description:
       "Our commitment to your privacy, data security, and confidentiality across all e-commerce consulting, Shopify development, and growth marketing services.",
-    url: "https://www.technostripe.com/privacy-policy",
+    url: "https://www.technostripe.in/privacy-policy",
     siteName: "Technostripe Solutions",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://www.technostripe.in/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Technostripe Privacy Policy",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Privacy Policy | Technostripe Solutions",
     description:
       "Read Technostripe Solutions' privacy policy and data security practices for e-commerce brands.",
+    images: ["https://www.technostripe.in/og-image.png"],
   },
   robots: {
     index: true,
@@ -345,7 +354,7 @@ export default function PrivacyPolicyPage() {
                   We retain personal details and consultation records only for as long as necessary to fulfill the purposes described in this policy, provide client services, or satisfy legal and accounting requirements.
                 </p>
                 <p>
-                  Because Technostripe Solutions serves DTC brands globally across India, the United Kingdom, the United States, and Europe, data may be transferred and processed securely on encrypted cloud servers worldwide under standard contractual clauses (SCCs).
+                  Because Technostripe Solutions serves D2C brands globally across India, the United Kingdom, the United States, and Europe, data may be transferred and processed securely on encrypted cloud servers worldwide under standard contractual clauses (SCCs).
                 </p>
               </section>
 

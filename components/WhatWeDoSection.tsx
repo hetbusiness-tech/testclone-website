@@ -62,14 +62,14 @@ export default function WhatWeDoSection() {
           transition={{ duration: 0.55, delay: 0.18 }}
           className="mt-5 max-w-xl text-sm sm:text-base leading-relaxed text-white/65 font-normal"
         >
-          Technostripe scales DTC brands with bespoke Shopify engineering, high-ROAS paid media, and conversion-optimized architectures.
+          Technostripe scales D2C brands with bespoke Shopify engineering, high-ROAS paid media, and conversion-optimized architectures.
         </motion.p>
       </div>
 
       {/* Bottom Stats Row */}
-      <div className="mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-12">
-        <div className="border-t border-white/10 pt-6 pb-2 sm:pt-7 sm:pb-4">
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-6 lg:gap-10">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-10 lg:px-12">
+        <div className="border-t border-white/10 pt-5 pb-2 sm:pt-7 sm:pb-4">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4 sm:gap-6 lg:gap-10">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.value}
@@ -77,12 +77,12 @@ export default function WhatWeDoSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + index * 0.07 }}
-                className="flex flex-col"
+                className="flex min-w-0 flex-col"
               >
-                <span className="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#ed1238] leading-none">
+                <span className="whitespace-nowrap font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight tabular-nums text-[#ed1238] leading-none">
                   {stat.value}
                 </span>
-                <span className="mt-2.5 text-xs sm:text-sm font-mono text-white/60 font-medium tracking-wide">
+                <span className="mt-2 text-[0.65rem] leading-tight sm:mt-2.5 sm:text-sm font-mono text-white/60 font-medium tracking-wide">
                   {stat.label}
                 </span>
               </motion.div>

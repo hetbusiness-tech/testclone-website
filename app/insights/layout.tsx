@@ -13,13 +13,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Insights — E-commerce Growth Blog | Technostripe",
     description:
-      "Deep-dive articles on Shopify Plus, Meta Ads, CRO, SEO, and DTC brand scaling from the experts at Technostripe Solutions.",
+      "Deep-dive articles on Shopify Plus, Meta Ads, CRO, SEO, and D2C brand scaling from the experts at Technostripe Solutions.",
     url: `${SITE_URL}/insights`,
     siteName: "Technostripe Solutions",
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og.png`,
+        url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Technostripe Insights — E-commerce Growth Blog",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Insights | Technostripe Solutions",
     description:
-      "Expert guides on Shopify Plus, performance marketing, CRO & DTC growth.",
-    images: [`${SITE_URL}/og.png`],
+      "Expert guides on Shopify Plus, performance marketing, CRO & D2C growth.",
+    images: [`${SITE_URL}/og-image.png`],
   },
 };
 

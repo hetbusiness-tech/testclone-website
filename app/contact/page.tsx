@@ -91,7 +91,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Location</p>
-                    <p className="mt-0.5 text-sm sm:text-base font-semibold text-white">Gravity Business Park, Ahmedabad, Gujarat, India (Global DTC Scale)</p>
+                    <p className="mt-0.5 text-sm sm:text-base font-semibold text-white">Gravity Business Park, Ahmedabad, Gujarat, India (Global D2C Scale)</p>
                   </div>
                 </div>
               </div>

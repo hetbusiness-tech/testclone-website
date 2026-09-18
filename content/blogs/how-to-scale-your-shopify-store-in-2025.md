@@ -6,12 +6,12 @@
 title: "How to Scale Your Shopify Store to ₹1 Crore in 2025"
 slug: "how-to-scale-your-shopify-store-in-2025"
 metaTitle: "How to Scale Your Shopify Store to ₹1 Crore in 2025 | Technostripe"
-metaDescription: "A step-by-step playbook for DTC brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies."
+metaDescription: "A step-by-step playbook for D2C brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies."
 excerpt: "Most Shopify stores plateau at ₹10–20 lakhs/month. Here's the exact growth playbook we use at Technostripe to break past that ceiling and scale to ₹1 Crore and beyond."
 coverImage: "/blog/shopify-scale-2025.jpg"
 coverImageAlt: "Shopify store scaling strategies for 2025"
 category: "E-commerce Growth"
-tags: ["Shopify Plus", "DTC", "Performance Marketing", "CRO", "Scale"]
+tags: ["Shopify Plus", "D2C", "Performance Marketing", "CRO", "Scale"]
 author: "Technostripe Team"
 authorRole: "Growth Strategy"
 publishedAt: "2025-08-15"
@@ -21,7 +21,7 @@ featured: true
 
 ## The ₹1 Crore Ceiling — And How to Break Through It
 
-Most DTC brands in India hit a wall around **₹10–20 lakhs/month**. The tactics that got you here — decent ads, basic Shopify theme, word-of-mouth — simply stop working at scale. To cross ₹1 Crore/month, you need a different operating system entirely.
+Most D2C brands in India hit a wall around **₹10–20 lakhs/month**. The tactics that got you here — decent ads, basic Shopify theme, word-of-mouth — simply stop working at scale. To cross ₹1 Crore/month, you need a different operating system entirely.
 
 Here's the exact framework we use at Technostripe with our Shopify Plus clients.
 

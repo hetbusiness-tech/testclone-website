@@ -22,7 +22,7 @@ export default function CaseStudyImage({
 
   return (
     <div
-      className={`relative w-full overflow-hidden rounded-2xl bg-[#121412] ${aspectRatioClass} ${className}`}
+      className={`relative w-full overflow-hidden rounded-[0.9rem] bg-transparent ${aspectRatioClass} ${className}`}
     >
       {!hasError && src ? (
         <Image
@@ -32,7 +32,7 @@ export default function CaseStudyImage({
           unoptimized
           priority={priority}
           onError={() => setHasError(true)}
-          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          className="object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
         />
       ) : (
         /* Fallback dashed placeholder box */

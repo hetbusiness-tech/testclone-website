@@ -69,6 +69,7 @@ function DiagonalArrow({ className = "size-6" }: { className?: string }) {
 export default function InteractiveServices() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [mobilePreviewIndex, setMobilePreviewIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -91,7 +92,7 @@ export default function InteractiveServices() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.92 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="pointer-events-none fixed z-[9999]"
+            className="service-preview-card pointer-events-none fixed z-[9999]"
             style={{
               left: mouse.x - 120,
               top: mouse.y - 95,
@@ -147,6 +148,20 @@ export default function InteractiveServices() {
               key={service.number}
               href={service.href}
               onMouseEnter={() => setHoveredIndex(index)}
+              onTouchStart={(event) => {
+                if (window.matchMedia("(max-width: 1023px)").matches) {
+                  event.preventDefault();
+                  setMobilePreviewIndex((current) => (current === index ? null : index));
+                  setHoveredIndex(index);
+                }
+              }}
+              onClick={(event) => {
+                if (window.matchMedia("(max-width: 1023px)").matches && mobilePreviewIndex !== index) {
+                  event.preventDefault();
+                  setMobilePreviewIndex(index);
+                  setHoveredIndex(index);
+                }
+              }}
               className="group relative flex w-full items-center justify-between gap-4 border-b border-white/10 px-5 py-5 sm:gap-6 sm:px-10 sm:py-7 lg:px-16 lg:py-8"
             >
               {/* Smooth Animated Background Morphing on Hover */}

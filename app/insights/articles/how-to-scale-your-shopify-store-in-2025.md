@@ -1,6 +1,6 @@
 ## The ₹1 Crore Ceiling — And How to Break Through It
 
-Most DTC brands in India hit a wall around **₹10–20 lakhs/month**. The tactics that got you here — decent ads, basic Shopify theme, word-of-mouth — simply stop working at scale. To cross ₹1 Crore/month, you need a different operating system entirely.
+Most D2C brands in India hit a wall around **₹10–20 lakhs/month**. The tactics that got you here — decent ads, basic Shopify theme, word-of-mouth — simply stop working at scale. To cross ₹1 Crore/month, you need a different operating system entirely.
 
 Here's the exact framework we use at Technostripe with our Shopify Plus clients.
 

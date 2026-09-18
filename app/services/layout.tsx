@@ -2,25 +2,25 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 
-const SITE_URL = "https://www.technostripe.com";
+const SITE_URL = "https://www.technostripe.in";
 
 export const metadata: Metadata = {
   title: "Services | Shopify Plus, CRO, Paid Ads & SEO — Technostripe",
   description:
-    "Explore Technostripe's full range of e-commerce services: Shopify Plus development, conversion rate optimisation, Meta & Google Ads management, SEO, branding, and creative content.",
+    "Explore Technostripe's full range of e-commerce services: Shopify Plus development, conversion rate optimisation, Meta & Google Ads management, SEO, branding, and creative content for D2C brands.",
   alternates: {
     canonical: `${SITE_URL}/services`,
   },
   openGraph: {
     title: "Our Services | Technostripe Solutions",
     description:
-      "From Shopify Plus builds to performance marketing — we offer end-to-end e-commerce growth services for ambitious DTC brands.",
+      "From Shopify Plus builds to performance marketing — we offer end-to-end e-commerce growth services for ambitious D2C brands.",
     url: `${SITE_URL}/services`,
     siteName: "Technostripe Solutions",
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og.png`,
+        url: `${SITE_URL}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Technostripe Services — Shopify Plus, CRO, Paid Ads",
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services | Technostripe Solutions",
     description:
-      "Shopify Plus, CRO, Meta & Google Ads, SEO, and creative strategy for scaling DTC brands.",
-    images: [`${SITE_URL}/og.png`],
+      "Shopify Plus, CRO, Meta & Google Ads, SEO, and creative strategy for scaling D2C brands.",
+    images: [`${SITE_URL}/og-image.png`],
   },
 };
 

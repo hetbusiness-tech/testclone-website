@@ -183,7 +183,7 @@ export default function AboutPage() {
             Helping modern<br />e-commerce brands<br />grow better.
           </h1>
           <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-paper/70 font-normal">
-            Technostripe was built to help ambitious DTC brands scale through better creative, better customer experiences, and better performance systems.
+            Technostripe was built to help ambitious D2C brands scale through better creative, better customer experiences, and better performance systems.
           </p>
         </div>
       </section>
@@ -195,7 +195,7 @@ export default function AboutPage() {
 
             <div>
               <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.08]">
-                We&apos;re an e-commerce growth partner obsessed with one thing: turning digital into measurable revenue for modern DTC brands.
+                We&apos;re an e-commerce growth partner obsessed with one thing: turning digital into measurable revenue for modern D2C brands.
               </h2>
             </div>
 
@@ -226,7 +226,7 @@ export default function AboutPage() {
                       <div className="font-mono text-[11px] text-white/40 leading-relaxed">
                         &lt;Technostripe.Commerce /&gt;<br />
                         const team = ["Shopify Architects", "Media Buyers", "Creative Directors"];<br />
-                        output.deliver("Profitable DTC Growth &gt; Vanity Metrics");
+                        output.deliver("Profitable D2C Growth &gt; Vanity Metrics");
                       </div>
                     </div>
                   </div>
@@ -235,7 +235,7 @@ export default function AboutPage() {
 
               <div className="relative z-10 self-start">
                 <span className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider text-white shadow-lg">
-                  DTC GROWTH PARTNER • GLOBAL
+                  D2C GROWTH PARTNER • GLOBAL
                 </span>
               </div>
             </div>

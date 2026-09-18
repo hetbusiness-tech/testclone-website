@@ -52,7 +52,7 @@ const servicesData: ServiceDetail[] = [
     number: "02",
     title: "Paid Ads (Performance Marketing)",
     description:
-      "Performance marketing systems designed to acquire DTC customers profitably and scale revenue consistently across Meta & Google Ads.",
+      "Performance marketing systems designed to acquire D2C customers profitably and scale revenue consistently across Meta & Google Ads.",
     imageUrl: "/services/paid-ads.png", // Place custom image URL here
     keyBenefits: [
       "High-intent Google Shopping & Search campaigns",
@@ -196,7 +196,7 @@ export default function ServicesPage() {
             Services designed<br />for e-commerce<br />growth.
           </h1>
           <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-paper/70 font-normal">
-            We help DTC brands scale through Shopify experiences, paid acquisition systems, e-commerce SEO, creative strategy, and conversion optimization.
+            We help D2C brands scale through Shopify experiences, paid acquisition systems, e-commerce SEO, creative strategy, and conversion optimization.
           </p>
         </div>
       </section>
@@ -359,11 +359,11 @@ export default function ServicesPage() {
                     <p className="font-mono text-xs font-bold tracking-[0.25em] text-[#ed1238] uppercase mb-3">
                       DELIVERABLES
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
                       {service.deliverables.map((item) => (
                         <span
                           key={item}
-                          className="rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-semibold text-paper/80"
+                          className="flex min-h-9 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 text-center text-[0.68rem] font-semibold leading-tight text-paper/80 sm:w-auto sm:px-3.5 sm:text-xs"
                         >
                           {item}
                         </span>

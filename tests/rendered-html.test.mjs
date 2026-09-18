@@ -70,3 +70,15 @@ test("removes the disposable starter preview", async () => {
     access(new URL("../app/_sites-preview/SkeletonPreview.tsx", import.meta.url)),
   );
 });
+
+test("markdown images render as natural responsive img tags without zero-dimension sizing", async () => {
+  const markdownBody = await readFile(
+    new URL("../components/MarkdownBody.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.doesNotMatch(markdownBody, /from "next\/image"/i);
+  assert.doesNotMatch(markdownBody, /width=\{0\}|height=\{0\}/i);
+  assert.match(markdownBody, /className="markdown-image"/i);
+  assert.match(markdownBody, /markdown-image-frame/i);
+});

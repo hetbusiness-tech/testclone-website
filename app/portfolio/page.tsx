@@ -62,7 +62,7 @@ export default function PortfolioPage() {
             </h1>
             <p className="text-base sm:text-lg text-white/50 max-w-xl leading-relaxed">
               Explore how we engineer high-converting Shopify stores, deploy profitable ad funnels,
-              and scale DTC brands across India, UK &amp; US.
+              and scale D2C brands across India, UK &amp; US.
             </p>
           </div>
         </section>

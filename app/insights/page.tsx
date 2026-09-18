@@ -43,7 +43,7 @@ export default function InsightsPage() {
             </h1>
             <p className="text-base sm:text-lg text-white/50 max-w-xl leading-relaxed">
               Deep-dive articles on Shopify Plus, Meta Ads, CRO, SEO, and
-              everything we've learned scaling DTC brands to 8 figures.
+              everything we've learned scaling D2C brands to 8 figures.
             </p>
           </div>
         </section>

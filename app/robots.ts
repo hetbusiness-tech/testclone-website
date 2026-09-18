@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/",
       },
     ],
-    sitemap: "https://www.technostripe.com/sitemap.xml",
-    host: "https://www.technostripe.com",
+    sitemap: "https://www.technostripe.in/sitemap.xml",
+    host: "https://www.technostripe.in",
   };
 }

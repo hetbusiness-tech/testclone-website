@@ -203,6 +203,53 @@ summary::-webkit-details-marker {
   text-transform: uppercase;
 }
 
+@media (max-width: 639px) {
+  .portfolio-stack-root {
+    height: auto !important;
+  }
+
+  .portfolio-stack-card {
+    position: relative !important;
+    top: auto !important;
+    height: auto !important;
+    transform: none !important;
+  }
+
+  .portfolio-stack-card > div {
+    height: auto !important;
+    justify-content: flex-start !important;
+  }
+
+  .portfolio-stack-card + .portfolio-stack-card {
+    margin-top: 1rem;
+  }
+
+  .portfolio-card-body {
+    opacity: 1 !important;
+  }
+
+  .portfolio-card-dim {
+    display: none;
+  }
+
+  .service-preview-card {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .service-preview-card > div {
+    height: 6.5rem !important;
+    width: 10rem !important;
+    border-radius: 1rem;
+    padding: 0.75rem;
+  }
+
+  .service-preview-card p {
+    font-size: 0.85rem;
+  }
+}
+
 @keyframes loader-pulse {
 
   0%,
@@ -666,6 +713,60 @@ summary::-webkit-details-marker {
   border: none;
   border-top: 1px solid rgba(243, 244, 236, 0.08);
   margin: 2.5rem 0;
+}
+
+/* ─── Markdown Images ──────────────────────────────────────────────────── */
+.blog-prose .markdown-image-frame,
+.blog-prose .markdown-image-frame > img,
+.blog-prose img,
+.blog-prose span > img {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 1rem;
+  object-fit: contain;
+}
+
+.blog-prose .markdown-image,
+.blog-prose img {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.blog-prose .markdown-image-frame {
+  width: min(100%, 820px);
+  margin: 1.75rem auto;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: transparent;
+}
+
+.blog-prose .markdown-image,
+.blog-prose .markdown-image-frame > img,
+.blog-prose img,
+.blog-prose span > img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 1rem;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.blog-prose {
+  width: 100%;
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.blog-prose p:has(> img),
+.blog-prose p:has(> span > img),
+.blog-prose p:has(> .markdown-image-frame) {
+  margin: 1.75rem 0;
 }
 
 .blog-prose code {

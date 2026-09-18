@@ -109,7 +109,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
 
           {markdownContent ? (
             <section className="mb-14 border-y border-white/10 py-12 lg:py-16">
-              <div className="mx-auto max-w-3xl">
+              <div className="mx-auto w-full max-w-5xl">
                 <p className="eyebrow text-[#ed1238]">Case Study Narrative</p>
                 <MarkdownBody content={markdownContent} />
               </div>

@@ -12,7 +12,7 @@ export const BLOG_POSTS: BlogPost[] = [
     authorLink: "/about",
     readTime: "8 min read",
     category: "Shopify Plus",
-    platformTags: ["Shopify Plus", "DTC", "Performance Marketing", "Scale"],
+    platformTags: ["Shopify Plus", "D2C", "Performance Marketing", "Scale"],
     coverImage: "/blog/shopify-scale-2025.png",
     coverImageAlt: "How to Scale Your Shopify Store to ₹1 Crore in 2025 Playbook",
     contentFile: "app/insights/articles/how-to-scale-your-shopify-store-in-2025.md",
@@ -22,22 +22,22 @@ export const BLOG_POSTS: BlogPost[] = [
     seo: {
       metaTitle: "How to Scale Your Shopify Store to ₹1 Crore in 2025 | Technostripe",
       metaDescription:
-        "A step-by-step playbook for DTC brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies.",
+        "A step-by-step playbook for D2C brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies.",
       keywords: [
         "Shopify Plus scaling",
-        "DTC India",
+        "D2C India",
         "e-commerce growth",
         "CRO Shopify",
         "Meta Ads for Shopify",
       ],
       ogTitle: "How to Scale Your Shopify Store to ₹1 Crore in 2025 | Technostripe",
       ogDescription:
-        "A step-by-step playbook for DTC brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies.",
+        "A step-by-step playbook for D2C brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies.",
       ogImage: "/blog/blog1.png",
       twitterTitle: "How to Scale Your Shopify Store to ₹1 Crore in 2025",
       twitterDescription:
-        "A step-by-step playbook for DTC brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies.",
-      twitterHashtags: ["ShopifyPlus", "Ecommerce", "DTC", "GrowthMarketing"],
+        "A step-by-step playbook for D2C brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies.",
+      twitterHashtags: ["ShopifyPlus", "Ecommerce", "D2C", "GrowthMarketing"],
     },
   },
   {
@@ -53,7 +53,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "CRO",
     platformTags: ["CRO", "UI/UX", "Shopify", "A/B Testing"],
     coverImage: "/blog/cro-framework.png",
-    coverImageAlt: "Conversion rate optimization framework for DTC brands",
+    coverImageAlt: "Conversion rate optimization framework for D2C brands",
     contentFile: "app/insights/articles/cro-framework-for-dtc-brands.md",
     ctaBookDemoLink: "/contact",
     ctaWhatsAppLink: "https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20audit%20my%20store%20conversion%20rate",
@@ -66,7 +66,7 @@ export const BLOG_POSTS: BlogPost[] = [
         "Shopify CRO",
         "conversion rate optimization",
         "cart abandonment fixes",
-        "A/B testing DTC",
+        "A/B testing D2C",
       ],
       ogTitle: "CRO Framework to Double Shopify Conversion Rate | Technostripe",
       ogDescription:
@@ -83,7 +83,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: "meta-ads-scaling-playbook-2025",
     title: "Meta Ads Scaling Playbook: From ₹50k to ₹10L Daily Spend",
     excerpt:
-      "A complete guide to creative velocity, Advantage+ Shopping campaigns, broad targeting, and ROAS optimization for scaling DTC brands.",
+      "A complete guide to creative velocity, Advantage+ Shopping campaigns, broad targeting, and ROAS optimization for scaling D2C brands.",
     publishDate: "2025-08-28",
     author: "Performance Marketing Team",
     authorLink: "/about",
@@ -91,30 +91,30 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Performance Marketing",
     platformTags: ["Meta Ads", "ROAS", "Performance Marketing", "Scaling"],
     coverImage: "/blog/meta-ads-playbook.png",
-    coverImageAlt: "Meta Ads Scaling Playbook for DTC Brands",
+    coverImageAlt: "Meta Ads Scaling Playbook for D2C Brands",
     contentFile: "app/insights/articles/meta-ads-scaling-playbook-2025.md",
     ctaBookDemoLink: "/contact",
     ctaWhatsAppLink: "https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20scale%20my%20Meta%20Ads",
     featured: false,
     seo: {
-      metaTitle: "Meta Ads Scaling Playbook for DTC Brands | Technostripe",
+      metaTitle: "Meta Ads Scaling Playbook for D2C Brands | Technostripe",
       metaDescription:
         "How to scale Meta Ads from ₹50k to ₹10L daily spend with sustainable ROAS using creative testing systems and ASC campaigns.",
       keywords: [
         "Meta Ads scaling",
-        "Facebook Ads DTC",
+        "Facebook Ads D2C",
         "Advantage+ Shopping",
         "ROAS optimization",
         "performance marketing",
       ],
-      ogTitle: "Meta Ads Scaling Playbook for DTC Brands | Technostripe",
+      ogTitle: "Meta Ads Scaling Playbook for D2C Brands | Technostripe",
       ogDescription:
         "How to scale Meta Ads from ₹50k to ₹10L daily spend with sustainable ROAS using creative testing systems and ASC campaigns.",
       ogImage: "/blog/meta-ads-playbook.png",
-      twitterTitle: "Meta Ads Scaling Playbook for DTC Brands",
+      twitterTitle: "Meta Ads Scaling Playbook for D2C Brands",
       twitterDescription:
         "Scale Meta Ads profitably with creative velocity and ASC campaign structures.",
-      twitterHashtags: ["MetaAds", "FacebookAds", "PerformanceMarketing", "DTC"],
+      twitterHashtags: ["MetaAds", "FacebookAds", "PerformanceMarketing", "D2C"],
     },
   },
 ];

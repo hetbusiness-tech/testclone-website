@@ -19,7 +19,7 @@ const testimonials = [
     name: "Oliver Bennett",
     stars: 5,
     quote:
-      "Unlike generic IT companies, Technostripe truly understands DTC metrics, AOV, and customer funnels. Best growth agency we’ve partnered with.",
+      "Unlike generic IT companies, Technostripe truly understands D2C metrics, AOV, and customer funnels. Best growth agency we’ve partnered with.",
   },
   {
     name: "Charlotte Hayes",

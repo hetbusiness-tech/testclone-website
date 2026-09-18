@@ -26,15 +26,15 @@ Traffic was arriving. Customers were looking. And then they were leaving.
 
 Before Technostripe stepped in, the advertising metrics actually looked strong:
 
-- **CPC — $0.95**  
+- **CPC — $0.95**
   Efficient traffic at a low cost.
-- **CTR — 2.4%**  
+- **CTR — 2.4%**
   Strong engagement for the category, confirming that the creative was doing its job.
-- **CAC — $38**  
+- **CAC — $38**
   Against a $32 average order value, meaning the economics were negative on nearly every first order.
-- **ROAS — 1.3x**  
+- **ROAS — 1.3x**
   A surprisingly weak return considering how efficiently the ads were generating clicks.
-- **Frequency — 2.9**  
+- **Frequency — 2.9**
   Still manageable, with no obvious sign of creative fatigue.
 
 The account was producing inexpensive, highly engaged traffic. But that traffic wasn't translating into enough purchases.
@@ -66,8 +66,9 @@ For a brand built around impulse, personality, and limited drops, that extra fri
 There was another issue hiding inside the Shopify data: the sizing chart didn't accurately communicate TeesClub's relaxed, oversized fit. Customers were ordering their usual size, receiving a fit that felt different from what they expected, and returning products.
 
 So there were actually two gaps:
-- **Ad &rarr; Landing Page**
-- **Product &rarr; Customer Expectation**
+
+- **Ad → Landing Page**
+- **Product → Customer Expectation**
 
 Both were costing the brand money.
 
@@ -83,7 +84,7 @@ The strategy wasn't to change the ads. It was to make everything after the click
 
 The new journey became:
 
-> **Specific Ad** &rarr; **Specific Product / Drop** &rarr; **Relevant Landing Experience** &rarr; **Clear Fit Information** &rarr; **Purchase**
+> **Specific Ad** → **Specific Product / Drop** → **Relevant Landing Experience** → **Clear Fit Information** → **Purchase**
 
 For limited releases, we went further. Dedicated drop pages carried the same urgency and energy that made the advertising compelling — including stock availability and countdown elements.
 
@@ -94,11 +95,15 @@ For limited releases, we went further. Dedicated drop pages carried the same urg
 ## 05 — What We Changed
 
 ### 01. Matched Ads to Products
-Instead of sending every campaign to the homepage, each ad was connected directly to the specific product it featured. For collection-based campaigns, traffic was sent to the relevant drop or collection.  
+
+Instead of sending every campaign to the homepage, each ad was connected directly to the specific product it featured. For collection-based campaigns, traffic was sent to the relevant drop or collection.
+
 *The customer no longer had to hunt for what they had already clicked on.*
 
 ### 02. Built Drop-Specific Landing Pages
+
 Limited releases received dedicated landing experiences designed around the way TeesClub actually sold:
+
 - **Stock counters** to highlight real-time availability
 - **Drop countdowns** to create genuine urgency
 - **Product-focused messaging** to keep momentum alive
@@ -106,9 +111,11 @@ Limited releases received dedicated landing experiences designed around the way 
 The urgency already present in the brand's identity was finally carried through to the website. The drop didn't end when the ad ended.
 
 ### 03. Rebuilt the Size Guide
+
 The generic sizing chart was replaced with guidance that reflected the actual fit of each style. Customers could better understand the relaxed and oversized nature of the products before purchasing. Fit expectations became clearer before the order was placed.
 
 ### 04. Added Fit Comparison Information
+
 We added fit-comparison notes directly onto product pages so customers could understand how each style compared with a more familiar fit.
 
 This addressed one of the quietest sources of margin loss: **customers buying their normal size and receiving something they didn't expect.**
@@ -123,7 +130,8 @@ This addressed one of the quietest sources of margin loss: **customers buying th
 
 The biggest improvement came from removing the gap between what the customer saw in the ad and what they experienced after clicking.
 
-### Before: Fragmented & Leaky
+### Before: Fragmented and Leaky
+
 1. Specific graphic in ad
 2. Click
 3. Generic homepage
@@ -132,7 +140,8 @@ The biggest improvement came from removing the gap between what the customer saw
 6. Interest fades
 7. **Purchase lost**
 
-### After: Seamless & High-Converting
+### After: Seamless and High-Converting
+
 1. Specific graphic in ad
 2. Click
 3. Exact product / relevant drop
@@ -176,6 +185,7 @@ The traffic hadn't fundamentally changed. **The experience receiving that traffi
 **The website finally finished the sentence the ads started.**
 
 TeesClub already had the hardest part figured out:
+
 - People wanted to click.
 - The creative created curiosity.
 - The products created interest.
@@ -183,6 +193,7 @@ TeesClub already had the hardest part figured out:
 What was missing was a frictionless path from that interest to purchase.
 
 By connecting each ad to the product or drop it actually featured, building dedicated experiences for limited releases, and clarifying product fit, the entire journey became more intentional:
+
 - The **ad** created the desire.
 - The **landing page** carried it forward.
 - The **product page** removed the hesitation.

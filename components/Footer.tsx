@@ -158,7 +158,7 @@ export default function Footer() {
                 </a>
               </div>
               <div className="pt-1 border-t border-white/8">
-                <p className="font-medium text-white text-xs">Global DTC Partner</p>
+                <p className="font-medium text-white text-xs">Global D2C Partner</p>
                 <p className="text-xs text-paper/50">Scaling High-Growth Brands</p>
               </div>
             </div>

@@ -28,7 +28,7 @@ export function generateMetadata({ params }: Props): Metadata {
   const blog = getBlogBySlug(params.slug);
   if (!blog) return {};
 
-  const ogImg = blog.seo?.ogImage || blog.coverImage || "/og.png";
+  const ogImg = blog.seo?.ogImage || blog.coverImage || "/og-image.png";
   const ogImgUrl = ogImg.startsWith("http") ? ogImg : `${SITE_URL}${ogImg}`;
 
   return {

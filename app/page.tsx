@@ -49,7 +49,7 @@ export default function Home() {
             Proof, not promises.
           </h2>
           <p className="mt-3 text-sm text-paper/60">
-            Scaling E-commerce, conversion-focused Shopify experiences, and Full-stack digital growth for high-ambition DTC brands.
+            Scaling E-commerce, conversion-focused Shopify experiences, and Full-stack digital growth for high-ambition D2C brands.
           </p>
         </div>
         <TestimonialsMarquee />

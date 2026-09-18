@@ -24,7 +24,7 @@ export default function HeroInteractive({ children }: { children: ReactNode }) {
       id="top"
       style={style}
       onMouseMove={handlePointerMove}
-      className="hero-interactive relative flex h-screen min-h-[640px] max-h-[100vh] flex-col overflow-hidden bg-ink pt-20 sm:pt-24 md:pt-28"
+      className="hero-interactive relative flex h-auto min-h-0 max-h-none flex-col overflow-hidden bg-ink pt-[6.25rem] sm:h-screen sm:min-h-[640px] sm:max-h-[100vh] sm:pt-24 md:pt-28"
     >
       <div className="hero-spotlight pointer-events-none absolute inset-0" />
       <div className="hero-cursor pointer-events-none absolute" aria-hidden="true" />
