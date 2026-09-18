@@ -67,7 +67,7 @@ export default function PortfolioDetailPage({ params }: Props) {
 
         <div className="mx-auto max-w-5xl px-4 sm:px-8">
           {/* ── Header: Category + Project Name ─────────── */}
-          <div className="mb-10">
+          <div className="mb-10 max-w-4xl">
             <span className="inline-block rounded-full border border-[#ed1238]/30 bg-[#ed1238]/10 px-3.5 py-1 text-[0.68rem] font-mono font-bold tracking-[0.16em] uppercase text-[#ff4d6d] mb-4">
               {caseStudy.category}
             </span>
@@ -110,7 +110,7 @@ export default function PortfolioDetailPage({ params }: Props) {
 
           {markdownContent ? (
             <section className="mb-14 border-y border-white/10 py-12 lg:py-16">
-              <div className="mx-auto w-full max-w-5xl">
+              <div className="w-full max-w-4xl">
                 <p className="eyebrow text-[#ed1238]">Project Narrative</p>
                 <MarkdownBody content={markdownContent} />
               </div>
@@ -320,7 +320,7 @@ export default function PortfolioDetailPage({ params }: Props) {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {related.map((study) => (
-                  <Link
+                  <a
                     key={study.slug}
                     href={`/portfolio/${study.slug}`}
                     className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#111211] transition-all duration-300 hover:border-[#ed1238]/40 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(237,18,56,0.12)]"
@@ -373,7 +373,7 @@ export default function PortfolioDetailPage({ params }: Props) {
                         </svg>
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 ))}
               </div>
             </section>

@@ -43,7 +43,7 @@ export default function HeroSection() {
               </Link>
 
               <Link
-                href="/#work"
+                href="/portfolio"
                 className="inline-flex h-12 w-[11.5rem] items-center justify-center gap-2 rounded-full border border-white/25 bg-transparent px-6 text-sm font-bold tracking-tight text-paper transition-all duration-300 hover:border-white/50 hover:bg-white/5 whitespace-nowrap sm:h-auto sm:w-auto sm:px-7 sm:py-3.5 sm:text-base"
               >
                 View Our Work

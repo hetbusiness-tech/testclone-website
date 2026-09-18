@@ -49,10 +49,24 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-    }, 900);
+
+    const subject = `New strategy inquiry from ${formData.name} - ${formData.brandName}`;
+    const body = [
+      `Name: ${formData.name}`,
+      `Brand / Company: ${formData.brandName}`,
+      `Email: ${formData.email}`,
+      `Phone: ${formData.phone || "Not provided"}`,
+      `Website: ${formData.websiteUrl}`,
+      `Services: ${selectedServices.join(", ") || "Not selected"}`,
+      `Monthly revenue: ${selectedRevenue}`,
+      "",
+      "Challenges and growth goals:",
+      formData.challenges || "Not provided",
+    ].join("\n");
+
+    window.location.href = `mailto:growth@technostripe.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setIsSubmitting(false);
+    setSubmitted(true);
   };
 
   return (

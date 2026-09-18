@@ -759,8 +759,8 @@ summary::-webkit-details-marker {
 
 .blog-prose {
   width: 100%;
-  max-width: 820px;
-  margin-inline: auto;
+  max-width: none;
+  margin-inline: 0;
 }
 
 .blog-prose p:has(> img),

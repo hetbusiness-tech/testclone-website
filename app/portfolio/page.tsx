@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -21,6 +20,10 @@ const categoryColors: Record<string, string> = {
 
 function getCategoryColor(category: string) {
   return categoryColors[category] ?? "#ed1238";
+}
+
+function getCategoryLabel(category: string) {
+  return category.startsWith("Paid Ads") ? "Paid Ads" : category.split(" ")[0];
 }
 
 const SKIP_METRIC_LABELS = new Set([
@@ -72,7 +75,7 @@ export default function PortfolioPage() {
 
           {/* Featured Card */}
           {activeCategory === "All" && featured && (
-            <Link
+            <a
               href={`/portfolio/${featured.slug}`}
               className="group mb-10 flex flex-col sm:flex-row overflow-hidden rounded-2xl border border-white/10 bg-[#111211] transition-all duration-300 hover:border-[#ed1238]/40 hover:shadow-[0_0_40px_rgba(237,18,56,0.12)]"
             >
@@ -152,7 +155,7 @@ export default function PortfolioPage() {
                   </svg>
                 </div>
               </div>
-            </Link>
+            </a>
           )}
 
           {/* Category Filter Tabs */}
@@ -192,7 +195,7 @@ export default function PortfolioPage() {
                   !SKIP_METRIC_LABELS.has(study.metrics[0].label);
 
                 return (
-                  <Link
+                  <a
                     key={study.slug}
                     href={`/portfolio/${study.slug}`}
                     className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#111211] transition-all duration-300 hover:border-[#ed1238]/40 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(237,18,56,0.12)]"
@@ -207,7 +210,7 @@ export default function PortfolioPage() {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                       <div className="absolute top-3 left-3 z-10 font-mono text-[10px] font-bold tracking-widest text-white/90 uppercase px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 shadow-md">
-                        {study.category.split(" ")[0]}
+                        {getCategoryLabel(study.category)}
                       </div>
 
                       {/* Hover: Red branded card */}
@@ -216,7 +219,7 @@ export default function PortfolioPage() {
                         <div className="absolute -top-12 -right-12 size-40 rounded-full bg-white/20 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.45)_0%,transparent_65%)] pointer-events-none" />
                         <div className="relative z-10 flex items-center justify-between font-mono text-[10px] font-bold tracking-[0.2em] text-white/90 uppercase">
-                          <span>{study.category.split(" ")[0]}</span>
+                          <span>{getCategoryLabel(study.category)}</span>
                           <span className="inline-block size-1.5 rounded-full bg-white/80 animate-pulse" />
                         </div>
                         <div className="pointer-events-none absolute -bottom-4 -right-4 z-0">
@@ -262,7 +265,7 @@ export default function PortfolioPage() {
                         </svg>
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 );
               })}
             </div>

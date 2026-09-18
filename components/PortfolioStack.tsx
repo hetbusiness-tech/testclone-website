@@ -315,7 +315,7 @@ function StackCard({
                   </span>
                 ))}
               </div>
-              <Link
+              <a
                 href={`/portfolio/${project.caseStudySlug}`}
                 className="inline-flex w-fit shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-bold tracking-tight transition-all duration-200 hover:shadow-lg"
                 style={{ color: "#ffffff", backgroundColor: project.textColor }}
@@ -325,7 +325,7 @@ function StackCard({
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -381,7 +381,7 @@ export default function PortfolioStack() {
             </p>
           </div>
           <Link
-            href="/services"
+            href="/portfolio"
             className="hidden shrink-0 items-center rounded-full border border-white/25 px-5 py-2 text-xs font-medium text-white transition-all duration-200 hover:border-[#ed1238] hover:text-[#ed1238] sm:inline-flex"
           >
             View all work
