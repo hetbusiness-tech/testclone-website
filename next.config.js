@@ -4,6 +4,11 @@ import path from "path";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config, { isServer }) => {
+    config.module.rules.push({
+      test: /\.md$/,
+      type: "asset/source",
+    });
+
     if (isServer) {
       const serverDir = path.join(process.cwd(), ".next", "server");
       if (!fs.existsSync(serverDir)) {
