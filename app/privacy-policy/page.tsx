@@ -309,7 +309,7 @@ export default function PrivacyPolicyPage() {
                   Cookies & Tracking Technologies
                 </h2>
                 <p>
-                  Our website currently sets only essential cookies required for core functionality. We do not yet load analytics or advertising pixels on technostripe.com; the categories below describe the cookies we use today and the categories we may activate in the future, at which point this policy and the site&apos;s cookie banner will be updated accordingly.
+                  Our website uses Google Analytics 4 (via Google Tag Manager) to understand aggregate visitor trends, in addition to essential cookies required for core functionality. We do not currently load advertising or retargeting pixels.
                 </p>
                 <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.02]">
                   <table className="w-full text-left text-xs sm:text-sm">
@@ -328,8 +328,8 @@ export default function PrivacyPolicyPage() {
                       </tr>
                       <tr>
                         <td className="p-3.5 sm:p-4 font-semibold text-white">Performance & Analytics</td>
-                        <td className="p-3.5 sm:p-4">Would help us evaluate page load times and user engagement via anonymous metrics.</td>
-                        <td className="p-3.5 sm:p-4 font-mono text-white/40">Not currently active</td>
+                        <td className="p-3.5 sm:p-4">Google Analytics 4 (via Google Tag Manager) — page views, engagement, and traffic sources.</td>
+                        <td className="p-3.5 sm:p-4 font-mono">Up to 14 Months</td>
                       </tr>
                       <tr>
                         <td className="p-3.5 sm:p-4 font-semibold text-white">Marketing & Attribution</td>

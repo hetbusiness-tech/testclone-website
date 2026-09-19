@@ -136,7 +136,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
     /* ── Verification (add your actual codes) ──────────── */
     verification: {
-      google: "REPLACE_WITH_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE",
+      google: "WopB-GZ4w7807S8181-gh_hqgVhrvGJBw3cmD4PsFSI",
       // yandex: "REPLACE_WITH_YANDEX_CODE",
       // bing: "REPLACE_WITH_BING_CODE",
     },
@@ -408,6 +408,19 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
+        {/* Google Tag Manager */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TD3KMQQR');`,
+          }}
+        />
+
         {/* Organization schema */}
         <Script
           id="schema-organization"
@@ -464,6 +477,16 @@ export default function RootLayout({
         />
       </head>
       <body className="grain antialiased">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TD3KMQQR"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
+          />
+        </noscript>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:rounded-full focus:bg-[#ed1238] focus:px-5 focus:py-2.5 focus:text-sm focus:font-bold focus:text-white"
