@@ -13,7 +13,7 @@ export default function CaseStudiesPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#0a0b0a] pt-28 pb-24 sm:pt-36">
+      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-28 pb-24 sm:pt-36">
         {/* ── Hero Header ─────────────────────────────── */}
         <section className="relative overflow-hidden px-4 sm:px-8 lg:px-12 pb-14 sm:pb-18">
           {/* Background glow */}
@@ -37,7 +37,7 @@ export default function CaseStudiesPage() {
                 letterSpacing: "-0.04em",
               }}
             >
-              Work That Delivers<br />
+              Work That Delivers <br />
               <span className="text-[#ed1238]">Real Growth.</span>
             </h1>
             <p className="text-base sm:text-lg text-white/50 max-w-xl leading-relaxed">

@@ -7,10 +7,10 @@ export default function WhatWeDoSection() {
   const stats = [
     {
       value: "52+",
-      label: "Projects delivered",
+      label: "Brands scaled",
     },
     {
-      value: "5+ years",
+      value: "4+ years",
       label: "Driving global growth",
     },
     {

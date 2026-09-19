@@ -22,30 +22,33 @@ function AnimatedWords({
   const words = text.split(" ");
 
   return (
-    <span ref={ref} className={className} aria-label={text}>
-      {words.map((word, index) => (
-        <span
-          key={index}
-          className="inline-block overflow-hidden mr-[0.26em] last:mr-0 align-top"
-        >
-          <motion.span
-            className="inline-block"
-            initial={{ y: "110%", opacity: 0, filter: "blur(4px)" }}
-            animate={
-              isInView
-                ? { y: "0%", opacity: 1, filter: "blur(0px)" }
-                : { y: "110%", opacity: 0, filter: "blur(4px)" }
-            }
-            transition={{
-              duration: 0.55,
-              delay: delay + index * stagger,
-              ease: [0.22, 1, 0.36, 1],
-            }}
+    <span ref={ref} className={className}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {words.map((word, index) => (
+          <span
+            key={index}
+            className="inline-block overflow-hidden mr-[0.26em] last:mr-0 align-top"
           >
-            {word}
-          </motion.span>
-        </span>
-      ))}
+            <motion.span
+              className="inline-block"
+              initial={{ y: "110%", opacity: 0, filter: "blur(4px)" }}
+              animate={
+                isInView
+                  ? { y: "0%", opacity: 1, filter: "blur(0px)" }
+                  : { y: "110%", opacity: 0, filter: "blur(4px)" }
+              }
+              transition={{
+                duration: 0.55,
+                delay: delay + index * stagger,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              {word}
+            </motion.span>
+          </span>
+        ))}
+      </span>
     </span>
   );
 }
@@ -79,7 +82,7 @@ const variantConfig = {
     eyebrow: "( YOUR TURN )",
     heading: "Want results like these?",
     subtext:
-      "Every case study starts with a single call. Book your free 45-minute strategy audit — we'll map what's possible for your brand.",
+      "Every case study starts with a single call. Book your free 30-minute strategy audit — we'll map what's possible for your brand.",
     button: "Book Strategy Audit",
   },
   insights: {
@@ -260,7 +263,7 @@ export default function CTASection({
                 className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] sm:text-xs font-mono text-emerald-400"
               >
                 <span className="size-1.5 sm:size-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Accepting 2 New Brand Partnerships for Q1/Q2</span>
+                <span>Now Accepting New Brand Partnerships</span>
               </motion.div>
             </div>
 

@@ -87,6 +87,42 @@ or enforce explicit server-side membership or allowlist checks.
 Use SIWC for account pages, user-specific dashboards, saved records, and write
 actions tied to the current ChatGPT user. Leave public content anonymous.
 
+## Contact Form → Google Sheet
+
+`/contact` posts to `app/api/contact/route.ts`, which validates the payload and
+logs every submission server-side. To also append each submission as a row in
+a Google Sheet:
+
+1. Open the target Google Sheet → **Extensions → Apps Script**.
+2. Replace the script with:
+
+   ```js
+   function doPost(e) {
+     const data = JSON.parse(e.postData.contents);
+     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+     sheet.appendRow([
+       data.submittedAt,
+       data.name,
+       data.brandName,
+       data.email,
+       data.phone || "",
+       data.websiteUrl,
+       (data.services || []).join(", "),
+       data.revenueRange,
+       data.challenges || "",
+     ]);
+     return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+       .setMimeType(ContentService.MimeType.JSON);
+   }
+   ```
+
+3. Add a header row to the sheet matching those columns: `Submitted At | Name | Brand | Email | Phone | Website | Services | Revenue Range | Challenges`.
+4. **Deploy → New deployment → Web app**. Set "Execute as" to yourself and
+   "Who has access" to "Anyone". Deploy and copy the Web App URL.
+5. Set `CONTACT_SHEET_WEBHOOK_URL` to that URL in your environment (see
+   `.env.example`). No code changes needed — the form starts writing to the
+   sheet on the next deploy.
+
 ## Useful Commands
 
 - `npm run dev`: start local development

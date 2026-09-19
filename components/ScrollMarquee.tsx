@@ -210,13 +210,11 @@ export default function ScrollMarquee({
   );
 
   return (
-    <section
-      aria-label={`${text} scroll animation`}
-      className="relative z-0 bg-ink overflow-x-clip"
-    >
+    <section className="relative z-0 bg-ink overflow-x-clip">
       <div
         ref={containerRef}
-        className="relative z-0 h-[400vh] bg-ink"
+        aria-hidden="true"
+        className="relative z-0 h-[220vh] sm:h-[400vh] bg-ink"
       >
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center bg-ink overflow-hidden">
 

@@ -24,7 +24,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
+                className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="size-4">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -38,7 +38,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
+                className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="size-4">
                   <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -50,24 +50,12 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
+                className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="size-4">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                   <rect x="2" y="9" width="4" height="12" />
                   <circle cx="4" cy="4" r="2" />
-                </svg>
-              </a>
-              {/* Facebook (using Instagram link for now) */}
-              <a
-                href="https://www.instagram.com/technostripe.growth/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="size-4">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                 </svg>
               </a>
             </div>
@@ -142,10 +130,10 @@ export default function Footer() {
               <div>
                 <p className="text-[11px] text-paper/40 font-mono uppercase tracking-wider mb-0.5">Email</p>
                 <a
-                  href="mailto:Growth@technostripe.com"
+                  href="mailto:growth@technostripe.com"
                   className="text-paper/85 hover:text-[#ed1238] transition-colors font-medium break-all"
                 >
-                  Growth@technostripe.com
+                  growth@technostripe.com
                 </a>
               </div>
               <div>
@@ -171,7 +159,7 @@ export default function Footer() {
             <Link href="/privacy-policy" className="hover:text-[#ed1238] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/contact" className="hover:text-[#ed1238] transition-colors">
+            <Link href="/terms" className="hover:text-[#ed1238] transition-colors">
               Terms of Service
             </Link>
           </div>

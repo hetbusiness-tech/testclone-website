@@ -17,17 +17,42 @@ export function generateStaticParams() {
   return caseStudies.map((caseStudy) => ({ slug: caseStudy.slug }));
 }
 
+const SITE_URL = "https://technostripe.com";
+
 export function generateMetadata({ params }: Props): Metadata {
   const caseStudy = caseStudies.find((item) => item.slug === params.slug);
   if (!caseStudy) return {};
 
+  const url = `${SITE_URL}/portfolio/${caseStudy.slug}`;
+  const ogImage = caseStudy.coverImage.startsWith("http")
+    ? caseStudy.coverImage
+    : `${SITE_URL}${caseStudy.coverImage}`;
+
   return {
-    title: `${caseStudy.projectName} — Portfolio | Technostripe`,
+    title: `${caseStudy.projectName} — Portfolio`,
     description: caseStudy.description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: `${caseStudy.projectName} | Technostripe Portfolio`,
       description: caseStudy.description,
+      url,
       type: "article",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: caseStudy.projectName,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${caseStudy.projectName} | Technostripe Portfolio`,
+      description: caseStudy.description,
+      images: [ogImage],
     },
   };
 }
@@ -46,7 +71,7 @@ export default function PortfolioDetailPage({ params }: Props) {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#0a0b0a] pt-24 pb-24 sm:pt-32">
+      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-24 pb-24 sm:pt-32">
         {/* ── Breadcrumbs ─────────────────────────────── */}
         <nav
           aria-label="Breadcrumb"
@@ -209,7 +234,9 @@ export default function PortfolioDetailPage({ params }: Props) {
           {caseStudy.metrics && caseStudy.metrics.length > 0 && (
             <section className="mb-14">
               <h2 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#ed1238] mb-6">
-                Key Performance Metrics & Results
+                {caseStudy.metrics.some((m) => /\d/.test(m.value))
+                  ? "Key Performance Metrics & Results"
+                  : "Project Snapshot"}
               </h2>
               <div
                 className={`grid gap-4 sm:gap-6 ${

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-const SITE_URL = "https://www.technostripe.in";
+const SITE_URL = "https://technostripe.com";
 
 export const metadata: Metadata = {
-  title: "About Us | Technostripe Solutions",
+  title: "About Us",
   description:
     "Learn about Technostripe Solutions — a full-stack Shopify Plus agency founded to help D2C brands across India, UK, and US scale with strategy, speed, and results.",
   alternates: {

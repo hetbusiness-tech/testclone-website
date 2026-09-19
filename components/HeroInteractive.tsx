@@ -63,34 +63,43 @@ export function AnimatedHeroTitle() {
 
   // Significantly larger font size to fill vertical and horizontal space
   const titleStyle = {
-    fontSize: "clamp(3.6rem, calc(min(100vw - 2rem, 72rem) / 7.8), 8.8rem)",
+    fontSize: "clamp(2.8rem, calc(min(100vw - 2rem, 72rem) / 7.8), 8.8rem)",
     lineHeight: "0.92",
   } as CSSProperties;
+
+  const accessibleText = lines
+    .map((line) => line.words.map((word) => word.text).join(""))
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
 
   return (
     <h1
       style={titleStyle}
       className="hero-title max-w-none font-display font-extrabold tracking-[-0.04em] text-paper"
+      aria-label={accessibleText}
     >
-      {lines.map((line, lineIndex) => (
-        <span key={lineIndex} className="hero-title-line block whitespace-nowrap">
-          {line.words.map((word) => (
-            <span
-              key={word.text}
-              className={`hero-title-word inline-block ${word.accent ? "text-lime" : "text-paper"}`}
-            >
-              {Array.from(word.text).map((character, index) => (
-                <span
-                  key={`${word.text}-${index}`}
-                  className="hero-title-character inline-block"
-                >
-                  {character === " " ? "\u00a0" : character}
-                </span>
-              ))}
-            </span>
-          ))}
-        </span>
-      ))}
+      <span aria-hidden="true">
+        {lines.map((line, lineIndex) => (
+          <span key={lineIndex} className="hero-title-line block whitespace-nowrap">
+            {line.words.map((word) => (
+              <span
+                key={word.text}
+                className={`hero-title-word inline-block ${word.accent ? "text-lime" : "text-paper"}`}
+              >
+                {Array.from(word.text).map((character, index) => (
+                  <span
+                    key={`${word.text}-${index}`}
+                    className="hero-title-character inline-block"
+                  >
+                    {character === " " ? "\u00a0" : character}
+                  </span>
+                ))}
+              </span>
+            ))}
+          </span>
+        ))}
+      </span>
     </h1>
   );
 }

@@ -19,14 +19,18 @@ const statsData: StatItem[] = [
   { numericValue: 52, suffix: "+", label: "Brands" },
   { numericValue: 98, suffix: "%", label: "Avg. Store Speed Score" },
   { numericValue: 4.8, suffix: "/5", isDecimal: true, label: "Client satisfaction" },
-  { numericValue: 5, suffix: "+Years", label: "Scaling D2C Brands" },
+  { numericValue: 4, suffix: "+Years", label: "Scaling D2C Brands" },
 ];
 
 function StatCounter({ item, inView }: { item: StatItem; inView: boolean }) {
-  const [current, setCurrent] = useState(0);
+  // Start from the real final value so it's present in server-rendered HTML
+  // (crawlers, no-JS clients) instead of flashing "0" before hydration.
+  const [current, setCurrent] = useState(item.numericValue);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
 
     const duration = 1600; // ms
     const startTime = performance.now();
@@ -44,6 +48,9 @@ function StatCounter({ item, inView }: { item: StatItem; inView: boolean }) {
       }
     };
 
+    // Briefly dip to 0 only once the element is in view and about to animate,
+    // so the count-up plays without ever showing 0 pre-hydration.
+    setCurrent(0);
     const animId = requestAnimationFrame(update);
     return () => cancelAnimationFrame(animId);
   }, [inView, item.numericValue]);
@@ -165,7 +172,7 @@ export default function AboutPage() {
   const [teamImageUrl] = useState("/about.jpeg");
 
   return (
-    <main className="min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white">
+    <main id="main-content" className="min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white">
       {/* Navigation */}
       <Navbar />
 
@@ -180,7 +187,7 @@ export default function AboutPage() {
             ( ABOUT TECHNOSTRIPE )
           </span>
           <h1 className="mt-6 font-display text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] max-w-5xl">
-            Helping modern<br />e-commerce brands<br />grow better.
+            Helping modern <br />e-commerce brands <br />grow better.
           </h1>
           <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-paper/70 font-normal">
             Technostripe was built to help ambitious D2C brands scale through better creative, better customer experiences, and better performance systems.
@@ -263,7 +270,7 @@ export default function AboutPage() {
               ( CORE VALUES )
             </span>
             <h2 className="mt-4 font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#0a0b0a] leading-tight">
-              What we<br />stand for
+              What we <br />stand for
             </h2>
           </div>
 

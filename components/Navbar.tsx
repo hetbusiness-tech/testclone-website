@@ -60,6 +60,21 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
+  // Close mobile menu on Escape
+  useEffect(() => {
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    }
+    if (mobileMenuOpen) {
+      document.addEventListener("keydown", handleEscape);
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <>
       {progressVisible && (
@@ -128,7 +143,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileMenuOpen}
-                className="flex size-9 items-center justify-center text-white transition-colors duration-200 hover:text-[#ed1238] cursor-pointer"
+                className="flex size-11 items-center justify-center text-white transition-colors duration-200 hover:text-[#ed1238] cursor-pointer"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -156,6 +171,9 @@ export default function Navbar() {
           <AnimatePresence>
             {mobileMenuOpen && (
               <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label="Mobile navigation"
                 initial={{ opacity: 0, y: -12, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -12, scale: 0.97 }}

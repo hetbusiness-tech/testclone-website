@@ -17,10 +17,10 @@ export const BLOG_POSTS: BlogPost[] = [
     coverImageAlt: "How to Scale Your Shopify Store to ₹1 Crore in 2025 Playbook",
     contentFile: "app/insights/articles/how-to-scale-your-shopify-store-in-2025.md",
     ctaBookDemoLink: "/contact",
-    ctaWhatsAppLink: "https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20scale%20my%20Shopify%20store",
+    ctaWhatsAppLink: "https://wa.me/919714734563?text=Hi%2C%20I%20want%20to%20scale%20my%20Shopify%20store",
     featured: true,
     seo: {
-      metaTitle: "How to Scale Your Shopify Store to ₹1 Crore in 2025 | Technostripe",
+      metaTitle: "How to Scale Your Shopify Store to ₹1 Crore in 2025",
       metaDescription:
         "A step-by-step playbook for D2C brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies.",
       keywords: [
@@ -30,7 +30,7 @@ export const BLOG_POSTS: BlogPost[] = [
         "CRO Shopify",
         "Meta Ads for Shopify",
       ],
-      ogTitle: "How to Scale Your Shopify Store to ₹1 Crore in 2025 | Technostripe",
+      ogTitle: "How to Scale Your Shopify Store to ₹1 Crore in 2025",
       ogDescription:
         "A step-by-step playbook for D2C brands in India to hit ₹1 Crore monthly revenue using Shopify Plus, performance marketing, and CRO strategies.",
       ogImage: "/blog/blog1.png",
@@ -56,10 +56,10 @@ export const BLOG_POSTS: BlogPost[] = [
     coverImageAlt: "Conversion rate optimization framework for D2C brands",
     contentFile: "app/insights/articles/cro-framework-for-dtc-brands.md",
     ctaBookDemoLink: "/contact",
-    ctaWhatsAppLink: "https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20audit%20my%20store%20conversion%20rate",
+    ctaWhatsAppLink: "https://wa.me/919714734563?text=Hi%2C%20I%20want%20to%20audit%20my%20store%20conversion%20rate",
     featured: false,
     seo: {
-      metaTitle: "CRO Framework to Double Shopify Conversion Rate | Technostripe",
+      metaTitle: "CRO Framework to Double Shopify Conversion Rate",
       metaDescription:
         "Learn data-backed conversion rate optimization strategies to reduce checkout drop-offs and increase average order value on Shopify.",
       keywords: [
@@ -68,7 +68,7 @@ export const BLOG_POSTS: BlogPost[] = [
         "cart abandonment fixes",
         "A/B testing D2C",
       ],
-      ogTitle: "CRO Framework to Double Shopify Conversion Rate | Technostripe",
+      ogTitle: "CRO Framework to Double Shopify Conversion Rate",
       ogDescription:
         "Data-backed CRO strategies to reduce checkout drop-offs and increase average order value on Shopify.",
       ogImage: "/blog/cro-framework.png",
@@ -94,10 +94,10 @@ export const BLOG_POSTS: BlogPost[] = [
     coverImageAlt: "Meta Ads Scaling Playbook for D2C Brands",
     contentFile: "app/insights/articles/meta-ads-scaling-playbook-2025.md",
     ctaBookDemoLink: "/contact",
-    ctaWhatsAppLink: "https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20scale%20my%20Meta%20Ads",
+    ctaWhatsAppLink: "https://wa.me/919714734563?text=Hi%2C%20I%20want%20to%20scale%20my%20Meta%20Ads",
     featured: false,
     seo: {
-      metaTitle: "Meta Ads Scaling Playbook for D2C Brands | Technostripe",
+      metaTitle: "Meta Ads Scaling Playbook for D2C Brands",
       metaDescription:
         "How to scale Meta Ads from ₹50k to ₹10L daily spend with sustainable ROAS using creative testing systems and ASC campaigns.",
       keywords: [
@@ -107,7 +107,7 @@ export const BLOG_POSTS: BlogPost[] = [
         "ROAS optimization",
         "performance marketing",
       ],
-      ogTitle: "Meta Ads Scaling Playbook for D2C Brands | Technostripe",
+      ogTitle: "Meta Ads Scaling Playbook for D2C Brands",
       ogDescription:
         "How to scale Meta Ads from ₹50k to ₹10L daily spend with sustainable ROAS using creative testing systems and ASC campaigns.",
       ogImage: "/blog/meta-ads-playbook.png",

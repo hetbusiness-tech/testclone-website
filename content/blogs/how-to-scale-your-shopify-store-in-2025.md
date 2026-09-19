@@ -123,7 +123,7 @@ Scaling to ₹1 Crore/month on Shopify isn't a single silver bullet — it's a s
 
 If you're doing ₹20L+/month and want to 5x in the next 12 months, **[book a free strategy call with our team](/contact)**.
 
-We'll audit your store, your ads, and your retention — and give you a growth roadmap in 45 minutes.
+We'll audit your store, your ads, and your retention — and give you a growth roadmap in 30 minutes.
 
 ---
 

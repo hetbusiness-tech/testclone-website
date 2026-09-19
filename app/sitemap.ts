@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { caseStudies } from "./case-studies/constants";
 import { blogs } from "./insights/constants";
 
-const SITE_URL = "https://www.technostripe.in";
+const SITE_URL = "https://technostripe.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -70,6 +70,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/privacy-policy`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    {
+      url: `${SITE_URL}/terms`,
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.5,

@@ -23,7 +23,7 @@ const servicesData: ServiceDetail[] = [
   {
     id: "ecommerce-website-development",
     number: "01",
-    title: "Ecommerce Website Development",
+    title: "E-commerce Website Development",
     description:
       "We design and develop high-converting Shopify experiences focused on user experience, lightning-fast load times, and long-term brand scalability.",
     imageUrl: "/services/e-commerce.png", // Place custom image URL here
@@ -82,7 +82,7 @@ const servicesData: ServiceDetail[] = [
       "Technical, collection-level, and product-intent SEO engineered specifically for modern Shopify stores. We fix crawl bottlenecks, rank commercial keywords, and build compounding organic revenue.",
     imageUrl: "/services/seo.png", // Place custom image URL here
     keyBenefits: [
-      "Sub-second collection & product crawlability fixes",
+      "Fast collection & product-page crawlability fixes",
       "High-intent commercial keyword & category ranking",
       "Automated schema, rich snippets & faceted indexing",
       "Compounding organic revenue reducing paid ad reliance",
@@ -179,7 +179,7 @@ export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState(servicesData[0].id);
 
   return (
-    <main className="min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white">
+    <main id="main-content" className="min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white">
       {/* Navigation */}
       <Navbar />
 
@@ -193,7 +193,7 @@ export default function ServicesPage() {
             ( SERVICES )
           </span>
           <h1 className="mt-6 font-display text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] max-w-5xl">
-            Services designed<br />for e-commerce<br />growth.
+            Services designed <br />for e-commerce <br />growth.
           </h1>
           <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-paper/70 font-normal">
             We help D2C brands scale through Shopify experiences, paid acquisition systems, e-commerce SEO, creative strategy, and conversion optimization.
@@ -286,10 +286,10 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Bottom-Left: Large Service Name */}
-                      <div className="relative z-10 max-w-[85%] sm:max-w-[78%] pt-6">
-                        <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-[1.05] tracking-tight drop-shadow-sm">
+                      <div className="relative z-10 max-w-[85%] sm:max-w-[78%] pt-6" aria-hidden="true">
+                        <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-[1.05] tracking-tight drop-shadow-sm">
                           {service.title}
-                        </h3>
+                        </p>
                       </div>
                     </div>
 

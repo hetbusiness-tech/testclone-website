@@ -50,6 +50,7 @@ export default function TestimonialsMarquee() {
         {[...testimonials, ...testimonials].map((item, idx) => (
           <div
             key={idx}
+            aria-hidden={idx >= testimonials.length}
             className="w-[min(86vw,360px)] sm:w-[420px] shrink-0 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-8 backdrop-blur-sm transition-colors hover:border-[#ed1238]/40 hover:bg-white/[0.04]"
           >
             <div className="flex items-center gap-1 text-[#ed1238]">

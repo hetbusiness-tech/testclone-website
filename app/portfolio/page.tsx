@@ -43,7 +43,7 @@ export default function PortfolioPage() {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#0a0b0a] pt-28 pb-24 sm:pt-36">
+      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-28 pb-24 sm:pt-36">
         {/* Hero Header */}
         <section className="relative overflow-hidden px-4 sm:px-8 lg:px-12 pb-12">
           <div
@@ -60,7 +60,7 @@ export default function PortfolioPage() {
               className="text-4xl sm:text-6xl lg:text-7xl text-white mb-5 leading-[0.95]"
               style={{ fontFamily: "var(--font-display-family)", fontWeight: 800, letterSpacing: "-0.04em" }}
             >
-              Work that delivers<br />
+              Work that delivers <br />
               <span className="text-[#ed1238]">real growth.</span>
             </h1>
             <p className="text-base sm:text-lg text-white/50 max-w-xl leading-relaxed">

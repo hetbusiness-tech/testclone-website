@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -32,11 +33,12 @@ export default function ContactPage() {
     email: "",
     phone: "",
     websiteUrl: "",
-    adSpend: "",
     challenges: "",
+    company: "", // honeypot — must stay empty
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const toggleService = (service: string) => {
     if (selectedServices.includes(service)) {
@@ -46,31 +48,47 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    const subject = `New strategy inquiry from ${formData.name} - ${formData.brandName}`;
-    const body = [
-      `Name: ${formData.name}`,
-      `Brand / Company: ${formData.brandName}`,
-      `Email: ${formData.email}`,
-      `Phone: ${formData.phone || "Not provided"}`,
-      `Website: ${formData.websiteUrl}`,
-      `Services: ${selectedServices.join(", ") || "Not selected"}`,
-      `Monthly revenue: ${selectedRevenue}`,
-      "",
-      "Challenges and growth goals:",
-      formData.challenges || "Not provided",
-    ].join("\n");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          brandName: formData.brandName,
+          email: formData.email,
+          phone: formData.phone,
+          websiteUrl: formData.websiteUrl,
+          challenges: formData.challenges,
+          services: selectedServices,
+          revenueRange: selectedRevenue,
+          company: formData.company,
+        }),
+      });
 
-    window.location.href = `mailto:growth@technostripe.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setIsSubmitting(false);
-    setSubmitted(true);
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or email us directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <main className="relative min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white overflow-hidden">
+    <main id="main-content" className="relative min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white overflow-hidden">
       {/* Red Ambient Hero Shadow */}
       <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-[450px] w-[800px] max-w-full rounded-full bg-[#ed1238]/15 blur-[140px] z-0" />
 
@@ -174,7 +192,7 @@ export default function ContactPage() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="font-display text-3xl font-black text-white">Strategy Request Received!</h3>
+                <h3 className="font-display text-3xl font-black text-white">Form submitted successfully!</h3>
                 <p className="mt-3 text-sm text-paper/70 max-w-md mx-auto leading-relaxed">
                   Thank you for reaching out. Our growth team will review your store metrics and contact you within 24 hours to schedule your strategy session.
                 </p>
@@ -187,11 +205,23 @@ export default function ContactPage() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-7">
+                {/* Honeypot field — hidden from real visitors, bots fill it in */}
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] size-px opacity-0"
+                />
+
                 {/* 1. Services selection */}
-                <div>
-                  <label className="block font-mono text-xs font-bold uppercase tracking-wider text-paper/70 mb-3">
+                <div role="group" aria-labelledby="services-label">
+                  <p id="services-label" className="font-mono text-xs font-bold uppercase tracking-wider text-paper/70 mb-3">
                     Services You&apos;re Interested In
-                  </label>
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {services.map((service) => {
                       const isSelected = selectedServices.includes(service);
@@ -199,6 +229,7 @@ export default function ContactPage() {
                         <button
                           key={service}
                           type="button"
+                          aria-pressed={isSelected}
                           onClick={() => toggleService(service)}
                           className={`rounded-full px-4 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${isSelected
                               ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
@@ -213,10 +244,10 @@ export default function ContactPage() {
                 </div>
 
                 {/* 2. Monthly Revenue Range */}
-                <div>
-                  <label className="block font-mono text-xs font-bold uppercase tracking-wider text-paper/70 mb-3">
+                <div role="group" aria-labelledby="revenue-label">
+                  <p id="revenue-label" className="font-mono text-xs font-bold uppercase tracking-wider text-paper/70 mb-3">
                     Monthly Store Revenue
-                  </label>
+                  </p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {revenueRanges.map((range) => {
                       const isSelected = selectedRevenue === range;
@@ -224,6 +255,7 @@ export default function ContactPage() {
                         <button
                           key={range}
                           type="button"
+                          aria-pressed={isSelected}
                           onClick={() => setSelectedRevenue(range)}
                           className={`rounded-xl py-2.5 px-3 text-xs font-semibold text-center transition-all duration-200 cursor-pointer ${isSelected
                               ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
@@ -240,12 +272,15 @@ export default function ContactPage() {
                 {/* 3. Text inputs */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                    <label htmlFor="contact-name" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
                       Full Name *
                     </label>
                     <input
+                      id="contact-name"
+                      name="name"
                       required
                       type="text"
+                      autoComplete="name"
                       placeholder="e.g. Rohan Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -254,12 +289,15 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                    <label htmlFor="contact-brand" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
                       Brand / Company Name *
                     </label>
                     <input
+                      id="contact-brand"
+                      name="brandName"
                       required
                       type="text"
+                      autoComplete="organization"
                       placeholder="e.g. LuxeAura Apparel"
                       value={formData.brandName}
                       onChange={(e) => setFormData({ ...formData, brandName: e.target.value })}
@@ -270,12 +308,15 @@ export default function ContactPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                    <label htmlFor="contact-email" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
                       Work Email *
                     </label>
                     <input
+                      id="contact-email"
+                      name="email"
                       required
                       type="email"
+                      autoComplete="email"
                       placeholder="rohan@brand.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -284,11 +325,15 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                    <label htmlFor="contact-phone" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
                       Phone Number (WhatsApp)
                     </label>
                     <input
+                      id="contact-phone"
+                      name="phone"
                       type="tel"
+                      autoComplete="tel"
+                      pattern="^[0-9+\s()-]{7,}$"
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -298,12 +343,15 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                  <label htmlFor="contact-website" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
                     Store Website URL *
                   </label>
                   <input
+                    id="contact-website"
+                    name="websiteUrl"
                     required
-                    type="text"
+                    type="url"
+                    autoComplete="url"
                     placeholder="https://yourbrand.com"
                     value={formData.websiteUrl}
                     onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
@@ -313,10 +361,12 @@ export default function ContactPage() {
 
                 {/* Challenges & goals */}
                 <div>
-                  <label className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                  <label htmlFor="contact-challenges" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
                     Current Challenges & Growth Goals
                   </label>
                   <textarea
+                    id="contact-challenges"
+                    name="challenges"
                     rows={3}
                     placeholder="Tell us about your current conversion rate, ad performance, or redesign timeline..."
                     value={formData.challenges}
@@ -324,6 +374,12 @@ export default function ContactPage() {
                     className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
                   />
                 </div>
+
+                {error && (
+                  <p role="alert" className="text-sm text-red-400">
+                    {error}
+                  </p>
+                )}
 
                 {/* Submit button */}
                 <button
@@ -333,6 +389,14 @@ export default function ContactPage() {
                 >
                   {isSubmitting ? "Submitting Inquiry..." : "Book Free Strategy Call ↗"}
                 </button>
+
+                <p className="text-center text-[11px] text-paper/40 leading-relaxed">
+                  By submitting, you agree to our{" "}
+                  <Link href="/privacy-policy" className="underline hover:text-[#ed1238]">
+                    Privacy Policy
+                  </Link>
+                  . We&apos;ll only use your details to respond to this inquiry.
+                </p>
               </form>
             )}
           </div>

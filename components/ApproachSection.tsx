@@ -35,9 +35,9 @@ export default function ApproachSection() {
             ( THE APPROACH )
           </span>
           <h2 className="mt-6 font-display text-5xl sm:text-6xl lg:text-[4.5rem] font-black tracking-tight text-black leading-[0.94]">
-            How we
+            How we{" "}
             <br />
-            drive
+            drive{" "}
             <br />
             growth
           </h2>

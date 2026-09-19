@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 
-const SITE_URL = "https://www.technostripe.in";
+const SITE_URL = "https://technostripe.com";
 
 export const metadata: Metadata = {
-  title: "Services | Shopify Plus, CRO, Paid Ads & SEO — Technostripe",
+  title: "Services | Shopify Plus, CRO, Paid Ads & SEO",
   description:
-    "Explore Technostripe's full range of e-commerce services: Shopify Plus development, conversion rate optimisation, Meta & Google Ads management, SEO, branding, and creative content for D2C brands.",
+    "Shopify Plus development, conversion rate optimisation, Meta & Google Ads, SEO, and creative content for scaling D2C brands.",
   alternates: {
     canonical: `${SITE_URL}/services`,
   },

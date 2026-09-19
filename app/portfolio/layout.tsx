@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-const SITE_URL = "https://www.technostripe.in";
+const SITE_URL = "https://technostripe.com";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Technostripe Solutions",
+  title: "Portfolio",
   description:
     "Explore our proven portfolio in Shopify Plus development, conversion rate optimization, and performance marketing for scaling D2C brands.",
   alternates: {
@@ -17,6 +17,14 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/portfolio`,
     siteName: "Technostripe Solutions",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.png`,
+        width: 1200,
+        height: 630,
+        alt: "Technostripe Solutions — Portfolio & Client Results",
+      },
+    ],
   },
 };
 

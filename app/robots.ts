@@ -6,14 +6,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/_next/", "/chatgpt-auth"],
+        disallow: ["/api/", "/chatgpt-auth"],
       },
       {
         userAgent: "GPTBot",
         disallow: "/",
       },
     ],
-    sitemap: "https://www.technostripe.in/sitemap.xml",
-    host: "https://www.technostripe.in",
+    sitemap: "https://technostripe.com/sitemap.xml",
   };
 }

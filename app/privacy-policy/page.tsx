@@ -4,23 +4,23 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Technostripe Solutions — Shopify Plus & D2C Growth Agency",
+  title: "Privacy Policy",
   description:
-    "Learn how Technostripe Solutions collects, uses, protects, and handles your personal information, store analytics, and consulting data in compliance with global privacy standards.",
+    "How Technostripe Solutions collects, uses, protects, and handles your personal information and consulting data.",
   alternates: {
-    canonical: "https://www.technostripe.in/privacy-policy",
+    canonical: "https://technostripe.com/privacy-policy",
   },
   openGraph: {
     title: "Privacy Policy | Technostripe Solutions",
     description:
       "Our commitment to your privacy, data security, and confidentiality across all e-commerce consulting, Shopify development, and growth marketing services.",
-    url: "https://www.technostripe.in/privacy-policy",
+    url: "https://technostripe.com/privacy-policy",
     siteName: "Technostripe Solutions",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://www.technostripe.in/og-image.png",
+        url: "https://technostripe.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Technostripe Privacy Policy",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Privacy Policy | Technostripe Solutions",
     description:
       "Read Technostripe Solutions' privacy policy and data security practices for e-commerce brands.",
-    images: ["https://www.technostripe.in/og-image.png"],
+    images: ["https://technostripe.com/og-image.png"],
   },
   robots: {
     index: true,
@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
     <>
       <Navbar />
 
-      <main className="relative min-h-screen bg-[#0a0b0a] text-[#f4f4f4] pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden selection:bg-[#ed1238] selection:text-white">
+      <main id="main-content" className="relative min-h-screen bg-[#0a0b0a] text-[#f4f4f4] pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden selection:bg-[#ed1238] selection:text-white">
         {/* Ambient Top Glow */}
         <div
           aria-hidden
@@ -140,10 +140,10 @@ export default function PrivacyPolicyPage() {
                 <div className="mt-6 pt-5 border-t border-white/10">
                   <p className="text-[11px] text-white/40 mb-2 font-mono">Need privacy assistance?</p>
                   <a
-                    href="mailto:Growth@technostripe.com"
+                    href="mailto:growth@technostripe.com"
                     className="inline-flex items-center gap-1.5 text-xs text-[#ed1238] hover:underline font-semibold"
                   >
-                    <span>Growth@technostripe.com</span>
+                    <span>growth@technostripe.com</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-3">
                       <path d="M7 7h10v10" /><path d="M7 17 17 7" />
                     </svg>
@@ -232,7 +232,7 @@ export default function PrivacyPolicyPage() {
                 <p>We use the data we collect solely for lawful, legitimate business purposes:</p>
                 <ul className="space-y-2.5 list-none pl-0">
                   {[
-                    "To prepare and deliver complimentary 45-minute growth strategy teardowns and website speed audits.",
+                    "To prepare and deliver complimentary 30-minute growth strategy teardowns and website speed audits.",
                     "To build, customize, test, and optimize Shopify Plus themes, custom apps, and checkout flows.",
                     "To plan, execute, and scale ad campaigns across Meta Ads, Google Ads, and TikTok Ads.",
                     "To communicate project milestones, roadmap updates, and weekly performance reports.",
@@ -309,7 +309,7 @@ export default function PrivacyPolicyPage() {
                   Cookies & Tracking Technologies
                 </h2>
                 <p>
-                  Our website uses cookies and lightweight tracking pixels to enhance your browsing experience, remember preferences, and analyze aggregate visitor trends.
+                  Our website currently sets only essential cookies required for core functionality. We do not yet load analytics or advertising pixels on technostripe.com; the categories below describe the cookies we use today and the categories we may activate in the future, at which point this policy and the site&apos;s cookie banner will be updated accordingly.
                 </p>
                 <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.02]">
                   <table className="w-full text-left text-xs sm:text-sm">
@@ -328,13 +328,13 @@ export default function PrivacyPolicyPage() {
                       </tr>
                       <tr>
                         <td className="p-3.5 sm:p-4 font-semibold text-white">Performance & Analytics</td>
-                        <td className="p-3.5 sm:p-4">Helps us evaluate page load times and user engagement via anonymous metrics.</td>
-                        <td className="p-3.5 sm:p-4 font-mono">Up to 24 Months</td>
+                        <td className="p-3.5 sm:p-4">Would help us evaluate page load times and user engagement via anonymous metrics.</td>
+                        <td className="p-3.5 sm:p-4 font-mono text-white/40">Not currently active</td>
                       </tr>
                       <tr>
                         <td className="p-3.5 sm:p-4 font-semibold text-white">Marketing & Attribution</td>
-                        <td className="p-3.5 sm:p-4">Measures efficacy of our outreach campaigns and case study reads.</td>
-                        <td className="p-3.5 sm:p-4 font-mono">Up to 90 Days</td>
+                        <td className="p-3.5 sm:p-4">Would measure efficacy of our outreach campaigns and case study reads.</td>
+                        <td className="p-3.5 sm:p-4 font-mono text-white/40">Not currently active</td>
                       </tr>
                     </tbody>
                   </table>
@@ -415,8 +415,8 @@ export default function PrivacyPolicyPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm pt-2">
                     <div>
                       <p className="font-mono text-white/40 uppercase tracking-wider text-[11px] mb-1">Email Inquiries</p>
-                      <a href="mailto:Growth@technostripe.com" className="text-white hover:text-[#ed1238] transition-colors font-medium">
-                        Growth@technostripe.com
+                      <a href="mailto:growth@technostripe.com" className="text-white hover:text-[#ed1238] transition-colors font-medium">
+                        growth@technostripe.com
                       </a>
                     </div>
                     <div>

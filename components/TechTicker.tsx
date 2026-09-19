@@ -10,7 +10,10 @@ const tags = [
 
 export default function TechTicker() {
   return (
-    <div className="relative z-20 w-full overflow-hidden border-y border-white/10 bg-black/40 py-3 backdrop-blur-sm">
+    <div
+      className="relative z-20 w-full overflow-hidden border-y border-white/10 bg-black/40 py-3 backdrop-blur-sm"
+      aria-hidden="true"
+    >
       <div className="flex w-max gap-8 animate-[marquee_26s_linear_infinite]">
         {[...tags, ...tags, ...tags, ...tags].map((tag, idx) => (
           <div

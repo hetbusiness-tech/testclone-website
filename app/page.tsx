@@ -14,7 +14,7 @@ import Footer from "../components/Footer";
 // Technostripe (formerly Navbar Digital) — E-commerce growth partner delivering conversion-focused Shopify experiences like Kiwiana Immigration & LuxeAura.
 export default function Home() {
   return (
-    <main className="min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white">
+    <main id="main-content" className="min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white">
       {/* 1. Header Navigation */}
       <Navbar />
 

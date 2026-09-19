@@ -45,7 +45,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
     <>
       <Navbar />
 
-      <main className="min-h-screen bg-[#0a0b0a] pt-24 pb-24 sm:pt-32">
+      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-24 pb-24 sm:pt-32">
         {/* ── Breadcrumbs ─────────────────────────────── */}
         <nav
           aria-label="Breadcrumb"
@@ -208,7 +208,9 @@ export default function CaseStudyDetailPage({ params }: Props) {
           {caseStudy.metrics && caseStudy.metrics.length > 0 && (
             <section className="mb-14">
               <h2 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#ed1238] mb-6">
-                Key Performance Metrics & Results
+                {caseStudy.metrics.some((m) => /\d/.test(m.value))
+                  ? "Key Performance Metrics & Results"
+                  : "Project Snapshot"}
               </h2>
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {caseStudy.metrics.map((m) => (

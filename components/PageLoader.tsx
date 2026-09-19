@@ -77,6 +77,7 @@ export default function PageLoader() {
   return (
     <div
       aria-hidden="true"
+      data-nosnippet
       onClick={() => setPhase("fade")}
       style={{
         position: "fixed",

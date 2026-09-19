@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export const servicesList = [
   {
     number: "01",
-    title: "Ecommerce Website Development",
+    title: "E-commerce Website Development",
     label: "SERVICE",
     description:
       "Fast, responsive, SEO-friendly websites engineered to turn visitors into customers.",
@@ -16,15 +16,15 @@ export const servicesList = [
   },
   {
     number: "02",
-    title: "Branding & Strategy",
+    title: "Brand Positioning & CRO",
     label: "SERVICE",
     description:
       "Brand identity, positioning, digital strategy, and growth planning.",
-    href: "/services#branding-strategy",
+    href: "/services#brand-positioning-cro",
   },
   {
     number: "03",
-    title: "SEO Services",
+    title: "E-commerce SEO Services",
     label: "SERVICE",
     description:
       "Improve search rankings, increase visibility, and generate qualified leads.",
@@ -32,7 +32,7 @@ export const servicesList = [
   },
   {
     number: "04",
-    title: "Social Media & Creative Content",
+    title: "Social Media & Creative",
     label: "SERVICE",
     description:
       "Content that grabs attention and ads that convert.",
@@ -40,11 +40,11 @@ export const servicesList = [
   },
   {
     number: "05",
-    title: "Paid Advertising",
+    title: "Paid Ads (Performance Marketing)",
     label: "SERVICE",
     description:
-      "Google Ads and Meta Ads managemnet focused relentlessly on ROI.",
-    href: "/services#paid-advertising",
+      "Google Ads and Meta Ads management focused relentlessly on ROI.",
+    href: "/services#paid-ads",
   },
 ];
 
@@ -124,7 +124,7 @@ export default function InteractiveServices() {
             ( SERVICES )
           </span>
           <h2 className="font-display text-4xl sm:text-6xl lg:text-[4.5rem] font-black tracking-tight text-white leading-[0.94]">
-            Full-stack
+            Full-stack{" "}
             <br />
             digital growth
           </h2>

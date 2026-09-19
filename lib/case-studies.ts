@@ -1,12 +1,9 @@
-import fs from "fs";
-import path from "path";
 import { caseStudies } from "../app/case-studies/constants";
 export type { CaseStudy, CaseStudyMetric } from "../app/case-studies/types";
-import type { CaseStudy } from "../app/case-studies/types";
 
 export { caseStudies };
 
-export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
+export function getCaseStudyBySlug(slug: string) {
   return caseStudies.find((item) => item.slug === slug);
 }
 
@@ -14,24 +11,6 @@ export function getAllCaseStudySlugs(): string[] {
   return caseStudies.map((item) => item.slug);
 }
 
-export function getAllCaseStudies(): CaseStudy[] {
+export function getAllCaseStudies() {
   return [...caseStudies];
-}
-
-export function getCaseStudyMarkdownContent(caseStudy: CaseStudy): string {
-  if (!caseStudy.contentFile) return "";
-
-  try {
-    const fullPath = path.isAbsolute(caseStudy.contentFile)
-      ? caseStudy.contentFile
-      : path.join(process.cwd(), caseStudy.contentFile);
-
-    if (fs.existsSync(fullPath)) {
-      return fs.readFileSync(fullPath, "utf-8").replace(/^---[\s\S]*?---\s*/, "");
-    }
-  } catch (error) {
-    console.error(`Failed to read case-study content file: ${caseStudy.contentFile}`, error);
-  }
-
-  return "";
 }

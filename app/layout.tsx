@@ -9,7 +9,7 @@ import "./globals.css";
 
 /* ─── Brand constants ─────────────────────────────────── */
 const SITE_NAME = "Technostripe Solutions";
-const SITE_URL = "https://www.technostripe.in";
+const SITE_URL = "https://technostripe.com";
 const BRAND_COLOR = "#ed1238";
 
 const SITE_TITLE =
@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const host =
     requestHeaders.get("x-forwarded-host") ??
     requestHeaders.get("host") ??
-    "www.technostripe.in";
+    "technostripe.com";
   const isLocal =
     host.includes("localhost") || host.startsWith("127.0.0.1");
   const protocol = isLocal
@@ -170,7 +170,7 @@ const organizationSchema = {
     height: 207,
   },
   description: SITE_DESCRIPTION,
-  foundingDate: "2021",
+  foundingDate: "2022",
   numberOfEmployees: { "@type": "QuantitativeValue", value: 15 },
   areaServed: ["India", "United Kingdom", "United States"],
   contactPoint: [
@@ -401,6 +401,8 @@ export default function RootLayout({
         {/* Preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
 
         {/* DNS prefetch */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -462,6 +464,12 @@ export default function RootLayout({
         />
       </head>
       <body className="grain antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:rounded-full focus:bg-[#ed1238] focus:px-5 focus:py-2.5 focus:text-sm focus:font-bold focus:text-white"
+        >
+          Skip to content
+        </a>
         <CustomCursor />
         <PageLoader />
         <ScrollProviderWrapper>{children}</ScrollProviderWrapper>

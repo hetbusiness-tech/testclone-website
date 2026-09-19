@@ -6,15 +6,14 @@ import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import MarkdownBody from "../../../components/MarkdownBody";
 import {
-  blogs,
   getBlogBySlug,
   getAllBlogSlugs,
   getAllBlogs,
-  getBlogMarkdownContent,
   type BlogPost,
 } from "../../../lib/blogs";
+import { getBlogMarkdownContent } from "../content";
 
-const SITE_URL = "https://www.technostripe.in";
+const SITE_URL = "https://technostripe.com";
 
 interface Props {
   params: { slug: string };
@@ -32,7 +31,7 @@ export function generateMetadata({ params }: Props): Metadata {
   const ogImgUrl = ogImg.startsWith("http") ? ogImg : `${SITE_URL}${ogImg}`;
 
   return {
-    title: `${blog.seo?.metaTitle || blog.seo?.ogTitle || blog.title} | Technostripe`,
+    title: blog.seo?.metaTitle || blog.seo?.ogTitle || blog.title,
     description: blog.seo?.metaDescription || blog.seo?.ogDescription || blog.excerpt,
     keywords: blog.seo?.keywords,
     alternates: {
@@ -160,7 +159,7 @@ export default function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
 
-      <main className="min-h-screen bg-[#0a0b0a] pt-24 pb-24 sm:pt-32">
+      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-24 pb-24 sm:pt-32">
         {/* ── Breadcrumb ──────────────────────────────── */}
         <nav
           aria-label="Breadcrumb"

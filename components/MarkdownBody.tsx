@@ -10,7 +10,8 @@ interface MarkdownBodyProps {
 
 const mdComponents: Components = {
   // Render markdown images with their natural aspect ratio and no dimension collapse.
-  img({ src, alt, title, ...props }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- strip react-markdown's AST `node` so it isn't spread onto the DOM element
+  img({ src, alt, title, node, ...props }) {
     if (!src) return null;
 
     return (
@@ -20,6 +21,8 @@ const mdComponents: Components = {
           src={src}
           alt={alt ?? ""}
           title={title ?? undefined}
+          loading="lazy"
+          decoding="async"
           className="markdown-image"
         />
       </span>
