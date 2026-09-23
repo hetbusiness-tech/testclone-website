@@ -236,7 +236,7 @@ export default function ServicesPage() {
               >
                 {/* ── INTERACTIVE SERVICE CARD (Default: Full 3:2 Image | Hover: Red Branded Card) ─────────────── */}
                 <div className={`${isImageLeft ? "" : "lg:col-start-2"} lg:sticky lg:top-36`}>
-                  <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] border border-white/15 bg-[#101210] shadow-2xl transition-all duration-500 hover:border-[#ff3b5c]/50 hover:shadow-[0_25px_70px_rgba(237,18,56,0.55)] hover:-translate-y-1.5 cursor-pointer">
+                  <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] border border-white/15 bg-[#101210] shadow-2xl transition-all duration-500 lg:hover:border-[#ff3b5c]/50 lg:hover:shadow-[0_25px_70px_rgba(237,18,56,0.55)] lg:hover:-translate-y-1.5 cursor-pointer">
                     
                     {/* 1. DEFAULT STATE: Clean Full-Fit Service Image */}
                     {service.imageUrl ? (
@@ -246,7 +246,7 @@ export default function ServicesPage() {
                           alt={service.title}
                           fill
                           unoptimized
-                          className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                          className="object-cover object-center transition-transform duration-700 lg:group-hover:scale-105"
                         />
                         {/* Subtle top-left badge in default state */}
                         <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-10 font-mono text-[11px] sm:text-xs font-bold tracking-widest text-white/90 uppercase px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 shadow-md">
@@ -258,10 +258,10 @@ export default function ServicesPage() {
                     )}
 
                     {/* 2. HOVER STATE: Red Branded Card with Favicon Watermark & Full Title */}
-                    <div className="absolute inset-0 z-20 bg-[#ed1238] p-6 sm:p-8 lg:p-9 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                    <div className="absolute inset-0 z-20 bg-[#ed1238] p-6 sm:p-8 lg:p-9 flex flex-col justify-between opacity-0 lg:group-hover:opacity-100 transition-all duration-500 ease-out">
                       {/* Radiant background glow & gradient overlays */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/25 pointer-events-none" />
-                      <div className="absolute -top-16 -right-16 size-52 rounded-full bg-white/20 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
+                      <div className="absolute -top-16 -right-16 size-52 rounded-full bg-white/20 blur-3xl pointer-events-none lg:group-hover:scale-125 transition-transform duration-700" />
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.45)_0%,transparent_65%)] pointer-events-none" />
 
                       {/* Top-Left: Number / Label */}
@@ -280,7 +280,7 @@ export default function ServicesPage() {
                             width={260}
                             height={260}
                             unoptimized
-                            className="size-36 sm:size-48 lg:size-52 object-contain opacity-25 mix-blend-screen transition-all duration-700 group-hover:opacity-45 group-hover:scale-110 group-hover:rotate-6"
+                            className="size-36 sm:size-48 lg:size-52 object-contain opacity-25 mix-blend-screen transition-all duration-700 lg:group-hover:opacity-45 lg:group-hover:scale-110 lg:group-hover:rotate-6"
                           />
                         </div>
                       </div>

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { caseStudies } from "./case-studies/constants";
 import { blogs } from "./insights/constants";
+import { SEO_PAGES, getAllCityPageParams } from "../lib/seo-pages";
 
 const SITE_URL = "https://technostripe.com";
 
@@ -23,6 +24,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(blog.publishDate),
     changeFrequency: "monthly" as const,
     priority: 0.6,
+  }));
+  const seoPageUrls = SEO_PAGES.map((page) => ({
+    url: `${SITE_URL}/${page.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+  const citySeoPageUrls = getAllCityPageParams().map((p) => ({
+    url: `${SITE_URL}/${p.slug}/${p.service}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }));
 
   const entries: MetadataRoute.Sitemap = [
@@ -83,6 +96,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...portfolioUrls,
     ...caseStudyUrls,
     ...insightUrls,
+    ...seoPageUrls,
+    ...citySeoPageUrls,
   ];
 
   return entries.sort((first, second) => (second.priority ?? 0) - (first.priority ?? 0));
