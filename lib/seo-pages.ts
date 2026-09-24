@@ -1,4 +1,5 @@
 import { GENERATED_SEO_PAGES } from "./seo-pages-generated";
+import { GENERATED_CITIES, GENERATED_CITY_SEO_PAGES } from "./city-pages-generated";
 
 export type ServiceGroup =
   | "Website Development"
@@ -419,9 +420,9 @@ export interface CityInfo {
   name: string;
 }
 
-/** Tier 1 cities from the SEO rollout plan. Extend as more city pages are
- * written. */
-export const CITIES: CityInfo[] = [
+/** Hand-written city entries — takes precedence over generated ones with
+ * the same slug. */
+const HAND_WRITTEN_CITIES: CityInfo[] = [
   { slug: "london", name: "London" },
   { slug: "dubai", name: "Dubai" },
   { slug: "mumbai", name: "Mumbai" },
@@ -442,7 +443,7 @@ export interface CityOverride {
  * are inherited from the matching national page — only the framing copy
  * (H1, intro, closing) is genuinely city-specific, per the SEO plan's rule
  * against low-effort "swap the city name" pages. */
-export const CITY_SEO_PAGES: CityOverride[] = [
+const HAND_WRITTEN_CITY_SEO_PAGES: CityOverride[] = [
   {
     citySlug: "london",
     baseSlug: "shopify-development-agency",
@@ -479,6 +480,22 @@ export const CITY_SEO_PAGES: CityOverride[] = [
     closingParagraph:
       "Mumbai's D2C brands are competing in one of the most price- and speed-sensitive markets globally. A store that's slow on a mid-range Android phone loses customers before they even see the product.",
   },
+];
+
+const handWrittenCitySlugs = new Set(HAND_WRITTEN_CITIES.map((c) => c.slug));
+export const CITIES: CityInfo[] = [
+  ...HAND_WRITTEN_CITIES,
+  ...GENERATED_CITIES.filter((c) => !handWrittenCitySlugs.has(c.slug)),
+];
+
+const handWrittenCityPageKeys = new Set(
+  HAND_WRITTEN_CITY_SEO_PAGES.map((c) => `${c.citySlug}/${c.baseSlug}`)
+);
+export const CITY_SEO_PAGES: CityOverride[] = [
+  ...HAND_WRITTEN_CITY_SEO_PAGES,
+  ...GENERATED_CITY_SEO_PAGES.filter(
+    (c) => !handWrittenCityPageKeys.has(`${c.citySlug}/${c.baseSlug}`)
+  ),
 ];
 
 export function getAllSeoSlugs(): string[] {
