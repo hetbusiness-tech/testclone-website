@@ -1,9 +1,12 @@
+import { GENERATED_SEO_PAGES } from "./seo-pages-generated";
+
 export type ServiceGroup =
   | "Website Development"
   | "E-commerce SEO"
   | "Paid Ads"
   | "Social & Creative"
-  | "Brand Positioning & CRO";
+  | "Brand Positioning & CRO"
+  | "Industry";
 
 /** Maps a page's service group to the matching label used in the contact
  * page's service-selector chips, so the hero form can pre-select it. */
@@ -13,6 +16,7 @@ export const SERVICE_GROUP_TO_CONTACT_LABEL: Record<ServiceGroup, string> = {
   "E-commerce SEO": "E-commerce SEO Services",
   "Social & Creative": "Social Media & UGC Creative",
   "Brand Positioning & CRO": "Brand Positioning & CRO",
+  Industry: "Full-Stack E-commerce Scale",
 };
 
 export interface SeoPage {
@@ -60,9 +64,10 @@ const STANDARD_PROCESS = [
   { step: "04", title: "Launch", desc: "Rigorous QA, analytics & monitored go-live." },
 ];
 
-/** National (no-city) SEO pages. One entry per keyword. Add more here as
- * pages are written. */
-export const SEO_PAGES: SeoPage[] = [
+/** Hand-written national SEO pages — fully bespoke, written individually.
+ * If a slug also exists in GENERATED_SEO_PAGES, the hand-written version
+ * here takes precedence (see SEO_PAGES below). */
+const HAND_WRITTEN_SEO_PAGES: SeoPage[] = [
   {
     slug: "shopify-development-agency",
     keyword: "shopify development agency",
@@ -398,6 +403,15 @@ export const SEO_PAGES: SeoPage[] = [
       },
     ],
   },
+];
+
+const handWrittenSlugs = new Set(HAND_WRITTEN_SEO_PAGES.map((p) => p.slug));
+
+/** All national SEO pages: hand-written pages plus generated ones (skipping
+ * any slug that already has a hand-written version). */
+export const SEO_PAGES: SeoPage[] = [
+  ...HAND_WRITTEN_SEO_PAGES,
+  ...GENERATED_SEO_PAGES.filter((p) => !handWrittenSlugs.has(p.slug)),
 ];
 
 export interface CityInfo {
