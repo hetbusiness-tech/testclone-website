@@ -90,7 +90,7 @@ export default function WhatsAppLeadForm({
             required
             type="text"
             autoComplete="name"
-            placeholder="Rohan Sharma"
+            placeholder="Oliver Smith"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className={inputClass}
@@ -105,7 +105,7 @@ export default function WhatsAppLeadForm({
             required
             type="text"
             autoComplete="organization"
-            placeholder="LuxeAura Apparel"
+            placeholder="Hartley & Co"
             value={formData.brandName}
             onChange={(e) => setFormData({ ...formData, brandName: e.target.value })}
             className={inputClass}
@@ -123,7 +123,7 @@ export default function WhatsAppLeadForm({
             required
             type="email"
             autoComplete="email"
-            placeholder="rohan@brand.com"
+            placeholder="oliver@hartleyandco.co.uk"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             className={inputClass}
@@ -138,7 +138,7 @@ export default function WhatsAppLeadForm({
             type="tel"
             autoComplete="tel"
             pattern="^[0-9+\s()-]{7,}$"
-            placeholder="+91 98765 43210"
+            placeholder="+44 7700 900123"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             className={inputClass}
@@ -153,9 +153,9 @@ export default function WhatsAppLeadForm({
         <input
           id="hero-website"
           required
-          type="url"
+          type="text"
           autoComplete="url"
-          placeholder="https://yourbrand.com"
+          placeholder="yourbrand.co.uk"
           value={formData.websiteUrl}
           onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
           className={inputClass}
