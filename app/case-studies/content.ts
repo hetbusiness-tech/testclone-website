@@ -32,8 +32,17 @@ const markdownByFile: Record<string, string> = {
   "content/case-studies/the-skin-diary.md": theSkinDiary,
 };
 
-export function getCaseStudyMarkdownContent(caseStudy: CaseStudy): string {
-  if (!caseStudy.contentFile) return "";
+function rawString(val: unknown): string {
+  if (typeof val === "string") return val;
+  if (val && typeof val === "object" && "default" in val && typeof (val as { default: unknown }).default === "string") {
+    return (val as { default: string }).default;
+  }
+  return "";
+}
 
-  return (markdownByFile[caseStudy.contentFile] ?? "").replace(/^---[\s\S]*?---\s*/, "");
+export function getCaseStudyMarkdownContent(caseStudy: CaseStudy): string {
+  if (!caseStudy?.contentFile) return "";
+
+  const raw = rawString(markdownByFile[caseStudy.contentFile]);
+  return raw.replace(/^---[\s\S]*?---\s*/, "");
 }

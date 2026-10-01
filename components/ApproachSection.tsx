@@ -34,20 +34,21 @@ export default function ApproachSection() {
           <span className="eyebrow text-black/50 font-mono tracking-widest uppercase font-bold text-xs">
             ( THE APPROACH )
           </span>
-          <h2 className="mt-4 sm:mt-6 font-display text-4xl sm:text-6xl lg:text-[4.5rem] font-black tracking-tight text-black leading-[0.94]">
-            How we{" "}
-            <br />
-            drive{" "}
-            <br />
-            growth
+          <h2 className="mt-3 sm:mt-6 font-display text-3xl sm:text-5xl lg:text-[4.5rem] font-black tracking-tight text-black leading-[1.05] sm:leading-[0.94]">
+            <span className="sm:hidden">How we drive growth</span>
+            <span className="hidden sm:inline">
+              How we <br />
+              drive <br />
+              growth
+            </span>
           </h2>
-          <p className="mt-4 sm:mt-6 text-sm sm:text-lg leading-relaxed text-black/65 font-normal">
+          <p className="mt-3 sm:mt-6 text-sm sm:text-lg leading-relaxed text-black/65 font-normal">
             A proven process that turns marketing from a cost centre into your most reliable growth engine.
           </p>
           <div className="mt-6 sm:mt-8">
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-bold text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_25px_rgba(237,18,56,0.4)]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#ed1238] px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-bold text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_25px_rgba(237,18,56,0.4)]"
             >
               About the team
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="size-4">
