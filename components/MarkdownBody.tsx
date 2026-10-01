@@ -52,7 +52,7 @@ export default function MarkdownBody({ content }: MarkdownBodyProps) {
   return (
     <div className="blog-prose max-w-none">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
-        {content}
+        {content || ""}
       </ReactMarkdown>
     </div>
   );
