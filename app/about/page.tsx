@@ -177,31 +177,31 @@ export default function AboutPage() {
       <Navbar />
 
       {/* ── 1. HERO SECTION (Ambient Red Shadow) ──────────────────────────── */}
-      <section className="relative z-10 bg-ink pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+      <section className="relative z-10 bg-ink pt-24 pb-10 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
         <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-[450px] w-[800px] max-w-full rounded-full bg-[#ed1238]/15 blur-[140px] pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#ed1238]/10 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-grid opacity-15 pointer-events-none" />
 
-        <div className="mx-auto max-w-6xl px-6 relative z-10">
-          <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 relative z-10">
+          <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
             ( ABOUT TECHNOSTRIPE )
           </span>
-          <h1 className="mt-6 font-display text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] max-w-5xl">
+          <h1 className="mt-4 sm:mt-6 font-display text-4xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] max-w-5xl">
             Helping modern <br />e-commerce brands <br />grow better.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-paper/70 font-normal">
+          <p className="mt-5 sm:mt-8 max-w-2xl text-base sm:text-xl leading-relaxed text-paper/70 font-normal">
             Technostripe was built to help ambitious D2C brands scale through better creative, better customer experiences, and better performance systems.
           </p>
         </div>
       </section>
 
       {/* ── 2. AGENCY OBSESSION & TEAM PHOTO ──────────────────────────────── */}
-      <section className="relative z-10 bg-ink py-16 lg:py-24 border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-16 items-center">
+      <section className="relative z-10 bg-ink py-10 sm:py-16 lg:py-24 border-t border-white/10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8 sm:gap-12 lg:gap-16 items-center">
 
             <div>
-              <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.08]">
+              <h2 className="font-display text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12] sm:leading-[1.08]">
                 We&apos;re an e-commerce growth partner obsessed with one thing: turning digital into measurable revenue for modern D2C brands.
               </h2>
             </div>
@@ -252,9 +252,9 @@ export default function AboutPage() {
       </section>
 
       {/* ── 3. STATS BAR WITH SMOOTH COUNT-UP ─────────────────────────────── */}
-      <section ref={statsRef} className="relative z-10 bg-ink py-10 sm:py-16 border-y border-white/10 overflow-hidden">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-12">
+      <section ref={statsRef} className="relative z-10 bg-ink py-8 sm:py-16 border-y border-white/10 overflow-hidden">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-12">
             {statsData.map((stat, i) => (
               <StatCounter key={i} item={stat} inView={isStatsInView} />
             ))}
@@ -263,26 +263,26 @@ export default function AboutPage() {
       </section>
 
       {/* ── 4. WHAT WE STAND FOR / CORE VALUES ─────────────────────────────── */}
-      <section className="relative z-10 bg-[#f4f4ec] text-[#0a0b0a] py-20 lg:py-28 overflow-hidden">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-14">
-            <span className="eyebrow text-[#0a0b0a]/70 font-mono tracking-widest uppercase font-bold">
+      <section className="relative z-10 bg-[#f4f4ec] text-[#0a0b0a] py-12 sm:py-20 lg:py-28 overflow-hidden">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="mb-8 sm:mb-14">
+            <span className="eyebrow text-[#0a0b0a]/70 font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
               ( CORE VALUES )
             </span>
-            <h2 className="mt-4 font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#0a0b0a] leading-tight">
+            <h2 className="mt-3 sm:mt-4 font-display text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#0a0b0a] leading-tight">
               What we <br />stand for
             </h2>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="overflow-hidden rounded-2xl sm:rounded-[2rem] border border-black/10 bg-white shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {values.map((item, idx) => {
               if (item.dark) {
                 return (
                   <div
                     key={idx}
-                    className="p-8 sm:p-10 bg-black text-white flex flex-col justify-center min-h-[220px]"
+                    className="p-6 sm:p-10 bg-black text-white flex flex-col justify-center min-h-[180px] sm:min-h-[220px]"
                   >
-                    <p className="font-display text-2xl sm:text-3xl font-extrabold leading-tight text-white">
+                    <p className="font-display text-xl sm:text-3xl font-extrabold leading-tight text-white">
                       Five principles.{" "}
                       <span className="text-[#ed1238]">One promise:</span> your growth, measured.
                     </p>
@@ -293,17 +293,17 @@ export default function AboutPage() {
               return (
                 <div
                   key={idx}
-                  className={`group p-8 sm:p-10 bg-white hover:bg-[#ed1238] transition-all duration-300 border-b border-black/10 ${idx % 3 !== 2 ? "lg:border-r" : ""
-                    } ${idx >= 3 ? "lg:border-b-0" : ""} flex flex-col justify-between min-h-[220px] cursor-default`}
+                  className={`group p-6 sm:p-10 bg-white hover:bg-[#ed1238] transition-all duration-300 border-b border-black/10 ${idx % 3 !== 2 ? "lg:border-r" : ""
+                    } ${idx >= 3 ? "lg:border-b-0" : ""} flex flex-col justify-between min-h-[180px] sm:min-h-[220px] cursor-default`}
                 >
                   <span className="font-mono text-xs font-bold text-black/40 group-hover:text-white/70 transition-colors duration-300">
                     {item.num}
                   </span>
                   <div>
-                    <h3 className="font-display text-2xl font-black text-[#0a0b0a] group-hover:text-white transition-colors duration-300">
+                    <h3 className="font-display text-xl sm:text-2xl font-black text-[#0a0b0a] group-hover:text-white transition-colors duration-300">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-sm text-black/65 group-hover:text-white/90 leading-relaxed font-normal transition-colors duration-300">
+                    <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-black/65 group-hover:text-white/90 leading-relaxed font-normal transition-colors duration-300">
                       {item.desc}
                     </p>
                   </div>
@@ -315,13 +315,13 @@ export default function AboutPage() {
       </section>
 
       {/* ── 5. THE ROAD SO FAR / INTERACTIVE ROADMAP ──────────────────────── */}
-      <section className="relative z-10 bg-ink py-24 lg:py-36 overflow-hidden border-t border-white/10">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="text-center mb-20">
-            <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold">
+      <section className="relative z-10 bg-ink py-12 sm:py-24 lg:py-36 overflow-hidden border-t border-white/10">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-20">
+            <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
               ( OUR JOURNEY )
             </span>
-            <h2 className="mt-4 font-display text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white">
+            <h2 className="mt-3 sm:mt-4 font-display text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white">
               The road so far
             </h2>
           </div>

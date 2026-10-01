@@ -80,7 +80,7 @@ export default function ContactPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "Something went wrong. Please try again or email us directly."
+          : "Something went wrong. Please try again or email us directly at technostripesolution@gmail.com."
       );
     } finally {
       setIsSubmitting(false);
@@ -96,23 +96,23 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Main Form & Contact Information Grid */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-32 pb-16 lg:pt-36 lg:pb-20">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.05fr_1.35fr] lg:gap-16 items-start">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
+        <div className="grid grid-cols-1 gap-8 sm:gap-12 lg:grid-cols-[1.05fr_1.35fr] lg:gap-16 items-start">
 
           {/* Left Column: Context & Direct Contact Details */}
           <div>
-            <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold">
+            <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
               ( BOOK STRATEGY CALL )
             </span>
-            <h1 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.04]">
+            <h1 className="mt-3 sm:mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08] sm:leading-[1.04]">
               Let’s scale your e-commerce brand.
             </h1>
-            <p className="mt-5 max-w-lg text-base sm:text-lg leading-relaxed text-paper/70 font-normal">
+            <p className="mt-4 sm:mt-5 max-w-lg text-sm sm:text-lg leading-relaxed text-paper/70 font-normal">
               Tell us about your brand, current bottlenecks, and revenue goals. We’ll analyze your store and map the next opportunities for profitable scale.
             </p>
 
             {/* Direct Contact Cards */}
-            <div className="mt-10 space-y-4">
+            <div className="mt-6 sm:mt-10 space-y-3 sm:space-y-4">
               <div className="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
                 <div className="flex items-center gap-4">
                   <div className="flex size-10 items-center justify-center rounded-xl bg-[#ed1238]/10 text-[#ed1238] border border-[#ed1238]/20 shrink-0">
@@ -138,8 +138,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Direct Email</p>
-                    <a href="mailto:growth@technostripe.com" className="mt-0.5 text-sm sm:text-base font-semibold text-white hover:text-[#ed1238] transition-colors">
-                      growth@technostripe.com
+                    <a href="mailto:technostripesolution@gmail.com" className="mt-0.5 text-sm sm:text-base font-semibold text-white hover:text-[#ed1238] transition-colors">
+                      technostripesolution@gmail.com
                     </a>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function ContactPage() {
             </div>
 
             {/* Trust highlights */}
-            <div className="mt-10 pt-8 border-t border-white/10 space-y-3 font-mono text-xs text-paper/60">
+            <div className="mt-8 pt-6 sm:mt-10 sm:pt-8 border-t border-white/10 space-y-3 font-mono text-xs text-paper/60">
               <div className="flex items-center gap-2.5">
                 <span className="text-[#ed1238]">✓</span>
                 <span>Direct consultation with e-commerce growth strategists</span>
@@ -180,7 +180,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right Column: Interactive Growth Inquiry Form */}
-          <div className="rounded-3xl border border-white/15 bg-white/[0.03] p-8 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl">
+          <div className="rounded-2xl sm:rounded-3xl border border-white/15 bg-white/[0.03] p-5 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl">
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -342,22 +342,41 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="contact-website" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
-                    Store Website URL *
-                  </label>
-                  <input
-                    id="contact-website"
-                    name="websiteUrl"
-                    required
-                    type="url"
-                    autoComplete="url"
-                    placeholder="https://yourbrand.com"
-                    value={formData.websiteUrl}
-                    onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
-                  />
-                </div>
+                {/* Website URL — required only when non-Shopify services are selected */}
+                {(() => {
+                  const onlyShopify =
+                    selectedServices.length > 0 &&
+                    selectedServices.every((s) => s === "Shopify Development & Redesign");
+                  const needsUrl = selectedServices.length > 0 && !onlyShopify;
+
+                  return (
+                    <div>
+                      <label htmlFor="contact-website" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                        Store / Website URL {needsUrl ? "*" : "(Optional)"}
+                      </label>
+                      <input
+                        id="contact-website"
+                        name="websiteUrl"
+                        required={needsUrl}
+                        type="text"
+                        placeholder="https://yourbrand.com"
+                        value={formData.websiteUrl}
+                        onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                      />
+                      {needsUrl && (
+                        <p className="mt-1.5 text-[11px] text-[#ed1238]/80 font-mono">
+                          Website URL is required for {selectedServices.filter((s) => s !== "Shopify Development & Redesign").join(", ")}
+                        </p>
+                      )}
+                      {onlyShopify && (
+                        <p className="mt-1.5 text-[11px] text-paper/40 font-mono">
+                          No existing store? No problem — we&apos;ll build it from scratch.
+                        </p>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 {/* Challenges & goals */}
                 <div>

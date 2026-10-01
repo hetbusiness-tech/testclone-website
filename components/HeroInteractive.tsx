@@ -24,11 +24,10 @@ export default function HeroInteractive({ children }: { children: ReactNode }) {
       id="top"
       style={style}
       onMouseMove={handlePointerMove}
-      className="hero-interactive relative flex h-auto min-h-0 max-h-none flex-col overflow-hidden bg-ink pt-[6.25rem] sm:h-screen sm:min-h-[640px] sm:max-h-[100vh] sm:pt-24 md:pt-28"
+      className="hero-interactive relative flex h-auto min-h-0 max-h-none flex-col overflow-hidden bg-ink pt-20 pb-4 sm:h-screen sm:min-h-[640px] sm:max-h-[100vh] sm:pt-24 md:pt-28 sm:pb-0"
     >
       <div className="hero-spotlight pointer-events-none absolute inset-0" />
-      <div className="hero-cursor pointer-events-none absolute" aria-hidden="true" />
-      <div className="hero-pointer pointer-events-none absolute" aria-hidden="true" />
+
       <Image
         src="/background.png"
         width={900}
@@ -63,7 +62,7 @@ export function AnimatedHeroTitle() {
 
   // Significantly larger font size to fill vertical and horizontal space
   const titleStyle = {
-    fontSize: "clamp(2.8rem, calc(min(100vw - 2rem, 72rem) / 7.8), 8.8rem)",
+    fontSize: "clamp(2.15rem, calc(min(100vw - 2rem, 72rem) / 7.8), 8.8rem)",
     lineHeight: "0.92",
   } as CSSProperties;
 

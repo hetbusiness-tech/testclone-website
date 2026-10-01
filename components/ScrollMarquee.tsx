@@ -214,7 +214,7 @@ export default function ScrollMarquee({
       <div
         ref={containerRef}
         aria-hidden="true"
-        className="relative z-0 h-[220vh] sm:h-[400vh] bg-ink"
+        className="relative z-0 h-[140vh] sm:h-[400vh] bg-ink"
       >
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center bg-ink overflow-hidden">
 

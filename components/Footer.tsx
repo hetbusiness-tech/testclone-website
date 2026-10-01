@@ -130,10 +130,10 @@ export default function Footer() {
               <div>
                 <p className="text-[11px] text-paper/40 font-mono uppercase tracking-wider mb-0.5">Email</p>
                 <a
-                  href="mailto:growth@technostripe.com"
+                  href="mailto:technostripesolution@gmail.com"
                   className="text-paper/85 hover:text-[#ed1238] transition-colors font-medium break-all"
                 >
-                  growth@technostripe.com
+                  technostripesolution@gmail.com
                 </a>
               </div>
               <div>

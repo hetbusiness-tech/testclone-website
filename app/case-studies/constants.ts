@@ -8,7 +8,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     description: "A focused storefront for clean matcha energy, with product education and a direct path to the Mor'nin Blend.",
     contentFile: "content/case-studies/mor-matcha.md",
     caseStudyTitle: "Stopping the Slow Bleed at Checkout",
-    coverImage: "/portfolio/mor-1.png",
+    coverImage: "/portfolio/mor-desktop.png",
     projectLink: "https://www.mormatcha.com/",
     metrics: [
       { label: "Category", value: "Matcha Ritual" },

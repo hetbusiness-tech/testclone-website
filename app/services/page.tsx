@@ -184,26 +184,26 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* Hero Section with Ambient Red Shadow */}
-      <section className="relative z-10 bg-ink pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+      <section className="relative z-10 bg-ink pt-24 pb-10 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
         <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-[450px] w-[800px] max-w-full rounded-full bg-[#ed1238]/15 blur-[140px] pointer-events-none" />
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#ed1238]/10 via-transparent to-transparent" />
 
-        <div className="mx-auto max-w-6xl px-6 relative z-10">
-          <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 relative z-10">
+          <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
             ( SERVICES )
           </span>
-          <h1 className="mt-6 font-display text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] max-w-5xl">
+          <h1 className="mt-4 sm:mt-6 font-display text-4xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] max-w-5xl">
             Services designed <br />for e-commerce <br />growth.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-paper/70 font-normal">
+          <p className="mt-5 sm:mt-8 max-w-2xl text-base sm:text-xl leading-relaxed text-paper/70 font-normal">
             We help D2C brands scale through Shopify experiences, paid acquisition systems, e-commerce SEO, creative strategy, and conversion optimization.
           </p>
         </div>
       </section>
 
       {/* Quick Sub-Navigation Bar */}
-      <nav className="relative z-20 border-y border-white/10 bg-[#0a0b0a] py-4 px-6">
-        <div className="mx-auto max-w-6xl flex flex-wrap items-center justify-between gap-x-6 gap-y-3.5 text-xs font-mono tracking-wide">
+      <nav className="relative z-20 border-y border-white/10 bg-[#0a0b0a] py-3.5 px-4 sm:px-6">
+        <div className="mx-auto max-w-6xl flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-xs font-mono tracking-wide">
           {servicesData.map((service) => (
             <a
               key={service.id}
@@ -220,7 +220,7 @@ export default function ServicesPage() {
       </nav>
 
       {/* Detailed Services Sections (Top-Aligned Image & 2x2 Process Table) */}
-      <section className="relative z-10 bg-ink px-6 py-16 lg:py-24">
+      <section className="relative z-10 bg-ink px-4 sm:px-6 py-10 sm:py-16 lg:py-24">
         {servicesData.map((service, index) => {
           const isImageLeft = index % 2 === 0;
 
@@ -228,10 +228,10 @@ export default function ServicesPage() {
             <div
               key={service.id}
               id={service.id}
-              className={`scroll-mt-12 mx-auto max-w-6xl border-t border-white/10 pt-16 first:border-t-0 first:pt-0 lg:pt-24 ${index === 0 ? "" : "mt-16 lg:mt-24"}`}
+              className={`scroll-mt-12 mx-auto max-w-6xl border-t border-white/10 pt-10 sm:pt-16 first:border-t-0 first:pt-0 lg:pt-24 ${index === 0 ? "" : "mt-10 sm:mt-16 lg:mt-24"}`}
             >
               <div
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start ${isImageLeft ? "" : "lg:grid-flow-dense"
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-16 items-start ${isImageLeft ? "" : "lg:grid-flow-dense"
                   }`}
               >
                 {/* ── INTERACTIVE SERVICE CARD (Default: Full 3:2 Image | Hover: Red Branded Card) ─────────────── */}

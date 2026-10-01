@@ -58,7 +58,7 @@ export default function HeroSection() {
             const el = document.getElementById("work");
             el?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="group/scroll mt-10 flex items-end justify-between pt-1 pb-2 cursor-pointer select-none opacity-80 transition-all duration-300 hover:opacity-100 sm:mt-0 sm:pt-2 sm:pb-1"
+          className="group/scroll mt-6 flex items-end justify-between pt-1 pb-2 cursor-pointer select-none opacity-80 transition-all duration-300 hover:opacity-100 sm:mt-0 sm:pt-2 sm:pb-1"
         >
           <p className="text-xs sm:text-sm font-mono tracking-wide text-[#ed1238] transition-all duration-300 group-hover/scroll:text-[#ff3658] group-hover/scroll:translate-x-1">
             scroll to explore

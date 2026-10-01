@@ -114,11 +114,11 @@ export default function CTASection({
   // ─── HOME: gradient border + floating logo ────────────────────────
   if (variant === "home") {
     return (
-      <section className="relative z-10 overflow-hidden bg-ink py-12 sm:py-16">
-        <div className="max-w-6xl px-6 mx-auto">
+      <section className="relative z-10 overflow-hidden bg-ink py-8 sm:py-16">
+        <div className="max-w-7xl px-4 sm:px-6 mx-auto">
           <div
             ref={containerRef}
-            className="relative overflow-hidden rounded-[2.5rem] border-2 border-[#ed1238] bg-gradient-to-br from-ink-soft via-[#121412] to-ink p-8 shadow-[0_0_60px_-10px_rgba(237,18,56,0.4)] backdrop-blur-xl sm:p-14 lg:p-20"
+            className="relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] border-2 border-[#ed1238] bg-gradient-to-br from-ink-soft via-[#121412] to-ink p-6 sm:p-14 lg:p-20 shadow-[0_0_60px_-10px_rgba(237,18,56,0.4)] backdrop-blur-xl"
           >
             <motion.div
               animate={{ rotate: [-12, -8, -12], y: [0, -10, 0] }}
@@ -139,19 +139,19 @@ export default function CTASection({
               >
                 {cfg.eyebrow}
               </motion.span>
-              <h2 className="mt-4 max-w-4xl font-display text-4xl font-extrabold leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              <h2 className="mt-3 sm:mt-4 max-w-4xl font-display text-3xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] sm:leading-[0.98] tracking-tight text-white">
                 <AnimatedWords text={cfg.heading} delay={0.1} stagger={0.06} />
               </h2>
-              <p className="mt-6 max-w-2xl text-base font-normal leading-relaxed text-paper/70 sm:text-lg">
+              <p className="mt-4 sm:mt-6 max-w-2xl text-sm sm:text-lg font-normal leading-relaxed text-paper/70">
                 <AnimatedWords text={cfg.subtext} delay={0.35} stagger={0.03} />
               </p>
               <motion.div
-                className="mt-10"
+                className="mt-6 sm:mt-10"
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.75 }}
               >
-                <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-8 py-4 text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_35px_rgba(237,18,56,0.6)] cursor-pointer">
+                <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-6 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_35px_rgba(237,18,56,0.6)] cursor-pointer">
                   {btnLabel}
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="size-4"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
                 </Link>
@@ -166,11 +166,11 @@ export default function CTASection({
   // ─── SERVICES: red glass card ─────────────────────────────────────
   if (variant === "services") {
     return (
-      <section className="relative z-10 overflow-hidden bg-ink py-12 sm:py-16">
-        <div className="max-w-7xl px-6 mx-auto">
+      <section className="relative z-10 overflow-hidden bg-ink py-8 sm:py-16">
+        <div className="max-w-7xl px-4 sm:px-6 mx-auto">
           <div
             ref={containerRef}
-            className="relative overflow-hidden rounded-[2rem] border border-[#ed1238]/70 bg-[linear-gradient(110deg,rgba(237,18,56,0.28),rgba(10,11,10,0.72)_48%,rgba(237,18,56,0.12))] px-8 py-14 shadow-[0_0_90px_-18px_rgba(237,18,56,0.9),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl sm:rounded-[2.5rem] sm:px-14 sm:py-20 lg:px-20"
+            className="relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] border border-[#ed1238]/70 bg-[linear-gradient(110deg,rgba(237,18,56,0.28),rgba(10,11,10,0.72)_48%,rgba(237,18,56,0.12))] p-6 sm:px-14 sm:py-20 lg:px-20 shadow-[0_0_90px_-18px_rgba(237,18,56,0.9),inset_0_1px_0_rgba(255,255,255,0.18)] backdrop-blur-2xl"
           >
             <motion.div
               animate={{ rotate: [-12, -8, -12], y: [0, -10, 0] }}
@@ -191,19 +191,19 @@ export default function CTASection({
               >
                 {cfg.eyebrow}
               </motion.span>
-              <h2 className="mt-4 max-w-4xl font-display text-4xl font-extrabold leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              <h2 className="mt-3 sm:mt-4 max-w-4xl font-display text-3xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.05] sm:leading-[0.98] tracking-tight text-white">
                 <AnimatedWords text={cfg.heading} delay={0.1} stagger={0.06} />
               </h2>
-              <p className="mt-6 max-w-2xl text-base font-normal leading-relaxed text-paper/75 sm:text-lg">
+              <p className="mt-4 sm:mt-6 max-w-2xl text-sm sm:text-lg font-normal leading-relaxed text-paper/75">
                 <AnimatedWords text={cfg.subtext} delay={0.35} stagger={0.03} />
               </p>
               <motion.div
-                className="mt-10"
+                className="mt-6 sm:mt-10"
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.75 }}
               >
-                <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-8 py-4 text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_35px_rgba(237,18,56,0.75)] cursor-pointer">
+                <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-6 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_35px_rgba(237,18,56,0.75)] cursor-pointer">
                   {btnLabel}
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="size-4"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
                 </Link>
@@ -380,11 +380,11 @@ export default function CTASection({
   // ─── PORTFOLIO: full-width red banner ─────────────────────────────
   if (variant === "portfolio") {
     return (
-      <section className="relative z-10 overflow-hidden bg-ink py-12 sm:py-16">
-        <div className="max-w-7xl px-6 mx-auto">
+      <section className="relative z-10 overflow-hidden bg-ink py-8 sm:py-16">
+        <div className="max-w-7xl px-4 sm:px-6 mx-auto">
           <div
             ref={containerRef}
-            className="relative overflow-hidden rounded-[2.5rem] bg-[#ed1238] px-8 py-14 sm:px-14 sm:py-20 lg:px-20"
+            className="relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] bg-[#ed1238] px-6 py-10 sm:px-14 sm:py-20 lg:px-20"
           >
             {/* Gradient overlays */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30 pointer-events-none" />
@@ -407,19 +407,19 @@ export default function CTASection({
               >
                 {cfg.eyebrow}
               </motion.span>
-              <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[0.98] tracking-tight text-white">
+              <h2 className="mt-3 sm:mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] sm:leading-[0.98] tracking-tight text-white">
                 <AnimatedWords text={cfg.heading} delay={0.1} stagger={0.06} />
               </h2>
-              <p className="mt-5 text-base sm:text-lg text-white/75 leading-relaxed max-w-xl mx-auto">
+              <p className="mt-4 sm:mt-5 text-sm sm:text-lg text-white/75 leading-relaxed max-w-xl mx-auto">
                 <AnimatedWords text={cfg.subtext} delay={0.3} stagger={0.025} />
               </p>
               <motion.div
-                className="mt-10 flex justify-center gap-4 flex-wrap"
+                className="mt-6 sm:mt-10 flex justify-center gap-4 flex-wrap"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold tracking-tight text-[#ed1238] transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] cursor-pointer">
+                <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-bold tracking-tight text-[#ed1238] transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] cursor-pointer">
                   {btnLabel}
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="size-4"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
                 </Link>
@@ -433,11 +433,11 @@ export default function CTASection({
 
   // ─── INSIGHTS: minimal centered dark card ─────────────────────────
   return (
-    <section className="relative z-10 overflow-hidden bg-ink py-12 sm:py-16">
-      <div className="max-w-5xl px-6 mx-auto">
+    <section className="relative z-10 overflow-hidden bg-ink py-8 sm:py-16">
+      <div className="max-w-5xl px-4 sm:px-6 mx-auto">
         <div
           ref={containerRef}
-          className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-b from-[#161816] to-[#0e100e] px-8 py-14 sm:px-12 sm:py-16 text-center"
+          className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] border border-white/10 bg-gradient-to-b from-[#161816] to-[#0e100e] px-5 py-8 sm:px-12 sm:py-16 text-center"
         >
           {/* Subtle top glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60%] h-px bg-gradient-to-r from-transparent via-[#ed1238]/50 to-transparent" />
@@ -452,19 +452,19 @@ export default function CTASection({
             >
               {cfg.eyebrow}
             </motion.span>
-            <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1] tracking-tight text-white">
+            <h2 className="mt-3 sm:mt-4 font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.08] sm:leading-[1] tracking-tight text-white">
               <AnimatedWords text={cfg.heading} delay={0.1} stagger={0.06} />
             </h2>
-            <p className="mt-5 text-sm sm:text-base text-white/50 leading-relaxed max-w-lg mx-auto">
+            <p className="mt-3 sm:mt-5 text-xs sm:text-base text-white/50 leading-relaxed max-w-lg mx-auto">
               <AnimatedWords text={cfg.subtext} delay={0.3} stagger={0.025} />
             </p>
             <motion.div
-              className="mt-8 flex justify-center"
+              className="mt-6 sm:mt-8 flex justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.65 }}
             >
-              <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-7 py-3.5 text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_30px_rgba(237,18,56,0.5)] cursor-pointer">
+              <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-6 py-3.5 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_30px_rgba(237,18,56,0.5)] cursor-pointer">
                 {btnLabel}
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="size-4"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
               </Link>

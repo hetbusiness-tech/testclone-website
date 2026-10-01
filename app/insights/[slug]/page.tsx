@@ -159,11 +159,11 @@ export default function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
 
-      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-24 pb-24 sm:pt-32">
+      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-20 pb-12 sm:pt-32 sm:pb-24">
         {/* ── Breadcrumb ──────────────────────────────── */}
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-white/30"
+          className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 mb-4 sm:mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-white/30"
         >
           <Link href="/" className="hover:text-white transition-colors">
             Home
@@ -173,17 +173,17 @@ export default function BlogPostPage({ params }: Props) {
             Insights
           </Link>
           <span>/</span>
-          <span className="text-white/55 truncate max-w-[200px]">
+          <span className="text-white/55 truncate max-w-[160px] sm:max-w-[200px]">
             {blog.title}
           </span>
         </nav>
 
         <div className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
-          <div className="flex flex-col lg:flex-row items-start gap-12 xl:gap-16">
+          <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12 xl:gap-16">
             {/* ── Main Content ──────────────────────────── */}
             <article className="flex-1 min-w-0">
               {/* Meta info */}
-              <div className="flex items-center gap-3 flex-wrap mb-5">
+              <div className="flex items-center gap-3 flex-wrap mb-4 sm:mb-5">
                 <span className="rounded-full border border-[#ed1238]/30 bg-[#ed1238]/15 px-3 py-0.5 text-[0.65rem] font-mono tracking-[0.15em] uppercase text-[#ff4d6d]">
                   {blog.category}
                 </span>
@@ -194,7 +194,7 @@ export default function BlogPostPage({ params }: Props) {
 
               {/* Title */}
               <h1
-                className="text-3xl sm:text-4xl lg:text-5xl text-white mb-5 leading-[1.1]"
+                className="text-2xl sm:text-4xl lg:text-5xl text-white mb-4 sm:mb-5 leading-[1.15] sm:leading-[1.1]"
                 style={{
                   fontFamily: "var(--font-display-family)",
                   fontWeight: 800,
@@ -205,7 +205,7 @@ export default function BlogPostPage({ params }: Props) {
               </h1>
 
               {/* Author + Date */}
-              <div className="flex items-center gap-4 mb-8 pb-8 border-b border-white/10">
+              <div className="flex items-center gap-4 mb-6 pb-6 sm:mb-8 sm:pb-8 border-b border-white/10">
                 <div className="flex flex-col">
                   <Link
                     href={blog.authorLink}
@@ -221,7 +221,7 @@ export default function BlogPostPage({ params }: Props) {
 
               {/* Cover Image */}
               {blog.coverImage && (
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl mb-10 bg-white/5">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl sm:rounded-2xl mb-6 sm:mb-10 bg-white/5">
                   <Image
                     src={blog.coverImage}
                     alt={blog.coverImageAlt || blog.title}

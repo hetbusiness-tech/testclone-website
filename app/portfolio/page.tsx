@@ -43,9 +43,9 @@ export default function PortfolioPage() {
     <>
       <Navbar />
 
-      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-28 pb-24 sm:pt-36">
+      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-24 pb-12 sm:pt-36 sm:pb-24">
         {/* Hero Header */}
-        <section className="relative overflow-hidden px-4 sm:px-8 lg:px-12 pb-12">
+        <section className="relative overflow-hidden px-4 sm:px-8 lg:px-12 pb-6 sm:pb-12">
           <div
             aria-hidden
             className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[400px] rounded-full opacity-20"
@@ -55,15 +55,15 @@ export default function PortfolioPage() {
             }}
           />
           <div className="mx-auto max-w-7xl relative z-10">
-            <p className="eyebrow text-[#ed1238] mb-4 tracking-[0.3em]">( Portfolio )</p>
+            <p className="eyebrow text-[#ed1238] mb-3 sm:mb-4 tracking-[0.3em]">( Portfolio )</p>
             <h1
-              className="text-4xl sm:text-6xl lg:text-7xl text-white mb-5 leading-[0.95]"
+              className="text-4xl sm:text-6xl lg:text-7xl text-white mb-4 sm:mb-5 leading-[0.95]"
               style={{ fontFamily: "var(--font-display-family)", fontWeight: 800, letterSpacing: "-0.04em" }}
             >
               Work that delivers <br />
               <span className="text-[#ed1238]">real growth.</span>
             </h1>
-            <p className="text-base sm:text-lg text-white/50 max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-lg text-white/50 max-w-xl leading-relaxed">
               Explore how we engineer high-converting Shopify stores, deploy profitable ad funnels,
               and scale D2C brands across India, UK &amp; US.
             </p>
@@ -71,7 +71,7 @@ export default function PortfolioPage() {
         </section>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
-          <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-10" />
+          <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 sm:mb-10" />
 
           {/* Featured Card */}
           {activeCategory === "All" && featured && (

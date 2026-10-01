@@ -256,10 +256,10 @@ export default function Navbar() {
                   {/* Direct Contact Teaser */}
                   <div className="flex items-center justify-between px-2 text-[11px] font-mono text-white/40">
                     <a
-                      href="mailto:growth@technostripe.com"
+                      href="mailto:technostripesolution@gmail.com"
                       className="hover:text-[#ed1238] transition-colors"
                     >
-                      growth@technostripe.com
+                      technostripesolution@gmail.com
                     </a>
                     <a
                       href="tel:+919714734563"

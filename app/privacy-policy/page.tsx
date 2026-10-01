@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
     <>
       <Navbar />
 
-      <main id="main-content" className="relative min-h-screen bg-[#0a0b0a] text-[#f4f4f4] pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden selection:bg-[#ed1238] selection:text-white">
+      <main id="main-content" className="relative min-h-screen bg-[#0a0b0a] text-[#f4f4f4] pt-24 pb-12 sm:pt-36 sm:pb-28 overflow-x-clip selection:bg-[#ed1238] selection:text-white">
         {/* Ambient Top Glow */}
         <div
           aria-hidden
@@ -140,10 +140,10 @@ export default function PrivacyPolicyPage() {
                 <div className="mt-6 pt-5 border-t border-white/10">
                   <p className="text-[11px] text-white/40 mb-2 font-mono">Need privacy assistance?</p>
                   <a
-                    href="mailto:growth@technostripe.com"
+                    href="mailto:technostripesolution@gmail.com"
                     className="inline-flex items-center gap-1.5 text-xs text-[#ed1238] hover:underline font-semibold"
                   >
-                    <span>growth@technostripe.com</span>
+                    <span>technostripesolution@gmail.com</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-3">
                       <path d="M7 7h10v10" /><path d="M7 17 17 7" />
                     </svg>
@@ -415,8 +415,8 @@ export default function PrivacyPolicyPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm pt-2">
                     <div>
                       <p className="font-mono text-white/40 uppercase tracking-wider text-[11px] mb-1">Email Inquiries</p>
-                      <a href="mailto:growth@technostripe.com" className="text-white hover:text-[#ed1238] transition-colors font-medium">
-                        growth@technostripe.com
+                      <a href="mailto:technostripesolution@gmail.com" className="text-white hover:text-[#ed1238] transition-colors font-medium">
+                        technostripesolution@gmail.com
                       </a>
                     </div>
                     <div>

@@ -18,6 +18,14 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function isValidPayload(body: unknown): body is ContactPayload {
   if (!body || typeof body !== "object") return false;
   const p = body as Record<string, unknown>;
+  const isOnlyShopify =
+    Array.isArray(p.services) &&
+    p.services.length > 0 &&
+    p.services.every((s) => s === "Shopify Development & Redesign");
+  const websiteValid = isOnlyShopify
+    ? typeof p.websiteUrl === "string"
+    : typeof p.websiteUrl === "string" && p.websiteUrl.trim().length > 0;
+
   return (
     typeof p.name === "string" &&
     p.name.trim().length > 0 &&
@@ -25,8 +33,7 @@ function isValidPayload(body: unknown): body is ContactPayload {
     p.brandName.trim().length > 0 &&
     typeof p.email === "string" &&
     EMAIL_RE.test(p.email) &&
-    typeof p.websiteUrl === "string" &&
-    p.websiteUrl.trim().length > 0 &&
+    websiteValid &&
     Array.isArray(p.services) &&
     typeof p.revenueRange === "string"
   );
