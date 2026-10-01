@@ -579,7 +579,7 @@ summary::-webkit-details-marker {
 
 /* ─── Blog Prose Styles ────────────────────────────────── */
 .blog-prose {
-  color: rgba(243, 244, 236, 0.75);
+  color: rgba(10, 11, 10, 0.72);
   font-size: 1rem;
   line-height: 1.8;
   font-family: var(--font-body-family);
@@ -635,7 +635,7 @@ summary::-webkit-details-marker {
 }
 
 .blog-prose em {
-  color: rgba(243, 244, 236, 0.85);
+  color: rgba(10, 11, 10, 0.6);
   font-style: italic;
 }
 
@@ -686,13 +686,13 @@ summary::-webkit-details-marker {
   border-left: 3px solid #ed1238;
   background: rgba(237, 18, 56, 0.06);
   border-radius: 0 0.75rem 0.75rem 0;
-  color: rgba(243, 244, 236, 0.8);
+  color: rgba(10, 11, 10, 0.65);
   font-style: italic;
 }
 
 .blog-prose hr {
   border: none;
-  border-top: 1px solid rgba(243, 244, 236, 0.08);
+  border-top: 1px solid rgba(10, 11, 10, 0.12);
   margin: 2.5rem 0;
 }
 
@@ -753,11 +753,11 @@ summary::-webkit-details-marker {
 .blog-prose code {
   font-family: var(--font-mono-family);
   font-size: 0.82em;
-  background: rgba(243, 244, 236, 0.08);
-  border: 1px solid rgba(243, 244, 236, 0.1);
+  background: rgba(237, 18, 56, 0.06);
+  border: 1px solid rgba(237, 18, 56, 0.15);
   border-radius: 0.35rem;
   padding: 0.1em 0.45em;
-  color: #ff4d6d;
+  color: #d0102f;
 }
 
 /* ─── Blog Heading Reveal Animation ─────────────────────── */
@@ -808,7 +808,7 @@ summary::-webkit-details-marker {
 .blog-prose td {
   padding: 0.9rem 1.2rem;
   font-size: 0.88rem;
-  color: rgba(243, 244, 236, 0.8);
+  color: rgba(10, 11, 10, 0.72);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   line-height: 1.6;
 }

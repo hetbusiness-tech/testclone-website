@@ -4,12 +4,12 @@ import type { BlogPost } from "../app/insights/types";
 
 /* ─── Category pill colours ───────────────────────────── */
 const CATEGORY_COLORS: Record<string, string> = {
-  "E-commerce Growth": "bg-[#ed1238]/15 text-[#ff4d6d] border-[#ed1238]/30",
-  "Shopify Plus": "bg-purple-500/15 text-purple-300 border-purple-500/30",
-  "Performance Marketing": "bg-blue-500/15 text-blue-300 border-blue-500/30",
-  CRO: "bg-amber-500/15 text-amber-300 border-amber-500/30",
-  SEO: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-  Branding: "bg-pink-500/15 text-pink-300 border-pink-500/30",
+  "E-commerce Growth": "bg-[#ed1238]/12 text-[#c01030] border-[#ed1238]/25",
+  "Shopify Plus": "bg-purple-100 text-purple-700 border-purple-300/60",
+  "Performance Marketing": "bg-blue-100 text-blue-700 border-blue-300/60",
+  CRO: "bg-amber-100 text-amber-700 border-amber-300/60",
+  SEO: "bg-emerald-100 text-emerald-700 border-emerald-300/60",
+  Branding: "bg-pink-100 text-pink-700 border-pink-300/60",
 };
 
 function getCategoryColor(category: string): string {
@@ -72,7 +72,7 @@ export default function BlogCard({
           >
             {blog.category}
           </span>
-          <span className="text-[0.68rem] font-mono text-black/40 tracking-[0.08em]">
+          <span className="text-[0.68rem] font-mono text-black/60 tracking-[0.08em]">
             {blog.readTime}
           </span>
         </div>
@@ -90,7 +90,7 @@ export default function BlogCard({
         </h2>
 
         {/* Excerpt */}
-        <p className="text-sm text-black/50 leading-relaxed line-clamp-3 mb-5">
+        <p className="text-sm text-black/70 leading-relaxed line-clamp-3 mb-5">
           {blog.excerpt}
         </p>
 
@@ -100,8 +100,9 @@ export default function BlogCard({
             {blog.platformTags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="rounded-md bg-black/5 px-2 py-0.5 text-[0.6rem] font-mono tracking-wider text-black/40 uppercase"
+                className="inline-flex items-center gap-1 rounded-md border border-black/20 bg-black/[0.07] px-2.5 py-1 text-[0.62rem] font-mono tracking-wider text-black/70 uppercase font-semibold"
               >
+                <span className="size-1.5 rounded-full shrink-0" style={{ backgroundColor: '#ed1238', opacity: 0.8 }} />
                 {tag}
               </span>
             ))}

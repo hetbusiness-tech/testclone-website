@@ -232,8 +232,8 @@ export default function ContactPage() {
                           aria-pressed={isSelected}
                           onClick={() => toggleService(service)}
                           className={`rounded-full px-4 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${isSelected
-                              ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
-                              : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
+                            ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
+                            : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
                             }`}
                         >
                           {service}
@@ -258,8 +258,8 @@ export default function ContactPage() {
                           aria-pressed={isSelected}
                           onClick={() => setSelectedRevenue(range)}
                           className={`rounded-xl py-2.5 px-3 text-xs font-semibold text-center transition-all duration-200 cursor-pointer ${isSelected
-                              ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
-                              : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
+                            ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
+                            : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
                             }`}
                         >
                           {range}
@@ -281,7 +281,7 @@ export default function ContactPage() {
                       required
                       type="text"
                       autoComplete="name"
-                      placeholder="e.g. Rohan Sharma"
+                      placeholder="e.g. John Doe"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
@@ -317,7 +317,7 @@ export default function ContactPage() {
                       required
                       type="email"
                       autoComplete="email"
-                      placeholder="rohan@brand.com"
+                      placeholder="john@gmail.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
@@ -334,7 +334,7 @@ export default function ContactPage() {
                       type="tel"
                       autoComplete="tel"
                       pattern="^[0-9+\s()-]{7,}$"
-                      placeholder="+91 98765 43210"
+                      placeholder="+1 (555) 019-2834"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"

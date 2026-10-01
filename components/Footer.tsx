@@ -7,10 +7,10 @@ export default function Footer() {
   return (
     <footer className="border-t border-black/10 bg-ink pt-16 pb-12">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-12 pb-16 border-b border-black/10">
-          <div className="md:col-span-2 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-16 border-b border-black/10">
+          <div className="sm:col-span-2 lg:col-span-4 space-y-4">
             <BrandLogo
-              height={58}
+              height={52}
               className="drop-shadow-[0_0_18px_rgba(237,18,56,0.18)]"
             />
             <p className="text-sm text-paper/60 max-w-sm leading-relaxed">
@@ -61,7 +61,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="font-mono text-xs font-bold uppercase tracking-widest text-[#ed1238]">
               Services
             </h4>
@@ -94,7 +94,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="space-y-3">
+          <div className="lg:col-span-2 space-y-3">
             <h4 className="font-mono text-xs font-bold uppercase tracking-widest text-[#ed1238]">
               Company
             </h4>
@@ -122,7 +122,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="space-y-4">
+          <div className="lg:col-span-3 space-y-4">
             <h4 className="font-mono text-xs font-bold uppercase tracking-widest text-[#ed1238]">
               Contact
             </h4>
@@ -131,7 +131,7 @@ export default function Footer() {
                 <p className="text-[11px] text-paper/40 font-mono uppercase tracking-wider mb-0.5">Email</p>
                 <a
                   href="mailto:technostripesolution@gmail.com"
-                  className="text-paper/85 hover:text-[#ed1238] transition-colors font-medium break-all"
+                  className="text-paper/85 hover:text-[#ed1238] transition-colors font-medium text-xs sm:text-[13px] lg:text-sm block"
                 >
                   technostripesolution@gmail.com
                 </a>
@@ -158,9 +158,6 @@ export default function Footer() {
           <div className="flex gap-6">
             <Link href="/privacy-policy" className="hover:text-[#ed1238] transition-colors">
               Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-[#ed1238] transition-colors">
-              Terms of Service
             </Link>
           </div>
         </div>

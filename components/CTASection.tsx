@@ -22,21 +22,21 @@ function AnimatedWords({
   const words = text.split(" ");
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} className={`inline-block ${className}`}>
       <span className="sr-only">{text}</span>
-      <span aria-hidden="true">
+      <span aria-hidden="true" className="inline-block">
         {words.map((word, index) => (
           <span
             key={index}
-            className="inline-block overflow-hidden mr-[0.26em] last:mr-0 align-top"
+            className="inline-block overflow-hidden mr-[0.28em] last:mr-0 pb-[0.28em] -mb-[0.28em] pt-[0.08em] -mt-[0.08em] align-top"
           >
             <motion.span
               className="inline-block"
-              initial={{ y: "110%", opacity: 0, filter: "blur(4px)" }}
+              initial={{ y: "115%", opacity: 0 }}
               animate={
                 isInView
-                  ? { y: "0%", opacity: 1, filter: "blur(0px)" }
-                  : { y: "110%", opacity: 0, filter: "blur(4px)" }
+                  ? { y: "0%", opacity: 1 }
+                  : { y: "115%", opacity: 0 }
               }
               transition={{
                 duration: 0.55,
@@ -267,7 +267,7 @@ export default function CTASection({
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 pt-6 sm:pt-10 items-center">
               {/* Left Column: Heading + Story + Value Pills */}
               <div className="lg:col-span-7">
-                <h2 className="font-display text-2xl sm:text-4xl lg:text-[3.25rem] font-extrabold leading-[1.08] tracking-tight text-black">
+                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.85rem] font-extrabold leading-[1.22] tracking-tight text-black max-w-xl">
                   <AnimatedWords
                     text="Ready to write the next chapter of your brand's growth?"
                     delay={0.1}
@@ -423,15 +423,16 @@ export default function CTASection({
     );
   }
 
-  // ─── INSIGHTS: minimal centered dark card ─────────────────────────
+  // ─── INSIGHTS: prominent centered card with visible border & shadow ───
   return (
-    <section className="relative z-10 overflow-hidden bg-ink py-8 sm:py-16">
+    <section className="relative z-10 overflow-hidden py-8 sm:py-16">
       <div className="max-w-5xl px-4 sm:px-6 mx-auto">
         <div
           ref={containerRef}
-          className="relative overflow-hidden rounded-2xl sm:rounded-[2rem] border border-black/10 bg-gradient-to-b from-[#fffafa] to-white px-5 py-8 sm:px-12 sm:py-16 text-center"
+          className="relative overflow-hidden rounded-2xl sm:rounded-[2.5rem] border-2 border-black/15 bg-white px-6 py-10 sm:px-14 sm:py-16 text-center shadow-[0_25px_70px_-20px_rgba(0,0,0,0.18)]"
         >
-          {/* Subtle top glow */}
+          {/* Subtle top brand accent line */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ed1238] to-transparent" />
 
           <div className="relative z-10 max-w-2xl mx-auto">
             <motion.span
@@ -442,11 +443,11 @@ export default function CTASection({
             >
               {cfg.eyebrow}
             </motion.span>
-            <h2 className="mt-3 sm:mt-4 font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.08] sm:leading-[1] tracking-tight text-black">
+            <h2 className="mt-3 sm:mt-4 font-display text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.12] sm:leading-[1.04] tracking-tight text-black">
               <AnimatedWords text={cfg.heading} delay={0.1} stagger={0.06} />
             </h2>
-            <p className="mt-3 sm:mt-5 text-xs sm:text-base text-black/50 leading-relaxed max-w-lg mx-auto">
-              <AnimatedWords text={cfg.subtext} delay={0.3} stagger={0.025} />
+            <p className="mt-3 sm:mt-5 text-sm sm:text-base text-black/70 leading-relaxed max-w-xl mx-auto [text-wrap:balance]">
+              <AnimatedWords text={cfg.subtext} delay={0.3} stagger={0.02} />
             </p>
             <motion.div
               className="mt-6 sm:mt-8 flex justify-center"
@@ -454,7 +455,7 @@ export default function CTASection({
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.65 }}
             >
-              <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-6 py-3.5 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_30px_rgba(237,18,56,0.5)] cursor-pointer">
+              <Link href="https://calendly.com/techno-stripe/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#ed1238] px-6 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_30px_rgba(237,18,56,0.5)] cursor-pointer">
                 {btnLabel}
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" className="size-4"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
               </Link>

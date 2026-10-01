@@ -94,7 +94,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Navigation (>= lg) */}
-            <nav className="hidden lg:flex items-center justify-center gap-8 xl:gap-10 text-[11px] font-mono tracking-[0.2em] uppercase text-black/85">
+            <nav className="hidden lg:flex items-center justify-center gap-8 xl:gap-10 text-[11.5px] font-mono tracking-[0.2em] uppercase font-bold text-black">
               {navItems.map((item) => {
                 const isActive =
                   item.href === "/"
@@ -107,8 +107,8 @@ export default function Navbar() {
                   <Link
                     key={item.label}
                     href={item.href}
-                    className={`relative py-1 transition-colors duration-200 hover:text-[#ed1238] ${
-                      isActive ? "text-[#ed1238] font-bold" : "text-black/85"
+                    className={`relative py-1 font-bold transition-colors duration-200 hover:text-[#ed1238] ${
+                      isActive ? "text-[#ed1238]" : "text-black hover:text-[#ed1238]"
                     }`}
                   >
                     {item.label}
@@ -181,7 +181,7 @@ export default function Navbar() {
                 className="mt-2.5 overflow-hidden rounded-[2rem] border border-black/15 bg-[#fffafa]/95 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl lg:hidden"
               >
                 {/* Navigation Links */}
-                <nav className="flex flex-col space-y-1 pb-5 border-b border-black/10 font-mono text-sm uppercase tracking-wider">
+                <nav className="flex flex-col space-y-1 pb-5 border-b border-black/10 font-mono text-sm font-bold uppercase tracking-wider">
                   {navItems.map((item, idx) => {
                     const isActive =
                       item.href === "/"
@@ -200,10 +200,10 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className={`flex items-center justify-between py-3 px-4 rounded-xl transition-all duration-200 ${
+                          className={`flex items-center justify-between py-3 px-4 rounded-xl font-bold transition-all duration-200 ${
                             isActive
-                              ? "bg-[#ed1238]/15 text-[#ed1238] font-bold border border-[#ed1238]/30"
-                              : "text-black/80 hover:text-black hover:bg-black/[0.04]"
+                              ? "bg-[#ed1238]/15 text-[#ed1238] border border-[#ed1238]/30"
+                              : "text-black hover:text-[#ed1238] hover:bg-black/[0.04]"
                           }`}
                         >
                           <span className="flex items-center gap-3">

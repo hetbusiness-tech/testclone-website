@@ -50,7 +50,7 @@ export default function InsightsPage() {
 
         {/* ── Divider ─────────────────────────────────── */}
         <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
-          <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 sm:mb-16" />
+          <div className="h-px bg-gradient-to-r from-transparent via-black/15 to-transparent mb-6 sm:mb-16" />
         </div>
 
         {/* ── 3-Card Grid (1 Row, 3 Cards on Desktop) ──── */}

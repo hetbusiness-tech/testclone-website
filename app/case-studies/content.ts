@@ -15,7 +15,7 @@ import teesclub from "../../content/case-studies/teesclub.md";
 import theBlueSky from "../../content/case-studies/the-blue-sky.md";
 import theSkinDiary from "../../content/case-studies/the-skin-diary.md";
 
-const markdownByFile: Record<string, string> = {
+const markdownByFile: Record<string, unknown> = {
   "content/case-studies/aurra-perfume.md": aurraPerfume,
   "content/case-studies/babo-botanicals.md": baboBotanicals,
   "content/case-studies/experiment-beauty.md": experimentBeauty,

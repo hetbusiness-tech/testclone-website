@@ -50,7 +50,7 @@ const mdComponents: Components = {
 
 export default function MarkdownBody({ content }: MarkdownBodyProps) {
   return (
-    <div className="blog-prose prose prose-invert max-w-none">
+    <div className="blog-prose max-w-none">
       <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
         {content}
       </ReactMarkdown>

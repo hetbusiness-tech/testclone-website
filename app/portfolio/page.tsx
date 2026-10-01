@@ -72,7 +72,7 @@ export default function PortfolioPage() {
         </section>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
-          <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 sm:mb-10" />
+          <div className="h-px bg-gradient-to-r from-transparent via-black/15 to-transparent mb-6 sm:mb-10" />
 
           {/* Featured Card */}
           {activeCategory === "All" && featured && (
@@ -135,14 +135,14 @@ export default function PortfolioPage() {
                   >
                     {featured.caseStudyTitle ?? featured.projectName}
                   </h2>
-                  <p className="text-sm sm:text-base text-black/55 leading-relaxed mb-6 max-w-lg">
+                  <p className="text-sm sm:text-base text-black/70 leading-relaxed mb-6 max-w-lg">
                     {featured.description}
                   </p>
                   {featured.metrics && featured.metrics.length > 0 && !SKIP_METRIC_LABELS.has(featured.metrics[0].label) && (
                     <div className="flex flex-wrap gap-3 mb-6">
                       {featured.metrics.slice(0, 3).map((m) => (
                         <div key={m.label} className="px-4 py-2 rounded-xl bg-black/[0.04] border border-black/10">
-                          <p className="text-[0.6rem] font-mono uppercase tracking-wider text-black/40">{m.label}</p>
+                          <p className="text-[0.6rem] font-mono uppercase tracking-wider text-black/55">{m.label}</p>
                           <p className="text-sm font-bold text-black mt-0.5">{m.value}</p>
                         </div>
                       ))}
@@ -170,9 +170,9 @@ export default function PortfolioPage() {
                   onClick={() => setActiveCategory(cat)}
                   className="rounded-full px-4 py-1.5 text-[0.7rem] font-mono font-bold tracking-widest uppercase transition-all duration-200 cursor-pointer"
                   style={{
-                    backgroundColor: isActive ? color : "rgba(255,255,255,0.05)",
-                    color: isActive ? "#0a0b0a" : "rgba(0,0,0,0.45)",
-                    border: `1.5px solid ${isActive ? color : "rgba(255,255,255,0.1)"}`,
+                  backgroundColor: isActive ? color : "rgba(0,0,0,0.04)",
+                    color: isActive ? "#fff" : "rgba(0,0,0,0.55)",
+                    border: `1.5px solid ${isActive ? color : "rgba(0,0,0,0.12)"}`,
                   }}
                 >
                   {cat}
@@ -237,7 +237,7 @@ export default function PortfolioPage() {
                       </div>
                     </div>
                     <div className="flex flex-col flex-1 p-5 sm:p-6">
-                      <span className="text-[0.62rem] font-mono uppercase tracking-widest text-black/35 mb-1.5">
+                      <span className="text-[0.62rem] font-mono uppercase tracking-widest text-black/55 mb-1.5">
                         {study.projectName}
                       </span>
                       <h3
@@ -246,20 +246,20 @@ export default function PortfolioPage() {
                       >
                         {study.caseStudyTitle ?? study.projectName}
                       </h3>
-                      <p className="text-[0.8rem] text-black/50 leading-relaxed line-clamp-2 mb-4 flex-1">
+                      <p className="text-[0.8rem] text-black/70 leading-relaxed line-clamp-2 mb-4 flex-1">
                         {study.description}
                       </p>
                       {showMetrics && (
                         <div className="flex gap-4 mb-4 pb-4 border-b border-black/[0.08]">
                           {study.metrics!.slice(0, 2).map((m) => (
                             <div key={m.label}>
-                              <p className="text-[0.58rem] font-mono uppercase tracking-wider text-black/35">{m.label}</p>
+                              <p className="text-[0.58rem] font-mono uppercase tracking-wider text-black/50">{m.label}</p>
                               <p className="text-sm font-bold text-black">{m.value}</p>
                             </div>
                           ))}
                         </div>
                       )}
-                      <div className="flex items-center gap-1.5 text-[0.7rem] font-mono font-bold tracking-[0.12em] uppercase text-black/40 group-hover:text-[#ed1238] transition-colors duration-300 mt-auto pt-1">
+                      <div className="flex items-center gap-1.5 text-[0.7rem] font-mono font-bold tracking-[0.12em] uppercase text-black/60 group-hover:text-[#ed1238] transition-colors duration-300 mt-auto pt-1">
                         View Case Study
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-3.5 transition-transform duration-300 group-hover:translate-x-1">
                           <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />

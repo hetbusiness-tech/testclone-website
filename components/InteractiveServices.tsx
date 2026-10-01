@@ -102,7 +102,7 @@ export default function InteractiveServices() {
                 {hoveredService.number} / {hoveredService.label}
               </span>
               <Image
-                src="/header.png"
+                src="/head-image.png"
                 alt=""
                 aria-hidden="true"
                 width={220}

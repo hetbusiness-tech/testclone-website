@@ -165,7 +165,7 @@ const organizationSchema = {
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${SITE_URL}/header.png`,
+    url: `${SITE_URL}/head-image.png`,
     width: 958,
     height: 207,
   },
@@ -210,7 +210,7 @@ const localBusinessSchema = {
   "@id": `${SITE_URL}/#localbusiness`,
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/header.png`,
+  logo: `${SITE_URL}/head-image.png`,
   description:
     "Full-stack Shopify Plus agency specialising in CRO, performance marketing, and e-commerce growth.",
   image: `${SITE_URL}/og-image.png`,

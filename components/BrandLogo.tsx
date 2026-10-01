@@ -9,16 +9,11 @@ type BrandLogoProps = {
   priority?: boolean;
 };
 
-const INTRINSIC_WIDTH = 680;
-const INTRINSIC_HEIGHT = 115;
-
 export default function BrandLogo({
-  height = 36,
+  height = 44,
   className = "",
   priority = false,
 }: BrandLogoProps) {
-  const width = Math.round((INTRINSIC_WIDTH / INTRINSIC_HEIGHT) * height);
-
   return (
     <Link
       href="/"
@@ -26,10 +21,10 @@ export default function BrandLogo({
       aria-label="Technostripe Solutions home"
     >
       <Image
-        src="/technostripe-logo.svg"
+        src="/head-image.png"
         alt="Technostripe Solutions"
-        width={width}
-        height={height}
+        width={179}
+        height={40}
         priority={priority}
         unoptimized
         className="h-auto w-auto object-contain object-left"
@@ -38,4 +33,3 @@ export default function BrandLogo({
     </Link>
   );
 }
-

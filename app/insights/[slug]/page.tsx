@@ -77,7 +77,7 @@ function RelatedCard({ blog }: { blog: BlogPost }) {
   return (
     <Link
       href={`/insights/${blog.slug}`}
-      className="group flex gap-4 rounded-xl border border-black/8 bg-black/[0.02] p-4 transition-all duration-300 hover:border-[#ed1238]/30 hover:bg-black/[0.05]"
+      className="group flex gap-4 rounded-xl border border-black/15 bg-black/[0.03] p-4 transition-all duration-300 hover:border-[#ed1238]/40 hover:bg-black/[0.06]"
     >
       {blog.coverImage && (
         <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-black/5">
@@ -91,13 +91,13 @@ function RelatedCard({ blog }: { blog: BlogPost }) {
         </div>
       )}
       <div className="flex flex-col gap-1 min-w-0">
-        <span className="text-[0.6rem] font-mono tracking-[0.15em] uppercase text-[#ed1238]">
+        <span className="text-[0.6rem] font-mono tracking-[0.15em] uppercase text-[#ed1238] font-bold">
           {blog.category}
         </span>
-        <h4 className="text-sm text-black/80 leading-snug line-clamp-2 group-hover:text-black transition-colors">
+        <h4 className="text-sm text-black/85 leading-snug line-clamp-2 group-hover:text-black transition-colors font-medium">
           {blog.title}
         </h4>
-        <span className="text-[0.65rem] text-black/30 font-mono mt-auto">
+        <span className="text-[0.65rem] text-black/50 font-mono mt-auto">
           {blog.readTime}
         </span>
       </div>
@@ -136,7 +136,7 @@ export default function BlogPostPage({ params }: Props) {
       name: "Technostripe Solutions",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/header.png`,
+        url: `${SITE_URL}/head-image.png`,
       },
     },
     datePublished: blog.publishDate,
@@ -163,7 +163,7 @@ export default function BlogPostPage({ params }: Props) {
         {/* ── Breadcrumb ──────────────────────────────── */}
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 mb-4 sm:mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-black/30"
+          className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 mb-4 sm:mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-black/45"
         >
           <Link href="/" className="hover:text-black transition-colors">
             Home
@@ -184,10 +184,10 @@ export default function BlogPostPage({ params }: Props) {
             <article className="flex-1 min-w-0">
               {/* Meta info */}
               <div className="flex items-center gap-3 flex-wrap mb-4 sm:mb-5">
-                <span className="rounded-full border border-[#ed1238]/30 bg-[#ed1238]/15 px-3 py-0.5 text-[0.65rem] font-mono tracking-[0.15em] uppercase text-[#ff4d6d]">
+                <span className="rounded-full border border-[#ed1238] bg-[#ed1238] px-3 py-0.5 text-[0.65rem] font-mono tracking-[0.15em] uppercase text-white font-semibold">
                   {blog.category}
                 </span>
-                <span className="text-[0.7rem] font-mono text-black/30">
+                <span className="text-[0.7rem] font-mono text-black/55">
                   {blog.readTime}
                 </span>
               </div>
@@ -239,15 +239,16 @@ export default function BlogPostPage({ params }: Props) {
               {/* Platform Tags */}
               {blog.platformTags && blog.platformTags.length > 0 && (
                 <div className="mt-10 pt-8 border-t border-black/10">
-                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-black/30 mb-3">
+                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-black/40 mb-3">
                     Platform Tags & Topics
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {blog.platformTags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-lg border border-black/10 bg-black/5 px-3 py-1 text-xs font-mono text-black/50 tracking-wider"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-black/20 bg-black/[0.07] px-3 py-1.5 text-xs font-mono font-semibold text-black/75 tracking-wider uppercase"
                       >
+                        <span className="size-1.5 rounded-full shrink-0 bg-[#ed1238] opacity-80" />
                         {tag}
                       </span>
                     ))}
@@ -303,7 +304,7 @@ export default function BlogPostPage({ params }: Props) {
               {/* Back link */}
               <Link
                 href="/insights"
-                className="inline-flex items-center gap-2 text-[0.72rem] font-mono tracking-[0.12em] uppercase text-black/40 hover:text-black transition-colors"
+                className="inline-flex items-center gap-2 text-[0.72rem] font-mono tracking-[0.12em] uppercase text-black/60 hover:text-black transition-colors font-semibold"
               >
                 <svg
                   viewBox="0 0 16 16"
@@ -320,7 +321,7 @@ export default function BlogPostPage({ params }: Props) {
               {/* Related Posts */}
               {related.length > 0 && (
                 <div>
-                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-black/30 mb-4">
+                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-black/55 font-semibold mb-4">
                     Related Posts
                   </p>
                   <div className="space-y-3">

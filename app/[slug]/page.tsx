@@ -80,7 +80,7 @@ export default function SeoPage({ params }: Props) {
       "@type": "Organization",
       name: "Technostripe Solutions",
       url: SITE_URL,
-      logo: `${SITE_URL}/header.png`,
+      logo: `${SITE_URL}/head-image.png`,
     },
     url: `${SITE_URL}/${page.slug}`,
     serviceType: page.serviceGroup,

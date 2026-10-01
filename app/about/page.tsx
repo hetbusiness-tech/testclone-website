@@ -263,26 +263,26 @@ export default function AboutPage() {
       </section>
 
       {/* ── 4. WHAT WE STAND FOR / CORE VALUES ─────────────────────────────── */}
-      <section className="relative z-10 bg-[#f4f4ec] text-[#fffafa] py-12 sm:py-20 lg:py-28 overflow-hidden">
+      <section className="relative z-10 bg-[#f4f4ec] text-black py-12 sm:py-20 lg:py-28 overflow-hidden">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mb-8 sm:mb-14">
-            <span className="eyebrow text-[#fffafa]/70 font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
+            <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
               ( CORE VALUES )
             </span>
-            <h2 className="mt-3 sm:mt-4 font-display text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[#fffafa] leading-tight">
+            <h2 className="mt-3 sm:mt-4 font-display text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight text-black leading-tight">
               What we <br />stand for
             </h2>
           </div>
 
-          <div className="overflow-hidden rounded-2xl sm:rounded-[2rem] border border-black/10 bg-black shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="overflow-hidden rounded-2xl sm:rounded-[2rem] border border-black/15 bg-black/[0.08] shadow-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {values.map((item, idx) => {
               if (item.dark) {
                 return (
                   <div
                     key={idx}
-                    className="p-6 sm:p-10 bg-[#fffafa] text-black flex flex-col justify-center min-h-[180px] sm:min-h-[220px]"
+                    className="p-6 sm:p-10 bg-white text-black flex flex-col justify-center min-h-[180px] sm:min-h-[220px]"
                   >
-                    <p className="font-display text-xl sm:text-3xl font-extrabold leading-tight text-black">
+                    <p className="font-display text-xl sm:text-2xl lg:text-3xl font-extrabold leading-tight text-black">
                       Five principles.{" "}
                       <span className="text-[#ed1238]">One promise:</span> your growth, measured.
                     </p>
@@ -296,14 +296,14 @@ export default function AboutPage() {
                   className={`group p-6 sm:p-10 bg-white hover:bg-[#ed1238] transition-all duration-300 border-b border-black/10 ${idx % 3 !== 2 ? "lg:border-r" : ""
                     } ${idx >= 3 ? "lg:border-b-0" : ""} flex flex-col justify-between min-h-[180px] sm:min-h-[220px] cursor-default`}
                 >
-                  <span className="font-mono text-xs font-bold text-black/40 group-hover:text-black/70 transition-colors duration-300">
+                  <span className="font-mono text-xs font-bold text-black/40 group-hover:text-white/70 transition-colors duration-300">
                     {item.num}
                   </span>
                   <div>
-                    <h3 className="font-display text-xl sm:text-2xl font-black text-[#fffafa] group-hover:text-black transition-colors duration-300">
+                    <h3 className="font-display text-xl sm:text-2xl font-black text-black group-hover:text-white transition-colors duration-300">
                       {item.title}
                     </h3>
-                    <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-black/65 group-hover:text-black/90 leading-relaxed font-normal transition-colors duration-300">
+                    <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-black/75 group-hover:text-white/90 leading-relaxed font-normal transition-colors duration-300">
                       {item.desc}
                     </p>
                   </div>
