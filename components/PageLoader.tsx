@@ -3,22 +3,29 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-// Only show loader on the very first page load (not on client-side navigations)
-let hasLoadedOnce = false;
+// Only show loader on the very first page load (persisted via sessionStorage)
 
 const DURATION = 900; // 0.9s — snappy but still satisfying
 
 export default function PageLoader() {
-  const [phase, setPhase] = useState<"fill" | "fade" | "done">(() => {
-    // If already loaded once in this session, skip the loader entirely
-    if (hasLoadedOnce) return "done";
-    return "fill";
-  });
+  const [phase, setPhase] = useState<"fill" | "fade" | "done">("done");
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
-    // Skip if already shown once (client-side navigation)
-    if (phase === "done") return;
+    // Check if loader has already been shown in this browser session
+    try {
+      if (typeof window !== "undefined" && sessionStorage.getItem("technostripe_loader_seen") === "1") {
+        return;
+      }
+    } catch {
+      // Ignore storage errors
+    }
+
+    // First time visit — activate loader and immediately record it
+    setPhase("fill");
+    try {
+      sessionStorage.setItem("technostripe_loader_seen", "1");
+    } catch {}
 
     let animFrame: number;
     const startTime = performance.now();
@@ -52,7 +59,6 @@ export default function PageLoader() {
     // Unmount after fade animation completes
     const doneTimer = setTimeout(() => {
       setPhase("done");
-      hasLoadedOnce = true; // Mark as loaded so navigations skip loader
     }, DURATION + 700);
 
     // Also listen for chunk errors and dismiss immediately
@@ -69,7 +75,6 @@ export default function PageLoader() {
       clearTimeout(doneTimer);
       window.removeEventListener("error", handleError);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (phase === "done") return null;

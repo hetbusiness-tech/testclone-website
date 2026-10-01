@@ -16,16 +16,21 @@ export const navItems = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [progressVisible, setProgressVisible] = useState(true);
+  const [progressVisible, setProgressVisible] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Hide loading progress bar after initial load
+  // Show loading progress bar only on first initial visit
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setProgressVisible(false);
-    }, 600);
-    return () => clearTimeout(timer);
+    try {
+      if (typeof window !== "undefined" && !sessionStorage.getItem("technostripe_loader_seen")) {
+        setProgressVisible(true);
+        const timer = setTimeout(() => {
+          setProgressVisible(false);
+        }, 600);
+        return () => clearTimeout(timer);
+      }
+    } catch {}
   }, []);
 
   // Close mobile menu on route change
