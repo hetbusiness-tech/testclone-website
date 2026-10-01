@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import CTASection from "../../components/CTASection";
@@ -75,7 +76,7 @@ export default function PortfolioPage() {
 
           {/* Featured Card */}
           {activeCategory === "All" && featured && (
-            <a
+            <Link
               href={`/portfolio/${featured.slug}`}
               className="group mb-10 flex flex-col sm:flex-row overflow-hidden rounded-2xl border border-black/10 bg-[#fffafa] transition-all duration-300 hover:border-[#ed1238]/40 hover:shadow-[0_0_40px_rgba(237,18,56,0.12)]"
             >
@@ -155,7 +156,7 @@ export default function PortfolioPage() {
                   </svg>
                 </div>
               </div>
-            </a>
+            </Link>
           )}
 
           {/* Category Filter Tabs */}
@@ -195,7 +196,7 @@ export default function PortfolioPage() {
                   !SKIP_METRIC_LABELS.has(study.metrics[0].label);
 
                 return (
-                  <a
+                  <Link
                     key={study.slug}
                     href={`/portfolio/${study.slug}`}
                     className="group flex flex-col overflow-hidden rounded-2xl border border-black/10 bg-[#fffafa] transition-all duration-300 hover:border-[#ed1238]/40 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(237,18,56,0.12)]"
@@ -265,7 +266,7 @@ export default function PortfolioPage() {
                         </svg>
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 );
               })}
             </div>
