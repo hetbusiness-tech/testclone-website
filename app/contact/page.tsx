@@ -104,7 +104,7 @@ export default function ContactPage() {
             <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
               ( BOOK STRATEGY CALL )
             </span>
-            <h1 className="mt-3 sm:mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08] sm:leading-[1.04]">
+            <h1 className="mt-3 sm:mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-black leading-[1.08] sm:leading-[1.04]">
               Let’s scale your e-commerce brand.
             </h1>
             <p className="mt-4 sm:mt-5 max-w-lg text-sm sm:text-lg leading-relaxed text-paper/70 font-normal">
@@ -113,7 +113,7 @@ export default function ContactPage() {
 
             {/* Direct Contact Cards */}
             <div className="mt-6 sm:mt-10 space-y-3 sm:space-y-4">
-              <div className="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
+              <div className="group rounded-2xl border border-black/10 bg-black/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
                 <div className="flex items-center gap-4">
                   <div className="flex size-10 items-center justify-center rounded-xl bg-[#ed1238]/10 text-[#ed1238] border border-[#ed1238]/20 shrink-0">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
@@ -123,12 +123,12 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Location</p>
-                    <p className="mt-0.5 text-sm sm:text-base font-semibold text-white">Gravity Business Park, Ahmedabad, Gujarat, India (Global D2C Scale)</p>
+                    <p className="mt-0.5 text-sm sm:text-base font-semibold text-black">Gravity Business Park, Ahmedabad, Gujarat, India (Global D2C Scale)</p>
                   </div>
                 </div>
               </div>
 
-              <div className="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
+              <div className="group rounded-2xl border border-black/10 bg-black/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
                 <div className="flex items-center gap-4">
                   <div className="flex size-10 items-center justify-center rounded-xl bg-[#ed1238]/10 text-[#ed1238] border border-[#ed1238]/20 shrink-0">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
@@ -138,14 +138,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Direct Email</p>
-                    <a href="mailto:technostripesolution@gmail.com" className="mt-0.5 text-sm sm:text-base font-semibold text-white hover:text-[#ed1238] transition-colors">
+                    <a href="mailto:technostripesolution@gmail.com" className="mt-0.5 text-sm sm:text-base font-semibold text-black hover:text-[#ed1238] transition-colors">
                       technostripesolution@gmail.com
                     </a>
                   </div>
                 </div>
               </div>
 
-              <div className="group rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
+              <div className="group rounded-2xl border border-black/10 bg-black/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
                 <div className="flex items-center gap-4">
                   <div className="flex size-10 items-center justify-center rounded-xl bg-[#ed1238]/10 text-[#ed1238] border border-[#ed1238]/20 shrink-0">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
@@ -154,7 +154,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Direct Phone / WhatsApp</p>
-                    <a href="tel:+919714734563" className="mt-0.5 text-sm sm:text-base font-semibold text-white hover:text-[#ed1238] transition-colors">
+                    <a href="tel:+919714734563" className="mt-0.5 text-sm sm:text-base font-semibold text-black hover:text-[#ed1238] transition-colors">
                       +91 9714734563
                     </a>
                   </div>
@@ -163,7 +163,7 @@ export default function ContactPage() {
             </div>
 
             {/* Trust highlights */}
-            <div className="mt-8 pt-6 sm:mt-10 sm:pt-8 border-t border-white/10 space-y-3 font-mono text-xs text-paper/60">
+            <div className="mt-8 pt-6 sm:mt-10 sm:pt-8 border-t border-black/10 space-y-3 font-mono text-xs text-paper/60">
               <div className="flex items-center gap-2.5">
                 <span className="text-[#ed1238]">✓</span>
                 <span>Direct consultation with e-commerce growth strategists</span>
@@ -180,7 +180,7 @@ export default function ContactPage() {
           </div>
 
           {/* Right Column: Interactive Growth Inquiry Form */}
-          <div className="rounded-2xl sm:rounded-3xl border border-white/15 bg-white/[0.03] p-5 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl">
+          <div className="rounded-2xl sm:rounded-3xl border border-black/15 bg-black/[0.03] p-5 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl">
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -192,13 +192,13 @@ export default function ContactPage() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                <h3 className="font-display text-3xl font-black text-white">Form submitted successfully!</h3>
+                <h3 className="font-display text-3xl font-black text-black">Form submitted successfully!</h3>
                 <p className="mt-3 text-sm text-paper/70 max-w-md mx-auto leading-relaxed">
                   Thank you for reaching out. Our growth team will review your store metrics and contact you within 24 hours to schedule your strategy session.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-8 rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-xs font-mono uppercase tracking-wider text-white hover:bg-white/10 transition-colors"
+                  className="mt-8 rounded-full border border-black/20 bg-black/5 px-6 py-2.5 text-xs font-mono uppercase tracking-wider text-black hover:bg-black/10 transition-colors"
                 >
                   Send another inquiry
                 </button>
@@ -233,7 +233,7 @@ export default function ContactPage() {
                           onClick={() => toggleService(service)}
                           className={`rounded-full px-4 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${isSelected
                               ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
-                              : "border border-white/15 bg-white/5 text-paper/70 hover:border-white/30 hover:text-white"
+                              : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
                             }`}
                         >
                           {service}
@@ -259,7 +259,7 @@ export default function ContactPage() {
                           onClick={() => setSelectedRevenue(range)}
                           className={`rounded-xl py-2.5 px-3 text-xs font-semibold text-center transition-all duration-200 cursor-pointer ${isSelected
                               ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
-                              : "border border-white/15 bg-white/5 text-paper/70 hover:border-white/30 hover:text-white"
+                              : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
                             }`}
                         >
                           {range}
@@ -284,7 +284,7 @@ export default function ContactPage() {
                       placeholder="e.g. Rohan Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                      className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
                     />
                   </div>
 
@@ -301,7 +301,7 @@ export default function ContactPage() {
                       placeholder="e.g. LuxeAura Apparel"
                       value={formData.brandName}
                       onChange={(e) => setFormData({ ...formData, brandName: e.target.value })}
-                      className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                      className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
                     />
                   </div>
                 </div>
@@ -320,7 +320,7 @@ export default function ContactPage() {
                       placeholder="rohan@brand.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                      className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
                     />
                   </div>
 
@@ -337,7 +337,7 @@ export default function ContactPage() {
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                      className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
                     />
                   </div>
                 </div>
@@ -362,7 +362,7 @@ export default function ContactPage() {
                         placeholder="https://yourbrand.com"
                         value={formData.websiteUrl}
                         onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
-                        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                        className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
                       />
                       {needsUrl && (
                         <p className="mt-1.5 text-[11px] text-[#ed1238]/80 font-mono">
@@ -390,7 +390,7 @@ export default function ContactPage() {
                     placeholder="Tell us about your current conversion rate, ad performance, or redesign timeline..."
                     value={formData.challenges}
                     onChange={(e) => setFormData({ ...formData, challenges: e.target.value })}
-                    className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                    className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
                   />
                 </div>
 
@@ -422,8 +422,8 @@ export default function ContactPage() {
         </div>
 
         {/* Thoughtful Quote at Bottom */}
-        <div className="mt-20 pt-12 border-t border-white/10 text-center max-w-3xl mx-auto">
-          <p className="font-display text-xl sm:text-2xl font-semibold text-white/90 leading-relaxed italic">
+        <div className="mt-20 pt-12 border-t border-black/10 text-center max-w-3xl mx-auto">
+          <p className="font-display text-xl sm:text-2xl font-semibold text-black/90 leading-relaxed italic">
             “Where Ambition Meets Execution — We turn high-complexity ideas into market-dominating digital reality.”
           </p>
           <p className="mt-3 font-mono text-xs tracking-widest text-[#ed1238] uppercase font-bold">

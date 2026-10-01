@@ -37,7 +37,7 @@ export default function TermsPage() {
     <>
       <Navbar />
 
-      <main id="main-content" className="relative min-h-screen bg-[#0a0b0a] text-[#f4f4f4] pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden selection:bg-[#ed1238] selection:text-white">
+      <main id="main-content" className="relative min-h-screen bg-[#fffafa] text-[#0a0b0a] pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden selection:bg-[#ed1238] selection:text-white">
         <div
           aria-hidden
           className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[90vw] max-w-5xl h-[420px] rounded-full opacity-20"
@@ -48,16 +48,16 @@ export default function TermsPage() {
           }}
         />
 
-        <header className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 text-center pb-12 sm:pb-16 border-b border-white/10">
+        <header className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 text-center pb-12 sm:pb-16 border-b border-black/10">
           <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="inline-flex items-center gap-2 text-xs font-mono text-white/50 uppercase tracking-widest">
+            <ol className="inline-flex items-center gap-2 text-xs font-mono text-black/50 uppercase tracking-widest">
               <li>
                 <Link href="/" className="hover:text-[#ed1238] transition-colors">
                   Home
                 </Link>
               </li>
               <li>/</li>
-              <li className="text-white/80">Terms of Service</li>
+              <li className="text-black/80">Terms of Service</li>
             </ol>
           </nav>
 
@@ -66,24 +66,24 @@ export default function TermsPage() {
             Legal & Compliance
           </span>
 
-          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mt-2 leading-[1.08]">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-black mt-2 leading-[1.08]">
             Terms of Service
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base text-white/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-sm sm:text-base text-black/60 max-w-2xl mx-auto leading-relaxed">
             These terms govern your use of technostripe.com and any Shopify Plus development, performance marketing, SEO, or CRO services you engage Technostripe Solutions for.
           </p>
 
-          <div className="mt-6 inline-flex items-center gap-2 text-xs font-mono text-white/40 bg-white/[0.03] border border-white/10 px-4 py-1.5 rounded-full">
+          <div className="mt-6 inline-flex items-center gap-2 text-xs font-mono text-black/40 bg-black/[0.03] border border-black/10 px-4 py-1.5 rounded-full">
             <span>Last Updated:</span>
-            <span className="text-white/80 font-medium">{lastUpdated}</span>
+            <span className="text-black/80 font-medium">{lastUpdated}</span>
           </div>
         </header>
 
         <div className="relative z-10 max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
             <aside className="lg:col-span-4 hidden lg:block">
-              <div className="sticky top-32 rounded-3xl border border-white/10 bg-[#121312]/80 backdrop-blur-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div className="sticky top-32 rounded-3xl border border-black/10 bg-[#fffafa]/80 backdrop-blur-xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                 <p className="font-mono text-xs font-bold uppercase tracking-widest text-[#ed1238] mb-4 flex items-center gap-2">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4">
                     <path d="M4 6h16M4 12h16M4 18h7" />
@@ -95,15 +95,15 @@ export default function TermsPage() {
                     <a
                       key={sec.id}
                       href={`#${sec.id}`}
-                      className="block py-1.5 px-3 rounded-lg text-white/60 hover:text-white hover:bg-white/[0.05] transition-all"
+                      className="block py-1.5 px-3 rounded-lg text-black/60 hover:text-black hover:bg-black/[0.05] transition-all"
                     >
                       {sec.title}
                     </a>
                   ))}
                 </nav>
 
-                <div className="mt-6 pt-5 border-t border-white/10">
-                  <p className="text-[11px] text-white/40 mb-2 font-mono">Questions about these terms?</p>
+                <div className="mt-6 pt-5 border-t border-black/10">
+                  <p className="text-[11px] text-black/40 mb-2 font-mono">Questions about these terms?</p>
                   <a
                     href="mailto:growth@technostripe.com"
                     className="inline-flex items-center gap-1.5 text-xs text-[#ed1238] hover:underline font-semibold"
@@ -117,9 +117,9 @@ export default function TermsPage() {
               </div>
             </aside>
 
-            <article className="lg:col-span-8 space-y-10 sm:space-y-12 leading-relaxed text-sm sm:text-base text-white/75">
+            <article className="lg:col-span-8 space-y-10 sm:space-y-12 leading-relaxed text-sm sm:text-base text-black/75">
               <section id="acceptance" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">01</span>
                   Acceptance of Terms
                 </h2>
@@ -133,7 +133,7 @@ export default function TermsPage() {
               </section>
 
               <section id="services" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">02</span>
                   Services & Engagements
                 </h2>
@@ -143,7 +143,7 @@ export default function TermsPage() {
               </section>
 
               <section id="website-use" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">03</span>
                   Acceptable Use of This Website
                 </h2>
@@ -153,7 +153,7 @@ export default function TermsPage() {
               </section>
 
               <section id="fees-payment" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">04</span>
                   Fees & Payment
                 </h2>
@@ -163,7 +163,7 @@ export default function TermsPage() {
               </section>
 
               <section id="intellectual-property" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">05</span>
                   Intellectual Property
                 </h2>
@@ -173,7 +173,7 @@ export default function TermsPage() {
               </section>
 
               <section id="confidentiality" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">06</span>
                   Confidentiality
                 </h2>
@@ -187,7 +187,7 @@ export default function TermsPage() {
               </section>
 
               <section id="liability" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">07</span>
                   Disclaimers & Limitation of Liability
                 </h2>
@@ -197,7 +197,7 @@ export default function TermsPage() {
               </section>
 
               <section id="termination" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">08</span>
                   Termination
                 </h2>
@@ -207,7 +207,7 @@ export default function TermsPage() {
               </section>
 
               <section id="governing-law" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">09</span>
                   Governing Law
                 </h2>
@@ -217,7 +217,7 @@ export default function TermsPage() {
               </section>
 
               <section id="changes" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">10</span>
                   Changes to These Terms
                 </h2>
@@ -227,34 +227,34 @@ export default function TermsPage() {
               </section>
 
               <section id="contact" className="scroll-mt-32 space-y-4">
-                <h2 className="font-display text-xl sm:text-2xl font-bold text-white tracking-tight flex items-center gap-3">
+                <h2 className="font-display text-xl sm:text-2xl font-bold text-black tracking-tight flex items-center gap-3">
                   <span className="text-[#ed1238] font-mono text-sm font-semibold">11</span>
                   Contact
                 </h2>
                 <p>
                   Questions about these Terms of Service can be sent to:
                 </p>
-                <div className="rounded-3xl border border-white/15 bg-gradient-to-br from-white/[0.05] via-[#141514] to-[#0d0e0d] p-6 sm:p-8 space-y-4">
+                <div className="rounded-3xl border border-black/15 bg-gradient-to-br from-white/[0.05] via-[#fffafa] to-[#fffafa] p-6 sm:p-8 space-y-4">
                   <div>
-                    <h3 className="font-display font-bold text-white text-lg">Technostripe Solutions</h3>
-                    <p className="text-xs text-white/50 font-mono">Shopify Plus Agency & Digital Growth Partner</p>
+                    <h3 className="font-display font-bold text-black text-lg">Technostripe Solutions</h3>
+                    <p className="text-xs text-black/50 font-mono">Shopify Plus Agency & Digital Growth Partner</p>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm pt-2">
                     <div>
-                      <p className="font-mono text-white/40 uppercase tracking-wider text-[11px] mb-1">Email Inquiries</p>
-                      <a href="mailto:growth@technostripe.com" className="text-white hover:text-[#ed1238] transition-colors font-medium">
+                      <p className="font-mono text-black/40 uppercase tracking-wider text-[11px] mb-1">Email Inquiries</p>
+                      <a href="mailto:growth@technostripe.com" className="text-black hover:text-[#ed1238] transition-colors font-medium">
                         growth@technostripe.com
                       </a>
                     </div>
                     <div>
-                      <p className="font-mono text-white/40 uppercase tracking-wider text-[11px] mb-1">Phone</p>
-                      <a href="tel:+919714734563" className="text-white hover:text-[#ed1238] transition-colors font-medium">
+                      <p className="font-mono text-black/40 uppercase tracking-wider text-[11px] mb-1">Phone</p>
+                      <a href="tel:+919714734563" className="text-black hover:text-[#ed1238] transition-colors font-medium">
                         +91 9714734563
                       </a>
                     </div>
                     <div>
-                      <p className="font-mono text-white/40 uppercase tracking-wider text-[11px] mb-1">Location</p>
-                      <p className="text-white/80">Ahmedabad, Gujarat, India</p>
+                      <p className="font-mono text-black/40 uppercase tracking-wider text-[11px] mb-1">Location</p>
+                      <p className="text-black/80">Ahmedabad, Gujarat, India</p>
                     </div>
                   </div>
                 </div>
@@ -263,8 +263,8 @@ export default function TermsPage() {
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto px-5 sm:px-8 mt-20 pt-10 border-t border-white/10 text-center">
-          <p className="text-sm text-white/60 mb-4">
+        <div className="max-w-4xl mx-auto px-5 sm:px-8 mt-20 pt-10 border-t border-black/10 text-center">
+          <p className="text-sm text-black/60 mb-4">
             Have a project in mind or want to discuss a growth roadmap?
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -279,7 +279,7 @@ export default function TermsPage() {
             </Link>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-xs font-bold font-mono tracking-wider uppercase text-white/70 transition-all duration-300 hover:border-white/40 hover:text-white cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-full border border-black/20 px-6 py-3 text-xs font-bold font-mono tracking-wider uppercase text-black/70 transition-all duration-300 hover:border-black/40 hover:text-black cursor-pointer"
             >
               Back to Home
             </Link>

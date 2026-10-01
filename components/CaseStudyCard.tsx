@@ -12,7 +12,7 @@ export default function CaseStudyCard({
   return (
     <Link
       href={`/portfolio/${caseStudy.slug}`}
-      className={`group flex flex-col h-full overflow-hidden rounded-3xl border border-white/10 bg-[#0e100e]/90 backdrop-blur-md transition-all duration-500 hover:border-[#ed1238]/40 hover:bg-white/[0.04] hover:shadow-[0_16px_50px_rgba(237,18,56,0.16)] hover:-translate-y-1.5 ${
+      className={`group flex flex-col h-full overflow-hidden rounded-3xl border border-black/10 bg-[#ffffff]/90 backdrop-blur-md transition-all duration-500 hover:border-[#ed1238]/40 hover:bg-black/[0.04] hover:shadow-[0_16px_50px_rgba(237,18,56,0.16)] hover:-translate-y-1.5 ${
         featured ? "md:col-span-2 lg:col-span-3 lg:flex-row lg:items-stretch" : ""
       }`}
     >
@@ -37,7 +37,7 @@ export default function CaseStudyCard({
 
           {/* Project Name */}
           <h3
-            className="font-display text-2xl sm:text-3xl text-white leading-tight transition-colors duration-300 group-hover:text-[#ff4d6d] mb-3"
+            className="font-display text-2xl sm:text-3xl text-black leading-tight transition-colors duration-300 group-hover:text-[#ff4d6d] mb-3"
             style={{
               fontFamily: "var(--font-display-family)",
               fontWeight: 800,
@@ -48,19 +48,19 @@ export default function CaseStudyCard({
           </h3>
 
           {/* Description */}
-          <p className="text-sm sm:text-base text-white/55 leading-relaxed line-clamp-3 mb-6 font-normal">
+          <p className="text-sm sm:text-base text-black/55 leading-relaxed line-clamp-3 mb-6 font-normal">
             {caseStudy.description}
           </p>
 
           {/* Key Metrics preview if available */}
           {caseStudy.metrics && caseStudy.metrics.length > 0 && (
-            <div className="grid grid-cols-2 gap-3 mb-6 p-4 rounded-xl bg-white/[0.02] border border-white/8">
+            <div className="grid grid-cols-2 gap-3 mb-6 p-4 rounded-xl bg-black/[0.02] border border-black/8">
               {caseStudy.metrics.slice(0, 2).map((m) => (
                 <div key={m.label}>
-                  <p className="text-[0.65rem] font-mono uppercase tracking-wider text-white/40">
+                  <p className="text-[0.65rem] font-mono uppercase tracking-wider text-black/40">
                     {m.label}
                   </p>
-                  <p className="text-lg font-display font-extrabold text-white mt-0.5">
+                  <p className="text-lg font-display font-extrabold text-black mt-0.5">
                     {m.value}
                   </p>
                 </div>
@@ -70,9 +70,9 @@ export default function CaseStudyCard({
         </div>
 
         {/* View Case Study Button Link */}
-        <div className="pt-4 border-t border-white/8 flex items-center justify-between mt-auto">
+        <div className="pt-4 border-t border-black/8 flex items-center justify-between mt-auto">
           <span
-            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold font-mono tracking-[0.12em] uppercase text-white transition-all duration-300 group-hover:text-[#ed1238]"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold font-mono tracking-[0.12em] uppercase text-black transition-all duration-300 group-hover:text-[#ed1238]"
           >
             View Case Study
             <svg

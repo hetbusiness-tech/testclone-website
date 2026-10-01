@@ -115,7 +115,7 @@ export default function CitySeoPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <main id="main-content" className="min-h-screen bg-[#0a0b0a]">
+      <main id="main-content" className="min-h-screen bg-[#fffafa]">
         {/* ── HERO ────────────────────────────────────────── */}
         <section className="relative overflow-hidden pt-28 sm:pt-36 pb-16 sm:pb-24">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(237,18,56,0.12)_0%,transparent_55%)]" />
@@ -123,19 +123,19 @@ export default function CitySeoPage({ params }: Props) {
           <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
             <nav
               aria-label="Breadcrumb"
-              className="mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-white/30"
+              className="mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-black/30"
             >
-              <Link href="/" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-black transition-colors">
                 Home
               </Link>
               <span>/</span>
-              <Link href="/services" className="hover:text-white transition-colors">
+              <Link href="/services" className="hover:text-black transition-colors">
                 Services
               </Link>
               <span>/</span>
-              <span className="text-white/40">{page.cityName}</span>
+              <span className="text-black/40">{page.cityName}</span>
               <span>/</span>
-              <span className="text-white/55 truncate max-w-[240px]">{page.h1}</span>
+              <span className="text-black/55 truncate max-w-[240px]">{page.h1}</span>
             </nav>
 
             {/* Mobile stacking order: badge/H1 -> form -> intro -> stats -> image.
@@ -149,7 +149,7 @@ export default function CitySeoPage({ params }: Props) {
                 </span>
 
                 <h1
-                  className="text-3xl sm:text-4xl lg:text-5xl text-white leading-[1.1]"
+                  className="text-3xl sm:text-4xl lg:text-5xl text-black leading-[1.1]"
                   style={{
                     fontFamily: "var(--font-display-family)",
                     fontWeight: 800,
@@ -170,7 +170,7 @@ export default function CitySeoPage({ params }: Props) {
 
               {/* Intro */}
               <div className="order-3 lg:order-none lg:col-start-1 lg:row-start-2">
-                <p className="text-lg text-white/70 leading-relaxed max-w-xl">
+                <p className="text-lg text-black/70 leading-relaxed max-w-xl">
                   {page.intro}
                 </p>
               </div>
@@ -180,12 +180,12 @@ export default function CitySeoPage({ params }: Props) {
                 {page.stats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="rounded-xl border border-white/10 bg-white/[0.02] px-3 py-3 text-center"
+                    className="rounded-xl border border-black/10 bg-black/[0.02] px-3 py-3 text-center"
                   >
-                    <p className="text-lg sm:text-xl font-display font-extrabold text-white">
+                    <p className="text-lg sm:text-xl font-display font-extrabold text-black">
                       {stat.value}
                     </p>
-                    <p className="mt-0.5 text-[0.6rem] font-mono uppercase tracking-wider text-white/40 leading-tight">
+                    <p className="mt-0.5 text-[0.6rem] font-mono uppercase tracking-wider text-black/40 leading-tight">
                       {stat.label}
                     </p>
                   </div>
@@ -194,7 +194,7 @@ export default function CitySeoPage({ params }: Props) {
 
               {/* Hero image — fills the remaining left-column space */}
               <div className="order-5 lg:order-none lg:col-start-1 lg:row-start-4 relative">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-white/15 bg-[#101210] shadow-2xl">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-black/15 bg-[#fffafa] shadow-2xl">
                   <Image
                     src={page.heroImage}
                     alt={page.heroImageAlt}
@@ -212,7 +212,7 @@ export default function CitySeoPage({ params }: Props) {
 
         <div className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
           {/* ── COVERAGE GRID ─────────────────────────────── */}
-          <section className="border-t border-white/10 pt-14 sm:pt-20">
+          <section className="border-t border-black/10 pt-14 sm:pt-20">
             <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-4">
               What this covers
             </p>
@@ -220,12 +220,12 @@ export default function CitySeoPage({ params }: Props) {
               {page.coverage.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-[#ed1238]/30 hover:bg-white/[0.04]"
+                  className="rounded-2xl border border-black/10 bg-black/[0.02] p-6 transition-colors hover:border-[#ed1238]/30 hover:bg-black/[0.04]"
                 >
-                  <h3 className="text-base sm:text-lg font-bold text-white mb-2">
+                  <h3 className="text-base sm:text-lg font-bold text-black mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed">
+                  <p className="text-sm text-black/60 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
@@ -234,15 +234,15 @@ export default function CitySeoPage({ params }: Props) {
           </section>
 
           {/* ── STANDARDS ─────────────────────────────────── */}
-          <section className="border-t border-white/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
+          <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
             <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-4">
               What we build with
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {page.standards.map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-xl border border-white/8 bg-white/[0.02] p-4">
+                <div key={item} className="flex items-start gap-3 rounded-xl border border-black/8 bg-black/[0.02] p-4">
                   <span className="text-[#ed1238] font-bold shrink-0 mt-0.5">✓</span>
-                  <span className="text-sm text-white/75 leading-relaxed">{item}</span>
+                  <span className="text-sm text-black/75 leading-relaxed">{item}</span>
                 </div>
               ))}
             </div>
@@ -250,7 +250,7 @@ export default function CitySeoPage({ params }: Props) {
 
           {/* ── PROOF ─────────────────────────────────────── */}
           {proofCaseStudies.length > 0 && (
-            <section className="border-t border-white/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
+            <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
               <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-4">
                 Real work, not a sales pitch
               </p>
@@ -263,26 +263,26 @@ export default function CitySeoPage({ params }: Props) {
           )}
 
           {/* ── PROCESS ───────────────────────────────────── */}
-          <section className="border-t border-white/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
+          <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
             <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-4">
               Our process
             </p>
-            <div className="rounded-2xl border border-white/10 overflow-hidden bg-white/[0.02]">
+            <div className="rounded-2xl border border-black/10 overflow-hidden bg-black/[0.02]">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                 {page.process.map((step, idx) => (
                   <div
                     key={step.step}
-                    className={`p-6 sm:p-7 border-b sm:border-b-0 last:border-b-0 border-white/10 ${
+                    className={`p-6 sm:p-7 border-b sm:border-b-0 last:border-b-0 border-black/10 ${
                       idx < page.process.length - 1 ? "sm:border-r" : ""
                     }`}
                   >
-                    <span className="font-mono text-xs text-white/40 font-medium">
+                    <span className="font-mono text-xs text-black/40 font-medium">
                       {step.step}
                     </span>
-                    <h4 className="mt-2 font-display text-lg font-bold text-white tracking-tight">
+                    <h4 className="mt-2 font-display text-lg font-bold text-black tracking-tight">
                       {step.title}
                     </h4>
-                    <p className="mt-2 text-sm text-white/55 leading-relaxed">
+                    <p className="mt-2 text-sm text-black/55 leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -292,15 +292,15 @@ export default function CitySeoPage({ params }: Props) {
           </section>
 
           {/* ── HIRING CHECKLIST ──────────────────────────── */}
-          <section className="border-t border-white/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
+          <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
             <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-4">
               What to check before hiring
             </p>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 space-y-4">
+            <div className="rounded-2xl border border-black/10 bg-black/[0.02] p-6 sm:p-8 space-y-4">
               {page.hiringChecklist.map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <span className="mt-1 size-1.5 shrink-0 rounded-full bg-[#ed1238]" />
-                  <span className="text-sm sm:text-base text-white/70 leading-relaxed">
+                  <span className="text-sm sm:text-base text-black/70 leading-relaxed">
                     {item}
                   </span>
                 </div>
@@ -309,14 +309,14 @@ export default function CitySeoPage({ params }: Props) {
           </section>
 
           {/* ── CLOSING ───────────────────────────────────── */}
-          <section className="border-t border-white/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
-            <p className="text-lg text-white/70 leading-relaxed max-w-3xl">
+          <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
+            <p className="text-lg text-black/70 leading-relaxed max-w-3xl">
               {page.closingParagraph}
             </p>
           </section>
 
           {/* ── FAQ ───────────────────────────────────────── */}
-          <section className="border-t border-white/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
+          <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
             <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-6">
               Frequently Asked Questions
             </p>
@@ -328,7 +328,7 @@ export default function CitySeoPage({ params }: Props) {
             <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-3">
               Ready to talk?
             </p>
-            <p className="text-lg text-white/80 leading-relaxed mb-6 max-w-lg mx-auto">
+            <p className="text-lg text-black/80 leading-relaxed mb-6 max-w-lg mx-auto">
               Book a free strategy call and get a specific plan for your store — not a generic proposal.
             </p>
             <Link

@@ -18,7 +18,7 @@ export default function TechTicker() {
         {[...tags, ...tags, ...tags, ...tags].map((tag, idx) => (
           <div
             key={idx}
-            className="flex items-center gap-8 font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-white/70 uppercase"
+            className="flex items-center gap-8 font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] text-black/70 uppercase"
           >
             <span className="text-[#ed1238] text-xs">✦</span>
             <span>{tag}</span>

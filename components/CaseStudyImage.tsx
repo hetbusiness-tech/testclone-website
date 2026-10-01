@@ -36,24 +36,24 @@ export default function CaseStudyImage({
         />
       ) : (
         /* Fallback dashed placeholder box */
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-white/15 bg-white/[0.02] rounded-2xl">
-          <div className="size-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-3">
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center border-2 border-dashed border-black/15 bg-black/[0.02] rounded-2xl">
+          <div className="size-10 rounded-full bg-black/5 border border-black/10 flex items-center justify-center mb-3">
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
-              className="size-5 text-white/40"
+              className="size-5 text-black/40"
             >
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
               <circle cx="8.5" cy="8.5" r="1.5" />
               <polyline points="21 15 16 10 5 21" />
             </svg>
           </div>
-          <p className="text-[0.72rem] font-mono uppercase tracking-wider text-white/60 mb-1">
+          <p className="text-[0.72rem] font-mono uppercase tracking-wider text-black/60 mb-1">
             Image Placeholder
           </p>
-          <p className="text-[0.68rem] font-mono text-white/35 max-w-xs break-all">
+          <p className="text-[0.68rem] font-mono text-black/35 max-w-xs break-all">
             Add image at <span className="text-[#ed1238]">/public{src}</span>
           </p>
         </div>

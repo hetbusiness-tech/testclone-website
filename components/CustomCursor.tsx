@@ -61,18 +61,18 @@ export default function CustomCursor() {
       <motion.div
         animate={{
           scale: isHovering ? 1.4 : 1,
-          borderColor: isHovering ? "#ed1238" : "rgba(255, 255, 255, 0.75)",
+          borderColor: isHovering ? "#ed1238" : "rgba(0, 0, 0, 0.75)",
           backgroundColor: isHovering ? "rgba(237, 18, 56, 0.12)" : "transparent",
         }}
         transition={{ duration: 0.18, ease: "easeOut" }}
-        className="flex size-8 items-center justify-center rounded-full border border-white/70 shadow-[0_0_15px_rgba(255,255,255,0.2)] backdrop-blur-[0.5px]"
+        className="flex size-8 items-center justify-center rounded-full border border-black/70 shadow-[0_0_15px_rgba(255,255,255,0.2)] backdrop-blur-[0.5px]"
       >
         <motion.div
           animate={{
             scale: isHovering ? 1.3 : 1,
-            backgroundColor: isHovering ? "#ed1238" : "#ffffff",
+            backgroundColor: isHovering ? "#ed1238" : "#0a0b0a",
           }}
-          className="size-1.5 rounded-full bg-white transition-colors duration-200"
+          className="size-1.5 rounded-full bg-black transition-colors duration-200"
         />
       </motion.div>
     </motion.div>

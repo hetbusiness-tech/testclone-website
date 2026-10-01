@@ -29,7 +29,7 @@ export default function RelatedLinksSection({
           <Link
             key={item.href}
             href={item.href}
-            className="rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-xs text-white/70 transition-colors hover:border-[#ed1238]/40 hover:text-white"
+            className="rounded-full border border-black/15 bg-black/[0.03] px-4 py-2 text-xs text-black/70 transition-colors hover:border-[#ed1238]/40 hover:text-black"
           >
             {item.label}
           </Link>
@@ -39,7 +39,7 @@ export default function RelatedLinksSection({
         <button
           type="button"
           onClick={() => setExpanded(true)}
-          className="mt-4 inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#ed1238] transition-colors hover:text-white"
+          className="mt-4 inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase tracking-wider text-[#ed1238] transition-colors hover:text-black"
         >
           View {remaining} More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="size-3">

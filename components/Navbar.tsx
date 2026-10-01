@@ -86,7 +86,7 @@ export default function Navbar() {
       <header className="fixed top-3.5 sm:top-5 left-0 right-0 z-40 px-4 sm:px-8 lg:px-12 pointer-events-none">
         <div ref={menuRef} className="pointer-events-auto mx-auto max-w-6xl">
           {/* Main Navbar Pill */}
-          <div className="relative z-50 flex h-[3.85rem] items-center justify-between rounded-full border border-white/15 bg-[#0a0b0a]/90 px-4 sm:px-8 shadow-[0_20px_45px_rgba(0,0,0,0.65)] backdrop-blur-xl transition-all duration-300">
+          <div className="relative z-50 flex h-[3.85rem] items-center justify-between rounded-full border border-black/15 bg-[#fffafa]/90 px-4 sm:px-8 shadow-[0_20px_45px_rgba(0,0,0,0.65)] backdrop-blur-xl transition-all duration-300">
             {/* Left: Brand Logo (BrandLogo already wraps its own Link) */}
             <div className="flex items-center">
               <BrandLogo height={34} priority className="sm:hidden" />
@@ -94,7 +94,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Navigation (>= lg) */}
-            <nav className="hidden lg:flex items-center justify-center gap-8 xl:gap-10 text-[11px] font-mono tracking-[0.2em] uppercase text-white/85">
+            <nav className="hidden lg:flex items-center justify-center gap-8 xl:gap-10 text-[11px] font-mono tracking-[0.2em] uppercase text-black/85">
               {navItems.map((item) => {
                 const isActive =
                   item.href === "/"
@@ -108,7 +108,7 @@ export default function Navbar() {
                     key={item.label}
                     href={item.href}
                     className={`relative py-1 transition-colors duration-200 hover:text-[#ed1238] ${
-                      isActive ? "text-[#ed1238] font-bold" : "text-white/85"
+                      isActive ? "text-[#ed1238] font-bold" : "text-black/85"
                     }`}
                   >
                     {item.label}
@@ -143,7 +143,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileMenuOpen}
-                className="flex size-11 items-center justify-center text-white transition-colors duration-200 hover:text-[#ed1238] cursor-pointer"
+                className="flex size-11 items-center justify-center text-black transition-colors duration-200 hover:text-[#ed1238] cursor-pointer"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -178,10 +178,10 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -12, scale: 0.97 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-2.5 overflow-hidden rounded-[2rem] border border-white/15 bg-[#0e0f0e]/95 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl lg:hidden"
+                className="mt-2.5 overflow-hidden rounded-[2rem] border border-black/15 bg-[#fffafa]/95 p-6 shadow-[0_25px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl lg:hidden"
               >
                 {/* Navigation Links */}
-                <nav className="flex flex-col space-y-1 pb-5 border-b border-white/10 font-mono text-sm uppercase tracking-wider">
+                <nav className="flex flex-col space-y-1 pb-5 border-b border-black/10 font-mono text-sm uppercase tracking-wider">
                   {navItems.map((item, idx) => {
                     const isActive =
                       item.href === "/"
@@ -203,7 +203,7 @@ export default function Navbar() {
                           className={`flex items-center justify-between py-3 px-4 rounded-xl transition-all duration-200 ${
                             isActive
                               ? "bg-[#ed1238]/15 text-[#ed1238] font-bold border border-[#ed1238]/30"
-                              : "text-white/80 hover:text-white hover:bg-white/[0.04]"
+                              : "text-black/80 hover:text-black hover:bg-black/[0.04]"
                           }`}
                         >
                           <span className="flex items-center gap-3">
@@ -220,7 +220,7 @@ export default function Navbar() {
                             stroke="currentColor"
                             strokeWidth="2"
                             className={`size-4 transition-transform duration-200 ${
-                              isActive ? "text-[#ed1238] translate-x-0.5" : "text-white/30"
+                              isActive ? "text-[#ed1238] translate-x-0.5" : "text-black/30"
                             }`}
                           >
                             <path d="m9 18 6-6-6-6" />
@@ -254,7 +254,7 @@ export default function Navbar() {
                   </Link>
 
                   {/* Direct Contact Teaser */}
-                  <div className="flex items-center justify-between px-2 text-[11px] font-mono text-white/40">
+                  <div className="flex items-center justify-between px-2 text-[11px] font-mono text-black/40">
                     <a
                       href="mailto:technostripesolution@gmail.com"
                       className="hover:text-[#ed1238] transition-colors"

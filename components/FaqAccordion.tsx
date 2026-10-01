@@ -10,7 +10,7 @@ export default function FaqAccordion({
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
+    <div className="divide-y divide-black/10 rounded-2xl border border-black/10 bg-black/[0.02] overflow-hidden">
       {faqs.map((faq, i) => {
         const isOpen = openIndex === i;
         return (
@@ -19,9 +19,9 @@ export default function FaqAccordion({
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : i)}
               aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-4 px-5 sm:px-7 py-5 text-left transition-colors hover:bg-white/[0.03]"
+              className="flex w-full items-center justify-between gap-4 px-5 sm:px-7 py-5 text-left transition-colors hover:bg-black/[0.03]"
             >
-              <span className="text-sm sm:text-base font-bold text-white">
+              <span className="text-sm sm:text-base font-bold text-black">
                 {faq.question}
               </span>
               <svg
@@ -45,7 +45,7 @@ export default function FaqAccordion({
               }`}
             >
               <div className="overflow-hidden">
-                <p className="px-5 sm:px-7 pb-5 text-sm sm:text-base text-white/65 leading-relaxed">
+                <p className="px-5 sm:px-7 pb-5 text-sm sm:text-base text-black/65 leading-relaxed">
                   {faq.answer}
                 </p>
               </div>

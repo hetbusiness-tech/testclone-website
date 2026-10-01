@@ -51,7 +51,7 @@ export default function TestimonialsMarquee() {
           <div
             key={idx}
             aria-hidden={idx >= testimonials.length}
-            className="w-[min(86vw,360px)] sm:w-[420px] shrink-0 rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-8 backdrop-blur-sm transition-colors hover:border-[#ed1238]/40 hover:bg-white/[0.04]"
+            className="w-[min(86vw,360px)] sm:w-[420px] shrink-0 rounded-2xl border border-black/10 bg-black/[0.02] p-5 sm:p-8 backdrop-blur-sm transition-colors hover:border-[#ed1238]/40 hover:bg-black/[0.04]"
           >
             <div className="flex items-center gap-1 text-[#ed1238]">
               {Array.from({ length: item.stars }).map((_, i) => (
@@ -70,8 +70,8 @@ export default function TestimonialsMarquee() {
               &ldquo;{item.quote}&rdquo;
             </p>
 
-            <div className="mt-6 border-t border-white/10 pt-4">
-              <p className="font-display text-sm font-bold text-white">
+            <div className="mt-6 border-t border-black/10 pt-4">
+              <p className="font-display text-sm font-bold text-black">
                 {item.name}
               </p>
             </div>

@@ -40,12 +40,12 @@ export default function Home() {
       <ApproachSection />
 
       {/* 7. Client Testimonials */}
-      <section className="relative z-10 bg-ink py-12 sm:py-16 border-t border-white/10 overflow-hidden">
+      <section className="relative z-10 bg-ink py-12 sm:py-16 border-t border-black/10 overflow-hidden">
         <div className="mx-auto max-w-6xl px-6 mb-8 sm:mb-10">
           <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold">
             ( TESTIMONIALS )
           </span>
-          <h2 className="mt-4 font-display text-4xl sm:text-6xl font-black text-white tracking-tight">
+          <h2 className="mt-4 font-display text-4xl sm:text-6xl font-black text-black tracking-tight">
             Proof, not promises.
           </h2>
           <p className="mt-3 text-sm text-paper/60">

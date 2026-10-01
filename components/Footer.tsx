@@ -5,9 +5,9 @@ import BrandLogo from "./BrandLogo";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-ink pt-16 pb-12">
+    <footer className="border-t border-black/10 bg-ink pt-16 pb-12">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-12 pb-16 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-12 pb-16 border-b border-black/10">
           <div className="md:col-span-2 space-y-4">
             <BrandLogo
               height={58}
@@ -24,7 +24,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
+                className="flex size-11 items-center justify-center rounded-full border border-black/15 bg-black/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="size-4">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -38,7 +38,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
+                className="flex size-11 items-center justify-center rounded-full border border-black/15 bg-black/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="size-4">
                   <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -50,7 +50,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
+                className="flex size-11 items-center justify-center rounded-full border border-black/15 bg-black/[0.04] text-paper/60 transition-all duration-200 hover:border-[#ed1238]/50 hover:bg-[#ed1238]/10 hover:text-[#ed1238]"
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="size-4">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -145,8 +145,8 @@ export default function Footer() {
                   +91 9714734563
                 </a>
               </div>
-              <div className="pt-1 border-t border-white/8">
-                <p className="font-medium text-white text-xs">Global D2C Partner</p>
+              <div className="pt-1 border-t border-black/8">
+                <p className="font-medium text-black text-xs">Global D2C Partner</p>
                 <p className="text-xs text-paper/50">Scaling High-Growth Brands</p>
               </div>
             </div>

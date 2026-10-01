@@ -15,7 +15,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 function getCategoryColor(category: string): string {
   return (
     CATEGORY_COLORS[category] ??
-    "bg-white/10 text-white/60 border-white/15"
+    "bg-black/10 text-black/60 border-black/15"
   );
 }
 
@@ -39,10 +39,10 @@ export default function BlogCard({
   return (
     <Link
       href={`/insights/${blog.slug}`}
-      className="group flex flex-col h-full overflow-hidden rounded-2xl border border-white/10 bg-[#0e100e]/80 backdrop-blur-sm transition-all duration-500 hover:border-[#ed1238]/40 hover:bg-white/[0.05] hover:shadow-[0_12px_40px_rgba(237,18,56,0.16)] hover:-translate-y-1"
+      className="group flex flex-col h-full overflow-hidden rounded-2xl border border-black/10 bg-[#ffffff]/80 backdrop-blur-sm transition-all duration-500 hover:border-[#ed1238]/40 hover:bg-black/[0.05] hover:shadow-[0_12px_40px_rgba(237,18,56,0.16)] hover:-translate-y-1"
     >
       {/* Cover Image Container */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#121412]">
+      <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#fffafa]">
         {blog.coverImage ? (
           <Image
             src={blog.coverImage}
@@ -53,8 +53,8 @@ export default function BlogCard({
           />
         ) : (
           /* Fallback gradient */
-          <div className="absolute inset-0 bg-gradient-to-br from-[#ed1238]/25 via-[#0a0b0a] to-purple-950/40 flex items-center justify-center">
-            <span className="font-mono text-[0.65rem] tracking-[0.2em] uppercase text-white/30">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#ed1238]/25 via-[#fffafa] to-purple-950/40 flex items-center justify-center">
+            <span className="font-mono text-[0.65rem] tracking-[0.2em] uppercase text-black/30">
               {blog.category}
             </span>
           </div>
@@ -72,14 +72,14 @@ export default function BlogCard({
           >
             {blog.category}
           </span>
-          <span className="text-[0.68rem] font-mono text-white/40 tracking-[0.08em]">
+          <span className="text-[0.68rem] font-mono text-black/40 tracking-[0.08em]">
             {blog.readTime}
           </span>
         </div>
 
         {/* Title */}
         <h2
-          className="font-display text-lg sm:text-xl text-white leading-snug transition-colors duration-300 group-hover:text-[#ff4d6d] mb-3 line-clamp-2"
+          className="font-display text-lg sm:text-xl text-black leading-snug transition-colors duration-300 group-hover:text-[#ff4d6d] mb-3 line-clamp-2"
           style={{
             fontFamily: "var(--font-display-family)",
             fontWeight: 700,
@@ -90,7 +90,7 @@ export default function BlogCard({
         </h2>
 
         {/* Excerpt */}
-        <p className="text-sm text-white/50 leading-relaxed line-clamp-3 mb-5">
+        <p className="text-sm text-black/50 leading-relaxed line-clamp-3 mb-5">
           {blog.excerpt}
         </p>
 
@@ -100,7 +100,7 @@ export default function BlogCard({
             {blog.platformTags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className="rounded-md bg-white/5 px-2 py-0.5 text-[0.6rem] font-mono tracking-wider text-white/40 uppercase"
+                className="rounded-md bg-black/5 px-2 py-0.5 text-[0.6rem] font-mono tracking-wider text-black/40 uppercase"
               >
                 {tag}
               </span>
@@ -109,12 +109,12 @@ export default function BlogCard({
         )}
 
         {/* Author + Date + Read indicator */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/8 mt-auto">
+        <div className="flex items-center justify-between pt-4 border-t border-black/8 mt-auto">
           <div className="flex flex-col">
-            <span className="text-[0.72rem] font-semibold text-white/70">
+            <span className="text-[0.72rem] font-semibold text-black/70">
               {blog.author}
             </span>
-            <span className="text-[0.65rem] text-white/35 font-mono">
+            <span className="text-[0.65rem] text-black/35 font-mono">
               {formatDate(blog.publishDate)}
             </span>
           </div>

@@ -87,7 +87,7 @@ export default function PageLoader() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: phase === "fade" ? "rgba(10, 11, 10, 0)" : "rgba(10, 11, 10, 0.95)",
+        background: phase === "fade" ? "rgba(255, 250, 250, 0)" : "rgba(255, 250, 250, 0.95)",
         backdropFilter: phase === "fade" ? "blur(0px)" : "blur(24px)",
         WebkitBackdropFilter: phase === "fade" ? "blur(0px)" : "blur(24px)",
         transition:

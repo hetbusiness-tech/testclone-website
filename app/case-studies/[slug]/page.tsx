@@ -45,21 +45,21 @@ export default function CaseStudyDetailPage({ params }: Props) {
     <>
       <Navbar />
 
-      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-24 pb-24 sm:pt-32">
+      <main id="main-content" className="min-h-screen bg-[#fffafa] pt-24 pb-24 sm:pt-32">
         {/* ── Breadcrumbs ─────────────────────────────── */}
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto max-w-5xl px-4 sm:px-8 mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-white/35"
+          className="mx-auto max-w-5xl px-4 sm:px-8 mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-black/35"
         >
-          <Link href="/" className="hover:text-white transition-colors">
+          <Link href="/" className="hover:text-black transition-colors">
             Home
           </Link>
           <span>/</span>
-          <Link href="/case-studies" className="hover:text-white transition-colors">
+          <Link href="/case-studies" className="hover:text-black transition-colors">
             Case Studies
           </Link>
           <span>/</span>
-          <span className="text-white/60 truncate max-w-[220px]">
+          <span className="text-black/60 truncate max-w-[220px]">
             {caseStudy.projectName}
           </span>
         </nav>
@@ -71,14 +71,14 @@ export default function CaseStudyDetailPage({ params }: Props) {
               {caseStudy.category}
             </span>
             <h1
-              className="text-3xl sm:text-5xl lg:text-6xl text-white font-extrabold leading-[1.05] tracking-tight mb-6"
+              className="text-3xl sm:text-5xl lg:text-6xl text-black font-extrabold leading-[1.05] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-display-family)" }}
             >
               {caseStudy.caseStudyTitle
                 ? `${caseStudy.projectName} — ${caseStudy.caseStudyTitle}`
                 : caseStudy.projectName}
             </h1>
-            <p className="text-base sm:text-lg text-white/65 leading-relaxed max-w-3xl font-normal">
+            <p className="text-base sm:text-lg text-black/65 leading-relaxed max-w-3xl font-normal">
               {caseStudy.description}
             </p>
           </div>
@@ -108,17 +108,17 @@ export default function CaseStudyDetailPage({ params }: Props) {
           </div>
 
           {markdownContent ? (
-            <section className="mb-14 border-y border-white/10 py-12 lg:py-16">
+            <section className="mb-14 border-y border-black/10 py-12 lg:py-16">
               <div className="mx-auto w-full max-w-5xl">
                 <p className="eyebrow text-[#ed1238]">Case Study Narrative</p>
                 <MarkdownBody content={markdownContent} />
               </div>
             </section>
           ) : caseStudy.story && (
-            <section className="mb-14 grid gap-10 border-y border-white/10 py-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+            <section className="mb-14 grid gap-10 border-y border-black/10 py-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
               <div>
                 <p className="eyebrow text-[#ed1238]">Case Study</p>
-                <h2 className="mt-3 max-w-sm font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+                <h2 className="mt-3 max-w-sm font-display text-3xl font-extrabold leading-tight text-black sm:text-4xl">
                   The work behind the result.
                 </h2>
               </div>
@@ -128,7 +128,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
                     <h3 className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#ed1238]">
                       {section.heading}
                     </h3>
-                    <div className="mt-4 space-y-4 text-base leading-relaxed text-white/70 sm:text-lg">
+                    <div className="mt-4 space-y-4 text-base leading-relaxed text-black/70 sm:text-lg">
                       {section.paragraphs.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
@@ -144,17 +144,17 @@ export default function CaseStudyDetailPage({ params }: Props) {
             caseStudy.backend ||
             caseStudy.programmingLanguage ||
             caseStudy.projectLink) && (
-            <section className="mb-12 rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 backdrop-blur-sm">
+            <section className="mb-12 rounded-3xl border border-black/10 bg-black/[0.02] p-6 sm:p-8 backdrop-blur-sm">
               <h2 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#ed1238] mb-6">
                 Project Specifications & Tech Stack
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {caseStudy.designTools && (
                   <div>
-                    <p className="text-[0.68rem] font-mono uppercase tracking-wider text-white/40 mb-1">
+                    <p className="text-[0.68rem] font-mono uppercase tracking-wider text-black/40 mb-1">
                       Design Tools
                     </p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-sm font-semibold text-black">
                       {caseStudy.designTools}
                     </p>
                   </div>
@@ -162,10 +162,10 @@ export default function CaseStudyDetailPage({ params }: Props) {
 
                 {caseStudy.backend && (
                   <div>
-                    <p className="text-[0.68rem] font-mono uppercase tracking-wider text-white/40 mb-1">
+                    <p className="text-[0.68rem] font-mono uppercase tracking-wider text-black/40 mb-1">
                       Backend & Platform
                     </p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-sm font-semibold text-black">
                       {caseStudy.backend}
                     </p>
                   </div>
@@ -173,10 +173,10 @@ export default function CaseStudyDetailPage({ params }: Props) {
 
                 {caseStudy.programmingLanguage && (
                   <div>
-                    <p className="text-[0.68rem] font-mono uppercase tracking-wider text-white/40 mb-1">
+                    <p className="text-[0.68rem] font-mono uppercase tracking-wider text-black/40 mb-1">
                       Tech & Stack
                     </p>
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-sm font-semibold text-black">
                       {caseStudy.programmingLanguage}
                     </p>
                   </div>
@@ -184,7 +184,7 @@ export default function CaseStudyDetailPage({ params }: Props) {
 
                 {caseStudy.projectLink && (
                   <div className="flex flex-col justify-center sm:items-start">
-                    <p className="text-[0.68rem] font-mono uppercase tracking-wider text-white/40 mb-1">
+                    <p className="text-[0.68rem] font-mono uppercase tracking-wider text-black/40 mb-1">
                       Live Project
                     </p>
                     <a
@@ -216,13 +216,13 @@ export default function CaseStudyDetailPage({ params }: Props) {
                 {caseStudy.metrics.map((m) => (
                   <div
                     key={m.label}
-                    className="p-6 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm"
+                    className="p-6 rounded-2xl border border-black/10 bg-black/[0.03] backdrop-blur-sm"
                   >
-                    <p className="text-[0.7rem] font-mono uppercase tracking-wider text-white/45 mb-2">
+                    <p className="text-[0.7rem] font-mono uppercase tracking-wider text-black/45 mb-2">
                       {m.label}
                     </p>
                     <p
-                      className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-none"
+                      className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-black leading-none"
                       style={{ fontFamily: "var(--font-display-family)" }}
                     >
                       {m.value}
@@ -253,15 +253,15 @@ export default function CaseStudyDetailPage({ params }: Props) {
           )}
 
           {/* ── CTA Banner ──────────────────────────────── */}
-          <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-8 sm:p-12 text-center my-16">
+          <section className="rounded-3xl border border-black/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-8 sm:p-12 text-center my-16">
             <p className="eyebrow text-[#ed1238] mb-3">Ready for similar growth?</p>
             <h2
-              className="text-2xl sm:text-4xl text-white font-extrabold mb-4"
+              className="text-2xl sm:text-4xl text-black font-extrabold mb-4"
               style={{ fontFamily: "var(--font-display-family)" }}
             >
               Let's engineer your brand's next milestone
             </h2>
-            <p className="text-sm sm:text-base text-white/50 max-w-md mx-auto mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-black/50 max-w-md mx-auto mb-8 leading-relaxed">
               Book a free strategy audit with our senior e-commerce architects.
             </p>
             <Link
@@ -278,9 +278,9 @@ export default function CaseStudyDetailPage({ params }: Props) {
 
           {/* ── More Case Studies ───────────────────────── */}
           {related.length > 0 && (
-            <section className="pt-10 border-t border-white/10">
+            <section className="pt-10 border-t border-black/10">
               <div className="flex items-center justify-between mb-8">
-                <h3 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-white/40">
+                <h3 className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-black/40">
                   More Case Studies
                 </h3>
                 <Link
@@ -295,15 +295,15 @@ export default function CaseStudyDetailPage({ params }: Props) {
                   <Link
                     key={study.slug}
                     href={`/case-studies/${study.slug}`}
-                    className="group p-5 rounded-2xl border border-white/8 bg-white/[0.02] transition-all duration-300 hover:border-[#ed1238]/30 hover:bg-white/[0.04]"
+                    className="group p-5 rounded-2xl border border-black/8 bg-black/[0.02] transition-all duration-300 hover:border-[#ed1238]/30 hover:bg-black/[0.04]"
                   >
                     <span className="text-[0.62rem] font-mono font-bold uppercase tracking-wider text-[#ed1238]">
                       {study.category}
                     </span>
-                    <h4 className="text-lg font-bold text-white group-hover:text-[#ff4d6d] transition-colors mt-1 mb-2">
+                    <h4 className="text-lg font-bold text-black group-hover:text-[#ff4d6d] transition-colors mt-1 mb-2">
                       {study.projectName}
                     </h4>
-                    <p className="text-xs text-white/50 line-clamp-2">
+                    <p className="text-xs text-black/50 line-clamp-2">
                       {study.description}
                     </p>
                   </Link>

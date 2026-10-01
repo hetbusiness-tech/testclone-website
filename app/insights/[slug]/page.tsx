@@ -77,10 +77,10 @@ function RelatedCard({ blog }: { blog: BlogPost }) {
   return (
     <Link
       href={`/insights/${blog.slug}`}
-      className="group flex gap-4 rounded-xl border border-white/8 bg-white/[0.02] p-4 transition-all duration-300 hover:border-[#ed1238]/30 hover:bg-white/[0.05]"
+      className="group flex gap-4 rounded-xl border border-black/8 bg-black/[0.02] p-4 transition-all duration-300 hover:border-[#ed1238]/30 hover:bg-black/[0.05]"
     >
       {blog.coverImage && (
-        <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-white/5">
+        <div className="relative size-16 shrink-0 overflow-hidden rounded-lg bg-black/5">
           <Image
             src={blog.coverImage}
             alt={blog.coverImageAlt || blog.title}
@@ -94,10 +94,10 @@ function RelatedCard({ blog }: { blog: BlogPost }) {
         <span className="text-[0.6rem] font-mono tracking-[0.15em] uppercase text-[#ed1238]">
           {blog.category}
         </span>
-        <h4 className="text-sm text-white/80 leading-snug line-clamp-2 group-hover:text-white transition-colors">
+        <h4 className="text-sm text-black/80 leading-snug line-clamp-2 group-hover:text-black transition-colors">
           {blog.title}
         </h4>
-        <span className="text-[0.65rem] text-white/30 font-mono mt-auto">
+        <span className="text-[0.65rem] text-black/30 font-mono mt-auto">
           {blog.readTime}
         </span>
       </div>
@@ -159,21 +159,21 @@ export default function BlogPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
 
-      <main id="main-content" className="min-h-screen bg-[#0a0b0a] pt-20 pb-12 sm:pt-32 sm:pb-24">
+      <main id="main-content" className="min-h-screen bg-[#fffafa] pt-20 pb-12 sm:pt-32 sm:pb-24">
         {/* ── Breadcrumb ──────────────────────────────── */}
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 mb-4 sm:mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-white/30"
+          className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 mb-4 sm:mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-black/30"
         >
-          <Link href="/" className="hover:text-white transition-colors">
+          <Link href="/" className="hover:text-black transition-colors">
             Home
           </Link>
           <span>/</span>
-          <Link href="/insights" className="hover:text-white transition-colors">
+          <Link href="/insights" className="hover:text-black transition-colors">
             Insights
           </Link>
           <span>/</span>
-          <span className="text-white/55 truncate max-w-[160px] sm:max-w-[200px]">
+          <span className="text-black/55 truncate max-w-[160px] sm:max-w-[200px]">
             {blog.title}
           </span>
         </nav>
@@ -187,14 +187,14 @@ export default function BlogPostPage({ params }: Props) {
                 <span className="rounded-full border border-[#ed1238]/30 bg-[#ed1238]/15 px-3 py-0.5 text-[0.65rem] font-mono tracking-[0.15em] uppercase text-[#ff4d6d]">
                   {blog.category}
                 </span>
-                <span className="text-[0.7rem] font-mono text-white/30">
+                <span className="text-[0.7rem] font-mono text-black/30">
                   {blog.readTime}
                 </span>
               </div>
 
               {/* Title */}
               <h1
-                className="text-2xl sm:text-4xl lg:text-5xl text-white mb-4 sm:mb-5 leading-[1.15] sm:leading-[1.1]"
+                className="text-2xl sm:text-4xl lg:text-5xl text-black mb-4 sm:mb-5 leading-[1.15] sm:leading-[1.1]"
                 style={{
                   fontFamily: "var(--font-display-family)",
                   fontWeight: 800,
@@ -205,15 +205,15 @@ export default function BlogPostPage({ params }: Props) {
               </h1>
 
               {/* Author + Date */}
-              <div className="flex items-center gap-4 mb-6 pb-6 sm:mb-8 sm:pb-8 border-b border-white/10">
+              <div className="flex items-center gap-4 mb-6 pb-6 sm:mb-8 sm:pb-8 border-b border-black/10">
                 <div className="flex flex-col">
                   <Link
                     href={blog.authorLink}
-                    className="text-sm font-semibold text-white/70 hover:text-white transition-colors"
+                    className="text-sm font-semibold text-black/70 hover:text-black transition-colors"
                   >
                     {blog.author}
                   </Link>
-                  <span className="text-xs text-white/35 font-mono">
+                  <span className="text-xs text-black/35 font-mono">
                     Published {formatDate(blog.publishDate)}
                   </span>
                 </div>
@@ -221,7 +221,7 @@ export default function BlogPostPage({ params }: Props) {
 
               {/* Cover Image */}
               {blog.coverImage && (
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl sm:rounded-2xl mb-6 sm:mb-10 bg-white/5">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl sm:rounded-2xl mb-6 sm:mb-10 bg-black/5">
                   <Image
                     src={blog.coverImage}
                     alt={blog.coverImageAlt || blog.title}
@@ -238,15 +238,15 @@ export default function BlogPostPage({ params }: Props) {
 
               {/* Platform Tags */}
               {blog.platformTags && blog.platformTags.length > 0 && (
-                <div className="mt-10 pt-8 border-t border-white/10">
-                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-white/30 mb-3">
+                <div className="mt-10 pt-8 border-t border-black/10">
+                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-black/30 mb-3">
                     Platform Tags & Topics
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {blog.platformTags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-white/50 tracking-wider"
+                        className="rounded-lg border border-black/10 bg-black/5 px-3 py-1 text-xs font-mono text-black/50 tracking-wider"
                       >
                         {tag}
                       </span>
@@ -256,7 +256,7 @@ export default function BlogPostPage({ params }: Props) {
               )}
 
               {/* CTA Action Buttons */}
-              <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap gap-4 items-center">
+              <div className="mt-12 pt-8 border-t border-black/10 flex flex-wrap gap-4 items-center">
                 {blog.ctaBookDemoLink && (
                   <Link
                     href={blog.ctaBookDemoLink}
@@ -281,7 +281,7 @@ export default function BlogPostPage({ params }: Props) {
                     href={blog.ctaWhatsAppLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold font-mono tracking-[0.14em] uppercase text-white/90 transition-all duration-300 hover:border-white/40 hover:bg-white/10"
+                    className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-black/5 px-6 py-3 text-xs font-bold font-mono tracking-[0.14em] uppercase text-black/90 transition-all duration-300 hover:border-black/40 hover:bg-black/10"
                   >
                     Chat Now
                     <svg
@@ -303,7 +303,7 @@ export default function BlogPostPage({ params }: Props) {
               {/* Back link */}
               <Link
                 href="/insights"
-                className="inline-flex items-center gap-2 text-[0.72rem] font-mono tracking-[0.12em] uppercase text-white/40 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-[0.72rem] font-mono tracking-[0.12em] uppercase text-black/40 hover:text-black transition-colors"
               >
                 <svg
                   viewBox="0 0 16 16"
@@ -320,7 +320,7 @@ export default function BlogPostPage({ params }: Props) {
               {/* Related Posts */}
               {related.length > 0 && (
                 <div>
-                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-white/30 mb-4">
+                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-black/30 mb-4">
                     Related Posts
                   </p>
                   <div className="space-y-3">
@@ -336,7 +336,7 @@ export default function BlogPostPage({ params }: Props) {
                 <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-3">
                   Ready to scale?
                 </p>
-                <p className="text-sm text-white/70 leading-relaxed mb-5">
+                <p className="text-sm text-black/70 leading-relaxed mb-5">
                   Book a free strategy call and get a personalised growth roadmap for your store.
                 </p>
                 <Link

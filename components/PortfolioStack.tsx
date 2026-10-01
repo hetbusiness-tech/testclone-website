@@ -139,7 +139,7 @@ function CardVisual({ project }: { project: PortfolioProject }) {
       />
 
       <div className="relative flex w-full max-w-[560px] items-center justify-center">
-        <div className="relative z-10 w-full overflow-hidden rounded-xl border border-black/15 bg-[#141614] shadow-[0_18px_40px_rgba(0,0,0,0.22),0_2px_8px_rgba(0,0,0,0.12)] transition-transform duration-500 group-hover:scale-[1.015] sm:rounded-2xl">
+        <div className="relative z-10 w-full overflow-hidden rounded-xl border border-black/15 bg-[#fffafa] shadow-[0_18px_40px_rgba(0,0,0,0.22),0_2px_8px_rgba(0,0,0,0.12)] transition-transform duration-500 group-hover:scale-[1.015] sm:rounded-2xl">
           {/* Monitor Browser Header Bar */}
           <div
             className="flex h-7 items-center justify-between border-b px-3"
@@ -169,7 +169,7 @@ function CardVisual({ project }: { project: PortfolioProject }) {
           </div>
 
           {/* Desktop Website Screen — 16:9 */}
-          <div className="relative w-full overflow-hidden rounded-[0.9rem] bg-white" style={{ aspectRatio: "3/2" }}>
+          <div className="relative w-full overflow-hidden rounded-[0.9rem] bg-black" style={{ aspectRatio: "3/2" }}>
             <img
               src={project.imageUrl}
               alt={`${project.clientName} desktop mockup`}
@@ -236,7 +236,7 @@ function StackCard({
       className="portfolio-stack-card absolute inset-x-0 top-0 flex h-full will-change-transform sm:absolute"
     >
       <div
-        className="relative flex h-full w-full flex-col justify-start overflow-hidden rounded-2xl border p-3 shadow-[0_-12px_35px_rgba(0,0,0,0.55),0_30px_90px_-15px_rgba(0,0,0,0.85)] sm:justify-between sm:rounded-[2rem] sm:p-7 lg:p-9"
+        className="relative flex h-full w-full flex-col justify-start overflow-hidden rounded-2xl border p-3 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.2)] sm:justify-between sm:rounded-[2rem] sm:p-7 lg:p-9"
         style={{
           backgroundColor: project.bgColor,
           borderColor: project.surfaceColor,
@@ -382,7 +382,7 @@ export default function PortfolioStack() {
           </div>
           <Link
             href="/portfolio"
-            className="hidden shrink-0 items-center rounded-full border border-white/25 px-5 py-2 text-xs font-medium text-white transition-all duration-200 hover:border-[#ed1238] hover:text-[#ed1238] sm:inline-flex"
+            className="hidden shrink-0 items-center rounded-full border border-black/25 px-5 py-2 text-xs font-medium text-black transition-all duration-200 hover:border-[#ed1238] hover:text-[#ed1238] sm:inline-flex"
           >
             View all work
           </Link>

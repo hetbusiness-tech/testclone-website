@@ -144,7 +144,7 @@ export async function generateMetadata(): Promise<Metadata> {
     /* ── Manifest & theme ──────────────────────────────── */
     manifest: "/site.webmanifest",
     themeColor: [
-      { media: "(prefers-color-scheme: dark)", color: "#0a0b0a" },
+      { media: "(prefers-color-scheme: dark)", color: "#fffafa" },
       { media: "(prefers-color-scheme: light)", color: "#f5f4ef" },
     ],
     colorScheme: "dark light",

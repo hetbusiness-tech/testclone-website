@@ -72,7 +72,7 @@ export default function ContactModal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 my-8 w-full max-w-4xl overflow-hidden rounded-[2.25rem] border-2 border-[#ed1238] bg-[#0c0e0c] shadow-[0_0_80px_rgba(237,18,56,0.4)]"
+            className="relative z-10 my-8 w-full max-w-4xl overflow-hidden rounded-[2.25rem] border-2 border-[#ed1238] bg-[#fffafa] shadow-[0_0_80px_rgba(237,18,56,0.4)]"
           >
             {/* Close Button */}
             <button
@@ -87,7 +87,7 @@ export default function ContactModal() {
 
             <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.4fr]">
               {/* Left Side: Contact Information & Thoughtful Line */}
-              <div className="flex flex-col justify-between border-b border-white/10 p-8 sm:p-10 lg:border-b-0 lg:border-r bg-gradient-to-b from-[#141714] to-[#0c0e0c]">
+              <div className="flex flex-col justify-between border-b border-black/10 p-8 sm:p-10 lg:border-b-0 lg:border-r bg-gradient-to-b from-[#fffafa] to-[#fffafa]">
                 <div>
                   <span className="font-mono text-xs font-bold tracking-widest text-[#ed1238]">
                     ( GET IN TOUCH )
@@ -139,7 +139,7 @@ export default function ContactModal() {
                   </div>
                 </div>
 
-                <div className="mt-8 rounded-xl bg-white/5 p-3.5 border border-white/10">
+                <div className="mt-8 rounded-xl bg-black/5 p-3.5 border border-black/10">
                   <div className="flex items-center gap-2 text-xs font-mono text-paper/60">
                     <span className="size-2 rounded-full bg-green-500 animate-ping" />
                     <span>Average response time: &lt; 2 hours</span>
@@ -182,7 +182,7 @@ export default function ContactModal() {
                             className={`rounded-full px-3 py-1 text-xs font-medium transition-all ${
                               selectedService === s
                                 ? "bg-[#ed1238] text-white"
-                                : "bg-white/5 text-paper/70 border border-white/10 hover:border-white/30"
+                                : "bg-black/5 text-paper/70 border border-black/10 hover:border-black/30"
                             }`}
                           >
                             {s}
@@ -201,7 +201,7 @@ export default function ContactModal() {
                         placeholder="John Doe"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-paper placeholder-white/30 focus:border-[#ed1238] focus:outline-none focus:ring-1 focus:ring-[#ed1238]"
+                        className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-paper placeholder-black/30 focus:border-[#ed1238] focus:outline-none focus:ring-1 focus:ring-[#ed1238]"
                       />
                     </div>
 
@@ -216,7 +216,7 @@ export default function ContactModal() {
                           placeholder="john@example.com"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-paper placeholder-white/30 focus:border-[#ed1238] focus:outline-none focus:ring-1 focus:ring-[#ed1238]"
+                          className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-paper placeholder-black/30 focus:border-[#ed1238] focus:outline-none focus:ring-1 focus:ring-[#ed1238]"
                         />
                       </div>
                       <div>
@@ -229,7 +229,7 @@ export default function ContactModal() {
                           placeholder="+91 98765 43210"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-paper placeholder-white/30 focus:border-[#ed1238] focus:outline-none focus:ring-1 focus:ring-[#ed1238]"
+                          className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-paper placeholder-black/30 focus:border-[#ed1238] focus:outline-none focus:ring-1 focus:ring-[#ed1238]"
                         />
                       </div>
                     </div>
@@ -243,7 +243,7 @@ export default function ContactModal() {
                         placeholder="What are your main goals and timeline?"
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-paper placeholder-white/30 focus:border-[#ed1238] focus:outline-none focus:ring-1 focus:ring-[#ed1238]"
+                        className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-paper placeholder-black/30 focus:border-[#ed1238] focus:outline-none focus:ring-1 focus:ring-[#ed1238]"
                       />
                     </div>
 

@@ -6,11 +6,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0b0a;
-  --foreground: #f3f4ec;
-  --ink: #0a0b0a;
-  --ink-soft: #121413;
-  --paper: #f3f4ec;
+  --background: #fffafa;
+  --foreground: #0a0b0a;
+  --ink: #fffafa;
+  --ink-soft: #fffafa;
+  --paper: #0a0b0a;
   --lime: #ed1238;
   --lime-bright: #ff3658;
   --fog: #8a8f86;
@@ -21,7 +21,7 @@
   --font-body-family: var(--font-body);
   --font-mono-family: "JetBrains Mono", "SFMono-Regular", "SF Mono", Menlo, monospace;
   --font-signature-family: "Yellowtail", "Segoe Script", "Snell Roundhand", cursive;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 *,
@@ -330,7 +330,7 @@ summary::-webkit-details-marker {
   right: 0;
   height: 2px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .site-progress-fill {
@@ -591,7 +591,7 @@ summary::-webkit-details-marker {
 .blog-prose h4,
 .blog-prose h5,
 .blog-prose h6 {
-  color: #f3f4ec;
+  color: #0a0b0a;
   font-family: var(--font-display-family);
   font-weight: 700;
   letter-spacing: -0.025em;
@@ -630,7 +630,7 @@ summary::-webkit-details-marker {
 }
 
 .blog-prose strong {
-  color: #f3f4ec;
+  color: #0a0b0a;
   font-weight: 600;
 }
 
@@ -712,8 +712,8 @@ summary::-webkit-details-marker {
 
 .blog-prose .markdown-image,
 .blog-prose img {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .blog-prose .markdown-image-frame {
@@ -784,8 +784,8 @@ summary::-webkit-details-marker {
   border-spacing: 0;
   margin: 2rem 0;
   border-radius: 0.85rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.02);
   overflow: hidden;
 }
 
@@ -801,15 +801,15 @@ summary::-webkit-details-marker {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #f3f4ec;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #0a0b0a;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .blog-prose td {
   padding: 0.9rem 1.2rem;
   font-size: 0.88rem;
   color: rgba(243, 244, 236, 0.8);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   line-height: 1.6;
 }
 
@@ -818,11 +818,11 @@ summary::-webkit-details-marker {
 }
 
 .blog-prose tbody tr:hover {
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(0, 0, 0, 0.035);
   transition: background-color 150ms ease;
 }
 
 .blog-prose tbody tr td:first-child {
-  color: #f3f4ec;
+  color: #0a0b0a;
   font-weight: 600;
 }

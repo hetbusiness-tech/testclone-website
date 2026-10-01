@@ -71,7 +71,7 @@ export default function WhatsAppLeadForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5 backdrop-blur-sm space-y-3.5"
+      className="rounded-2xl border border-black/10 bg-black/[0.03] p-4 sm:p-5 backdrop-blur-sm space-y-3.5"
     >
       <div className="flex items-center justify-end">
         <span className="rounded-full bg-[#d4f7dc] px-2.5 py-0.5 text-[0.62rem] font-mono font-semibold text-[#0d6b2f]">
@@ -179,7 +179,7 @@ export default function WhatsAppLeadForm({
                 className={`rounded-full px-3 py-1.5 text-[0.7rem] font-semibold transition-all duration-200 cursor-pointer ${
                   isSelected
                     ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
-                    : "border border-white/15 bg-white/5 text-paper/70 hover:border-white/30 hover:text-white"
+                    : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
                 }`}
               >
                 {service}

@@ -9,8 +9,8 @@ type BrandLogoProps = {
   priority?: boolean;
 };
 
-const INTRINSIC_WIDTH = 958;
-const INTRINSIC_HEIGHT = 207;
+const INTRINSIC_WIDTH = 680;
+const INTRINSIC_HEIGHT = 115;
 
 export default function BrandLogo({
   height = 36,
@@ -26,7 +26,7 @@ export default function BrandLogo({
       aria-label="Technostripe Solutions home"
     >
       <Image
-        src="/header.png"
+        src="/technostripe-logo.svg"
         alt="Technostripe Solutions"
         width={width}
         height={height}

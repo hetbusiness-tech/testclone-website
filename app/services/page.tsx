@@ -192,7 +192,7 @@ export default function ServicesPage() {
           <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
             ( SERVICES )
           </span>
-          <h1 className="mt-4 sm:mt-6 font-display text-4xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[0.95] max-w-5xl">
+          <h1 className="mt-4 sm:mt-6 font-display text-4xl sm:text-7xl lg:text-8xl font-black tracking-tight text-black leading-[0.95] max-w-5xl">
             Services designed <br />for e-commerce <br />growth.
           </h1>
           <p className="mt-5 sm:mt-8 max-w-2xl text-base sm:text-xl leading-relaxed text-paper/70 font-normal">
@@ -202,14 +202,14 @@ export default function ServicesPage() {
       </section>
 
       {/* Quick Sub-Navigation Bar */}
-      <nav className="relative z-20 border-y border-white/10 bg-[#0a0b0a] py-3.5 px-4 sm:px-6">
+      <nav className="relative z-20 border-y border-black/10 bg-[#fffafa] py-3.5 px-4 sm:px-6">
         <div className="mx-auto max-w-6xl flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-xs font-mono tracking-wide">
           {servicesData.map((service) => (
             <a
               key={service.id}
               href={`#${service.id}`}
               onClick={() => setActiveTab(service.id)}
-              className={`transition-colors duration-200 hover:text-white flex items-center ${activeTab === service.id ? "text-[#ed1238] font-bold" : "text-paper/70"
+              className={`transition-colors duration-200 hover:text-black flex items-center ${activeTab === service.id ? "text-[#ed1238] font-bold" : "text-paper/70"
                 }`}
             >
               <span className="text-paper/40 font-mono mr-2">{service.number}</span>
@@ -228,7 +228,7 @@ export default function ServicesPage() {
             <div
               key={service.id}
               id={service.id}
-              className={`scroll-mt-12 mx-auto max-w-6xl border-t border-white/10 pt-10 sm:pt-16 first:border-t-0 first:pt-0 lg:pt-24 ${index === 0 ? "" : "mt-10 sm:mt-16 lg:mt-24"}`}
+              className={`scroll-mt-12 mx-auto max-w-6xl border-t border-black/10 pt-10 sm:pt-16 first:border-t-0 first:pt-0 lg:pt-24 ${index === 0 ? "" : "mt-10 sm:mt-16 lg:mt-24"}`}
             >
               <div
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-16 items-start ${isImageLeft ? "" : "lg:grid-flow-dense"
@@ -236,7 +236,7 @@ export default function ServicesPage() {
               >
                 {/* ── INTERACTIVE SERVICE CARD (Default: Full 3:2 Image | Hover: Red Branded Card) ─────────────── */}
                 <div className={`${isImageLeft ? "" : "lg:col-start-2"} lg:sticky lg:top-36`}>
-                  <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] border border-white/15 bg-[#101210] shadow-2xl transition-all duration-500 lg:hover:border-[#ff3b5c]/50 lg:hover:shadow-[0_25px_70px_rgba(237,18,56,0.55)] lg:hover:-translate-y-1.5 cursor-pointer">
+                  <div className="group relative aspect-[3/2] w-full overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem] border border-black/15 bg-[#fffafa] shadow-2xl transition-all duration-500 lg:hover:border-[#ff3b5c]/50 lg:hover:shadow-[0_25px_70px_rgba(237,18,56,0.55)] lg:hover:-translate-y-1.5 cursor-pointer">
                     
                     {/* 1. DEFAULT STATE: Clean Full-Fit Service Image */}
                     {service.imageUrl ? (
@@ -254,20 +254,20 @@ export default function ServicesPage() {
                         </div>
                       </>
                     ) : (
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/80" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-[#fffafa]/80" />
                     )}
 
                     {/* 2. HOVER STATE: Red Branded Card with Favicon Watermark & Full Title */}
                     <div className="absolute inset-0 z-20 bg-[#ed1238] p-6 sm:p-8 lg:p-9 flex flex-col justify-between opacity-0 lg:group-hover:opacity-100 transition-all duration-500 ease-out">
                       {/* Radiant background glow & gradient overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/25 pointer-events-none" />
-                      <div className="absolute -top-16 -right-16 size-52 rounded-full bg-white/20 blur-3xl pointer-events-none lg:group-hover:scale-125 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-[#fffafa]/25 pointer-events-none" />
+                      <div className="absolute -top-16 -right-16 size-52 rounded-full bg-black/20 blur-3xl pointer-events-none lg:group-hover:scale-125 transition-transform duration-700" />
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.45)_0%,transparent_65%)] pointer-events-none" />
 
                       {/* Top-Left: Number / Label */}
-                      <div className="relative z-10 flex items-center justify-between font-mono text-xs sm:text-sm font-bold tracking-[0.2em] text-white/90 uppercase">
+                      <div className="relative z-10 flex items-center justify-between font-mono text-xs sm:text-sm font-bold tracking-[0.2em] text-black/90 uppercase">
                         <span>{service.number} / SERVICE</span>
-                        <span className="inline-block size-2 rounded-full bg-white/80 animate-pulse" />
+                        <span className="inline-block size-2 rounded-full bg-black/80 animate-pulse" />
                       </div>
 
                       {/* Bottom-Right: Technostripe Watermark Favicon Logo */}
@@ -287,7 +287,7 @@ export default function ServicesPage() {
 
                       {/* Bottom-Left: Large Service Name */}
                       <div className="relative z-10 max-w-[85%] sm:max-w-[78%] pt-6" aria-hidden="true">
-                        <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-[1.05] tracking-tight drop-shadow-sm">
+                        <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-black leading-[1.05] tracking-tight drop-shadow-sm">
                           {service.title}
                         </p>
                       </div>
@@ -298,7 +298,7 @@ export default function ServicesPage() {
 
                 {/* ── CONTENT BOX (Starts from Title) ────────────────────── */}
                 <div className={isImageLeft ? "" : "lg:col-start-1"}>
-                  <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+                  <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-black leading-tight">
                     {service.title}
                   </h2>
                   <p className="mt-5 text-base sm:text-lg leading-relaxed text-paper/75 font-normal">
@@ -325,7 +325,7 @@ export default function ServicesPage() {
                     <span className="font-mono text-xs font-bold tracking-[0.25em] text-[#ed1238] uppercase mb-4 block">
                       PROCESS
                     </span>
-                    <div className="rounded-2xl border border-white/10 overflow-hidden bg-white/[0.02]">
+                    <div className="rounded-2xl border border-black/10 overflow-hidden bg-black/[0.02]">
                       <div className="grid grid-cols-1 sm:grid-cols-2">
                         {service.processSteps.map((step, idx) => {
                           const isTopRow = idx < 2;
@@ -334,14 +334,14 @@ export default function ServicesPage() {
                           return (
                             <div
                               key={step.step}
-                              className={`p-6 sm:p-7 ${isTopRow ? "sm:border-b border-white/10" : ""
-                                } ${isLeftCol ? "sm:border-r border-white/10" : ""
-                                } border-b last:border-b-0 sm:last:border-b-0 border-white/10`}
+                              className={`p-6 sm:p-7 ${isTopRow ? "sm:border-b border-black/10" : ""
+                                } ${isLeftCol ? "sm:border-r border-black/10" : ""
+                                } border-b last:border-b-0 sm:last:border-b-0 border-black/10`}
                             >
                               <span className="font-mono text-xs text-paper/40 font-medium">
                                 {step.step}
                               </span>
-                              <h4 className="mt-2 font-display text-xl font-bold text-white tracking-tight">
+                              <h4 className="mt-2 font-display text-xl font-bold text-black tracking-tight">
                                 {step.title}
                               </h4>
                               <p className="mt-2 text-sm text-paper/60 leading-relaxed font-normal">
@@ -363,7 +363,7 @@ export default function ServicesPage() {
                       {service.deliverables.map((item) => (
                         <span
                           key={item}
-                          className="flex min-h-9 w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-2.5 py-1.5 text-center text-[0.68rem] font-semibold leading-tight text-paper/80 sm:w-auto sm:px-3.5 sm:text-xs"
+                          className="flex min-h-9 w-full items-center justify-center rounded-full border border-black/15 bg-black/5 px-2.5 py-1.5 text-center text-[0.68rem] font-semibold leading-tight text-paper/80 sm:w-auto sm:px-3.5 sm:text-xs"
                         >
                           {item}
                         </span>

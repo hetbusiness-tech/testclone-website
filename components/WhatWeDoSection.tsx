@@ -49,7 +49,7 @@ export default function WhatWeDoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 max-w-4xl font-display text-2xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.12] tracking-tight text-white"
+          className="mt-6 max-w-4xl font-display text-2xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-[1.12] tracking-tight text-black"
         >
           We build the Shopify storefronts, performance ads, and growth systems behind ambitious e-commerce brands.
         </motion.h2>
@@ -60,7 +60,7 @@ export default function WhatWeDoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: 0.18 }}
-          className="mt-5 max-w-xl text-sm sm:text-base leading-relaxed text-white/65 font-normal"
+          className="mt-5 max-w-xl text-sm sm:text-base leading-relaxed text-black/65 font-normal"
         >
           Technostripe scales D2C brands with bespoke Shopify engineering, high-ROAS paid media, and conversion-optimized architectures.
         </motion.p>
@@ -68,7 +68,7 @@ export default function WhatWeDoSection() {
 
       {/* Bottom Stats Row */}
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-10 lg:px-12">
-        <div className="border-t border-white/10 pt-5 pb-2 sm:pt-7 sm:pb-4">
+        <div className="border-t border-black/10 pt-5 pb-2 sm:pt-7 sm:pb-4">
           <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4 sm:gap-6 lg:gap-10">
             {stats.map((stat, index) => (
               <motion.div
@@ -82,7 +82,7 @@ export default function WhatWeDoSection() {
                 <span className="whitespace-nowrap font-display text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight tabular-nums text-[#ed1238] leading-none">
                   {stat.value}
                 </span>
-                <span className="mt-2 text-[0.65rem] leading-tight sm:mt-2.5 sm:text-sm font-mono text-white/60 font-medium tracking-wide">
+                <span className="mt-2 text-[0.65rem] leading-tight sm:mt-2.5 sm:text-sm font-mono text-black/60 font-medium tracking-wide">
                   {stat.label}
                 </span>
               </motion.div>
