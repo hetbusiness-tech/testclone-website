@@ -2,8 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-
+import { motion, useScroll, useTransform, type MotionValue, type MotionStyle } from "framer-motion";
 interface PortfolioProject {
   id: number;
   category: string;
@@ -258,7 +257,8 @@ function StackCard({
           zIndex: index + 1,
           "--desktop-top": `${desktopTopOffset}px`,
           "--desktop-height": desktopCardHeight,
-        } as React.CSSProperties
+
+        } as MotionStyle
       }
       className="portfolio-stack-card absolute inset-x-0 top-0 md:top-[var(--desktop-top)] h-full md:h-[var(--desktop-height)] flex will-change-transform"
     >
