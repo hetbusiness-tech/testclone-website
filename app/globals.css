@@ -37,6 +37,8 @@ html {
   overflow-x: clip;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-hyphens: manual;
+  hyphens: manual;
 }
 
 /* Hide scrollbar universally for clean dark-mode UI */
@@ -212,34 +214,6 @@ summary::-webkit-details-marker {
 }
 
 @media (max-width: 639px) {
-  .portfolio-stack-root {
-    height: auto !important;
-  }
-
-  .portfolio-stack-card {
-    position: relative !important;
-    top: auto !important;
-    height: auto !important;
-    transform: none !important;
-  }
-
-  .portfolio-stack-card>div {
-    height: auto !important;
-    justify-content: flex-start !important;
-  }
-
-  .portfolio-stack-card+.portfolio-stack-card {
-    margin-top: 1rem;
-  }
-
-  .portfolio-card-body {
-    opacity: 1 !important;
-  }
-
-  .portfolio-card-dim {
-    display: none;
-  }
-
   .service-preview-card {
     left: 50% !important;
     top: 50% !important;

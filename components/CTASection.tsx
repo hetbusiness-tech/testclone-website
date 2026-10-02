@@ -28,7 +28,7 @@ function AnimatedWords({
         {words.map((word, index) => (
           <span
             key={index}
-            className="inline-block overflow-hidden mr-[0.28em] last:mr-0 pb-[0.28em] -mb-[0.28em] pt-[0.08em] -mt-[0.08em] align-top"
+            className="inline-block whitespace-nowrap overflow-hidden mr-[0.28em] last:mr-0 pb-[0.28em] -mb-[0.28em] pt-[0.08em] -mt-[0.08em] align-top"
           >
             <motion.span
               className="inline-block"

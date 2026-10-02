@@ -79,7 +79,7 @@ export default function BlogCard({
 
         {/* Title */}
         <h2
-          className="font-display text-lg sm:text-xl text-black leading-snug transition-colors duration-300 group-hover:text-[#ff4d6d] mb-3 line-clamp-2"
+          className="font-display text-[1.05rem] sm:text-lg lg:text-xl text-black leading-[1.38] transition-colors duration-300 group-hover:text-[#ed1238] mb-3 pb-0.5"
           style={{
             fontFamily: "var(--font-display-family)",
             fontWeight: 700,

@@ -14,7 +14,7 @@ export default function Footer() {
               className="drop-shadow-[0_0_18px_rgba(237,18,56,0.18)]"
             />
             <p className="text-sm text-paper/60 max-w-sm leading-relaxed">
-              Technostripe helps modern e-commerce brands scale through Shopify development, performance marketing, e-commerce SEO, creative systems, and conversion optimization.
+              Technostripe helps modern <span className="whitespace-nowrap">e-commerce</span> brands scale through Shopify development, performance marketing, <span className="whitespace-nowrap">e-commerce</span> SEO, creative systems, and conversion optimization.
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-3 pt-1">
@@ -68,7 +68,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-paper/70">
               <li>
                 <Link href="/services#ecommerce-website-development" className="hover:text-[#ed1238] transition-colors">
-                  E-commerce Website Development
+                  <span className="whitespace-nowrap">E-commerce</span> Website Development
                 </Link>
               </li>
               <li>
@@ -78,7 +78,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/services#ecommerce-seo-services" className="hover:text-[#ed1238] transition-colors">
-                  E-commerce SEO
+                  <span className="whitespace-nowrap">E-commerce</span> SEO
                 </Link>
               </li>
               <li>
@@ -131,7 +131,7 @@ export default function Footer() {
                 <p className="text-[11px] text-paper/40 font-mono uppercase tracking-wider mb-0.5">Email</p>
                 <a
                   href="mailto:technostripesolution@gmail.com"
-                  className="text-paper/85 hover:text-[#ed1238] transition-colors font-medium text-xs sm:text-[13px] lg:text-sm block"
+                  className="text-paper/85 hover:text-[#ed1238] transition-colors font-medium text-sm break-all sm:break-normal block"
                 >
                   technostripesolution@gmail.com
                 </a>
@@ -140,7 +140,7 @@ export default function Footer() {
                 <p className="text-[11px] text-paper/40 font-mono uppercase tracking-wider mb-0.5">Phone</p>
                 <a
                   href="tel:+919714734563"
-                  className="text-paper/85 hover:text-[#ed1238] transition-colors font-medium"
+                  className="text-paper/85 hover:text-[#ed1238] transition-colors font-medium text-sm"
                 >
                   +91 9714734563
                 </a>

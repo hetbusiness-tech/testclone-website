@@ -51,26 +51,28 @@ export default function TestimonialsMarquee() {
           <div
             key={idx}
             aria-hidden={idx >= testimonials.length}
-            className="w-[min(86vw,360px)] sm:w-[420px] shrink-0 rounded-2xl border border-black/10 bg-black/[0.02] p-5 sm:p-8 backdrop-blur-sm transition-colors hover:border-[#ed1238]/40 hover:bg-black/[0.04]"
+            className="w-[min(86vw,360px)] sm:w-[420px] shrink-0 flex flex-col justify-between h-[255px] sm:h-[275px] rounded-2xl border border-black/10 bg-black/[0.02] p-5 sm:p-7 backdrop-blur-sm transition-colors hover:border-[#ed1238]/40 hover:bg-black/[0.04]"
           >
-            <div className="flex items-center gap-1 text-[#ed1238]">
-              {Array.from({ length: item.stars }).map((_, i) => (
-                <svg
-                  key={i}
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="size-4"
-                >
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                </svg>
-              ))}
+            <div className="flex-1 flex flex-col">
+              <div className="flex items-center gap-1 text-[#ed1238]">
+                {Array.from({ length: item.stars }).map((_, i) => (
+                  <svg
+                    key={i}
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-4"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ))}
+              </div>
+
+              <p className="mt-3.5 text-sm sm:text-[15px] leading-relaxed text-paper/80 font-normal italic line-clamp-4">
+                &ldquo;{item.quote}&rdquo;
+              </p>
             </div>
 
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-paper/80 font-normal italic">
-              &ldquo;{item.quote}&rdquo;
-            </p>
-
-            <div className="mt-6 border-t border-black/10 pt-4">
+            <div className="mt-auto border-t border-black/10 pt-3.5">
               <p className="font-display text-sm font-bold text-black">
                 {item.name}
               </p>

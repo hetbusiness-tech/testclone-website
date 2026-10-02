@@ -153,7 +153,7 @@ const projects: PortfolioProject[] = [
 
 function CardVisual({ project }: { project: PortfolioProject }) {
   return (
-    <div className="group relative flex h-full w-full items-center justify-center py-2 px-3">
+    <div className="group relative flex h-full w-full items-center justify-center py-1 px-2 xl:px-4">
       {/* Ambient background brand aura */}
       <div
         className="pointer-events-none absolute inset-2 rounded-3xl opacity-20 blur-2xl"
@@ -162,8 +162,8 @@ function CardVisual({ project }: { project: PortfolioProject }) {
         }}
       />
 
-      <div className="relative flex w-full max-w-[560px] items-center justify-center">
-        <div className="relative z-10 w-full overflow-hidden rounded-xl border border-black/15 bg-[#fffafa] shadow-[0_18px_40px_rgba(0,0,0,0.22),0_2px_8px_rgba(0,0,0,0.12)] transition-transform duration-500 group-hover:scale-[1.015] sm:rounded-2xl">
+      <div className="relative z-10 flex w-full max-w-[520px] items-center justify-center my-auto">
+        <div className="relative w-full overflow-hidden rounded-xl border border-black/15 bg-[#fffafa] shadow-[0_18px_40px_rgba(0,0,0,0.22),0_2px_8px_rgba(0,0,0,0.12)] transition-transform duration-500 group-hover:scale-[1.015] sm:rounded-2xl">
           {/* Monitor Browser Header Bar */}
           <div
             className="flex h-7 items-center justify-between border-b px-3"
@@ -192,8 +192,8 @@ function CardVisual({ project }: { project: PortfolioProject }) {
             <div className="w-8" />
           </div>
 
-          {/* Desktop Website Screen — 16:9 */}
-          <div className="relative w-full overflow-hidden rounded-[0.9rem] bg-black" style={{ aspectRatio: "3/2" }}>
+          {/* Desktop Website Screen */}
+          <div className="relative w-full overflow-hidden bg-black" style={{ aspectRatio: "16/10" }}>
             <img
               src={project.imageUrl}
               alt={`${project.clientName} desktop mockup`}
@@ -222,14 +222,14 @@ function StackCard({
   const start = index * step;
   const nextStart = (index + 1) * step;
 
-  // Slide up into view
+  // Slide up into view (Starts at 130% so other cards are completely hidden below until scroll)
   const y = useTransform(
     scrollYProgress,
     [start, Math.min(1, start + step * 0.65)],
-    [index === 0 ? "0%" : "115%", "0%"]
+    [index === 0 ? "0%" : "130%", "0%"]
   );
 
-  // When next cards stack on top, dim background to give authentic stacked bunch depth
+  // When next cards stack on top, dim background on desktop for depth
   const isLastCard = index === total - 1;
   const dimOpacity = useTransform(
     scrollYProgress,
@@ -237,48 +237,51 @@ function StackCard({
     isLastCard ? [0, 0] : [0, 0.45]
   );
 
-  // Fade body content when next card covers it, but keep the top tab bar always visible in the bunch!
+  // Fade body content when next card covers it
   const bodyOpacity = useTransform(
     scrollYProgress,
     isLastCard ? [0, 1] : [nextStart, Math.min(0.99, nextStart + step * 0.28)],
     isLastCard ? [1, 1] : [1, 0]
   );
 
-  // Keep the cards equal in height while leaving a compact visible stack.
-  const stackOffset = 18;
-  const topOffset = index * stackOffset;
-  const cardHeight = `calc(100% - ${(total - 1) * stackOffset - stackOffset}px)`;
+  // Desktop stack offset: 16px per card.
+  // Mobile stack offset: 0px so each card covers previous card with no top peek edges.
+  const desktopStackOffset = 16;
+  const desktopTopOffset = index * desktopStackOffset;
+  const desktopCardHeight = `calc(100% - ${(total - 1) * desktopStackOffset - desktopStackOffset}px)`;
 
   return (
     <motion.article
-      style={{
-        y,
-        zIndex: index + 1,
-        top: `${topOffset}px`,
-        height: cardHeight,
-      }}
-      className="portfolio-stack-card absolute inset-x-0 top-0 flex h-full will-change-transform sm:absolute"
+      style={
+        {
+          y,
+          zIndex: index + 1,
+          "--desktop-top": `${desktopTopOffset}px`,
+          "--desktop-height": desktopCardHeight,
+        } as React.CSSProperties
+      }
+      className="portfolio-stack-card absolute inset-x-0 top-0 md:top-[var(--desktop-top)] h-full md:h-[var(--desktop-height)] flex will-change-transform"
     >
       <div
-        className="relative flex h-full w-full flex-col justify-start overflow-hidden rounded-2xl border p-3 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.2)] sm:justify-between sm:rounded-[2rem] sm:p-7 lg:p-9"
+        className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-2xl border p-[16px] md:p-6 lg:p-8 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.2)] md:rounded-[2rem]"
         style={{
           backgroundColor: project.bgColor,
           borderColor: project.surfaceColor,
         }}
       >
-        {/* Top Tab Strip - ALWAYS VISIBLE when stacked in the bunch behind */}
+        {/* Top Tab Strip */}
         <div
-          className="relative z-20 flex shrink-0 items-center justify-between border-b pb-2 sm:pb-3 font-mono text-xs"
+          className="relative z-20 flex shrink-0 items-center justify-between border-b pb-2 md:pb-3 mb-[14px] md:mb-3 font-mono text-xs"
           style={{ borderColor: project.surfaceColor, color: project.textColor }}
         >
           <div className="flex items-center gap-2 sm:gap-2.5">
             <span
-              className="rounded-full px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-bold tracking-wider"
+              className="rounded-full px-2.5 py-0.5 text-[10px] md:text-[11px] font-bold tracking-wider"
               style={{ color: project.textColor, backgroundColor: project.surfaceColor }}
             >
               0{project.id + 1} / 0{total}
             </span>
-            <span className="font-bold tracking-wide text-xs sm:text-sm" style={{ color: project.textColor }}>
+            <span className="font-bold tracking-wide text-xs md:text-sm" style={{ color: project.textColor }}>
               {project.clientName}
             </span>
             <span className="hidden sm:inline opacity-50">•</span>
@@ -286,13 +289,13 @@ function StackCard({
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2">
             <span
-              className="rounded-full px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-semibold"
+              className="rounded-full px-2.5 py-0.5 text-[10px] md:text-[11px] font-semibold"
               style={{ color: project.textColor, backgroundColor: project.surfaceColor }}
             >
               {project.badge}
             </span>
             <span
-              className="rounded-full px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-[11px] opacity-80"
+              className="rounded-full px-2 py-0.5 text-[10px] md:text-[11px] opacity-80"
               style={{ color: project.textColor, backgroundColor: project.surfaceColor }}
             >
               {project.year}
@@ -303,36 +306,36 @@ function StackCard({
         {/* Card Main Body */}
         <motion.div
           style={{ opacity: bodyOpacity }}
-          className="portfolio-card-body relative z-10 grid flex-none grid-cols-1 gap-2.5 pt-2.5 sm:flex-1 sm:min-h-0 sm:gap-5 sm:pt-4 lg:grid-cols-[1.05fr_1.2fr] lg:gap-6 lg:items-center"
+          className="portfolio-card-body relative z-10 flex flex-col justify-start flex-1 min-h-0 lg:grid lg:grid-cols-[1.1fr_1.15fr] lg:gap-8 lg:items-center"
         >
           {/* Left Side Content */}
-          <div className="flex min-w-0 flex-col justify-between gap-2.5 sm:min-h-0 sm:gap-4 sm:overflow-hidden">
+          <div className="flex min-w-0 flex-col shrink-0 justify-start md:shrink md:justify-center md:overflow-hidden">
             <div>
               <span
-                className="inline-block rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-mono font-bold tracking-wider"
+                className="inline-block rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] md:text-[11px] font-mono font-bold tracking-wider"
                 style={{ color: project.textColor, backgroundColor: project.surfaceColor }}
               >
                 {project.category}
               </span>
               <h3
-                className="mt-1.5 min-w-0 font-display text-[1.05rem] font-extrabold leading-[1.1] tracking-tight sm:mt-3 sm:text-xl lg:text-3xl"
+                className="mt-[12px] md:mt-3 min-w-0 font-display text-[1rem] md:text-2xl lg:text-3xl font-extrabold leading-[1.2] md:leading-[1.12] tracking-tight"
                 style={{ color: project.textColor }}
               >
                 {project.title}
               </h3>
               <p
-                className="mt-1 max-w-xl text-[0.7rem] font-normal leading-[1.35] sm:mt-2 sm:text-sm lg:text-base line-clamp-2 sm:line-clamp-none"
+                className="mt-[8px] md:mt-2.5 max-w-xl text-[0.76rem] md:text-sm lg:text-base font-normal leading-[1.5] md:leading-relaxed line-clamp-1 md:line-clamp-none"
                 style={{ color: project.mutedTextColor }}
               >
                 {project.description}
               </p>
             </div>
-            <div className="flex flex-col gap-3 sm:gap-4">
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            <div className="mt-[16px] md:mt-5 flex flex-wrap items-center justify-between gap-[10px] md:flex-col md:items-start md:gap-3.5">
+              <div className="flex flex-wrap gap-[10px] md:gap-2">
                 {project.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium shadow-sm"
+                    className="rounded-full px-2.5 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-medium shadow-sm"
                     style={{ color: project.textColor, backgroundColor: project.surfaceColor }}
                   >
                     {tag}
@@ -341,11 +344,11 @@ function StackCard({
               </div>
               <Link
                 href={`/portfolio/${project.caseStudySlug}`}
-                className="inline-flex w-fit shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-bold tracking-tight transition-all duration-200 hover:shadow-lg"
+                className="inline-flex w-fit shrink-0 items-center gap-1.5 md:gap-2 whitespace-nowrap rounded-full px-3.5 py-1.5 md:px-6 md:py-2.5 text-xs md:text-sm font-bold tracking-tight transition-all duration-200 hover:shadow-lg"
                 style={{ color: "#ffffff", backgroundColor: project.textColor }}
               >
-                View Case Study
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-3.5 sm:size-4">
+                <span>View Case Study</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-3 md:size-4">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
@@ -353,24 +356,25 @@ function StackCard({
             </div>
           </div>
 
-          {/* Right Side Showcase */}
+          {/* Right Side Showcase (Desktop) */}
           <div className="hidden min-h-0 h-full min-w-0 items-center justify-center lg:flex">
             <CardVisual project={project} />
           </div>
-          {/* Mobile: show image below text */}
-          <div className="w-full overflow-hidden rounded-xl border border-black/10 lg:hidden">
+
+          {/* Mobile: exact image aspect ratio (3:2) with zero cropping and 18px top gap */}
+          <div className="relative w-full shrink-0 overflow-hidden rounded-xl border border-black/15 shadow-sm mt-[18px] lg:hidden aspect-[3/2]">
             <img
               src={project.imageUrl}
               alt={`${project.clientName} preview`}
-              className="block aspect-[2.2/1] h-auto max-h-[140px] w-full object-cover object-center sm:aspect-[3/2] sm:max-h-none"
+              className="block w-full h-full object-cover rounded-xl"
             />
           </div>
         </motion.div>
 
-        {/* Dimming overlay when card is behind in the stack */}
+        {/* Dimming overlay (hidden on mobile to prevent peek artifacts) */}
         <motion.div
           style={{ opacity: dimOpacity }}
-          className="portfolio-card-dim pointer-events-none absolute inset-0 z-30 rounded-2xl sm:rounded-[2rem] bg-black/40 transition-colors"
+          className="portfolio-card-dim pointer-events-none absolute inset-0 z-30 hidden md:block rounded-[2rem] bg-black/40 transition-colors"
         />
       </div>
     </motion.article>
@@ -391,29 +395,41 @@ export default function PortfolioStack() {
       className="portfolio-stack-root relative z-10 bg-ink"
       style={{ height: `${projects.length * 115}vh` }}
     >
-      <div className="portfolio-stack-shell relative flex h-auto flex-col overflow-visible pt-8 sm:sticky sm:top-0 sm:h-screen sm:overflow-hidden sm:pt-[4.25rem]">
-        <div className="mx-auto mb-3 flex w-full max-w-6xl shrink-0 items-end justify-between gap-6 px-6 pt-3">
+      <div className="portfolio-stack-shell sticky top-0 flex h-[100dvh] h-[100svh] w-full flex-col justify-between overflow-hidden pt-[72px] pb-4 md:pt-[4.25rem] md:pb-8">
+        <div className="mx-auto mb-[18px] md:mb-6 flex w-full max-w-6xl shrink-0 items-end justify-between gap-4 px-4 md:px-6 pt-0 md:pt-3">
           <div>
             <span className="eyebrow text-[#ed1238] font-mono font-bold tracking-widest uppercase text-xs">
               ( PORTFOLIO )
             </span>
-            <h2 className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-paper">
+            <h2 className="mt-1 font-display text-[1.85rem] md:text-5xl font-black tracking-tight text-paper leading-[1.05] md:leading-none">
               Work that delivers real growth.
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-paper/60 font-normal">
+            <p className="mt-2 md:mt-1 text-xs md:text-sm text-paper/70 md:text-paper/60 font-normal leading-relaxed md:leading-normal line-clamp-2 md:line-clamp-none">
               High-conversion Shopify Plus builds, creative ad systems, and scalable e-commerce infrastructure.
             </p>
+            <div className="mt-3.5 mb-1 md:hidden">
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center gap-2 rounded-full border border-black/30 bg-black/5 px-5 py-2.5 text-[13px] font-bold text-black shadow-sm transition-all hover:bg-black hover:text-white"
+              >
+                <span>View all work</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-3.5">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </div>
           <Link
             href="/portfolio"
-            className="hidden shrink-0 items-center rounded-full border border-black/25 px-5 py-2 text-xs font-medium text-black transition-all duration-200 hover:border-[#ed1238] hover:text-[#ed1238] sm:inline-flex"
+            className="hidden shrink-0 items-center rounded-full border border-black/25 px-5 py-2 text-xs font-medium text-black transition-all duration-200 hover:border-[#ed1238] hover:text-[#ed1238] md:inline-flex"
           >
             View all work
           </Link>
         </div>
 
-        <div className="relative mx-auto min-h-0 w-full max-w-6xl flex-none px-4 pb-8 sm:flex-1 sm:px-6 sm:pb-8">
-          <div className="relative h-auto overflow-visible sm:h-full sm:overflow-hidden">
+        <div className="relative mx-auto w-full max-w-6xl px-3 md:px-6 flex-1 min-h-0 max-h-[min(480px,calc(100svh-145px))] md:max-h-none md:flex-1 md:pb-0">
+          <div className="relative h-full w-full overflow-hidden">
             {projects.map((project, index) => (
               <StackCard
                 key={project.id}

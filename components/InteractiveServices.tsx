@@ -81,7 +81,7 @@ export default function InteractiveServices() {
   const hoveredService = hoveredIndex !== null ? servicesList[hoveredIndex] : null;
 
   return (
-    <div className="relative z-10 w-full overflow-hidden bg-ink pt-6 pb-12 sm:pt-10 sm:pb-16">
+    <div className="relative z-10 w-full overflow-hidden bg-ink pt-6 pb-3 sm:pt-10 sm:pb-16">
       {/* Floating Red Preview Card on Hover */}
       <AnimatePresence>
         {hoveredService && (
