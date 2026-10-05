@@ -1,0 +1,439 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+
+const services = [
+  "Shopify Development & Redesign",
+  "Paid Ads (Meta & Google)",
+  "E-commerce SEO Services",
+  "Social Media & UGC Creative",
+  "Brand Positioning & CRO",
+  "Full-Stack E-commerce Scale",
+];
+
+const revenueRanges = [
+  "< $10k / mo",
+  "$10k - $50k / mo",
+  "$50k - $200k / mo",
+  "$200k+ / mo",
+];
+
+export default function ContactPage() {
+  const [selectedServices, setSelectedServices] = useState<string[]>([
+    "Shopify Development & Redesign",
+  ]);
+  const [selectedRevenue, setSelectedRevenue] = useState("$10k - $50k / mo");
+  const [formData, setFormData] = useState({
+    name: "",
+    brandName: "",
+    email: "",
+    phone: "",
+    websiteUrl: "",
+    challenges: "",
+    company: "", // honeypot — must stay empty
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const toggleService = (service: string) => {
+    if (selectedServices.includes(service)) {
+      setSelectedServices(selectedServices.filter((s) => s !== service));
+    } else {
+      setSelectedServices([...selectedServices, service]);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          brandName: formData.brandName,
+          email: formData.email,
+          phone: formData.phone,
+          websiteUrl: formData.websiteUrl,
+          challenges: formData.challenges,
+          services: selectedServices,
+          revenueRange: selectedRevenue,
+          company: formData.company,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or email us directly at technostripesolution@gmail.com."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <main id="main-content" className="relative min-h-screen bg-ink text-paper selection:bg-[#ed1238] selection:text-white overflow-hidden">
+      {/* Red Ambient Hero Shadow */}
+      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-[450px] w-[800px] max-w-full rounded-full bg-[#ed1238]/15 blur-[140px] z-0" />
+
+      {/* Shared Header */}
+      <Navbar />
+
+      {/* Main Form & Contact Information Grid */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-36 lg:pb-20">
+        <div className="grid grid-cols-1 gap-8 sm:gap-12 lg:grid-cols-[1.05fr_1.35fr] lg:gap-16 items-start">
+
+          {/* Left Column: Context & Direct Contact Details */}
+          <div>
+            <span className="eyebrow text-[#ed1238] font-mono tracking-widest uppercase font-bold text-xs sm:text-sm">
+              ( BOOK STRATEGY CALL )
+            </span>
+            <h1 className="mt-3 sm:mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-black leading-[1.08] sm:leading-[1.04]">
+              Let’s scale your e-commerce brand.
+            </h1>
+            <p className="mt-4 sm:mt-5 max-w-lg text-sm sm:text-lg leading-relaxed text-paper/70 font-normal">
+              Tell us about your brand, current bottlenecks, and revenue goals. We’ll analyze your store and map the next opportunities for profitable scale.
+            </p>
+
+            {/* Direct Contact Cards */}
+            <div className="mt-6 sm:mt-10 space-y-3 sm:space-y-4">
+              <div className="group rounded-2xl border border-black/10 bg-black/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
+                <div className="flex items-center gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#ed1238]/10 text-[#ed1238] border border-[#ed1238]/20 shrink-0">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
+                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Location</p>
+                    <p className="mt-0.5 text-sm sm:text-base font-semibold text-black">Gravity Business Park, Ahmedabad, Gujarat, India (Global D2C Scale)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group rounded-2xl border border-black/10 bg-black/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
+                <div className="flex items-center gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#ed1238]/10 text-[#ed1238] border border-[#ed1238]/20 shrink-0">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Direct Email</p>
+                    <a href="mailto:technostripesolution@gmail.com" className="mt-0.5 text-sm sm:text-base font-semibold text-black hover:text-[#ed1238] transition-colors">
+                      technostripesolution@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group rounded-2xl border border-black/10 bg-black/[0.03] p-5 backdrop-blur-sm transition-colors hover:border-[#ed1238]/50">
+                <div className="flex items-center gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-[#ed1238]/10 text-[#ed1238] border border-[#ed1238]/20 shrink-0">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-mono text-xs font-semibold uppercase tracking-wider text-paper/50">Direct Phone / WhatsApp</p>
+                    <a href="tel:+919714734563" className="mt-0.5 text-sm sm:text-base font-semibold text-black hover:text-[#ed1238] transition-colors">
+                      +91 9714734563
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Trust highlights */}
+            <div className="mt-8 pt-6 sm:mt-10 sm:pt-8 border-t border-black/10 space-y-3 font-mono text-xs text-paper/60">
+              <div className="flex items-center gap-2.5">
+                <span className="text-[#ed1238]">✓</span>
+                <span>Direct consultation with e-commerce growth strategists</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="text-[#ed1238]">✓</span>
+                <span>Free Shopify conversion & speed audit included</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <span className="text-[#ed1238]">✓</span>
+                <span>No pressure, actionable growth roadmap</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Interactive Growth Inquiry Form */}
+          <div className="rounded-2xl sm:rounded-3xl border border-black/15 bg-black/[0.03] p-5 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl">
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="py-12 text-center"
+              >
+                <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-[#ed1238]/20 text-[#ed1238] border border-[#ed1238]/40 mb-6">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-8">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <h3 className="font-display text-3xl font-black text-black">Form submitted successfully!</h3>
+                <p className="mt-3 text-sm text-paper/70 max-w-md mx-auto leading-relaxed">
+                  Thank you for reaching out. Our growth team will review your store metrics and contact you within 24 hours to schedule your strategy session.
+                </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="mt-8 rounded-full border border-black/20 bg-black/5 px-6 py-2.5 text-xs font-mono uppercase tracking-wider text-black hover:bg-black/10 transition-colors"
+                >
+                  Send another inquiry
+                </button>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-7">
+                {/* Honeypot field — hidden from real visitors, bots fill it in */}
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] size-px opacity-0"
+                />
+
+                {/* 1. Services selection */}
+                <div role="group" aria-labelledby="services-label">
+                  <p id="services-label" className="font-mono text-xs font-bold uppercase tracking-wider text-paper/70 mb-3">
+                    Services You&apos;re Interested In
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {services.map((service) => {
+                      const isSelected = selectedServices.includes(service);
+                      return (
+                        <button
+                          key={service}
+                          type="button"
+                          aria-pressed={isSelected}
+                          onClick={() => toggleService(service)}
+                          className={`rounded-full px-4 py-2 text-xs font-semibold transition-all duration-200 cursor-pointer ${isSelected
+                            ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
+                            : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
+                            }`}
+                        >
+                          {service}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 2. Monthly Revenue Range */}
+                <div role="group" aria-labelledby="revenue-label">
+                  <p id="revenue-label" className="font-mono text-xs font-bold uppercase tracking-wider text-paper/70 mb-3">
+                    Monthly Store Revenue
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {revenueRanges.map((range) => {
+                      const isSelected = selectedRevenue === range;
+                      return (
+                        <button
+                          key={range}
+                          type="button"
+                          aria-pressed={isSelected}
+                          onClick={() => setSelectedRevenue(range)}
+                          className={`rounded-xl py-2.5 px-3 text-xs font-semibold text-center transition-all duration-200 cursor-pointer ${isSelected
+                            ? "bg-[#ed1238] text-white shadow-[0_0_15px_rgba(237,18,56,0.4)]"
+                            : "border border-black/15 bg-black/5 text-paper/70 hover:border-black/30 hover:text-black"
+                            }`}
+                        >
+                          {range}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 3. Text inputs */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="contact-name" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      id="contact-name"
+                      name="name"
+                      required
+                      type="text"
+                      autoComplete="name"
+                      placeholder="e.g. John Doe"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="contact-brand" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                      Brand / Company Name *
+                    </label>
+                    <input
+                      id="contact-brand"
+                      name="brandName"
+                      required
+                      type="text"
+                      autoComplete="organization"
+                      placeholder="e.g. LuxeAura Apparel"
+                      value={formData.brandName}
+                      onChange={(e) => setFormData({ ...formData, brandName: e.target.value })}
+                      className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="contact-email" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                      Work Email *
+                    </label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      required
+                      type="email"
+                      autoComplete="email"
+                      placeholder="john@gmail.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="contact-phone" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                      Phone Number (WhatsApp)
+                    </label>
+                    <input
+                      id="contact-phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      pattern="^[0-9+\s()-]{7,}$"
+                      placeholder="+1 (555) 019-2834"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                    />
+                  </div>
+                </div>
+
+                {/* Website URL — required only when non-Shopify services are selected */}
+                {(() => {
+                  const onlyShopify =
+                    selectedServices.length > 0 &&
+                    selectedServices.every((s) => s === "Shopify Development & Redesign");
+                  const needsUrl = selectedServices.length > 0 && !onlyShopify;
+
+                  return (
+                    <div>
+                      <label htmlFor="contact-website" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                        Store / Website URL {needsUrl ? "*" : "(Optional)"}
+                      </label>
+                      <input
+                        id="contact-website"
+                        name="websiteUrl"
+                        required={needsUrl}
+                        type="text"
+                        placeholder="https://yourbrand.com"
+                        value={formData.websiteUrl}
+                        onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
+                        className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                      />
+                      {needsUrl && (
+                        <p className="mt-1.5 text-[11px] text-[#ed1238]/80 font-mono">
+                          Website URL is required for {selectedServices.filter((s) => s !== "Shopify Development & Redesign").join(", ")}
+                        </p>
+                      )}
+                      {onlyShopify && (
+                        <p className="mt-1.5 text-[11px] text-paper/40 font-mono">
+                          No existing store? No problem — we&apos;ll build it from scratch.
+                        </p>
+                      )}
+                    </div>
+                  );
+                })()}
+
+                {/* Challenges & goals */}
+                <div>
+                  <label htmlFor="contact-challenges" className="block font-mono text-xs font-semibold uppercase tracking-wider text-paper/70 mb-2">
+                    Current Challenges & Growth Goals
+                  </label>
+                  <textarea
+                    id="contact-challenges"
+                    name="challenges"
+                    rows={3}
+                    placeholder="Tell us about your current conversion rate, ad performance, or redesign timeline..."
+                    value={formData.challenges}
+                    onChange={(e) => setFormData({ ...formData, challenges: e.target.value })}
+                    className="w-full rounded-xl border border-black/15 bg-black/5 px-4 py-3 text-sm text-black placeholder-paper/30 outline-none transition-colors focus:border-[#ed1238]"
+                  />
+                </div>
+
+                {error && (
+                  <p role="alert" className="text-sm text-red-400">
+                    {error}
+                  </p>
+                )}
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#ed1238] py-4 text-sm font-bold tracking-tight text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_30px_rgba(237,18,56,0.6)] cursor-pointer disabled:opacity-50"
+                >
+                  {isSubmitting ? "Submitting Inquiry..." : "Book Free Strategy Call ↗"}
+                </button>
+
+                <p className="text-center text-[11px] text-paper/40 leading-relaxed">
+                  By submitting, you agree to our{" "}
+                  <Link href="/privacy-policy" className="underline hover:text-[#ed1238]">
+                    Privacy Policy
+                  </Link>
+                  . We&apos;ll only use your details to respond to this inquiry.
+                </p>
+              </form>
+            )}
+          </div>
+        </div>
+
+        {/* Thoughtful Quote at Bottom */}
+        <div className="mt-20 pt-12 border-t border-black/10 text-center max-w-3xl mx-auto">
+          <p className="font-display text-xl sm:text-2xl font-semibold text-black/90 leading-relaxed italic">
+            “Where Ambition Meets Execution — We turn high-complexity ideas into market-dominating digital reality.”
+          </p>
+          <p className="mt-3 font-mono text-xs tracking-widest text-[#ed1238] uppercase font-bold">
+            ✦ The Technostripe Team
+          </p>
+        </div>
+      </div>
+
+      {/* Shared Footer */}
+      <Footer />
+    </main>
+  );
+}
