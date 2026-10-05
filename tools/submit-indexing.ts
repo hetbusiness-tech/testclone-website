@@ -9,6 +9,10 @@ const BATCH_SIZE = 200; // Google Indexing API Quota per day
 const STATE_FILE = path.join(process.cwd(), "tools", "indexing-state.json");
 const CREDENTIALS_FILE = path.join(process.cwd(), "service-account.json");
 
+interface IndexingState {
+  submitted: string[];
+}
+
 // Gather all URLs
 const seoPageUrls = SEO_PAGES.map((page) => `${SITE_URL}/${page.slug}`);
 const citySeoPageUrls = getAllCityPageParams().map((p) => `${SITE_URL}/${p.slug}/${p.service}`);
@@ -22,9 +26,9 @@ async function submitUrls() {
   }
 
   // Read state to know which URLs are already submitted
-  let state = { submitted: [] };
+  let state: IndexingState = { submitted: [] };
   if (fs.existsSync(STATE_FILE)) {
-    state = JSON.parse(fs.readFileSync(STATE_FILE, "utf-8"));
+    state = JSON.parse(fs.readFileSync(STATE_FILE, "utf-8")) as IndexingState;
   }
 
   // Find unsubmitted URLs
@@ -48,8 +52,7 @@ async function submitUrls() {
     scopes: ["https://www.googleapis.com/auth/indexing"],
   });
 
-  const authClient = await auth.getClient();
-  const indexing = google.indexing({ version: "v3", auth: authClient });
+  const indexing = google.indexing({ version: "v3", auth });
 
   let successCount = 0;
   let failCount = 0;
@@ -67,7 +70,8 @@ async function submitUrls() {
       console.log(`[SUCCESS] Submitted: ${url}`);
     } catch (error) {
       failCount++;
-      console.error(`[ERROR] Failed to submit: ${url}`, error.message);
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`[ERROR] Failed to submit: ${url}`, message);
       // Brief pause to avoid rate limiting
       await new Promise(r => setTimeout(r, 500));
     }
