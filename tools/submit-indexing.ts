@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { google } from "googleapis";
-import { SEO_PAGES, getAllCityPageParams } from "../lib/seo-pages.js";
+import { SEO_PAGES, getAllCityPageParams, CITIES } from "../lib/seo-pages.js";
 
 // Configuration
 const SITE_URL = "https://technostripe.com";
@@ -14,9 +14,10 @@ interface IndexingState {
 }
 
 // Gather all URLs
+const cityHubUrls = CITIES.map((c) => `${SITE_URL}/${c.slug}`);
 const seoPageUrls = SEO_PAGES.map((page) => `${SITE_URL}/${page.slug}`);
 const citySeoPageUrls = getAllCityPageParams().map((p) => `${SITE_URL}/${p.slug}/${p.service}`);
-const allUrls = [...seoPageUrls, ...citySeoPageUrls];
+const allUrls = [`${SITE_URL}/locations`, ...cityHubUrls, ...seoPageUrls, ...citySeoPageUrls];
 
 async function submitUrls() {
   if (!fs.existsSync(CREDENTIALS_FILE)) {

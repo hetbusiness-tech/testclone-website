@@ -552,3 +552,29 @@ export function getCityPage(
     cityName: city.name,
   };
 }
+
+export function getCityBySlug(citySlug: string): CityInfo | undefined {
+  return CITIES.find((c) => c.slug === citySlug);
+}
+
+export function getAllCitySlugs(): string[] {
+  return CITIES.map((c) => c.slug);
+}
+
+export function getServicesForCity(citySlug: string): {
+  baseSlug: string;
+  title: string;
+  serviceGroup: ServiceGroup;
+  metaDescription: string;
+}[] {
+  const overrides = CITY_SEO_PAGES.filter((c) => c.citySlug === citySlug);
+  return overrides.map((override) => {
+    const base = getSeoPageBySlug(override.baseSlug);
+    return {
+      baseSlug: override.baseSlug,
+      title: override.title,
+      serviceGroup: base?.serviceGroup ?? "Website Development",
+      metaDescription: override.metaDescription,
+    };
+  });
+}

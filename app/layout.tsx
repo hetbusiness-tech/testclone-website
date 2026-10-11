@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import PageLoader from "../components/PageLoader";
@@ -43,25 +42,12 @@ const KEYWORDS = [
 ];
 
 /* ─── Metadata ────────────────────────────────────────── */
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "technostripe.com";
-  const isLocal =
-    host.includes("localhost") || host.startsWith("127.0.0.1");
-  const protocol = isLocal
-    ? "http"
-    : (requestHeaders.get("x-forwarded-proto") ?? "https");
-  const metadataBase = new URL(`${protocol}://${host}`);
-
-  return {
-    metadataBase,
-    title: {
-      default: SITE_TITLE,
-      template: `%s | ${SITE_NAME}`,
-    },
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
     description: SITE_DESCRIPTION,
     keywords: KEYWORDS,
 
@@ -154,7 +140,6 @@ export async function generateMetadata(): Promise<Metadata> {
       maximumScale: 5,
     },
   };
-}
 
 /* ─── Schema.org JSON-LD structured data ─────────────── */
 const organizationSchema = {

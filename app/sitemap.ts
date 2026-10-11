@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { caseStudies } from "./case-studies/constants";
 import { blogs } from "./insights/constants";
-import { SEO_PAGES, getAllCityPageParams } from "../lib/seo-pages";
+import { SEO_PAGES, getAllCityPageParams, CITIES } from "../lib/seo-pages";
 
 const SITE_URL = "https://technostripe.com";
 
@@ -25,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
+  const cityHubUrls = CITIES.map((c) => ({
+    url: `${SITE_URL}/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
   const seoPageUrls = SEO_PAGES.map((page) => ({
     url: `${SITE_URL}/${page.slug}`,
     lastModified: now,
@@ -44,6 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1.0,
+    },
+    {
+      url: `${SITE_URL}/locations`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.95,
     },
     {
       url: `${SITE_URL}/services`,
@@ -96,6 +108,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...portfolioUrls,
     ...caseStudyUrls,
     ...insightUrls,
+    ...cityHubUrls,
     ...seoPageUrls,
     ...citySeoPageUrls,
   ];

@@ -102,6 +102,37 @@ export default function CitySeoPage({ params }: Props) {
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Locations",
+        item: `${SITE_URL}/locations`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: page.cityName,
+        item: `${SITE_URL}/${params.slug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: page.h1,
+        item: `${SITE_URL}/${params.slug}/${params.service}`,
+      },
+    ],
+  };
+
   return (
     <>
       <Navbar />
@@ -113,6 +144,10 @@ export default function CitySeoPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <main id="main-content" className="min-h-screen bg-[#fffafa]">
@@ -129,11 +164,13 @@ export default function CitySeoPage({ params }: Props) {
                 Home
               </Link>
               <span>/</span>
-              <Link href="/services" className="hover:text-black transition-colors">
-                Services
+              <Link href="/locations" className="hover:text-black transition-colors">
+                Locations
               </Link>
               <span>/</span>
-              <span className="text-black/40">{page.cityName}</span>
+              <Link href={`/${params.slug}`} className="hover:text-black transition-colors text-black/60 font-medium">
+                {page.cityName}
+              </Link>
               <span>/</span>
               <span className="text-black/55 truncate max-w-[240px]">{page.h1}</span>
             </nav>

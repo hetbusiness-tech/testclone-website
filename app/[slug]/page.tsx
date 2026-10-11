@@ -14,6 +14,10 @@ import {
   getRelatedNationalPages,
   getCityVariantsForKeyword,
   SERVICE_GROUP_TO_CONTACT_LABEL,
+  getCityBySlug,
+  getAllCitySlugs,
+  getServicesForCity,
+  CITIES,
 } from "../../lib/seo-pages";
 import { getCaseStudyBySlug } from "../../lib/case-studies";
 
@@ -24,39 +28,85 @@ interface Props {
 }
 
 export function generateStaticParams() {
-  return getAllSeoSlugs().map((slug) => ({ slug }));
+  const seoSlugs = getAllSeoSlugs();
+  const citySlugs = getAllCitySlugs();
+  return [...seoSlugs, ...citySlugs].map((slug) => ({ slug }));
 }
 
 export function generateMetadata({ params }: Props): Metadata {
   const page = getSeoPageBySlug(params.slug);
-  if (!page) return {};
+  if (page) {
+    return {
+      title: page.title,
+      description: page.metaDescription,
+      alternates: {
+        canonical: `${SITE_URL}/${page.slug}`,
+      },
+      openGraph: {
+        title: page.title,
+        description: page.metaDescription,
+        url: `${SITE_URL}/${page.slug}`,
+        siteName: "Technostripe Solutions",
+        type: "website",
+        images: [{ url: `${SITE_URL}${page.heroImage}` }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: page.title,
+        description: page.metaDescription,
+        images: [`${SITE_URL}${page.heroImage}`],
+      },
+    };
+  }
 
-  return {
-    title: page.title,
-    description: page.metaDescription,
-    alternates: {
-      canonical: `${SITE_URL}/${page.slug}`,
-    },
-    openGraph: {
-      title: page.title,
-      description: page.metaDescription,
-      url: `${SITE_URL}/${page.slug}`,
-      siteName: "Technostripe Solutions",
-      type: "website",
-      images: [{ url: `${SITE_URL}${page.heroImage}` }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: page.title,
-      description: page.metaDescription,
-      images: [`${SITE_URL}${page.heroImage}`],
-    },
-  };
+  const city = getCityBySlug(params.slug);
+  if (city) {
+    const title = `E-commerce & Shopify Agency in ${city.name} | Technostripe`;
+    const description = `Technostripe is a leading Shopify and e-commerce growth agency in ${city.name}. We help modern brands scale with high-converting development, paid ads, and e-commerce SEO.`;
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `${SITE_URL}/${city.slug}`,
+      },
+      openGraph: {
+        title,
+        description,
+        url: `${SITE_URL}/${city.slug}`,
+        siteName: "Technostripe Solutions",
+        type: "website",
+        images: [{ url: `${SITE_URL}/what-we-do-mockup.png` }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [`${SITE_URL}/what-we-do-mockup.png`],
+      },
+    };
+  }
+
+  return {};
 }
 
 export default function SeoPage({ params }: Props) {
   const page = getSeoPageBySlug(params.slug);
-  if (!page) notFound();
+
+  if (!page) {
+    const city = getCityBySlug(params.slug);
+    if (!city) notFound();
+
+    const services = getServicesForCity(city.slug);
+    const otherCities = CITIES.filter((c) => c.slug !== city.slug).slice(0, 18);
+
+    return (
+      <CityHubView
+        city={city}
+        services={services}
+        otherCities={otherCities}
+      />
+    );
+  }
 
   const proofCaseStudies = page.proofSlugs
     .map((slug) => getCaseStudyBySlug(slug))
@@ -70,6 +120,31 @@ export default function SeoPage({ params }: Props) {
     label: c.cityName,
     href: `/${c.citySlug}/${page.slug}`,
   }));
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${SITE_URL}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: page.title,
+        item: `${SITE_URL}/${page.slug}`,
+      },
+    ],
+  };
 
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -103,6 +178,10 @@ export default function SeoPage({ params }: Props) {
     <>
       <Navbar />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
@@ -358,3 +437,260 @@ export default function SeoPage({ params }: Props) {
     </>
   );
 }
+
+function CityHubView({
+  city,
+  services,
+  otherCities,
+}: {
+  city: { slug: string; name: string };
+  services: {
+    baseSlug: string;
+    title: string;
+    serviceGroup: string;
+    metaDescription: string;
+  }[];
+  otherCities: { slug: string; name: string }[];
+}) {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Locations",
+        item: `${SITE_URL}/locations`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: city.name,
+        item: `${SITE_URL}/${city.slug}`,
+      },
+    ],
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: `Technostripe Solutions - ${city.name}`,
+    description: `Shopify development, e-commerce SEO, and performance marketing agency serving businesses in ${city.name}.`,
+    url: `${SITE_URL}/${city.slug}`,
+    areaServed: city.name,
+    provider: {
+      "@type": "Organization",
+      name: "Technostripe Solutions",
+      url: SITE_URL,
+      logo: `${SITE_URL}/head-image.png`,
+    },
+  };
+
+  return (
+    <>
+      <Navbar />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+
+      <main id="main-content" className="min-h-screen bg-[#fffafa]">
+        {/* HERO */}
+        <section className="relative overflow-hidden pt-28 sm:pt-36 pb-16 sm:pb-24">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(237,18,56,0.12)_0%,transparent_55%)]" />
+
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+            <nav
+              aria-label="Breadcrumb"
+              className="mb-8 flex items-center gap-2 text-[0.7rem] font-mono tracking-wider text-black/30"
+            >
+              <Link href="/" className="hover:text-black transition-colors">
+                Home
+              </Link>
+              <span>/</span>
+              <Link href="/locations" className="hover:text-black transition-colors">
+                Locations
+              </Link>
+              <span>/</span>
+              <span className="text-black/55">{city.name}</span>
+            </nav>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-6 lg:items-start">
+              <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1">
+                <span className="inline-block rounded-full border border-[#ed1238]/30 bg-[#ed1238]/15 px-3 py-0.5 text-[0.65rem] font-mono tracking-[0.15em] uppercase text-[#ff4d6d] mb-5">
+                  Location Hub · {city.name}
+                </span>
+
+                <h1
+                  className="text-3xl sm:text-4xl lg:text-5xl text-black leading-[1.1]"
+                  style={{
+                    fontFamily: "var(--font-display-family)",
+                    fontWeight: 800,
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  Shopify &amp; E-commerce Growth Agency in {city.name}
+                </h1>
+              </div>
+
+              <div className="order-2 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-4">
+                <WhatsAppLeadForm
+                  context={`E-commerce Growth in ${city.name}`}
+                  preselectedService="Shopify Development & Redesign"
+                />
+              </div>
+
+              <div className="order-3 lg:order-none lg:col-start-1 lg:row-start-2">
+                <p className="text-lg text-black/70 leading-relaxed max-w-xl">
+                  Technostripe engineers high-converting Shopify stores, aggressive paid media campaigns, and technical e-commerce SEO systems for ambitious brands in {city.name}. We combine design excellence with sub-second performance.
+                </p>
+              </div>
+
+              <div className="order-4 lg:order-none lg:col-start-1 lg:row-start-3 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="rounded-xl border border-black/10 bg-black/[0.02] px-3 py-3 text-center">
+                  <p className="text-lg sm:text-xl font-display font-extrabold text-black">95+</p>
+                  <p className="mt-0.5 text-[0.6rem] font-mono uppercase tracking-wider text-black/40 leading-tight">PageSpeed Baseline</p>
+                </div>
+                <div className="rounded-xl border border-black/10 bg-black/[0.02] px-3 py-3 text-center">
+                  <p className="text-lg sm:text-xl font-display font-extrabold text-black">3.4x</p>
+                  <p className="mt-0.5 text-[0.6rem] font-mono uppercase tracking-wider text-black/40 leading-tight">Average ROAS</p>
+                </div>
+                <div className="rounded-xl border border-black/10 bg-black/[0.02] px-3 py-3 text-center">
+                  <p className="text-lg sm:text-xl font-display font-extrabold text-black">100%</p>
+                  <p className="mt-0.5 text-[0.6rem] font-mono uppercase tracking-wider text-black/40 leading-tight">In-House Engineers</p>
+                </div>
+                <div className="rounded-xl border border-black/10 bg-black/[0.02] px-3 py-3 text-center">
+                  <p className="text-lg sm:text-xl font-display font-extrabold text-black">&lt; 1s</p>
+                  <p className="mt-0.5 text-[0.6rem] font-mono uppercase tracking-wider text-black/40 leading-tight">Global TTFB</p>
+                </div>
+              </div>
+
+              <div className="order-5 lg:order-none lg:col-start-1 lg:row-start-4 relative">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-black/15 bg-[#fffafa] shadow-2xl">
+                  <Image
+                    src="/what-we-do-mockup.png"
+                    alt={`Shopify & E-commerce Agency in ${city.name}`}
+                    fill
+                    unoptimized
+                    priority
+                    className="object-cover object-center"
+                  />
+                  <div className="pointer-events-none absolute -bottom-8 -right-8 size-40 rounded-full bg-[#ed1238]/25 blur-3xl" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SERVICES IN CITY */}
+        <div className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
+          <section className="border-t border-black/10 pt-14 sm:pt-20">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+              <div>
+                <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-2">
+                  Specialized Solutions
+                </p>
+                <h2 className="text-2xl sm:text-3xl font-bold font-display text-black">
+                  Available Services in {city.name}
+                </h2>
+              </div>
+              <p className="text-xs font-mono text-black/50">
+                {services.length} Specialized Capabilities
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {services.map((svc) => (
+                <Link
+                  key={svc.baseSlug}
+                  href={`/${city.slug}/${svc.baseSlug}`}
+                  className="group rounded-2xl border border-black/10 bg-black/[0.02] p-6 transition-all duration-300 hover:border-[#ed1238]/40 hover:bg-[#ed1238]/[0.02] hover:shadow-lg flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="inline-block rounded-full bg-black/[0.05] group-hover:bg-[#ed1238]/10 group-hover:text-[#ed1238] px-2.5 py-0.5 text-[0.6rem] font-mono uppercase tracking-wider text-black/50 mb-3 transition-colors">
+                      {svc.serviceGroup}
+                    </span>
+                    <h3 className="text-base sm:text-lg font-bold text-black group-hover:text-[#ed1238] transition-colors mb-2">
+                      {svc.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-black/60 leading-relaxed line-clamp-3">
+                      {svc.metaDescription}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-black/5 flex items-center justify-between text-xs font-mono font-medium text-[#ed1238]">
+                    <span>Explore Service</span>
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {/* OTHER LOCATIONS */}
+          {otherCities.length > 0 && (
+            <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-1">
+                    Global Coverage
+                  </p>
+                  <h3 className="text-xl sm:text-2xl font-bold font-display text-black">
+                    Other Featured Locations
+                  </h3>
+                </div>
+                <Link
+                  href="/locations"
+                  className="text-xs font-mono text-[#ed1238] hover:underline"
+                >
+                  View All Locations →
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                {otherCities.map((c) => (
+                  <Link
+                    key={c.slug}
+                    href={`/${c.slug}`}
+                    className="rounded-xl border border-black/8 bg-black/[0.02] p-3 text-center text-xs font-medium text-black/75 hover:border-[#ed1238]/40 hover:text-[#ed1238] hover:bg-black/[0.04] transition-all"
+                  >
+                    {c.name}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* CTA */}
+          <section className="mt-14 sm:mt-20 mb-20 rounded-2xl border border-[#ed1238]/20 bg-[#ed1238]/5 p-8 sm:p-10 text-center">
+            <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-3">
+              Ready to scale in {city.name}?
+            </p>
+            <p className="text-lg text-black/80 leading-relaxed mb-6 max-w-lg mx-auto">
+              Book a free strategy audit with our team and get an actionable execution plan for your store.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#ed1238] px-7 py-3.5 text-sm font-bold font-mono tracking-[0.14em] uppercase text-white transition-all duration-300 hover:bg-[#ff2046] hover:shadow-[0_0_25px_rgba(237,18,56,0.5)]"
+            >
+              Book Strategy Call
+            </Link>
+          </section>
+        </div>
+      </main>
+
+      <Footer />
+    </>
+  );
+}
+
