@@ -59,39 +59,59 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const submission = {
-    ...body,
-    company: undefined,
-    submittedAt: new Date().toISOString(),
+  const payload = {
+    name: body.name,
+    brandName: body.brandName,
+    email: body.email,
+    phone: body.phone ?? "",
+    websiteUrl: body.websiteUrl,
+    services: body.services,
+    revenueRange: body.revenueRange,
+    challenges: body.challenges ?? "",
   };
 
-  // Edge/Workers-safe: no filesystem writes. Every submission is logged so it
-  // is visible in platform logs (Vercel function logs / `wrangler tail`) even
-  // before a downstream destination is wired up.
-  console.log("[contact-form] submission", JSON.stringify(submission));
+  // Keep console.log of the submission as a fallback
+  console.log("[contact-form] submission", JSON.stringify({ ...payload, submittedAt: new Date().toISOString() }));
 
   const sheetWebhookUrl = process.env.CONTACT_SHEET_WEBHOOK_URL;
-  if (sheetWebhookUrl) {
-    try {
-      const res = await fetch(sheetWebhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submission),
-      });
-      if (!res.ok) {
-        console.error("[contact-form] sheet webhook responded with", res.status);
-        return NextResponse.json(
-          { error: "We couldn't save your inquiry. Please try again or email us directly." },
-          { status: 502 }
-        );
-      }
-    } catch (error) {
-      console.error("[contact-form] sheet webhook failed", error);
+  if (!sheetWebhookUrl) {
+    console.error("[contact-form] Missing CONTACT_SHEET_WEBHOOK_URL environment variable.");
+    return NextResponse.json(
+      { error: "Service temporarily unavailable. Please try again later or email us directly." },
+      { status: 500 }
+    );
+  }
+
+  try {
+    const res = await fetch(sheetWebhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      redirect: "follow",
+    });
+
+    if (!res.ok) {
+      console.error("[contact-form] sheet webhook returned status", res.status);
       return NextResponse.json(
-        { error: "We couldn't save your inquiry. Please try again or email us directly." },
-        { status: 502 }
+        { error: "Failed to submit your inquiry. Please try again or email us directly." },
+        { status: 500 }
       );
     }
+
+    const data = await res.json().catch(() => null);
+    if (!data || data.ok !== true) {
+      console.error("[contact-form] sheet webhook returned unexpected response", data);
+      return NextResponse.json(
+        { error: "Failed to submit your inquiry. Please try again or email us directly." },
+        { status: 500 }
+      );
+    }
+  } catch (error) {
+    console.error("[contact-form] sheet webhook failed", error);
+    return NextResponse.json(
+      { error: "Failed to submit your inquiry. Please try again or email us directly." },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({ ok: true });

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import PageLoader from "../components/PageLoader";
@@ -9,7 +9,6 @@ import "./globals.css";
 /* ─── Brand constants ─────────────────────────────────── */
 const SITE_NAME = "Technostripe Solutions";
 const SITE_URL = "https://technostripe.com";
-const BRAND_COLOR = "#ed1238";
 
 const SITE_TITLE =
   "Technostripe Solutions | Shopify Plus Agency & Digital Growth Partner";
@@ -40,6 +39,18 @@ const KEYWORDS = [
   "Technostripe",
   "Technostripe Solutions",
 ];
+
+/* ─── Viewport ────────────────────────────────────────── */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  colorScheme: "dark light",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#fffafa" },
+    { media: "(prefers-color-scheme: light)", color: "#f5f4ef" },
+  ],
+};
 
 /* ─── Metadata ────────────────────────────────────────── */
 export const metadata: Metadata = {
@@ -127,18 +138,8 @@ export const metadata: Metadata = {
       // bing: "REPLACE_WITH_BING_CODE",
     },
 
-    /* ── Manifest & theme ──────────────────────────────── */
+    /* ── Manifest ──────────────────────────────────────── */
     manifest: "/site.webmanifest",
-    themeColor: [
-      { media: "(prefers-color-scheme: dark)", color: "#fffafa" },
-      { media: "(prefers-color-scheme: light)", color: "#f5f4ef" },
-    ],
-    colorScheme: "dark light",
-    viewport: {
-      width: "device-width",
-      initialScale: 1,
-      maximumScale: 5,
-    },
   };
 
 /* ─── Schema.org JSON-LD structured data ─────────────── */

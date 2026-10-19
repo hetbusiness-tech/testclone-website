@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
@@ -23,6 +23,7 @@ const revenueRanges = [
 ];
 
 export default function ContactPage() {
+  const router = useRouter();
   const [selectedServices, setSelectedServices] = useState<string[]>([
     "Shopify Development & Redesign",
   ]);
@@ -36,7 +37,6 @@ export default function ContactPage() {
     challenges: "",
     company: "", // honeypot — must stay empty
   });
-  const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -75,7 +75,7 @@ export default function ContactPage() {
         throw new Error(data?.error || "Something went wrong. Please try again.");
       }
 
-      setSubmitted(true);
+      router.push("/thank-you");
     } catch (err) {
       setError(
         err instanceof Error
@@ -181,30 +181,7 @@ export default function ContactPage() {
 
           {/* Right Column: Interactive Growth Inquiry Form */}
           <div className="rounded-2xl sm:rounded-3xl border border-black/15 bg-black/[0.03] p-5 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl">
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="py-12 text-center"
-              >
-                <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-[#ed1238]/20 text-[#ed1238] border border-[#ed1238]/40 mb-6">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="size-8">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <h3 className="font-display text-3xl font-black text-black">Form submitted successfully!</h3>
-                <p className="mt-3 text-sm text-paper/70 max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out. Our growth team will review your store metrics and contact you within 24 hours to schedule your strategy session.
-                </p>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  className="mt-8 rounded-full border border-black/20 bg-black/5 px-6 py-2.5 text-xs font-mono uppercase tracking-wider text-black hover:bg-black/10 transition-colors"
-                >
-                  Send another inquiry
-                </button>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-7">
+            <form onSubmit={handleSubmit} className="space-y-7">
                 {/* Honeypot field — hidden from real visitors, bots fill it in */}
                 <input
                   type="text"
@@ -417,7 +394,6 @@ export default function ContactPage() {
                   . We&apos;ll only use your details to respond to this inquiry.
                 </p>
               </form>
-            )}
           </div>
         </div>
 

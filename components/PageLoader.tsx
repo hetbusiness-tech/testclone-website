@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 // Only show loader on the very first page load (persisted via sessionStorage)
-
-const DURATION = 900; // 0.9s — snappy but still satisfying
+// On page refresh or internal navigation, sessionStorage prevents it from showing again.
+// When the browser/tab is closed and opened afresh, the loader plays smoothly once.
 
 export default function PageLoader() {
   const [phase, setPhase] = useState<"fill" | "fade" | "done">("done");
   const [percent, setPercent] = useState(0);
+  const dismissedRef = useRef(false);
 
   useEffect(() => {
     // Check if loader has already been shown in this browser session
@@ -21,47 +22,51 @@ export default function PageLoader() {
       // Ignore storage errors
     }
 
-    // First time visit — activate loader and immediately record it
-    setPhase("fill");
     try {
       sessionStorage.setItem("technostripe_loader_seen", "1");
-    } catch {}
+    } catch {
+      // Ignore storage errors
+    }
 
-    let animFrame: number;
-    const startTime = performance.now();
+    // Schedule appearance and progress smoothly
+    let timer: NodeJS.Timeout;
+    const initTimer = setTimeout(() => {
+      setPhase("fill");
+      setPercent(0);
+
+      const startTime = Date.now();
+      const duration = 850; // 0.85s fill time
+
+      timer = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        // Smooth ease-out quad curve
+        const eased = 1 - Math.pow(1 - progress, 2);
+        const current = Math.min(100, Math.round(eased * 100));
+
+        setPercent(current);
+
+        if (progress >= 1) {
+          clearInterval(timer);
+          setTimeout(dismiss, 100); // brief pause at 100% before fading out
+        }
+      }, 20);
+    }, 0);
 
     const dismiss = () => {
+      if (dismissedRef.current) return;
+      dismissedRef.current = true;
       setPercent(100);
       setPhase("fade");
+      setTimeout(() => {
+        setPhase("done");
+      }, 450);
     };
 
-    const updateProgress = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(1, elapsed / DURATION);
+    // Hard fallback: never stay visible for more than 1.4 seconds
+    const fallbackTimer = setTimeout(dismiss, 1400);
 
-      // Smooth ease-out quad curve
-      const eased = 1 - Math.pow(1 - progress, 2);
-      const currentPercent = Math.min(100, Math.floor(eased * 100));
-      setPercent(currentPercent);
-
-      if (progress < 1) {
-        animFrame = requestAnimationFrame(updateProgress);
-      } else {
-        dismiss();
-      }
-    };
-
-    animFrame = requestAnimationFrame(updateProgress);
-
-    // Hard safety fallback — always dismisses after DURATION + 200ms
-    const fallbackTimer = setTimeout(dismiss, DURATION + 200);
-
-    // Unmount after fade animation completes
-    const doneTimer = setTimeout(() => {
-      setPhase("done");
-    }, DURATION + 700);
-
-    // Also listen for chunk errors and dismiss immediately
+    // Chunk load error handler to dismiss immediately
     const handleError = (e: ErrorEvent) => {
       if (e.message?.includes("ChunkLoadError") || e.message?.includes("Loading chunk")) {
         dismiss();
@@ -70,9 +75,9 @@ export default function PageLoader() {
     window.addEventListener("error", handleError);
 
     return () => {
-      cancelAnimationFrame(animFrame);
+      clearTimeout(initTimer);
+      if (timer) clearInterval(timer);
       clearTimeout(fallbackTimer);
-      clearTimeout(doneTimer);
       window.removeEventListener("error", handleError);
     };
   }, []);
@@ -87,12 +92,12 @@ export default function PageLoader() {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 9999,
+        zIndex: 99999,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: phase === "fade" ? "rgba(255, 250, 250, 0)" : "rgba(255, 250, 250, 0.95)",
+        background: phase === "fade" ? "rgba(255, 250, 250, 0)" : "rgba(255, 250, 250, 0.98)",
         backdropFilter: phase === "fade" ? "blur(0px)" : "blur(24px)",
         WebkitBackdropFilter: phase === "fade" ? "blur(0px)" : "blur(24px)",
         transition:
@@ -136,7 +141,7 @@ export default function PageLoader() {
             fontSize: "0.72rem",
             color: "#ed1238",
             letterSpacing: "0.08em",
-            animation: "pl-label-in 0.4s 0.15s ease both",
+            fontWeight: 600,
           }}
         >
           Loading
@@ -147,7 +152,7 @@ export default function PageLoader() {
             fontSize: "0.72rem",
             color: "#ed1238",
             letterSpacing: "0.08em",
-            animation: "pl-label-in 0.4s 0.15s ease both",
+            fontWeight: 600,
             fontVariantNumeric: "tabular-nums",
           }}
         >
@@ -165,7 +170,6 @@ export default function PageLoader() {
           padding: "2px",
           boxSizing: "border-box",
           background: "transparent",
-          animation: "pl-bar-in 0.4s 0.1s ease both",
         }}
       >
         <div
@@ -174,23 +178,15 @@ export default function PageLoader() {
             borderRadius: "2px",
             background: "#ed1238",
             width: `${percent}%`,
-            transition: "width 40ms linear",
+            transition: "width 25ms linear",
           }}
         />
       </div>
 
       <style>{`
         @keyframes pl-icon-in {
-          from { opacity: 0; transform: scale(0.8); }
+          from { opacity: 0; transform: scale(0.85); }
           to   { opacity: 1; transform: scale(1); }
-        }
-        @keyframes pl-label-in {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        @keyframes pl-bar-in {
-          from { opacity: 0; transform: scaleX(0.92); }
-          to   { opacity: 1; transform: scaleX(1); }
         }
       `}</style>
     </div>
