@@ -23,7 +23,7 @@ export default function Navbar() {
   // Show loading progress bar only on first initial visit
   useEffect(() => {
     try {
-      if (typeof window !== "undefined" && !sessionStorage.getItem("technostripe_loader_seen")) {
+      if (typeof window !== "undefined" && !sessionStorage.getItem("technostripe_loader_v1")) {
         setProgressVisible(true);
         const timer = setTimeout(() => {
           setProgressVisible(false);

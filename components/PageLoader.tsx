@@ -1,72 +1,75 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
 
-// Only show loader on the very first page load (persisted via sessionStorage)
-// On page refresh or internal navigation, sessionStorage prevents it from showing again.
-// When the browser/tab is closed and opened afresh, the loader plays smoothly once.
+// Only show loader on the very first page load in this browser session.
+// Persisted via sessionStorage so page refreshes and internal links in the same session
+// will NOT show the loader. A new browser session/tab will show the loader once.
+
+const STORAGE_KEY = "technostripe_loader_v1";
+
+const emptySubscribe = () => () => {};
+
+function useIsFirstVisit() {
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => {
+      try {
+        return sessionStorage.getItem(STORAGE_KEY) !== "1";
+      } catch {
+        return false;
+      }
+    },
+    () => false // on server (SSR), render nothing
+  );
+}
 
 export default function PageLoader() {
-  const [phase, setPhase] = useState<"fill" | "fade" | "done">("done");
+  const isFirstVisit = useIsFirstVisit();
+  const [phase, setPhase] = useState<"fill" | "fade" | "done">("fill");
   const [percent, setPercent] = useState(0);
   const dismissedRef = useRef(false);
 
   useEffect(() => {
-    // Check if loader has already been shown in this browser session
-    try {
-      if (typeof window !== "undefined" && sessionStorage.getItem("technostripe_loader_seen") === "1") {
-        return;
-      }
-    } catch {
-      // Ignore storage errors
-    }
-
-    try {
-      sessionStorage.setItem("technostripe_loader_seen", "1");
-    } catch {
-      // Ignore storage errors
-    }
-
-    // Schedule appearance and progress smoothly
-    let timer: NodeJS.Timeout;
-    const initTimer = setTimeout(() => {
-      setPhase("fill");
-      setPercent(0);
-
-      const startTime = Date.now();
-      const duration = 850; // 0.85s fill time
-
-      timer = setInterval(() => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min(1, elapsed / duration);
-        // Smooth ease-out quad curve
-        const eased = 1 - Math.pow(1 - progress, 2);
-        const current = Math.min(100, Math.round(eased * 100));
-
-        setPercent(current);
-
-        if (progress >= 1) {
-          clearInterval(timer);
-          setTimeout(dismiss, 100); // brief pause at 100% before fading out
-        }
-      }, 20);
-    }, 0);
+    if (!isFirstVisit) return;
 
     const dismiss = () => {
       if (dismissedRef.current) return;
       dismissedRef.current = true;
+      try {
+        sessionStorage.setItem(STORAGE_KEY, "1");
+      } catch {
+        // Ignore storage errors
+      }
       setPercent(100);
       setPhase("fade");
       setTimeout(() => {
         setPhase("done");
-      }, 450);
+      }, 400);
     };
 
-    // Hard fallback: never stay visible for more than 1.4 seconds
+    // Smooth counter from 0% to 100% (~0.85s)
+    const duration = 850;
+    const intervalTime = 17;
+    const step = 100 / (duration / intervalTime);
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= 100) {
+        current = 100;
+        setPercent(100);
+        clearInterval(timer);
+        setTimeout(dismiss, 120);
+      } else {
+        setPercent(Math.floor(current));
+      }
+    }, intervalTime);
+
+    // Hard fallback safety
     const fallbackTimer = setTimeout(dismiss, 1400);
 
-    // Chunk load error handler to dismiss immediately
     const handleError = (e: ErrorEvent) => {
       if (e.message?.includes("ChunkLoadError") || e.message?.includes("Loading chunk")) {
         dismiss();
@@ -75,14 +78,13 @@ export default function PageLoader() {
     window.addEventListener("error", handleError);
 
     return () => {
-      clearTimeout(initTimer);
-      if (timer) clearInterval(timer);
+      clearInterval(timer);
       clearTimeout(fallbackTimer);
       window.removeEventListener("error", handleError);
     };
-  }, []);
+  }, [isFirstVisit]);
 
-  if (phase === "done") return null;
+  if (!isFirstVisit || phase === "done") return null;
 
   return (
     <div
@@ -178,7 +180,7 @@ export default function PageLoader() {
             borderRadius: "2px",
             background: "#ed1238",
             width: `${percent}%`,
-            transition: "width 25ms linear",
+            transition: "width 20ms linear",
           }}
         />
       </div>
