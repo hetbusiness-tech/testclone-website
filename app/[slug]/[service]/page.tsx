@@ -1,17 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import CaseStudyCard from "../../../components/CaseStudyCard";
 import WhatsAppLeadForm from "../../../components/WhatsAppLeadForm";
 import FaqAccordion from "../../../components/FaqAccordion";
 import RelatedLinksSection from "../../../components/RelatedLinksSection";
+import DeepSeoContentSection from "../../../components/DeepSeoContentSection";
+import { generateDeepContent } from "../../../lib/deep-seo-content";
 import {
   getAllCityPageParams,
   getCityPage,
-  getRelatedNationalPages,
+  getLegacyCityServiceRedirect,
+  getRelatedCityServiceLinks,
   getCityVariantsForKeyword,
   SERVICE_GROUP_TO_CONTACT_LABEL,
 } from "../../../lib/seo-pages";
@@ -23,8 +26,14 @@ interface Props {
   params: { slug: string; service: string };
 }
 
+export const dynamic = "force-static";
+export const dynamicParams = true;
+export const revalidate = 86400;
+
 export function generateStaticParams() {
-  return getAllCityPageParams();
+  // Pre-render top 250 high-priority routes at build time to prevent Node.js memory exhaustion.
+  // All remaining routes are statically rendered on-demand when requested by Googlebot or users.
+  return getAllCityPageParams().slice(0, 250);
 }
 
 export function generateMetadata({ params }: Props): Metadata {
@@ -35,12 +44,12 @@ export function generateMetadata({ params }: Props): Metadata {
     title: page.title,
     description: page.metaDescription,
     alternates: {
-      canonical: `${SITE_URL}/${params.slug}/${params.service}`,
+      canonical: `${SITE_URL}/${params.slug}/${page.slug}`,
     },
     openGraph: {
       title: page.title,
       description: page.metaDescription,
-      url: `${SITE_URL}/${params.slug}/${params.service}`,
+      url: `${SITE_URL}/${params.slug}/${page.slug}`,
       siteName: "Technostripe Solutions",
       type: "website",
       images: [{ url: `${SITE_URL}${page.heroImage}` }],
@@ -55,22 +64,34 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default function CitySeoPage({ params }: Props) {
+  const legacyRedirect = getLegacyCityServiceRedirect(params.slug, params.service);
+  if (legacyRedirect) {
+    permanentRedirect(legacyRedirect);
+  }
+
   const page = getCityPage(params.slug, params.service);
   if (!page) notFound();
+
+  const seed = `city:${params.slug}:${params.service}`;
+  const deepContent = generateDeepContent(
+    page.keyword,
+    page.cityName,
+    page.serviceGroup,
+    seed
+  );
+
+  const mergedFaqs = [...page.faqs, ...deepContent.technicalFaqs];
 
   const proofCaseStudies = page.proofSlugs
     .map((slug) => getCaseStudyBySlug(slug))
     .filter((cs): cs is NonNullable<typeof cs> => Boolean(cs));
 
-  const relatedServiceLinks = getRelatedNationalPages(page).map((p) => ({
-    label: `${p.title} in ${page.cityName}`,
-    href: `/${params.slug}/${p.slug}`,
-  }));
+  const relatedServiceLinks = getRelatedCityServiceLinks(params.slug, page);
   const cityLinks = getCityVariantsForKeyword(page.slug)
     .filter((c) => c.citySlug !== params.slug)
     .map((c) => ({
       label: c.cityName,
-      href: `/${c.citySlug}/${page.slug}`,
+      href: `/${c.citySlug}/${c.serviceSlug}`,
     }));
 
   const serviceSchema = {
@@ -84,7 +105,7 @@ export default function CitySeoPage({ params }: Props) {
       url: SITE_URL,
       logo: `${SITE_URL}/header.png`,
     },
-    url: `${SITE_URL}/${params.slug}/${params.service}`,
+    url: `${SITE_URL}/${params.slug}/${page.slug}`,
     serviceType: page.serviceGroup,
     areaServed: page.cityName,
   };
@@ -92,7 +113,7 @@ export default function CitySeoPage({ params }: Props) {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: page.faqs.map((faq) => ({
+    mainEntity: mergedFaqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -122,13 +143,13 @@ export default function CitySeoPage({ params }: Props) {
         "@type": "ListItem",
         position: 3,
         name: page.cityName,
-        item: `${SITE_URL}/${params.slug}`,
+        item: `${SITE_URL}/${page.cityHubSlug}`,
       },
       {
         "@type": "ListItem",
         position: 4,
         name: page.h1,
-        item: `${SITE_URL}/${params.slug}/${params.service}`,
+        item: `${SITE_URL}/${params.slug}/${page.slug}`,
       },
     ],
   };
@@ -168,16 +189,13 @@ export default function CitySeoPage({ params }: Props) {
                 Locations
               </Link>
               <span>/</span>
-              <Link href={`/${params.slug}`} className="hover:text-black transition-colors text-black/60 font-medium">
+              <Link href={`/${page.cityHubSlug}`} className="hover:text-black transition-colors text-black/60 font-medium">
                 {page.cityName}
               </Link>
               <span>/</span>
               <span className="text-black/55 truncate max-w-[240px]">{page.h1}</span>
             </nav>
 
-            {/* Mobile stacking order: badge/H1 -> form -> intro -> stats -> image.
-                Desktop: left column (badge/H1, intro, stats, image) next to a
-                right column that's just the form, spanning the full height. */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-6 lg:items-start">
               {/* Badge + H1 */}
               <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1">
@@ -229,7 +247,7 @@ export default function CitySeoPage({ params }: Props) {
                 ))}
               </div>
 
-              {/* Hero image — fills the remaining left-column space */}
+              {/* Hero image */}
               <div className="order-5 lg:order-none lg:col-start-1 lg:row-start-4 relative">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-black/15 bg-[#fffafa] shadow-2xl">
                   <Image
@@ -352,12 +370,20 @@ export default function CitySeoPage({ params }: Props) {
             </p>
           </section>
 
+          {/* ── DEEP STRATEGIC & TECHNICAL SEO CONTENT ──── */}
+          <DeepSeoContentSection
+            content={deepContent}
+            cityName={page.cityName}
+            keyword={page.keyword}
+            serviceGroup={page.serviceGroup}
+          />
+
           {/* ── FAQ ───────────────────────────────────────── */}
           <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
             <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-6">
               Frequently Asked Questions
             </p>
-            <FaqAccordion faqs={page.faqs} />
+            <FaqAccordion faqs={mergedFaqs} />
           </section>
 
           {/* ── CTA ───────────────────────────────────────── */}
@@ -376,7 +402,7 @@ export default function CitySeoPage({ params }: Props) {
             </Link>
           </section>
 
-          {/* ── INTERNAL LINKING (kept in strict topical/geo silos) ────── */}
+          {/* ── INTERNAL LINKING ──────────────────────────── */}
           {(relatedServiceLinks.length > 0 || cityLinks.length > 0) && (
             <section className="mt-14 sm:mt-20 mb-20 space-y-10">
               {relatedServiceLinks.length > 0 && (

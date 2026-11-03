@@ -23,6 +23,8 @@ export const SERVICE_GROUP_TO_CONTACT_LABEL: Record<ServiceGroup, string> = {
 export interface SeoPage {
   /** URL slug, e.g. "shopify-development-agency" -> /shopify-development-agency */
   slug: string;
+  /** Previous unindexed URL slug if this page was recreated at a new slug (triggers 301 redirect) */
+  legacySlug?: string;
   keyword: string;
   serviceGroup: ServiceGroup;
   title: string;
@@ -70,7 +72,8 @@ const STANDARD_PROCESS = [
  * here takes precedence (see SEO_PAGES below). */
 const HAND_WRITTEN_SEO_PAGES: SeoPage[] = [
   {
-    slug: "shopify-development-agency",
+    slug: "shopify-development-growth-agency",
+    legacySlug: "shopify-development-agency",
     keyword: "shopify development agency",
     serviceGroup: "Website Development",
     title: "Shopify Development Agency",
@@ -190,7 +193,8 @@ const HAND_WRITTEN_SEO_PAGES: SeoPage[] = [
     ],
   },
   {
-    slug: "shopify-web-design-company",
+    slug: "shopify-web-design-studio",
+    legacySlug: "shopify-web-design-company",
     keyword: "shopify web design company",
     serviceGroup: "Website Development",
     title: "Shopify Web Design Company",
@@ -406,7 +410,9 @@ const HAND_WRITTEN_SEO_PAGES: SeoPage[] = [
   },
 ];
 
-const handWrittenSlugs = new Set(HAND_WRITTEN_SEO_PAGES.map((p) => p.slug));
+const handWrittenSlugs = new Set(
+  HAND_WRITTEN_SEO_PAGES.flatMap((p) => (p.legacySlug ? [p.slug, p.legacySlug] : [p.slug]))
+);
 
 /** All national SEO pages: hand-written pages plus generated ones (skipping
  * any slug that already has a hand-written version). */
@@ -416,22 +422,31 @@ export const SEO_PAGES: SeoPage[] = [
 ];
 
 export interface CityInfo {
+  /** Base city slug used for /[city]/[service] paths, e.g. "boston" */
   slug: string;
   name: string;
+  /** Recreated canonical single-segment hub slug (e.g. "boston-ecommerce-agency") */
+  hubSlug?: string;
+  /** Legacy unindexed single-segment hub slug (e.g. "boston") that 301-redirects to hubSlug */
+  legacyHubSlug?: string;
 }
 
 /** Hand-written city entries — takes precedence over generated ones with
  * the same slug. */
 const HAND_WRITTEN_CITIES: CityInfo[] = [
-  { slug: "london", name: "London" },
-  { slug: "dubai", name: "Dubai" },
-  { slug: "mumbai", name: "Mumbai" },
+  { slug: "london", name: "London", hubSlug: "london-ecommerce-agency", legacyHubSlug: "london" },
+  { slug: "dubai", name: "Dubai", hubSlug: "dubai-ecommerce-agency", legacyHubSlug: "dubai" },
+  { slug: "mumbai", name: "Mumbai", hubSlug: "mumbai-ecommerce-agency", legacyHubSlug: "mumbai" },
 ];
 
 export interface CityOverride {
   citySlug: string;
-  /** References SeoPage.slug — the national page this city variant is based on. */
+  /** References SeoPage.slug or SeoPage.legacySlug — the national page this city variant is based on. */
   baseSlug: string;
+  /** Recreated canonical service slug for this city page (e.g. "shopify-seo-growth-agency") */
+  serviceSlug?: string;
+  /** Legacy unindexed service slug (e.g. "shopify-seo-agency") that 301-redirects to serviceSlug */
+  legacyServiceSlug?: string;
   title: string;
   metaDescription: string;
   h1: string;
@@ -440,9 +455,8 @@ export interface CityOverride {
 }
 
 /** City-page copy. Structured sections (coverage, standards, process, FAQs)
- * are inherited from the matching national page — only the framing copy
- * (H1, intro, closing) is genuinely city-specific, per the SEO plan's rule
- * against low-effort "swap the city name" pages. */
+ * are inherited from the matching national page and enriched with city-specific
+ * context in getCityPage(). */
 const HAND_WRITTEN_CITY_SEO_PAGES: CityOverride[] = [
   {
     citySlug: "london",
@@ -471,6 +485,8 @@ const HAND_WRITTEN_CITY_SEO_PAGES: CityOverride[] = [
   {
     citySlug: "mumbai",
     baseSlug: "shopify-development-agency",
+    serviceSlug: "shopify-development-growth-agency",
+    legacyServiceSlug: "shopify-development-agency",
     title: "Shopify Development Agency in Mumbai",
     metaDescription:
       "Technostripe works with Mumbai D2C brands on Shopify development — fast, conversion-focused builds for India's fastest-growing e-commerce market.",
@@ -498,12 +514,48 @@ export const CITY_SEO_PAGES: CityOverride[] = [
   ),
 ];
 
+export function getCityHubSlug(city: CityInfo): string {
+  return city.hubSlug ?? city.slug;
+}
+
+export function getCityServiceSlug(override: CityOverride): string {
+  return override.serviceSlug ?? override.baseSlug;
+}
+
 export function getAllSeoSlugs(): string[] {
   return SEO_PAGES.map((page) => page.slug);
 }
 
 export function getSeoPageBySlug(slug: string): SeoPage | undefined {
   return SEO_PAGES.find((page) => page.slug === slug);
+}
+
+export function getSeoPageBySlugOrLegacy(slug: string): SeoPage | undefined {
+  return SEO_PAGES.find((page) => page.slug === slug || page.legacySlug === slug);
+}
+
+export function getLegacyNationalRedirect(slug: string): string | undefined {
+  const page = SEO_PAGES.find((p) => p.legacySlug === slug && p.slug !== slug);
+  return page ? `/${page.slug}` : undefined;
+}
+
+export function getLegacyCityHubRedirect(slug: string): string | undefined {
+  const city = CITIES.find((c) => c.legacyHubSlug === slug && c.hubSlug && c.hubSlug !== slug);
+  return city ? `/${city.hubSlug}` : undefined;
+}
+
+export function getLegacyCityServiceRedirect(
+  citySlug: string,
+  serviceSlug: string
+): string | undefined {
+  const override = CITY_SEO_PAGES.find(
+    (c) =>
+      c.citySlug === citySlug &&
+      c.legacyServiceSlug === serviceSlug &&
+      c.serviceSlug &&
+      c.serviceSlug !== serviceSlug
+  );
+  return override ? `/${citySlug}/${override.serviceSlug}` : undefined;
 }
 
 /** Other national pages in the same service group — for "More [Service]
@@ -514,51 +566,128 @@ export function getRelatedNationalPages(page: SeoPage): SeoPage[] {
   );
 }
 
+/** Other city-service pages that actually exist in `citySlug` within the same
+ * service group — prevents linking to non-existent city/service combinations. */
+export function getRelatedCityServiceLinks(
+  citySlug: string,
+  currentPage: SeoPage & { cityName: string }
+): { label: string; href: string }[] {
+  const cityOverrides = CITY_SEO_PAGES.filter((c) => c.citySlug === citySlug);
+  const results: { label: string; href: string }[] = [];
+
+  for (const override of cityOverrides) {
+    const base = getSeoPageBySlugOrLegacy(override.baseSlug);
+    if (!base) continue;
+    if (base.slug === currentPage.slug) continue;
+    if (base.serviceGroup !== currentPage.serviceGroup) continue;
+
+    const canonicalServiceSlug = getCityServiceSlug(override);
+    results.push({
+      label: override.title,
+      href: `/${citySlug}/${canonicalServiceSlug}`,
+    });
+  }
+
+  return results;
+}
+
 /** City variants that exist for a given national keyword slug — for
  * "Also serving these cities" internal-linking blocks. */
 export function getCityVariantsForKeyword(
   baseSlug: string
-): { citySlug: string; cityName: string }[] {
-  return CITY_SEO_PAGES.filter((c) => c.baseSlug === baseSlug).map((c) => ({
+): { citySlug: string; serviceSlug: string; cityName: string }[] {
+  const basePage = getSeoPageBySlugOrLegacy(baseSlug);
+  const matchSlugs = new Set<string>([baseSlug]);
+  if (basePage) {
+    matchSlugs.add(basePage.slug);
+    if (basePage.legacySlug) matchSlugs.add(basePage.legacySlug);
+  }
+
+  return CITY_SEO_PAGES.filter((c) => matchSlugs.has(c.baseSlug)).map((c) => ({
     citySlug: c.citySlug,
+    serviceSlug: getCityServiceSlug(c),
     cityName: CITIES.find((city) => city.slug === c.citySlug)?.name ?? c.citySlug,
   }));
 }
 
 export function getAllCityPageParams(): { slug: string; service: string }[] {
-  return CITY_SEO_PAGES.map((c) => ({ slug: c.citySlug, service: c.baseSlug }));
+  return CITY_SEO_PAGES.map((c) => ({
+    slug: c.citySlug,
+    service: getCityServiceSlug(c),
+  }));
 }
 
 /** Merges a city override with its matching national page's structured
- * sections (coverage, standards, process, FAQs, stats, hero image). */
+ * sections and enriches coverage, standards, checklist, and FAQs with
+ * genuine city-specific context so every local landing page stands on its own. */
 export function getCityPage(
   citySlug: string,
-  baseSlug: string
-): (SeoPage & { cityName: string }) | undefined {
-  const base = getSeoPageBySlug(baseSlug);
+  serviceSlug: string
+): (SeoPage & { cityName: string; cityHubSlug: string }) | undefined {
   const override = CITY_SEO_PAGES.find(
-    (c) => c.citySlug === citySlug && c.baseSlug === baseSlug
+    (c) => c.citySlug === citySlug && getCityServiceSlug(c) === serviceSlug
   );
   const city = CITIES.find((c) => c.slug === citySlug);
-  if (!base || !override || !city) return undefined;
+  if (!override || !city) return undefined;
+
+  const base = getSeoPageBySlugOrLegacy(override.baseSlug);
+  if (!base) return undefined;
+
+  const localizedCoverage = base.coverage.map((item, idx) => {
+    if (idx === 0) {
+      return {
+        title: `${item.title} for ${city.name} Brands`,
+        description: `${item.description} Tailored specifically for ${city.name} D2C merchants competing for high-intent local and global shoppers.`,
+      };
+    }
+    if (idx === 1) {
+      return {
+        title: item.title,
+        description: `${item.description} Engineered to outperform competing stores in ${city.name} across mobile and desktop sessions.`,
+      };
+    }
+    return item;
+  });
+
+  const localizedStandards = [
+    ...base.standards,
+    `Dedicated support and milestone reporting aligned with ${city.name} business hours and growth targets`,
+  ];
+
+  const localizedFaqs = [
+    ...base.faqs.slice(0, 6),
+    {
+      question: `How do you collaborate with e-commerce brands based in ${city.name}?`,
+      answer: `We work directly with founders, CMOs, and e-commerce leads in ${city.name} through structured weekly sprints, shared Slack/WhatsApp channels, and transparent Search Console & GA4 dashboards. Every deliverable for ${base.keyword} is scoped with clear revenue and conversion KPIs.`,
+    },
+    {
+      question: `Why should a ${city.name} D2C brand choose Technostripe over a generic generalist agency?`,
+      answer: `Unlike generalist agencies in ${city.name} that split focus across WordPress, corporate sites, and offline media, Technostripe is 100% specialized in scaling Shopify and D2C e-commerce brands — combining sub-second engineering, CRO, and performance acquisition under one roof.`,
+    },
+  ];
 
   return {
     ...base,
+    slug: getCityServiceSlug(override),
     title: override.title,
     metaDescription: override.metaDescription,
     h1: override.h1,
     intro: override.intro,
     closingParagraph: override.closingParagraph,
+    coverage: localizedCoverage,
+    standards: localizedStandards,
+    faqs: localizedFaqs,
     cityName: city.name,
+    cityHubSlug: getCityHubSlug(city),
   };
 }
 
 export function getCityBySlug(citySlug: string): CityInfo | undefined {
-  return CITIES.find((c) => c.slug === citySlug);
+  return CITIES.find((c) => c.slug === citySlug || c.hubSlug === citySlug);
 }
 
 export function getAllCitySlugs(): string[] {
-  return CITIES.map((c) => c.slug);
+  return CITIES.map((c) => getCityHubSlug(c));
 }
 
 export function getServicesForCity(citySlug: string): {
@@ -569,9 +698,9 @@ export function getServicesForCity(citySlug: string): {
 }[] {
   const overrides = CITY_SEO_PAGES.filter((c) => c.citySlug === citySlug);
   return overrides.map((override) => {
-    const base = getSeoPageBySlug(override.baseSlug);
+    const base = getSeoPageBySlugOrLegacy(override.baseSlug);
     return {
-      baseSlug: override.baseSlug,
+      baseSlug: getCityServiceSlug(override),
       title: override.title,
       serviceGroup: base?.serviceGroup ?? "Website Development",
       metaDescription: override.metaDescription,

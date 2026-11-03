@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import CaseStudyCard from "../../components/CaseStudyCard";
@@ -11,13 +11,17 @@ import RelatedLinksSection from "../../components/RelatedLinksSection";
 import {
   getAllSeoSlugs,
   getSeoPageBySlug,
+  getLegacyNationalRedirect,
+  getLegacyCityHubRedirect,
   getRelatedNationalPages,
   getCityVariantsForKeyword,
   SERVICE_GROUP_TO_CONTACT_LABEL,
   getCityBySlug,
+  getCityHubSlug,
   getAllCitySlugs,
   getServicesForCity,
   CITIES,
+  type CityInfo,
 } from "../../lib/seo-pages";
 import { getCaseStudyBySlug } from "../../lib/case-studies";
 
@@ -61,18 +65,19 @@ export function generateMetadata({ params }: Props): Metadata {
 
   const city = getCityBySlug(params.slug);
   if (city) {
-    const title = `E-commerce & Shopify Agency in ${city.name} | Technostripe`;
-    const description = `Technostripe is a leading Shopify and e-commerce growth agency in ${city.name}. We help modern brands scale with high-converting development, paid ads, and e-commerce SEO.`;
+    const canonicalSlug = getCityHubSlug(city);
+    const title = `Shopify & D2C E-commerce Growth Agency in ${city.name} | Technostripe`;
+    const description = `Partner with Technostripe in ${city.name} for sub-second Shopify development, technical e-commerce SEO, conversion rate optimization, and profitable paid media scale.`;
     return {
       title,
       description,
       alternates: {
-        canonical: `${SITE_URL}/${city.slug}`,
+        canonical: `${SITE_URL}/${canonicalSlug}`,
       },
       openGraph: {
         title,
         description,
-        url: `${SITE_URL}/${city.slug}`,
+        url: `${SITE_URL}/${canonicalSlug}`,
         siteName: "Technostripe Solutions",
         type: "website",
         images: [{ url: `${SITE_URL}/what-we-do-mockup.png` }],
@@ -90,6 +95,12 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default function SeoPage({ params }: Props) {
+  const legacyRedirect =
+    getLegacyNationalRedirect(params.slug) ?? getLegacyCityHubRedirect(params.slug);
+  if (legacyRedirect) {
+    permanentRedirect(legacyRedirect);
+  }
+
   const page = getSeoPageBySlug(params.slug);
 
   if (!page) {
@@ -118,7 +129,7 @@ export default function SeoPage({ params }: Props) {
   }));
   const cityLinks = getCityVariantsForKeyword(page.slug).map((c) => ({
     label: c.cityName,
-    href: `/${c.citySlug}/${page.slug}`,
+    href: `/${c.citySlug}/${c.serviceSlug}`,
   }));
 
   const breadcrumbSchema = {
@@ -212,9 +223,6 @@ export default function SeoPage({ params }: Props) {
               <span className="text-black/55 truncate max-w-[240px]">{page.h1}</span>
             </nav>
 
-            {/* Mobile stacking order: badge/H1 -> form -> intro -> stats -> image.
-                Desktop: left column (badge/H1, intro, stats, image) next to a
-                right column that's just the form, spanning the full height. */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-6 lg:items-start">
               {/* Badge + H1 */}
               <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1">
@@ -266,7 +274,7 @@ export default function SeoPage({ params }: Props) {
                 ))}
               </div>
 
-              {/* Hero image — fills the remaining left-column space */}
+              {/* Hero image */}
               <div className="order-5 lg:order-none lg:col-start-1 lg:row-start-4 relative">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-black/15 bg-[#fffafa] shadow-2xl">
                   <Image
@@ -413,7 +421,7 @@ export default function SeoPage({ params }: Props) {
             </Link>
           </section>
 
-          {/* ── INTERNAL LINKING (kept in strict topical/geo silos) ────── */}
+          {/* ── INTERNAL LINKING ──────────────────────────── */}
           {(relatedServiceLinks.length > 0 || cityLinks.length > 0) && (
             <section className="mt-14 sm:mt-20 mb-20 space-y-10">
               {relatedServiceLinks.length > 0 && (
@@ -443,15 +451,55 @@ function CityHubView({
   services,
   otherCities,
 }: {
-  city: { slug: string; name: string };
+  city: CityInfo;
   services: {
     baseSlug: string;
     title: string;
     serviceGroup: string;
     metaDescription: string;
   }[];
-  otherCities: { slug: string; name: string }[];
+  otherCities: CityInfo[];
 }) {
+  const canonicalHubSlug = getCityHubSlug(city);
+
+  const cityPillars = [
+    {
+      title: `Custom Shopify & Plus Engineering in ${city.name}`,
+      description: `We architect sub-second, conversion-engineered Shopify and Shopify Plus storefronts for ${city.name} D2C brands — eliminating app bloat, improving Core Web Vitals, and building custom Liquid & checkout experiences.`,
+    },
+    {
+      title: `Technical E-commerce SEO for ${city.name} Retailers`,
+      description: `Our SEO engineering resolves crawl budget waste, faceted navigation duplication, schema markup gaps, and high-intent collection & product page rankings so ${city.name} merchants capture compounding organic revenue.`,
+    },
+    {
+      title: `Profitable Paid Acquisition (Meta, Google & TikTok)`,
+      description: `We manage full-funnel paid media for ${city.name} brands — combining high-velocity UGC creative testing, Merchant Center feed optimization, and contribution-margin bidding.`,
+    },
+    {
+      title: `Conversion Rate Optimization & AOV Systems`,
+      description: `Through heatmap telemetry, PDP hierarchy redesigns, slide-cart bundling, and checkout friction removal, we help ${city.name} stores convert more of their existing traffic without raising ad spend.`,
+    },
+  ];
+
+  const cityFaqs = [
+    {
+      question: `What services does Technostripe offer to e-commerce brands in ${city.name}?`,
+      answer: `We provide end-to-end D2C scaling for ${city.name} brands, including custom Shopify & Shopify Plus development, store redesigns, platform migrations, technical e-commerce SEO, conversion rate optimization (CRO), paid social & search management, and UGC ad creative production.`,
+    },
+    {
+      question: `How do you work with founders and marketing teams in ${city.name}?`,
+      answer: `Every ${city.name} client works directly with our senior engineers, designers, and growth strategists via shared Slack/WhatsApp channels, weekly sprint reviews, and real-time Looker/GA4 & Search Console reporting — with zero junior account-manager handoffs.`,
+    },
+    {
+      question: `Can you audit our existing Shopify store before we commit to a full build or retainer?`,
+      answer: `Yes. Every engagement with a ${city.name} brand starts with a technical, speed, and conversion teardown where we identify your highest-leverage revenue bottlenecks and provide a fixed-scope execution roadmap.`,
+    },
+    {
+      question: `How quickly can we launch a store redesign or SEO/CRO sprint in ${city.name}?`,
+      answer: `Targeted CRO, speed optimization, and technical SEO sprints for ${city.name} stores typically ship initial improvements within 10–14 days, while full custom Shopify or Shopify Plus builds run 6–10 weeks depending on scope.`,
+    },
+  ];
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -472,7 +520,7 @@ function CityHubView({
         "@type": "ListItem",
         position: 3,
         name: city.name,
-        item: `${SITE_URL}/${city.slug}`,
+        item: `${SITE_URL}/${canonicalHubSlug}`,
       },
     ],
   };
@@ -480,9 +528,9 @@ function CityHubView({
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: `Technostripe Solutions - ${city.name}`,
-    description: `Shopify development, e-commerce SEO, and performance marketing agency serving businesses in ${city.name}.`,
-    url: `${SITE_URL}/${city.slug}`,
+    name: `Technostripe Solutions - ${city.name} E-commerce & Shopify Agency`,
+    description: `Shopify development, technical e-commerce SEO, CRO, and performance marketing agency serving D2C brands in ${city.name}.`,
+    url: `${SITE_URL}/${canonicalHubSlug}`,
     areaServed: city.name,
     provider: {
       "@type": "Organization",
@@ -490,6 +538,19 @@ function CityHubView({
       url: SITE_URL,
       logo: `${SITE_URL}/head-image.png`,
     },
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: cityFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   };
 
   return (
@@ -503,6 +564,10 @@ function CityHubView({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <main id="main-content" className="min-h-screen bg-[#fffafa]">
@@ -529,7 +594,7 @@ function CityHubView({
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-6 lg:items-start">
               <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1">
                 <span className="inline-block rounded-full border border-[#ed1238]/30 bg-[#ed1238]/15 px-3 py-0.5 text-[0.65rem] font-mono tracking-[0.15em] uppercase text-[#ff4d6d] mb-5">
-                  Location Hub · {city.name}
+                  D2C &amp; Shopify Growth Hub · {city.name}
                 </span>
 
                 <h1
@@ -551,9 +616,12 @@ function CityHubView({
                 />
               </div>
 
-              <div className="order-3 lg:order-none lg:col-start-1 lg:row-start-2">
+              <div className="order-3 lg:order-none lg:col-start-1 lg:row-start-2 space-y-3">
                 <p className="text-lg text-black/70 leading-relaxed max-w-xl">
-                  Technostripe engineers high-converting Shopify stores, aggressive paid media campaigns, and technical e-commerce SEO systems for ambitious brands in {city.name}. We combine design excellence with sub-second performance.
+                  Technostripe partners with ambitious retail and D2C brands in {city.name} to engineer sub-second Shopify storefronts, conversion-first UX, technical e-commerce SEO, and profitable paid acquisition systems.
+                </p>
+                <p className="text-sm text-black/60 leading-relaxed max-w-xl">
+                  Rather than treating web design, CRO, and customer acquisition as disconnected silos, our in-house engineering and growth team aligns every layer of your {city.name} store around measurable revenue and contribution margin.
                 </p>
               </div>
 
@@ -593,8 +661,33 @@ function CityHubView({
           </div>
         </section>
 
-        {/* SERVICES IN CITY */}
         <div className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
+          {/* CORE PILLARS FOR CITY */}
+          <section className="border-t border-black/10 pt-14 sm:pt-20 mb-14 sm:mb-20">
+            <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-2">
+              Why {city.name} Brands Partner With Us
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-black mb-8">
+              Full-Stack E-commerce Engineering &amp; Growth in {city.name}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {cityPillars.map((pillar) => (
+                <div
+                  key={pillar.title}
+                  className="rounded-2xl border border-black/10 bg-black/[0.02] p-6"
+                >
+                  <h3 className="text-base sm:text-lg font-bold text-black mb-2">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-sm text-black/65 leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* SERVICES IN CITY */}
           <section className="border-t border-black/10 pt-14 sm:pt-20">
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
               <div>
@@ -637,6 +730,14 @@ function CityHubView({
             </div>
           </section>
 
+          {/* CITY FAQ */}
+          <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
+            <p className="text-[0.65rem] font-mono tracking-[0.2em] uppercase text-[#ed1238] mb-6">
+              Frequently Asked Questions · {city.name}
+            </p>
+            <FaqAccordion faqs={cityFaqs} />
+          </section>
+
           {/* OTHER LOCATIONS */}
           {otherCities.length > 0 && (
             <section className="border-t border-black/10 pt-14 sm:pt-20 mt-14 sm:mt-20">
@@ -661,7 +762,7 @@ function CityHubView({
                 {otherCities.map((c) => (
                   <Link
                     key={c.slug}
-                    href={`/${c.slug}`}
+                    href={`/${getCityHubSlug(c)}`}
                     className="rounded-xl border border-black/8 bg-black/[0.02] p-3 text-center text-xs font-medium text-black/75 hover:border-[#ed1238]/40 hover:text-[#ed1238] hover:bg-black/[0.04] transition-all"
                   >
                     {c.name}
@@ -693,4 +794,3 @@ function CityHubView({
     </>
   );
 }
-

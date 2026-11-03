@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { CITIES } from "../../lib/seo-pages";
+import { CITIES, getCityHubSlug } from "../../lib/seo-pages";
 
 const SITE_URL = "https://technostripe.com";
 
@@ -108,7 +108,7 @@ export default function LocationsPage() {
             {sortedCities.map((city) => (
               <Link
                 key={city.slug}
-                href={`/${city.slug}`}
+                href={`/${getCityHubSlug(city)}`}
                 className="group flex flex-col justify-between rounded-xl border border-black/8 bg-black/[0.02] p-4 transition-all duration-200 hover:border-[#ed1238]/40 hover:bg-[#ed1238]/[0.03] hover:shadow-sm"
               >
                 <div>

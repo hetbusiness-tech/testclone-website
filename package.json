@@ -12,7 +12,9 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
-    "indexing": "tsx tools/submit-indexing.ts"
+    "indexing": "tsx tools/submit-indexing.ts",
+    "check-indexing": "tsx tools/check-indexing.ts",
+    "regenerate-seo": "tsx tools/generate-seo-spintax.ts"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",

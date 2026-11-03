@@ -164,17 +164,16 @@ export default function Footer() {
             <span className="font-mono uppercase tracking-wider text-[11px] text-[#ed1238] font-bold">
               Global Hubs:
             </span>
-            <Link href="/london" className="hover:text-[#ed1238] transition-colors">London</Link>
-            <Link href="/new-york" className="hover:text-[#ed1238] transition-colors">New York</Link>
-            <Link href="/dubai" className="hover:text-[#ed1238] transition-colors">Dubai</Link>
-            <Link href="/abu-dhabi" className="hover:text-[#ed1238] transition-colors">Abu Dhabi</Link>
-            <Link href="/los-angeles" className="hover:text-[#ed1238] transition-colors">Los Angeles</Link>
-            <Link href="/manchester" className="hover:text-[#ed1238] transition-colors">Manchester</Link>
-            <Link href="/birmingham" className="hover:text-[#ed1238] transition-colors">Birmingham</Link>
-            <Link href="/chicago" className="hover:text-[#ed1238] transition-colors">Chicago</Link>
-            <Link href="/san-francisco" className="hover:text-[#ed1238] transition-colors">San Francisco</Link>
-            <Link href="/toronto" className="hover:text-[#ed1238] transition-colors">Toronto</Link>
-            <Link href="/mumbai" className="hover:text-[#ed1238] transition-colors">Mumbai</Link>
+            <Link href="/london-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">London</Link>
+            <Link href="/new-york-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">New York</Link>
+            <Link href="/dubai-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Dubai</Link>
+            <Link href="/abu-dhabi-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Abu Dhabi</Link>
+            <Link href="/los-angeles-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Los Angeles</Link>
+            <Link href="/manchester-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Manchester</Link>
+            <Link href="/birmingham-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Birmingham</Link>
+            <Link href="/chicago-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Chicago</Link>
+            <Link href="/san-francisco-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">San Francisco</Link>
+            <Link href="/mumbai-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Mumbai</Link>
             <Link href="/locations" className="text-[#ed1238] font-medium hover:underline">
               View All Locations →
             </Link>

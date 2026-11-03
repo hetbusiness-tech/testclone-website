@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { SEO_PAGES, getAllCityPageParams, CITIES } from '../../../lib/seo-pages';
+import { SEO_PAGES, getAllCityPageParams, CITIES, getCityHubSlug } from '../../../lib/seo-pages';
 
 const SITE_URL = "https://technostripe.com";
 
 export async function GET(request: Request) {
-  const cityHubUrls = CITIES.map((c) => `${SITE_URL}/${c.slug}`);
+  const cityHubUrls = CITIES.map((c) => `${SITE_URL}/${getCityHubSlug(c)}`);
   const seoPageUrls = SEO_PAGES.map((page) => `${SITE_URL}/${page.slug}`);
   const citySeoPageUrls = getAllCityPageParams().map((p) => `${SITE_URL}/${p.slug}/${p.service}`);
   
