@@ -21,12 +21,16 @@ const labelClass =
 export default function WhatsAppLeadForm({
   context,
   preselectedService,
+  serviceOptions = services,
+  usMarket = false,
 }: {
   context: string;
   preselectedService?: string;
+  serviceOptions?: string[];
+  usMarket?: boolean;
 }) {
   const [selectedServices, setSelectedServices] = useState<string[]>(
-    preselectedService && services.includes(preselectedService)
+    preselectedService && serviceOptions.includes(preselectedService)
       ? [preselectedService]
       : []
   );
@@ -58,6 +62,7 @@ export default function WhatsAppLeadForm({
     const lines = [
       `Hi, I'm ${formData.name.trim()} from ${formData.brandName.trim()}.`,
       `I'm interested in: ${(selectedServices.length ? selectedServices : [context]).join(", ")}.`,
+      `Project: ${context}`,
       `Work email: ${formData.email.trim()}`,
       formData.phone.trim() && `Phone: ${formData.phone.trim()}`,
       `Store: ${formData.websiteUrl.trim()}`,
@@ -73,11 +78,11 @@ export default function WhatsAppLeadForm({
       onSubmit={handleSubmit}
       className="rounded-2xl border border-black/10 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.06)] p-4 sm:p-5 backdrop-blur-sm space-y-3.5"
     >
-      <div className="flex items-center justify-end">
+      {!usMarket && <div className="flex items-center justify-end">
         <span className="rounded-full bg-[#d4f7dc] px-2.5 py-0.5 text-[0.62rem] font-mono font-semibold text-[#0d6b2f]">
           Avg response time - 15 minutes
         </span>
-      </div>
+      </div>}
 
       {/* Text inputs */}
       <div className="grid grid-cols-2 gap-3">
@@ -90,7 +95,7 @@ export default function WhatsAppLeadForm({
             required
             type="text"
             autoComplete="name"
-            placeholder="Oliver Smith"
+            placeholder={usMarket ? "Alex Smith" : "Oliver Smith"}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className={inputClass}
@@ -105,7 +110,7 @@ export default function WhatsAppLeadForm({
             required
             type="text"
             autoComplete="organization"
-            placeholder="Hartley & Co"
+            placeholder={usMarket ? "Your brand" : "Hartley & Co"}
             value={formData.brandName}
             onChange={(e) => setFormData({ ...formData, brandName: e.target.value })}
             className={inputClass}
@@ -123,7 +128,7 @@ export default function WhatsAppLeadForm({
             required
             type="email"
             autoComplete="email"
-            placeholder="oliver@hartleyandco.co.uk"
+            placeholder={usMarket ? "alex@yourbrand.com" : "oliver@hartleyandco.co.uk"}
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             className={inputClass}
@@ -138,7 +143,7 @@ export default function WhatsAppLeadForm({
             type="tel"
             autoComplete="tel"
             pattern="^[0-9+\s()-]{7,}$"
-            placeholder="+44 7700 900123"
+            placeholder={usMarket ? "+1 202 555 0123" : "+44 7700 900123"}
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             className={inputClass}
@@ -155,7 +160,7 @@ export default function WhatsAppLeadForm({
           required
           type="text"
           autoComplete="url"
-          placeholder="yourbrand.co.uk"
+          placeholder={usMarket ? "yourbrand.com" : "yourbrand.co.uk"}
           value={formData.websiteUrl}
           onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
           className={inputClass}
@@ -168,7 +173,7 @@ export default function WhatsAppLeadForm({
           Services You&apos;re Interested In
         </p>
         <div className="flex flex-wrap gap-1.5">
-          {services.map((service) => {
+          {serviceOptions.map((service) => {
             const isSelected = selectedServices.includes(service);
             return (
               <button

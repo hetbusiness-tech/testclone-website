@@ -16,9 +16,9 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: [
       "https://technostripe.com/sitemap.xml",
       "https://technostripe.com/sitemap-main.xml",
-      "https://technostripe.com/sitemap-services.xml",
       "https://technostripe.com/sitemap-portfolio.xml",
       "https://technostripe.com/sitemap-insights.xml",
+      "https://technostripe.com/sitemap-us.xml",
     ],
   };
 }

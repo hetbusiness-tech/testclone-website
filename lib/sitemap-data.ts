@@ -1,9 +1,7 @@
 import { caseStudies } from "../app/case-studies/constants";
 import { blogs } from "../app/insights/constants";
-import { SEO_PAGES, getAllCityPageParams, CITIES, getCityHubSlug } from "./seo-pages";
 
 export const SITE_URL = "https://technostripe.com";
-export const SITEMAP_CHUNK_SIZE = 100;
 
 export interface SitemapEntry {
   url: string;
@@ -19,7 +17,6 @@ export function getMainSitemapEntries(): SitemapEntry[] {
     { url: `${SITE_URL}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.95 },
     { url: `${SITE_URL}/portfolio`, lastModified: now, changeFrequency: "weekly", priority: 0.95 },
     { url: `${SITE_URL}/services`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${SITE_URL}/locations`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/insights`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
     { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.4 },
@@ -44,47 +41,6 @@ export function getInsightsSitemapEntries(): SitemapEntry[] {
     changeFrequency: "monthly" as const,
     priority: 0.75,
   }));
-}
-
-export function getServicesSitemapEntries(): SitemapEntry[] {
-  const now = new Date();
-  return SEO_PAGES.map((page) => ({
-    url: `${SITE_URL}/${page.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
-}
-
-export function getAllLocationSitemapEntries(): SitemapEntry[] {
-  const now = new Date();
-  const cityHubs: SitemapEntry[] = CITIES.map((c) => ({
-    url: `${SITE_URL}/${getCityHubSlug(c)}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.75,
-  }));
-
-  const cityPages: SitemapEntry[] = getAllCityPageParams().map((p) => ({
-    url: `${SITE_URL}/${p.slug}/${p.service}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
-    priority: 0.65,
-  }));
-
-  return [...cityHubs, ...cityPages];
-}
-
-export function getTotalLocationSitemapChunks(): number {
-  const total = getAllLocationSitemapEntries().length;
-  return Math.ceil(total / SITEMAP_CHUNK_SIZE);
-}
-
-export function getLocationSitemapChunkEntries(chunkIndex: number): SitemapEntry[] {
-  const all = getAllLocationSitemapEntries();
-  const start = (chunkIndex - 1) * SITEMAP_CHUNK_SIZE;
-  const end = start + SITEMAP_CHUNK_SIZE;
-  return all.slice(start, end);
 }
 
 export function renderUrlSetXml(entries: SitemapEntry[]): string {

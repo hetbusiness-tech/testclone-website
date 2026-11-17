@@ -115,8 +115,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/locations" className="hover:text-[#ed1238] transition-colors">
-                  Locations
+                <Link href="/us" className="hover:text-[#ed1238] transition-colors">
+                  US Services
                 </Link>
               </li>
               <li>
@@ -158,34 +158,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Global Hubs Link Strip */}
-        <div className="py-6 border-b border-black/10">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-paper/60">
-            <span className="font-mono uppercase tracking-wider text-[11px] text-[#ed1238] font-bold">
-              Global Hubs:
-            </span>
-            <Link href="/london-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">London</Link>
-            <Link href="/new-york-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">New York</Link>
-            <Link href="/dubai-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Dubai</Link>
-            <Link href="/abu-dhabi-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Abu Dhabi</Link>
-            <Link href="/los-angeles-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Los Angeles</Link>
-            <Link href="/manchester-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Manchester</Link>
-            <Link href="/birmingham-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Birmingham</Link>
-            <Link href="/chicago-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Chicago</Link>
-            <Link href="/san-francisco-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">San Francisco</Link>
-            <Link href="/mumbai-ecommerce-agency" className="hover:text-[#ed1238] transition-colors">Mumbai</Link>
-            <Link href="/locations" className="text-[#ed1238] font-medium hover:underline">
-              View All Locations →
-            </Link>
-          </div>
-        </div>
-
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-paper/50">
           <p>© {new Date().getFullYear()} Technostripe. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/locations" className="hover:text-[#ed1238] transition-colors">
-              Locations
-            </Link>
             <Link href="/privacy-policy" className="hover:text-[#ed1238] transition-colors">
               Privacy Policy
             </Link>

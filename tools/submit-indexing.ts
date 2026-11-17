@@ -1,8 +1,7 @@
+import { US_CITIES, getAllUsPages } from "../lib/us-pages.js";
 import fs from "fs";
 import path from "path";
 import { google } from "googleapis";
-import { SEO_PAGES, getAllCityPageParams, CITIES, getCityHubSlug } from "../lib/seo-pages.js";
-import { LEGACY_REDIRECT_MAP } from "../lib/seo-redirects.js";
 import { CASE_STUDIES } from "../app/case-studies/constants.js";
 import { BLOG_POSTS } from "../app/insights/constants.js";
 
@@ -43,21 +42,18 @@ function getPendingUrlsFromFile(): string[] | null {
       const matches = raw.match(urlRegex) || [];
 
       if (matches.length > 0) {
-        // Normalize: convert /case-studies to /portfolio and map any legacy URLs to new canonical URLs
+        // Normalize: convert /case-studies to /portfolio and retain supported canonical URLs
         const normalized = matches.map((u) => {
           let clean = u.trim().replace(/\/$/, "");
           if (clean === `${SITE_URL}/case-studies`) return `${SITE_URL}/portfolio`;
           if (clean.startsWith(`${SITE_URL}/case-studies/`)) {
             return clean.replace(`${SITE_URL}/case-studies/`, `${SITE_URL}/portfolio/`);
           }
-          const urlPath = clean.slice(SITE_URL.length);
-          if (urlPath && LEGACY_REDIRECT_MAP[urlPath]) {
-            return `${SITE_URL}${LEGACY_REDIRECT_MAP[urlPath]}`;
-          }
           return clean;
         });
 
-        const unique = Array.from(new Set(normalized));
+        const allowedUrls = new Set(getDefaultPrioritizedUrls());
+        const unique = Array.from(new Set(normalized)).filter((url) => allowedUrls.has(url));
         console.log(`🎯 Loaded ${unique.length} unique pending URLs from file!\n`);
         return unique;
       }
@@ -76,25 +72,20 @@ function getDefaultPrioritizedUrls(): string[] {
     `${SITE_URL}/services`,
     `${SITE_URL}/about`,
     `${SITE_URL}/insights`,
-    `${SITE_URL}/locations`,
     `${SITE_URL}/privacy-policy`,
     `${SITE_URL}/terms`,
   ];
 
   const portfolioUrls = CASE_STUDIES.map((cs) => `${SITE_URL}/portfolio/${cs.slug}`);
   const blogUrls = BLOG_POSTS.map((b) => `${SITE_URL}/insights/${b.slug}`);
-  const seoPageUrls = SEO_PAGES.map((page) => `${SITE_URL}/${page.slug}`);
-  const cityHubUrls = CITIES.map((c) => `${SITE_URL}/${getCityHubSlug(c)}`);
-  const citySeoPageUrls = getAllCityPageParams().map((p) => `${SITE_URL}/${p.slug}/${p.service}`);
-
   return Array.from(
     new Set([
       ...coreUrls,
       ...portfolioUrls,
       ...blogUrls,
-      ...seoPageUrls,
-      ...cityHubUrls,
-      ...citySeoPageUrls,
+      `${SITE_URL}/us`,
+      ...US_CITIES.map(c=>`${SITE_URL}/us/${c.slug}`),
+      ...getAllUsPages().map(p=>`${SITE_URL}${p.path}`),
     ])
   );
 }

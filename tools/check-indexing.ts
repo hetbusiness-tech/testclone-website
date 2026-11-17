@@ -1,11 +1,9 @@
+import { US_CITIES, getAllUsPages } from "../lib/us-pages.js";
 import fs from "fs";
 import path from "path";
 import { google } from "googleapis";
-import { GENERATED_SEO_PAGES } from "../lib/seo-pages-generated.js";
-import { GENERATED_CITIES, GENERATED_CITY_SEO_PAGES } from "../lib/city-pages-generated.js";
 import { CASE_STUDIES } from "../app/case-studies/constants.js";
 import { BLOG_POSTS } from "../app/insights/constants.js";
-import { transformServiceSlug } from "./generate-seo-spintax.js";
 
 const SITE_URL = "https://technostripe.com";
 const GSC_SITE_URL = "https://technostripe.com/";
@@ -15,7 +13,7 @@ interface UrlRecord {
   originalUrl: string;
   originalPath: string;
   recreatedUrl: string;
-  category: "Core" | "Portfolio" | "Insights" | "National Service" | "City Hub" | "City Service";
+  category: "Core" | "Portfolio" | "Insights" | "US Service";
 }
 
 function getAllSiteUrlRecords(): UrlRecord[] {
@@ -46,7 +44,6 @@ function getAllSiteUrlRecords(): UrlRecord[] {
     "/services",
     "/about",
     "/insights",
-    "/locations",
     "/privacy-policy",
     "/terms",
   ]) {
@@ -63,50 +60,9 @@ function getAllSiteUrlRecords(): UrlRecord[] {
     add(`/insights/${b.slug}`, `/insights/${b.slug}`, "Insights");
   }
 
-  // National SEO pages (3 hand-written + 197 generated)
-  const handWrittenNational = [
-    "shopify-development-agency",
-    "shopify-web-design-company",
-    "shopify-plus-agency",
-  ];
-  for (const s of handWrittenNational) {
-    add(`/${s}`, `/${transformServiceSlug(s)}`, "National Service");
-  }
-  for (const p of GENERATED_SEO_PAGES) {
-    const orig = p.legacySlug ?? p.slug;
-    add(`/${orig}`, `/${transformServiceSlug(orig)}`, "National Service");
-  }
-
-  // City hubs (3 hand-written + generated)
-  const allCitySlugs = Array.from(
-    new Set([
-      "london",
-      "dubai",
-      "mumbai",
-      ...GENERATED_CITIES.map((c) => c.legacyHubSlug ?? c.slug),
-    ])
-  );
-  for (const cSlug of allCitySlugs) {
-    add(`/${cSlug}`, `/${cSlug}-ecommerce-agency`, "City Hub");
-  }
-
-  // City + Service pages (3 hand-written + generated)
-  for (const hwCity of ["london", "dubai", "mumbai"]) {
-    const origSvc = "shopify-development-agency";
-    add(
-      `/${hwCity}/${origSvc}`,
-      `/${hwCity}/${transformServiceSlug(origSvc)}`,
-      "City Service"
-    );
-  }
-  for (const c of GENERATED_CITY_SEO_PAGES) {
-    const origSvc = c.legacyServiceSlug ?? c.baseSlug;
-    add(
-      `/${c.citySlug}/${origSvc}`,
-      `/${c.citySlug}/${transformServiceSlug(origSvc)}`,
-      "City Service"
-    );
-  }
+  add("/us", "/us", "Core");
+  for (const c of US_CITIES) add(`/us/${c.slug}`, `/us/${c.slug}`, "Core");
+  for (const p of getAllUsPages()) add(p.path, p.path, "US Service");
 
   return records;
 }

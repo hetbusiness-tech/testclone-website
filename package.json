@@ -13,8 +13,7 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
     "indexing": "tsx tools/submit-indexing.ts",
-    "check-indexing": "tsx tools/check-indexing.ts",
-    "regenerate-seo": "tsx tools/generate-seo-spintax.ts"
+    "check-indexing": "tsx tools/check-indexing.ts"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",

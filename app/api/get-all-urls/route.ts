@@ -1,17 +1,20 @@
-import { NextResponse } from 'next/server';
-import { SEO_PAGES, getAllCityPageParams, CITIES, getCityHubSlug } from '../../../lib/seo-pages';
+import { NextResponse } from "next/server";
+import {
+  getMainSitemapEntries,
+  getPortfolioSitemapEntries,
+  getInsightsSitemapEntries,
+} from "../../../lib/sitemap-data";
 
-const SITE_URL = "https://technostripe.com";
+import { US_CITIES, getAllUsPages } from "../../../lib/us-pages";
+import { SITE_URL } from "../../../lib/sitemap-data";
 
-export async function GET(request: Request) {
-  const cityHubUrls = CITIES.map((c) => `${SITE_URL}/${getCityHubSlug(c)}`);
-  const seoPageUrls = SEO_PAGES.map((page) => `${SITE_URL}/${page.slug}`);
-  const citySeoPageUrls = getAllCityPageParams().map((p) => `${SITE_URL}/${p.slug}/${p.service}`);
-  
-  const allUrls = [`${SITE_URL}/locations`, ...cityHubUrls, ...seoPageUrls, ...citySeoPageUrls];
+export async function GET() {
+  const urls = [
+    ...getMainSitemapEntries(),
+    ...getPortfolioSitemapEntries(),
+    ...getInsightsSitemapEntries(),
+  ].map((entry) => entry.url);
+  urls.push(`${SITE_URL}/us`, ...US_CITIES.map(c=>`${SITE_URL}/us/${c.slug}`), ...getAllUsPages().map(p=>`${SITE_URL}${p.path}`));
 
-  return NextResponse.json({
-    total: allUrls.length,
-    urls: allUrls
-  });
+  return NextResponse.json({ total: urls.length, urls });
 }
